@@ -1,0 +1,96 @@
+<div>
+  <nav>
+    <div class="logo">
+      <img src="assets/images/real up.png" alt="Logo" />
+    </div>
+    <ul>
+      <li><a href="pagina1.html">Crowdposting</a></li>
+      <li><a href="pagina2.html">UGC</a></li>
+      <li><a href="pagina3.html">Calculadora</a></li>
+    </ul>
+    <button>Cerrar sesión</button>
+  </nav>
+</div>
+<div class="content">
+  <form [formGroup]="saveUGCForm">
+    <div>
+      <input
+        class="form-control"
+        type="text"
+        id="client"
+        name="client"
+        placeholder="Nombre Cliente"
+        formControlName="name_client"
+      />
+    </div>
+    <div>
+      <select
+        id="country"
+        name="country"
+        formControlName="country"
+        class="form-control"
+      >
+        <option value="">Seleccionar país</option>
+        <option value="Colombia">Colombia</option>
+        <option value="Panama">Panamá</option>
+        <option value="Peru">Perú</option>
+        <option value="Brasil">Brasil</option>
+        <option value="Estados Unidos">Estados Unidos</option>
+      </select>
+    </div>
+    <div>
+      <input
+        class="form-control"
+        type="number"
+        id="numberCreators"
+        name="numberCreators"
+        placeholder="Numero de creadores"
+        formControlName="number_creators"
+      />
+    </div>
+    <div>
+      <input
+        class="form-control"
+        type="text"
+        id="description"
+        name="description"
+        placeholder="Descripcion de los contenidos"
+        formControlName="type_content"
+      />
+    </div>
+
+    <div class="total">
+      <p>Valor Total: {{ numeroCreadores * 100 }} COP</p>
+    </div>
+
+    <button type="submit" (click)="saveSaleUGC()">Submit</button>
+  </form>
+
+  <div class="recommendations form-control">
+    <h3>Recomendaciones</h3>
+    <p>
+      Para lograr resultados efectivos en la campaña publicitaria, sugerimos la
+      participación de al menos 20 influencers. Sin embargo, según nuestras
+      estadísticas, el uso de 50 influencers podría generar un incremento de
+      ventas duplicado.
+    </p>
+  </div>
+
+  <div class="registration">
+    <h3>Summary</h3>
+    <div>
+      <label for="country">País:</label>
+      <span>{{ selectedCountry || "-" }}</span>
+    </div>
+    <div>
+      <label for="videoCount">Número de videos:</label>
+      <span>{{ videoCount || "-" }}</span>
+    </div>
+    <div>
+      <label for="videoType">Tipo de videos:</label>
+      <span>{{ selectedVideoType || "-" }}</span>
+    </div>
+  </div>
+
+  <form></form>
+</div>
