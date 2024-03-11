@@ -38,8 +38,8 @@ export class CrowdpostingComponent {
 
   saveSaleUGC(){
     console.log(this.saveCrowdpostingForm.value);
-    this.crowdpostingService.saveSaleCrowdposting(this.saveCrowdpostingForm.value).subscribe((response) => {
-      console.log(response);
+    this.crowdpostingService.saveSaleCrowdposting(this.saveCrowdpostingForm.value).subscribe(() => {
+      console.log();
       alert("¡La compra se envio con exito!")
       this.router.navigateByUrl('/ugc');
     

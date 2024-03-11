@@ -61,10 +61,10 @@
           "builder": "@angular-devkit/build-angular:dev-server",
           "configurations": {
             "production": {
-              "browserTarget": "RealUpFront:build:production"
+              "buildTarget": "RealUpFront:build:production"
             },
             "development": {
-              "browserTarget": "RealUpFront:build:development"
+              "buildTarget": "RealUpFront:build:development"
             }
           },
           "defaultConfiguration": "development"
@@ -72,7 +72,7 @@
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "RealUpFront:build"
+            "buildTarget": "RealUpFront:build"
           }
         },
         "test": {

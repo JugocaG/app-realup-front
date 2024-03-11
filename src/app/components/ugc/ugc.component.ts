@@ -58,8 +58,8 @@ export class UgcComponent {
 
   saveSaleUGC(){
     console.log(this.saveUGCForm.value);
-    this.UGCService.saveSaleUGC(this.saveUGCForm.value).subscribe((response) => {
-      console.log(response);
+    this.UGCService.saveSaleUGC(this.saveUGCForm.value).subscribe(() => {
+      console.log();
       alert("¡La compra se envio con exito!")
       this.router.navigateByUrl('/ugc');
     
