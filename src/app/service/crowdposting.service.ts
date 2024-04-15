@@ -18,8 +18,14 @@ export class CrowdpostingService {
     })
   }
 
-  savePackageCrowdposting(signupRequest: any): Observable<any> {
-    return this.http.post(BASE_URL + "api/v1/crowdposting/save-package", signupRequest, {
+  savePackageCrowdpostingInstagam(signupRequest: any): Observable<any> {
+    return this.http.post(BASE_URL + "api/v1/crowdposting/save-package-instagram", signupRequest, {
+      headers: this.service.createAuthorizationHeader()
+    })
+  }
+
+  savePackageCrowdpostingTikTok(signupRequest: any): Observable<any> {
+    return this.http.post(BASE_URL + "api/v1/crowdposting/save-package-tiktok", signupRequest, {
       headers: this.service.createAuthorizationHeader()
     })
   }

@@ -1,0 +1,463 @@
+<div class="container">
+  <div class="content">
+    <div class="title">
+      <h1>Brand Ambassador</h1>
+    </div>
+    <div class="content-form">
+      <form [formGroup]="saveClientForm" class="form-brand-ambassador">
+        <div class="title-campaing">
+          <h2>Campaña</h2>
+        </div>
+        <mat-card class="card-campaign">
+          <div class="campaign-name">
+            <div>
+              <input
+                type="text"
+                id="client"
+                name="client"
+                placeholder="Cliente"
+                formControlName="client"
+              />
+            </div>
+            <div>
+              <input
+                type="text"
+                name="campaign_name"
+                id="campaign_name"
+                placeholder="Nombre de la camapaña"
+                formControlName="campaign_name"
+              />
+            </div>
+          </div>
+          <div class="campaign-objetive">
+            <h2>Objetivo de campaña</h2>
+            <div class="radio-product-boxes">
+              <div class="radio-product-box">
+                <input
+                  class="radio-product"
+                  value="0"
+                  type="radio"
+                  id="brand-awarness"
+                  name="campaign_objective"
+                  formControlName="campaign_objective"
+                />
+                <label for="brand-awarness">Brand Awarness</label>
+              </div>
+              <div class="radio-product-box">
+                <input
+                  class="radio-product"
+                  value="1"
+                  type="radio"
+                  id="consideration"
+                  name="campaign_objective"
+                  formControlName="campaign_objective"
+                />
+                <label for="consideration">Consideracion</label>
+              </div>
+              <div class="radio-product-box">
+                <input
+                  class="radio-product"
+                  value="2"
+                  type="radio"
+                  id="conversion"
+                  name="campaign_objective"
+                  formControlName="campaign_objective"
+                />
+                <label for="conversion">Conversion</label>
+              </div>
+              <div class="radio-product-box">
+                <input
+                  class="radio-product"
+                  value="3"
+                  type="radio"
+                  id="retention"
+                  name="campaign_objective"
+                  formControlName="campaign_objective"
+                />
+                <label for="retention">Retencion</label>
+              </div>
+            </div>
+          </div>
+          <div>
+            <mat-form-field class="brief-campaign-objective">
+              <mat-label
+                >Enter the purpose and objectives of your marketing campaign in
+                more detail</mat-label
+              >
+              <textarea
+                matInput
+                name="brief_campaign_objective"
+                id="brief-campaign-objective"
+                rows="3"
+                formControlName="brief_campaign_objective"
+              ></textarea>
+            </mat-form-field>
+          </div>
+        </mat-card>
+        <div class="title-campaing">
+          <h2>Audicencia</h2>
+        </div>
+        <mat-card class="location-card card-campaign">
+          <div class="location">
+            <h2>Location</h2>
+            <div class="country">
+              <mat-form-field class="select-country">
+                <mat-label>Pais</mat-label>
+                <mat-select
+                  (selectionChange)="changeCountry()"
+                  disableRipple
+                  id="country"
+                  name="country"
+                  formControlName="location"
+                >
+                  <mat-option value="">Seleccionar país</mat-option>
+                  <mat-option value="Colombia">Colombia</mat-option>
+                  <mat-option value="Panama">Panamá</mat-option>
+                  <mat-option value="Peru">Perú</mat-option>
+                  <mat-option value="Brasil">Brasil</mat-option>
+                  <mat-option value="Estados Unidos">Estados Unidos</mat-option>
+                </mat-select>
+              </mat-form-field>
+            </div>
+            <div class="cities">
+              <mat-form-field class="select-cities">
+                <mat-label>Cities</mat-label>
+                <mat-select
+                  name="cities"
+                  id="cities"
+                  formControlName="cities"
+                  multiple
+                >
+                  <mat-option *ngFor="let city of citiesFinal" [value]="city">{{
+                    city
+                  }}</mat-option>
+                </mat-select>
+              </mat-form-field>
+            </div>
+          </div>
+        </mat-card>
+        <mat-card class="card-campaign">
+          <div class="audience-interests">
+            <mat-form-field class="audience-interests-select">
+              <mat-label>Audience interests</mat-label>
+              <mat-select
+                name="audience_interests"
+                id="audience_interests"
+                formControlName="audience_interests"
+                multiple
+              >
+                <mat-option
+                  *ngFor="let interest of generalInterests"
+                  [value]="interest"
+                  >{{ interest }}</mat-option
+                >
+              </mat-select>
+            </mat-form-field>
+          </div>
+          <div>
+            <mat-form-field class="select-idiom select">
+              <mat-label>Idiom</mat-label>
+              <mat-select
+                name="audience_language"
+                id="audience_language"
+                formControlName="audience_language"
+              >
+                <mat-option value="Spanish">Spanish</mat-option>
+                <mat-option value="English">English</mat-option>
+                <mat-option value="Portuguese">Portuguese</mat-option>
+              </mat-select>
+            </mat-form-field>
+          </div>
+          <div>
+            <mat-form-field class="select-age select">
+              <mat-label>Ages</mat-label>
+              <mat-select
+                name="audience_ages"
+                id="audience_ages"
+                formControlName="audience_ages"
+              >
+                <mat-option value="10 - 20">18 - 30</mat-option>
+                <mat-option value="30 - 40">30 - 40</mat-option>
+                <mat-option value="40 - 50">40 - 50</mat-option>
+                <mat-option value="50 - 60">50 - 60</mat-option>
+              </mat-select>
+            </mat-form-field>
+          </div>
+          <div>
+            <mat-form-field class="select-gender select">
+              <mat-label>Audience Gender</mat-label>
+              <mat-select
+                name="audience_genders"
+                id="audience_genders"
+                formControlName="audience_genders"
+              >
+                <mat-option value="Male">Male</mat-option>
+                <mat-option value="Female">Female</mat-option>
+                <mat-option value="Indiferente">Indiferente</mat-option>
+              </mat-select>
+            </mat-form-field>
+          </div>
+        </mat-card>
+        <div class="title-campaing">
+          <h2>Contenido</h2>
+        </div>
+        <mat-card class="card-campaign">
+          <h2>Creators</h2>
+          <div>
+            <mat-form-field class="select-age select">
+              <mat-label>Type Contents</mat-label>
+              <mat-select
+                name="content_type"
+                id="content_type"
+                formControlName="content_type"
+                multiple
+              >
+                <mat-option value="Instagram Post">Instagram Post</mat-option>
+                <mat-option value="Instagram Story">Instagram Story</mat-option>
+                <mat-option value="Instagram Reel">Instagram Reel</mat-option>
+                <mat-option value="TikTok Video">TikTok Video</mat-option>
+              </mat-select>
+            </mat-form-field>
+          </div>
+
+          <div>
+            <mat-form-field class="select-age select">
+              <mat-label>Creator followers</mat-label>
+              <mat-select
+                name="minimum_followers"
+                id="minimum_followers"
+                formControlName="minimum_followers"
+              >
+                <mat-option value="1k - 10k">1k - 10k</mat-option>
+                <mat-option value="10k - 100k">10k - 100k</mat-option>
+                <mat-option value="100k - 500k">100k - 500k</mat-option>
+                <mat-option value="500k - 1M">500k - 1M</mat-option>
+                <mat-option value="1M - 5M">1M - 5M</mat-option>
+                <mat-option value="+5M">+5M</mat-option>
+                <mat-option value="Macro + Celebrity"
+                  >Macro + Celebrity</mat-option
+                >
+              </mat-select>
+            </mat-form-field>
+          </div>
+          <div class="creator-options">
+            <mat-form-field class="select-gender select">
+              <mat-label>Creator Gender</mat-label>
+              <mat-select
+                name="creator_gender"
+                id="creator_gender"
+                formControlName="creator_gender"
+              >
+                <mat-option value="Male">Male</mat-option>
+                <mat-option value="Female">Female</mat-option>
+                <mat-option value="Indiferente">Indiferente</mat-option>
+              </mat-select>
+            </mat-form-field>
+            <div>
+              <mat-form-field class="brief-video-content">
+                <mat-label
+                  >Give creators more detail about the product or service you
+                  would like to promote.</mat-label
+                >
+                <textarea
+                  matInput
+                  name="brief_video_content"
+                  id="brief-video-content"
+                  rows="3"
+                  formControlName="brief_video_content"
+                ></textarea>
+              </mat-form-field>
+            </div>
+            <div class="creators">
+              <label>Numero de creadores</label>
+              <div class="button-creators-div">
+                <button
+                  (click)="restCreators()"
+                  type="button"
+                  class="button-creators"
+                >
+                  -
+                </button>
+
+                <input
+                  class="form-control"
+                  [(ngModel)]="numeroCreadores"
+                  type="number"
+                  id="numberCreators"
+                  name="numberCreators"
+                  placeholder="Numero de creadores"
+                  formControlName="number_creators"
+                />
+                <button
+                  (click)="sumCreators()"
+                  type="button"
+                  class="button-creators"
+                >
+                  +
+                </button>
+              </div>
+              <div class="button-number-contents">
+                <button mat-stroked-button (click)="putCreators(10)">10</button>
+                <button mat-stroked-button (click)="putCreators(20)">20</button>
+                <button mat-stroked-button (click)="putCreators(40)">40</button>
+              </div>
+            </div>
+          </div>
+          <div class="campaign-objetive">
+            <h2>Date</h2>
+            <div class="radio-product-boxes radio-date-boxes">
+              <div class="radio-product-box">
+                <input
+                  class="radio-product radio-date"
+                  type="radio"
+                  name="date_publish"
+                  id="enero"
+                  value="Enero"
+                  formControlName="date_publish"
+                />
+                <label for="enero">Enero</label>
+              </div>
+              <div class="radio-product-box">
+                <input
+                  class="radio-product radio-date"
+                  type="radio"
+                  name="date_publish"
+                  id="febrero"
+                  value="Febrero"
+                  formControlName="date_publish"
+                />
+                <label for="febrero">Febrero</label>
+              </div>
+
+              <div class="radio-product-box">
+                <input
+                  class="radio-product radio-date"
+                  type="radio"
+                  name="date_publish"
+                  id="marzo"
+                  value="Marzo"
+                  formControlName="date_publish"
+                />
+                <label for="marzo">Marzo</label>
+              </div>
+
+              <div class="radio-product-box">
+                <input
+                  class="radio-product radio-date"
+                  type="radio"
+                  name="date_publish"
+                  id="abril"
+                  value="Abril"
+                  formControlName="date_publish"
+                />
+                <label for="abril">Abril</label>
+              </div>
+
+              <div class="radio-product-box">
+                <input
+                  class="radio-product radio-date"
+                  type="radio"
+                  name="date_publish"
+                  id="mayo"
+                  value="Mayo"
+                  formControlName="date_publish"
+                />
+                <label for="mayo">Mayo</label>
+              </div>
+
+              <div class="radio-product-box">
+                <input
+                  class="radio-product radio-date"
+                  type="radio"
+                  name="date_publish"
+                  id="junio"
+                  value="Junio"
+                  formControlName="date_publish"
+                />
+                <label for="junio">Junio</label>
+              </div>
+            </div>
+            <div class="radio-product-boxes radio-date-boxes">
+              <div class="radio-product-box">
+                <input
+                  class="radio-product radio-date"
+                  type="radio"
+                  name="date_publish"
+                  id="julio"
+                  value="Julio"
+                  formControlName="date_publish"
+                />
+                <label for="julio">Julio</label>
+              </div>
+
+              <div class="radio-product-box">
+                <input
+                  class="radio-product radio-date"
+                  type="radio"
+                  name="date_publish"
+                  id="agosto"
+                  value="Agosto"
+                  formControlName="date_publish"
+                />
+                <label for="agosto">Agosto</label>
+              </div>
+
+              <div class="radio-product-box">
+                <input
+                  class="radio-product radio-date"
+                  type="radio"
+                  name="date_publish"
+                  id="septiembre"
+                  value="Septiembre"
+                  formControlName="date_publish"
+                />
+                <label for="septiembre">Septiembre</label>
+              </div>
+
+              <div class="radio-product-box">
+                <input
+                  class="radio-product radio-date"
+                  type="radio"
+                  name="date_publish"
+                  id="octubre"
+                  value="Octubre"
+                  formControlName="date_publish"
+                />
+                <label for="octubre">Octubre</label>
+              </div>
+
+              <div class="radio-product-box">
+                <input
+                  class="radio-product radio-date"
+                  type="radio"
+                  name="date_publish"
+                  id="noviembre"
+                  value="Noviembre"
+                  formControlName="date_publish"
+                />
+                <label for="noviembre">Noviembre</label>
+              </div>
+
+              <div class="radio-product-box">
+                <input
+                  class="radio-product radio-date"
+                  type="radio"
+                  name="date_publish"
+                  id="diciembre"
+                  value="Diciembre"
+                  formControlName="date_publish"
+                />
+                <label for="diciembre">Diciembre</label>
+              </div>
+            </div>
+          </div>
+        </mat-card>
+        <div class="button-final">
+          <button mat-flat-button (click)="saveClientCrowdposting()">
+            Summit
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

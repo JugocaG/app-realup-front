@@ -1,0 +1,104 @@
+.container {
+  width: 100%;
+  height: 100vh;
+  background-image: url("../../../assets/images/curvas-home.png");
+  background-position: bottom;
+  background-size: contain;
+  background-repeat: no-repeat;
+  display: flex;
+  flex-direction: row;
+}
+.logo-video {
+  width: 60%;
+  display: flex;
+  flex-direction: column;
+}
+.logo-realup {
+  height: 71px;
+  width: 259.42px;
+  margin: 20px;
+}
+.videos {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+h1 {
+  margin: 0px;
+}
+
+.links {
+  width: 40%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  padding-top: 15vh;
+  padding-bottom: 15vh;
+}
+
+img {
+  transition: width 2s, height 4s;
+}
+
+.ugc-link:hover {
+  img {
+    width: 70%;
+    height: 70%;
+  }
+}
+
+.video-brand {
+  opacity: 0;
+  transition: opacity 2s ease-in-out;
+}
+
+.video-brand.show {
+  opacity: 1;
+}
+
+.buttons {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-end;
+}
+
+.button-background {
+  background-color: #00eced;
+  width: 100%;
+  border-top-left-radius: 100px;
+  border-bottom-left-radius: 100px;
+  margin-left: 15px;
+
+  button {
+    padding-top: 10px;
+    padding-bottom: 10px;
+    width: 100%;
+    font-family: "Poppins", sans-serif;
+    font-weight: 600;
+    font-style: normal;
+    font-size: 71px;
+
+    background-color: #00eced;
+    color: transparent;
+    background-image: linear-gradient(to right, #d8007f, #ffffff);
+    -webkit-background-clip: text;
+    -moz-background-clip: text;
+    background-clip: text;
+    border: none;
+  }
+}
+
+:host {
+  display: block;
+  margin-top: 1rem;
+}
+
+.open-close-container {
+  border: 1px solid #dddddd;
+  margin-top: 1em;
+  padding: 20px 20px 0px 20px;
+  color: #000000;
+  font-weight: bold;
+  font-size: 20px;
+}

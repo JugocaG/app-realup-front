@@ -1,0 +1,85 @@
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link
+  href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
+  rel="stylesheet"
+/>
+<div class="container-principal">
+  <div class="container">
+    <div class="logo-video">
+      <div class="logo">
+        <img
+          class="logo-realup"
+          src="assets/images/REAL UP.png"
+          alt="Logo RealUp"
+        />
+      </div>
+      <div class="videos">
+        <img
+          id="imagen"
+          *ngIf="showImageBrand"
+          class="video-brand {{ showImageBrand ? 'show' : '' }}"
+          src="assets/images/MOCKUP CELULAR Brand.png"
+          alt="Imagen de apoyo"
+          width="35%"
+          (mouseover)="animarImagen()"
+        />
+        <img
+          *ngIf="showImageCrowdposting"
+          class="video-crowdposting"
+          src="assets/images/MOCKUP CELULAR Crowdposting.png"
+          alt="Imagen de apoyo"
+          width="35%"
+        />
+        <img
+          *ngIf="showImageUGC"
+          class="video-ugc"
+          src="assets/images/MOCKUP CELULAR UGC.png"
+          alt="Imagen de apoyo"
+          width="35%"
+        />
+      </div>
+    </div>
+    <div class="links">
+      <div class="buttons">
+        <img src="../../../assets/icons/FLECHAS.svg" alt="Flechas" />
+        <div class="button-background">
+          <button
+            type="button"
+            (click)="linkUCG()"
+            (mouseover)="linkUCGHover(true)"
+          >
+            UGC
+          </button>
+        </div>
+      </div>
+      <div class="buttons">
+        <img src="../../../assets/icons/FLECHAS.svg" alt="Flechas" />
+        <div class="button-background">
+          <button
+            class="open-close-container"
+            [@openClose]="isOpen ? 'open' : 'closed'"
+            type="button"
+            (click)="linkCrowdposting()"
+            (mouseover)="linkCrowdpostingHover(true)"
+            (mouseover)="toggle()"
+          >
+            Crowdposting
+          </button>
+        </div>
+      </div>
+      <div class="buttons">
+        <img src="../../../assets/icons/FLECHAS.svg" alt="Flechas" />
+        <div class="button-background">
+          <button
+            type="button"
+            (click)="linkBrand()"
+            (mouseover)="linkBrandHover(true)"
+          >
+            Brand Ambassador
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

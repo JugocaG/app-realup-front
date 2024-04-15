@@ -1,97 +1,582 @@
-<div>
-  <nav>
-    <div class="logo">
-      <img src="assets/images/real up.png" alt="Logo" />
-    </div>
-    <ul>
-      <li><a href="pagina1.html">Crowdposting</a></li>
-      <li><a href="pagina2.html">UGC</a></li>
-      <li><a href="pagina3.html">Calculadora</a></li>
-    </ul>
-    <button>Cerrar sesión</button>
-  </nav>
-</div>
-<div class="content">
-  <form [formGroup]="saveUGCForm">
-    <div>
-      <input
-        class="form-control"
-        type="text"
-        id="client"
-        name="client"
-        placeholder="Nombre Cliente"
-        formControlName="name_client"
-      />
-    </div>
-    <div>
-      <select
-        id="country"
-        name="country"
-        formControlName="country"
-        class="form-control"
-      >
-        <option value="">Seleccionar país</option>
-        <option value="Colombia">Colombia</option>
-        <option value="Panama">Panamá</option>
-        <option value="Peru">Perú</option>
-        <option value="Brasil">Brasil</option>
-        <option value="Estados Unidos">Estados Unidos</option>
-      </select>
-    </div>
-    <div>
-      <input
-        [(ngModel)]="numeroCreadores"
-        class="form-control"
-        type="number"
-        id="numberCreators"
-        name="numberCreators"
-        placeholder="Numero de creadores"
-        formControlName="number_creators"
-      />
-    </div>
-    <div>
-      <input
-        class="form-control"
-        type="text"
-        id="description"
-        name="description"
-        placeholder="Descripcion de los contenidos"
-        formControlName="type_content"
-      />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link
+  href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap"
+  rel="stylesheet"
+/>
+<div class="container">
+  <div class="content">
+    <div class="content-sale">
+      <div class="title">
+        <h1>UGC</h1>
+      </div>
+      <div class="form-content">
+        <form class="form-ugc" [formGroup]="saveUGCForm">
+          <div class="introduction-ugc">
+            <input
+              type="text"
+              id="client"
+              name="client"
+              placeholder="Marca"
+              formControlName="name_client"
+            />
+            <input
+              type="text"
+              id="campaign_name"
+              name="campaign_name"
+              placeholder="Nombre de la campaña"
+              formControlName="campaign_name"
+            />
+          </div>
+
+          <div>
+            <div class="product">
+              <h2>Producto</h2>
+            </div>
+            <mat-card class="card-product">
+              <div class="product-form">
+                <div id="product-name">
+                  <input
+                    type="text"
+                    name="name_product"
+                    id="name_product"
+                    placeholder="Nombre del producto"
+                    formControlName="name_product"
+                  />
+                </div>
+                <div class="type-product">
+                  <h2>Tipo de producto</h2>
+                  <div class="radio-product-boxes">
+                    <div class="radio-product-box">
+                      <input
+                        class="radio-product"
+                        type="radio"
+                        name="type_product"
+                        id="physical-product"
+                        value="Physical product"
+                        formControlName="type_product"
+                      />
+                      <label for="physical-product">Producto Fisico</label>
+                    </div>
+                    <div class="radio-product-box">
+                      <input
+                        class="radio-product"
+                        type="radio"
+                        name="type_product"
+                        id="service"
+                        value="Service"
+                        formControlName="type_product"
+                      />
+                      <label for="service">Servicio</label>
+                    </div>
+                  </div>
+                </div>
+                <div class="type-product">
+                  <h2>Delivery</h2>
+                  <div class="radio-product-boxes">
+                    <div class="radio-product-box">
+                      <input
+                        class="radio-product"
+                        type="radio"
+                        name="delivery"
+                        id="reembolso"
+                        value="Reimbursement"
+                        formControlName="delivery"
+                      />
+                      <label for="reembolso">Reembolso</label>
+                    </div>
+                    <div class="radio-product-box">
+                      <input
+                        class="radio-product"
+                        type="radio"
+                        name="delivery"
+                        id="enviadoPorMi"
+                        value="Delivered by me"
+                        formControlName="delivery"
+                      />
+                      <label for="enviadoPorMi">Enviado por mi</label>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <!-- <div class="brief">
+                <textarea
+                  maxlength="200"
+                  id="brief"
+                  type="text"
+                  name="brief"
+                  id="brief"
+                  placeholder="Escribe las caracteristicas de tu producto"
+                  formControlName="brief"
+                ></textarea>
+              </div> -->
+              <div class="brief-product">
+                <mat-form-field class="brief-campaign-objective">
+                  <mat-label
+                    >Enter the purpose and objectives of your marketing campaign
+                    in more detail</mat-label
+                  >
+                  <textarea
+                    matInput
+                    name="brief"
+                    id="brief"
+                    rows="3"
+                    formControlName="brief"
+                  ></textarea>
+                </mat-form-field>
+              </div>
+            </mat-card>
+          </div>
+          <div class="campaing">
+            <div class="title-campaing">
+              <h2>Campaña</h2>
+            </div>
+            <div>
+              <mat-card class="card-campaign-objetive">
+                <h2>Objetivo de campaña</h2>
+                <div class="radio-product-boxes">
+                  <div class="radio-product-box">
+                    <input
+                      class="radio-product"
+                      value="0"
+                      type="radio"
+                      id="brand-awarness"
+                      name="campaign_objective"
+                      formControlName="campaign_objective"
+                    />
+                    <label for="brand-awarness">Brand Awarness</label>
+                  </div>
+                  <div class="radio-product-box">
+                    <input
+                      class="radio-product"
+                      value="1"
+                      type="radio"
+                      id="consideration"
+                      name="campaign_objective"
+                      formControlName="campaign_objective"
+                    />
+                    <label for="consideration">Consideracion</label>
+                  </div>
+                  <div class="radio-product-box">
+                    <input
+                      class="radio-product"
+                      value="2"
+                      type="radio"
+                      id="conversion"
+                      name="campaign_objective"
+                      formControlName="campaign_objective"
+                    />
+                    <label for="conversion">Conversion</label>
+                  </div>
+                  <div class="radio-product-box">
+                    <input
+                      class="radio-product"
+                      value="3"
+                      type="radio"
+                      id="retention"
+                      name="campaign_objective"
+                      formControlName="campaign_objective"
+                    />
+                    <label for="retention">Retencion</label>
+                  </div>
+                </div>
+                <div>
+                  <mat-form-field class="brief-campaign-objective">
+                    <mat-label
+                      >Enter the purpose and objectives of your marketing
+                      campaign in more detail</mat-label
+                    >
+                    <textarea
+                      matInput
+                      name="brief_campaign_objective"
+                      id="brief-campaign-objective"
+                      rows="3"
+                      formControlName="brief_campaign_objective"
+                    ></textarea>
+                  </mat-form-field>
+                </div>
+              </mat-card>
+            </div>
+
+            <mat-card class="location-card">
+              <div class="location">
+                <h2>Location</h2>
+                <div class="country">
+                  <mat-form-field class="select-country">
+                    <mat-label>Countries</mat-label>
+                    <mat-select
+                      multiple
+                      (selectionChange)="changeCountry()"
+                      (selectionChange)="showCities()"
+                      disableRipple
+                      [(ngModel)]="selectedCountry"
+                      id="country"
+                      name="country"
+                      formControlName="country"
+                    >
+                      <mat-option value="Argentina">Argentina</mat-option>
+                      <mat-option value="Bolivia">Bolivia</mat-option>
+                      <mat-option value="Brasil">Brasil</mat-option>
+                      <mat-option value="Chile">Chile</mat-option>
+                      <mat-option value="Colombia">Colombia</mat-option>
+                      <mat-option value="Ecuador">Ecuador</mat-option>
+                      <mat-option value="Paraguay">Paraguay</mat-option>
+                      <mat-option value="Peru">Peru</mat-option>
+                      <mat-option value="Uruguay">Uruguay</mat-option>
+                      <mat-option value="Venezuela">Venezuela</mat-option>
+                    </mat-select>
+                  </mat-form-field>
+                </div>
+                <div class="cities-selected">
+                  <div class="cities" *ngIf="verificarArgentina">
+                    <p>Ciudades Argentina</p>
+                    <mat-form-field class="select-cities">
+                      <mat-label>Cities</mat-label>
+                      <mat-select
+                        name="cities"
+                        id="cities"
+                        formControlName="cities"
+                        multiple
+                      >
+                        <mat-option
+                          *ngFor="let city of citiesListArgentina"
+                          [value]="city"
+                          >{{ city }}</mat-option
+                        >
+                      </mat-select>
+                    </mat-form-field>
+                  </div>
+                  <div class="cities" *ngIf="verificarBolivia">
+                    <p>Ciudades Bolivia</p>
+                    <mat-form-field class="select-cities">
+                      <mat-label>Cities</mat-label>
+                      <mat-select
+                        name="cities"
+                        id="cities"
+                        formControlName="cities"
+                        multiple
+                      >
+                        <mat-option
+                          *ngFor="let city of citiesListBolivia"
+                          [value]="city"
+                          >{{ city }}</mat-option
+                        >
+                      </mat-select>
+                    </mat-form-field>
+                  </div>
+                  <div class="cities" *ngIf="verificarBrasil">
+                    <p>Ciudades Brasil</p>
+                    <mat-form-field class="select-cities">
+                      <mat-label>Cities</mat-label>
+                      <mat-select
+                        name="cities"
+                        id="cities"
+                        formControlName="cities"
+                        multiple
+                      >
+                        <mat-option
+                          *ngFor="let city of citiesListBrasil"
+                          [value]="city"
+                          >{{ city }}</mat-option
+                        >
+                      </mat-select>
+                    </mat-form-field>
+                  </div>
+                  <div class="cities" *ngIf="verificarChile">
+                    <p>Ciudades Chile</p>
+                    <mat-form-field class="select-cities">
+                      <mat-label>Cities</mat-label>
+                      <mat-select
+                        name="cities"
+                        id="cities"
+                        formControlName="cities"
+                        multiple
+                      >
+                        <mat-option
+                          *ngFor="let city of citiesListChile"
+                          [value]="city"
+                          >{{ city }}</mat-option
+                        >
+                      </mat-select>
+                    </mat-form-field>
+                  </div>
+                  <div class="cities" *ngIf="verificarColombia">
+                    <p>Ciudades Colombia</p>
+                    <mat-form-field class="select-cities">
+                      <mat-label>Cities</mat-label>
+                      <mat-select
+                        name="cities"
+                        id="cities"
+                        formControlName="cities"
+                        multiple
+                      >
+                        <mat-option
+                          *ngFor="let city of citiesListColombia"
+                          [value]="city"
+                          >{{ city }}</mat-option
+                        >
+                      </mat-select>
+                    </mat-form-field>
+                  </div>
+
+                  <div class="cities" *ngIf="verificarEcuador">
+                    <p>Ciudades Ecuador</p>
+                    <mat-form-field class="select-cities">
+                      <mat-label>Cities</mat-label>
+                      <mat-select
+                        name="cities"
+                        id="cities"
+                        formControlName="cities"
+                        multiple
+                      >
+                        <mat-option
+                          *ngFor="let city of citiesListEcuador"
+                          [value]="city"
+                          >{{ city }}</mat-option
+                        >
+                      </mat-select>
+                    </mat-form-field>
+                  </div>
+                </div>
+              </div>
+            </mat-card>
+            <mat-card class="card-creators">
+              <div class="creators-recommendations">
+                <div class="creators">
+                  <label for="number-creators">Numero de creadores</label>
+                  <div class="button-creators-div">
+                    <button
+                      (click)="restCreators()"
+                      type="button"
+                      class="button-creators"
+                    >
+                      -
+                    </button>
+                    <input
+                      (ngModelChange)="changeContents()"
+                      class="form-control"
+                      [(ngModel)]="numeroCreadores"
+                      type="number"
+                      id="numberCreators"
+                      name="numberCreators"
+                      placeholder="Numero de creadores"
+                      formControlName="number_creators"
+                    />
+                    <button
+                      (click)="sumCreators()"
+                      type="button"
+                      class="button-creators"
+                    >
+                      +
+                    </button>
+                  </div>
+                  <div class="button-number-contents">
+                    <button mat-stroked-button (click)="putCreators(20)">
+                      20
+                    </button>
+                    <button mat-stroked-button (click)="putCreators(40)">
+                      40
+                    </button>
+                    <button mat-stroked-button (click)="putCreators(60)">
+                      60
+                    </button>
+                  </div>
+                </div>
+                <div class="recommendations">
+                  <p>
+                    Para lograr resultados efectivos en la campaña publicitaria,
+                    sugerimos la participación de al menos 20 influencers. Sin
+                    embargo, según nuestras estadísticas, el uso de 50
+                    influencers podría generar un incremento de ventas
+                    duplicado.
+                  </p>
+                </div>
+              </div>
+            </mat-card>
+            <div class="all-type-contents">
+              <div class="type-contents">
+                <h2>Carrusel de fotos</h2>
+                <img src="assets/icons/carrousel.svg" alt="Icono Carrousel" />
+                <div class="number-button">
+                  <button
+                    class="button-content"
+                    type="button"
+                    (click)="restCarrousel()"
+                  >
+                    -
+                  </button>
+                  <input
+                    (ngModelChange)="changeContents()"
+                    min="0"
+                    [(ngModel)]="numeroCarrousel"
+                    class="form-control"
+                    type="number"
+                    id="numberCreators"
+                    name="numberCreators"
+                    placeholder="Numero de creadores"
+                    formControlName="number_carrousel"
+                  />
+                  <button
+                    class="button-content"
+                    type="button"
+                    (click)="sumCarrousel()"
+                  >
+                    +
+                  </button>
+                </div>
+              </div>
+
+              <div class="type-contents">
+                <h2>Video de 0 a 15 Seg</h2>
+                <img
+                  src="../../../assets/icons/videos.svg"
+                  alt="Icono videos"
+                />
+                <div class="number-button">
+                  <button
+                    class="button-content"
+                    type="button"
+                    (click)="restShort()"
+                  >
+                    -
+                  </button>
+                  <input
+                    (ngModelChange)="changeContents()"
+                    [(ngModel)]="numeroShortVideos"
+                    class="form-control"
+                    type="number"
+                    id="numberCreators"
+                    name="numberCreators"
+                    placeholder="Numero de creadores"
+                    formControlName="number_short_videos"
+                  />
+                  <button
+                    class="button-content"
+                    type="button"
+                    (click)="sumShort()"
+                  >
+                    +
+                  </button>
+                </div>
+              </div>
+              <div class="type-contents">
+                <h2>Video de 15 a 30 Seg</h2>
+                <img
+                  src="../../../assets/icons/videos.svg"
+                  alt="Icono videos"
+                />
+                <div class="number-button">
+                  <button
+                    class="button-content"
+                    type="button"
+                    (click)="restLong()"
+                  >
+                    -
+                  </button>
+                  <input
+                    (ngModelChange)="changeContents()"
+                    [(ngModel)]="numeroLongVideos"
+                    class="form-control"
+                    type="number"
+                    id="numberCreators"
+                    name="numberCreators"
+                    placeholder="Numero de creadores"
+                    formControlName="number_long_videos"
+                  />
+                  <button
+                    class="button-content"
+                    type="button"
+                    (click)="sumLong()"
+                  >
+                    +
+                  </button>
+                </div>
+              </div>
+            </div>
+            <div>
+              <mat-card class="guideline">
+                <mat-card-content id="card-pauta"
+                  >¿Deseas pautar estos videos?</mat-card-content
+                >
+                <mat-card-content id="card-pauta">
+                  <mat-slide-toggle
+                    type="checkbox"
+                    value="true"
+                    id="guideline"
+                    name="guideline"
+                    formControlName="guideline"
+                  >
+                  </mat-slide-toggle>
+                </mat-card-content>
+              </mat-card>
+            </div>
+          </div>
+          <div class="button-final">
+            <button mat-flat-button (click)="saveSaleUGC()">Submit</button>
+          </div>
+        </form>
+      </div>
     </div>
 
-    <div class="total">
-      <p>Valor Total: {{ numeroCreadores * 100 }} COP</p>
+    <div class="summary">
+      <img
+        id="realup-summary"
+        src="assets/images/RealUpSummary.svg"
+        alt="Logo RealUp"
+      />
+      <img
+        id="shopping-cart"
+        src="assets/icons/Shopping cart.svg"
+        alt="Shopping cart"
+      />
+      <h2>Shopping Cart</h2>
+      <div class="data">
+        <label for="country">País</label>
+        <p>{{ countryHtml }}</p>
+      </div>
+      <div class="data">
+        <label for="videoCount">Número de contenidos</label>
+        <p>
+          {{
+            numeroCreadores * numeroCarrousel +
+              numeroCreadores * numeroLongVideos +
+              numeroCreadores * numeroShortVideos
+          }}
+        </p>
+      </div>
+      <div class="data">
+        <label for="numberCarrousel">Contenidos Carrousel</label>
+        <p>{{ numeroCarrousel }}</p>
+      </div>
+      <div class="data">
+        <label for="numeroLongVideos">Contenidos Largos</label>
+        <p>{{ numeroLongVideos }}</p>
+      </div>
+      <div class="data">
+        <label for="numberShortVideos">Contenidos Cortos</label>
+        <p>{{ numeroShortVideos }}</p>
+      </div>
+      <div class="data">
+        <label for="videoType">Valor promedio por contenido</label>
+        <p>
+          {{
+            (
+              ValorTotal /
+              (numeroCreadores * numeroCarrousel +
+                numeroCreadores * numeroLongVideos +
+                numeroCreadores * numeroShortVideos)
+            ).toFixed(0)
+          }}
+        </p>
+      </div>
+      <div class="data">
+        <label for="videoType">Tarifa de plataforma (15%)</label>
+        <p>{{ ValorTotal * 0.15 }}</p>
+      </div>
+      <div class="data">
+        <p id="total">Valor Total:</p>
+        <p>{{ ValorTotal + ValorTotal * 0.15 }} USD</p>
+      </div>
     </div>
-
-    <button type="submit" (click)="saveSaleUGC()">Submit</button>
-  </form>
-
-  <div class="recommendations form-control">
-    <h3>Recomendaciones</h3>
-    <p>
-      Para lograr resultados efectivos en la campaña publicitaria, sugerimos la
-      participación de al menos 20 influencers. Sin embargo, según nuestras
-      estadísticas, el uso de 50 influencers podría generar un incremento de
-      ventas duplicado.
-    </p>
   </div>
-
-  <div class="registration">
-    <h3>Summary</h3>
-    <div>
-      <label for="country">País:</label>
-      <span>{{ selectedCountry || "-" }}</span>
-    </div>
-    <div>
-      <label for="videoCount">Número de videos:</label>
-      <span>{{ videoCount || "-" }}</span>
-    </div>
-    <div>
-      <label for="videoType">Tipo de videos:</label>
-      <span>{{ selectedVideoType || "-" }}</span>
-    </div>
-  </div>
-
-  <form></form>
 </div>

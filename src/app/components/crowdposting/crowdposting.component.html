@@ -1,146 +1,1070 @@
-<div>
-  <nav>
-    <div class="logo">
-      <img src="assets/images/real up.png" alt="Logo" />
-    </div>
-    <ul>
-      <li><a href="pagina1.html">Página 1</a></li>
-      <li><a href="pagina2.html">Página 2</a></li>
-      <li><a href="pagina3.html">Página 3</a></li>
-    </ul>
-    <button>Cerrar sesión</button>
-  </nav>
-</div>
-<div class="content">
-  <form>
-    <div>
-      <input
-        type="text"
-        id="cliente"
-        name="cliente"
-        placeholder="Nombre Cliente"
-      />
-    </div>
-    <div>
-      <input
-        type="number"
-        id="reach"
-        name="reach"
-        placeholder="Reach esperado"
-      />
-    </div>
-    <div>
-      <input
-        type="number"
-        id="reach"
-        name="reach"
-        placeholder="Numero de ciudades"
-      />
-    </div>
-    <div>
-      <label for="country">País:</label>
-      <select id="country" name="country">
-        <option value="">Seleccionar país</option>
-        <option value="Colombia">Colombia</option>
-        <option value="Panama">Panamá</option>
-        <option value="Peru">Perú</option>
-        <option value="Brasil">Brasil</option>
-        <option value="Estados Unidos">Estados Unidos</option>
-      </select>
-    </div>
+<div class="container">
+  <div class="content">
+    <div class="content-sale">
+      <div class="title">
+        <h1>Crowdposting</h1>
+      </div>
+      <div class="content-form">
+        <mat-card class="campaign-info">
+          <form [formGroup]="saveClientForm">
+            <div class="campaign-name">
+              <div>
+                <input
+                  type="text"
+                  id="cliente"
+                  name="cliente"
+                  placeholder="Nombre Cliente"
+                  formControlName="name_client"
+                />
+              </div>
+              <div>
+                <input
+                  type="text"
+                  name="campaign_name"
+                  id="campaign_name"
+                  placeholder="Nombre de la camapaña"
+                />
+              </div>
+            </div>
+            <div class="campaign-objetive">
+              <h2>Objetivo de campaña</h2>
+              <div class="radio-product-boxes">
+                <div class="radio-product-box">
+                  <input
+                    class="radio-product"
+                    value="0"
+                    type="radio"
+                    id="brand-awarness"
+                    name="campaign_objective"
+                    formControlName="campaign_objective"
+                  />
+                  <label for="brand-awarness">Brand Awarness</label>
+                </div>
+                <div class="radio-product-box">
+                  <input
+                    class="radio-product"
+                    value="1"
+                    type="radio"
+                    id="consideration"
+                    name="campaign_objective"
+                    formControlName="campaign_objective"
+                  />
+                  <label for="consideration">Consideracion</label>
+                </div>
+                <div class="radio-product-box">
+                  <input
+                    class="radio-product"
+                    value="2"
+                    type="radio"
+                    id="conversion"
+                    name="campaign_objective"
+                    formControlName="campaign_objective"
+                  />
+                  <label for="conversion">Conversion</label>
+                </div>
+                <div class="radio-product-box">
+                  <input
+                    class="radio-product"
+                    value="3"
+                    type="radio"
+                    id="retention"
+                    name="campaign_objective"
+                    formControlName="campaign_objective"
+                  />
+                  <label for="retention">Retencion</label>
+                </div>
+              </div>
+              <div>
+                <mat-form-field class="brief-campaign-objective">
+                  <mat-label
+                    >Enter the purpose and objectives of your marketing campaign
+                    in more detail</mat-label
+                  >
+                  <textarea
+                    matInput
+                    name="brief_campaign_objective"
+                    id="brief-campaign-objective"
+                    rows="3"
+                    formControlName="brief_campaign_objective"
+                  ></textarea>
+                </mat-form-field>
+              </div>
+            </div>
+            <div class="location">
+              <div class="country">
+                <h2>Location</h2>
 
-    <div>
-      <label for="redSocial">Plataformas</label>
-      <input type="checkbox" id="opcion1" name="opcion1" />
-      <label for="opcion1">Instagram</label><br />
+                <mat-form-field class="select-country">
+                  <mat-label>Pais</mat-label>
+                  <mat-select
+                    (selectionChange)="changeCountry()"
+                    (selectionChange)="changeValor()"
+                    disableRipple
+                    [(ngModel)]="selectedCountry"
+                    id="country"
+                    name="country"
+                    formControlName="country"
+                  >
+                    <mat-option value="">Seleccionar país</mat-option>
+                    <mat-option value="Argentina">Argentina</mat-option>
+                    <mat-option value="Bolivia">Bolivia</mat-option>
+                    <mat-option value="Brasil">Brasil</mat-option>
+                    <mat-option value="Chile">Chile</mat-option>
+                    <mat-option value="Colombia">Colombia</mat-option>
+                    <mat-option value="Ecuador">Ecuador</mat-option>
+                    <mat-option value="Paraguay">Paraguay</mat-option>
+                    <mat-option value="Peru">Peru</mat-option>
+                    <mat-option value="Uruguay">Uruguay</mat-option>
+                    <mat-option value="Venezuela">Venezuela</mat-option>
+                  </mat-select>
+                </mat-form-field>
+              </div>
+              <div class="cities">
+                <mat-form-field class="select-cities">
+                  <mat-label>Cities</mat-label>
+                  <mat-select
+                    name="cities"
+                    id="cities"
+                    formControlName="cities"
+                    multiple
+                  >
+                    <mat-option
+                      *ngFor="let city of citiesFinal"
+                      [value]="city"
+                      >{{ city }}</mat-option
+                    >
+                  </mat-select>
+                </mat-form-field>
+              </div>
+            </div>
+          </form>
+        </mat-card>
+      </div>
 
-      <input type="checkbox" id="opcion2" name="opcion2" />
-      <label for="opcion2">TikTok</label><br />
-    </div>
-    <div class="carousel">
-      <input
-        type="radio"
-        id="package-1"
-        name="selectedPackage"
-        value="1"
-        hidden
-      />
-      <label for="package-1">
-        <div class="package">
-          <h3>Paquete 1</h3>
-          <p>Descripción del paquete 1</p>
+      <mat-card>
+        <div class="content-max">
+          <div class="platform">
+            <h2>Plataformas</h2>
+            <section #carrousel class="checkbox-package">
+              <mat-checkbox
+                [color]="color"
+                [(ngModel)]="showInstagramPackage"
+                (change)="InstagramSelect(showInstagramPackage)"
+                id="opcion1"
+                name="opcion1"
+                >Instagram
+              </mat-checkbox>
+
+              <mat-checkbox
+                [color]="color"
+                [(ngModel)]="showTikTokPackage"
+                (change)="TikTokSelect(showTikTokPackage)"
+                id="opcion2"
+                name="opcion2"
+                >TikTok
+              </mat-checkbox>
+            </section>
+          </div>
+          <h2>Packages</h2>
+          <div class="carousel">
+            <form (ngSubmit)="addSaleInstagramUno()">
+              <div class="package" *ngIf="showInstagramPackage">
+                <h3>Paquete 1 Instagram</h3>
+
+                <h4>Perfil Micro Influencer</h4>
+                <div class="data-package">
+                  <p>Cantidad</p>
+                  <div class="paquete-botones-input">
+                    <button
+                      class="button-content"
+                      type="button"
+                      (click)="restShort('newSaleInstagramUno.number_micro')"
+                    >
+                      -
+                    </button>
+                    <input
+                      disabled
+                      (ngModelChange)="changeValor()"
+                      [(ngModel)]="newSaleInstagramUno.number_micro"
+                      [ngModelOptions]="{ standalone: true }"
+                      type="number"
+                      value="20"
+                    />
+                    <button
+                      class="button-content"
+                      type="button"
+                      (click)="sumShort('newSaleInstagramUno.number_micro')"
+                    >
+                      +
+                    </button>
+                  </div>
+                </div>
+                <div class="data-package">
+                  <p>Numero de Historias (c/u)</p>
+                  <div class="paquete-botones-input">
+                    <button
+                      class="button-content"
+                      type="button"
+                      (click)="
+                        restShort('newSaleInstagramUno.number_stories_micro')
+                      "
+                    >
+                      -
+                    </button>
+                    <input
+                      disabled
+                      (ngModelChange)="changeValor()"
+                      [(ngModel)]="newSaleInstagramUno.number_stories_micro"
+                      [ngModelOptions]="{ standalone: true }"
+                      type="number"
+                      value="3"
+                    />
+                    <button
+                      class="button-content"
+                      type="button"
+                      (click)="
+                        sumShort('newSaleInstagramUno.number_stories_micro')
+                      "
+                    >
+                      +
+                    </button>
+                  </div>
+                </div>
+
+                <div class="data-package">
+                  <p>Numero de Reels (c/u)</p>
+                  <div class="paquete-botones-input">
+                    <button
+                      class="button-content"
+                      type="button"
+                      (click)="
+                        restShort('newSaleInstagramUno.number_reels_micro')
+                      "
+                    >
+                      -
+                    </button>
+                    <input
+                      disabled
+                      (ngModelChange)="changeValor()"
+                      [(ngModel)]="newSaleInstagramUno.number_reels_micro"
+                      [ngModelOptions]="{ standalone: true }"
+                      type="number"
+                      value="10"
+                    />
+                    <button
+                      class="button-content"
+                      type="button"
+                      (click)="
+                        sumShort('newSaleInstagramUno.number_reels_micro')
+                      "
+                    >
+                      +
+                    </button>
+                  </div>
+                </div>
+
+                <h4>Perfil Nano Influencer</h4>
+
+                <div class="data-package">
+                  <p>Cantidad</p>
+                  <div class="paquete-botones-input">
+                    <button
+                      class="button-content"
+                      type="button"
+                      (click)="restShort('newSaleInstagramUno.number_nano')"
+                    >
+                      -
+                    </button>
+                    <input
+                      disabled
+                      (ngModelChange)="changeValor()"
+                      [(ngModel)]="newSaleInstagramUno.number_nano"
+                      [ngModelOptions]="{ standalone: true }"
+                      type="number"
+                      value="20"
+                    />
+                    <button
+                      class="button-content"
+                      type="button"
+                      (click)="sumShort('newSaleInstagramUno.number_nano')"
+                    >
+                      +
+                    </button>
+                  </div>
+                </div>
+
+                <div class="data-package">
+                  <p>Numero de Historias (c/u)</p>
+                  <div class="paquete-botones-input">
+                    <button
+                      class="button-content"
+                      type="button"
+                      (click)="
+                        restShort('newSaleInstagramUno.number_stories_nano')
+                      "
+                    >
+                      -
+                    </button>
+                    <input
+                      disabled
+                      (ngModelChange)="changeValor()"
+                      [(ngModel)]="newSaleInstagramUno.number_stories_nano"
+                      [ngModelOptions]="{ standalone: true }"
+                      type="number"
+                      value="3"
+                    />
+                    <button
+                      class="button-content"
+                      type="button"
+                      (click)="
+                        sumShort('newSaleInstagramUno.number_stories_nano')
+                      "
+                    >
+                      +
+                    </button>
+                  </div>
+                </div>
+
+                <div class="data-package">
+                  <p>Numero de Reels (c/u)</p>
+                  <div class="paquete-botones-input">
+                    <button
+                      class="button-content"
+                      type="button"
+                      (click)="
+                        restShort('newSaleInstagramUno.number_reels_nano')
+                      "
+                    >
+                      -
+                    </button>
+                    <input
+                      disabled
+                      (ngModelChange)="changeValor()"
+                      [(ngModel)]="newSaleInstagramUno.number_reels_nano"
+                      [ngModelOptions]="{ standalone: true }"
+                      type="number"
+                      value="10"
+                    />
+                    <button
+                      class="button-content"
+                      type="button"
+                      (click)="
+                        sumShort('newSaleInstagramUno.number_reels_nano')
+                      "
+                    >
+                      +
+                    </button>
+                  </div>
+                </div>
+
+                <p>
+                  <strong>Contenidos Totales: </strong>
+                  {{ totalContentIgOne }}
+                </p>
+                <p><strong>Alcance: </strong>{{ ReachTotalPaqueteUno }}</p>
+                <p><strong>Valor: </strong>{{ ValorTotalPaqueteUno }} USD</p>
+                <br />
+                <!-- <button type="button" (click)="addSaleInstagramUno()">
+                  Seleccionar
+                </button> -->
+                <h2>Cantidad de paquetes</h2>
+                <div class="agrega-paquetes">
+                  <p>
+                    Si seleccionas mas de un paquete podras desplegarlos <br />
+                    en varios meses
+                  </p>
+                  <div class="data-package">
+                    <div class="paquete-botones-input">
+                      <button
+                        class="button-content"
+                        type="button"
+                        (click)="restShort('numeroContentIgOne')"
+                      >
+                        -
+                      </button>
+                      <input
+                        (ngModelChange)="changeValor()"
+                        [(ngModel)]="numeroContentIgOne"
+                        [ngModelOptions]="{ standalone: true }"
+                        type="number"
+                        value="20"
+                      />
+                      <button
+                        class="button-content"
+                        type="button"
+                        (click)="addSaleInstagramUno()"
+                        (click)="sumShort('numeroContentIgOne')"
+                      >
+                        +
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </form>
+
+            <form (ngSubmit)="addSaleInstagramDos()">
+              <div class="package" *ngIf="showInstagramPackage">
+                <h3>Paquete 2 Instagram</h3>
+
+                <h4>Perfil Micro Influencer</h4>
+                <div class="data-package">
+                  <p>Cantidad</p>
+                  <div class="paquete-botones-input">
+                    <button
+                      class="button-content"
+                      type="button"
+                      (click)="restShort('newSaleInstagramDos.number_micro')"
+                    >
+                      -
+                    </button>
+                    <input
+                      disabled
+                      (ngModelChange)="changeValor()"
+                      [(ngModel)]="newSaleInstagramDos.number_micro"
+                      [ngModelOptions]="{ standalone: true }"
+                      type="number"
+                      value="20"
+                    />
+                    <button
+                      class="button-content"
+                      type="button"
+                      (click)="sumShort('newSaleInstagramDos.number_micro')"
+                    >
+                      +
+                    </button>
+                  </div>
+                </div>
+                <div class="data-package">
+                  <p>Numero de Historias (c/u)</p>
+                  <div class="paquete-botones-input">
+                    <button
+                      class="button-content"
+                      type="button"
+                      (click)="
+                        restShort('newSaleInstagramDos.number_stories_micro')
+                      "
+                    >
+                      -
+                    </button>
+                    <input
+                      disabled
+                      (ngModelChange)="changeValor()"
+                      [(ngModel)]="newSaleInstagramDos.number_stories_micro"
+                      [ngModelOptions]="{ standalone: true }"
+                      type="number"
+                      value="3"
+                    />
+                    <button
+                      class="button-content"
+                      type="button"
+                      (click)="
+                        sumShort('newSaleInstagramDos.number_stories_micro')
+                      "
+                    >
+                      +
+                    </button>
+                  </div>
+                </div>
+                <div class="data-package">
+                  <p>Numero de Reels (c/u)</p>
+                  <div class="paquete-botones-input">
+                    <button
+                      class="button-content"
+                      type="button"
+                      (click)="
+                        restShort('newSaleInstagramDos.number_reels_micro')
+                      "
+                    >
+                      -
+                    </button>
+                    <input
+                      disabled
+                      (ngModelChange)="changeValor()"
+                      [(ngModel)]="newSaleInstagramDos.number_reels_micro"
+                      [ngModelOptions]="{ standalone: true }"
+                      type="number"
+                      value="10"
+                    />
+                    <button
+                      class="button-content"
+                      type="button"
+                      (click)="
+                        sumShort('newSaleInstagramDos.number_reels_micro')
+                      "
+                    >
+                      +
+                    </button>
+                  </div>
+                </div>
+
+                <h4>Perfil Nano Influencer</h4>
+
+                <div class="data-package">
+                  <p>Cantidad</p>
+                  <div class="paquete-botones-input">
+                    <button
+                      class="button-content"
+                      type="button"
+                      (click)="restShort('newSaleInstagramDos.number_nano')"
+                    >
+                      -
+                    </button>
+                    <input
+                      disabled
+                      (ngModelChange)="changeValor()"
+                      [(ngModel)]="newSaleInstagramDos.number_nano"
+                      [ngModelOptions]="{ standalone: true }"
+                      type="number"
+                      value="20"
+                    />
+                    <button
+                      class="button-content"
+                      type="button"
+                      (click)="sumShort('newSaleInstagramDos.number_nano')"
+                    >
+                      +
+                    </button>
+                  </div>
+                </div>
+                <div class="data-package">
+                  <p>Numero de Historias (c/u)</p>
+                  <div class="paquete-botones-input">
+                    <button
+                      class="button-content"
+                      type="button"
+                      (click)="
+                        restShort('newSaleInstagramDos.number_stories_nano')
+                      "
+                    >
+                      -
+                    </button>
+                    <input
+                      disabled
+                      (ngModelChange)="changeValor()"
+                      [(ngModel)]="newSaleInstagramDos.number_stories_nano"
+                      [ngModelOptions]="{ standalone: true }"
+                      type="number"
+                      value="3"
+                    />
+                    <button
+                      class="button-content"
+                      type="button"
+                      (click)="
+                        sumShort('newSaleInstagramDos.number_stories_nano')
+                      "
+                    >
+                      +
+                    </button>
+                  </div>
+                </div>
+                <div class="data-package">
+                  <p>Numero de Reels (c/u)</p>
+                  <div class="paquete-botones-input">
+                    <button
+                      class="button-content"
+                      type="button"
+                      (click)="
+                        restShort('newSaleInstagramDos.number_reels_nano')
+                      "
+                    >
+                      -
+                    </button>
+                    <input
+                      disabled
+                      (ngModelChange)="changeValor()"
+                      [(ngModel)]="newSaleInstagramDos.number_reels_nano"
+                      [ngModelOptions]="{ standalone: true }"
+                      type="number"
+                      value="10"
+                    />
+                    <button
+                      class="button-content"
+                      type="button"
+                      (click)="
+                        sumShort('newSaleInstagramDos.number_reels_nano')
+                      "
+                    >
+                      +
+                    </button>
+                  </div>
+                </div>
+
+                <p>
+                  <strong>Contenidos Totales:</strong>
+                  {{ totalContentIgTwo }}
+                </p>
+                <p><strong>Alcance: </strong>{{ ReachTotalPaqueteDos }}</p>
+                <p><strong>Valor: </strong>{{ ValorTotalPaqueteDos }} USD</p>
+                <br />
+                <h2>Cantidad de paquetes</h2>
+                <div class="agrega-paquetes">
+                  <p>
+                    Si seleccionas mas de un paquete podras desplegarlos <br />
+                    en varios meses
+                  </p>
+                  <div class="data-package">
+                    <div class="paquete-botones-input">
+                      <button
+                        class="button-content"
+                        type="button"
+                        (click)="restShort('numeroContentIgTwo')"
+                      >
+                        -
+                      </button>
+                      <input
+                        (ngModelChange)="changeValor()"
+                        [(ngModel)]="numeroContentIgTwo"
+                        [ngModelOptions]="{ standalone: true }"
+                        type="number"
+                        value="20"
+                      />
+                      <button
+                        class="button-content"
+                        type="button"
+                        (click)="addSaleInstagramDos()"
+                        (click)="sumShort('numeroContentIgTwo')"
+                      >
+                        +
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </form>
+
+            <form (ngSubmit)="addSaleTikTokUno()">
+              <div class="package" *ngIf="showTikTokPackage">
+                <h3>Paquete 1 TikTok</h3>
+
+                <h4>Perfil Micro Influencer</h4>
+                <div class="data-package">
+                  <p>Cantidad</p>
+                  <div class="paquete-botones-input">
+                    <button
+                      class="button-content"
+                      type="button"
+                      (click)="restShort('newSaleTikTokUno.number_micro')"
+                    >
+                      -
+                    </button>
+                    <input
+                      disabled
+                      (ngModelChange)="changeValor()"
+                      [(ngModel)]="newSaleTikTokUno.number_micro"
+                      [ngModelOptions]="{ standalone: true }"
+                      type="number"
+                      value="20"
+                    />
+                    <button
+                      class="button-content"
+                      type="button"
+                      (click)="sumShort('newSaleTikTokUno.number_micro')"
+                    >
+                      +
+                    </button>
+                  </div>
+                </div>
+
+                <div class="data-package">
+                  <p>Numero de TikToks (c/u)</p>
+                  <div class="paquete-botones-input">
+                    <button
+                      class="button-content"
+                      type="button"
+                      (click)="
+                        restShort('newSaleTikTokUno.number_tiktok_micro')
+                      "
+                    >
+                      -
+                    </button>
+                    <input
+                      disabled
+                      (ngModelChange)="changeValor()"
+                      [(ngModel)]="newSaleTikTokUno.number_tiktok_micro"
+                      [ngModelOptions]="{ standalone: true }"
+                      type="number"
+                      value="10"
+                    />
+                    <button
+                      class="button-content"
+                      type="button"
+                      (click)="sumShort('newSaleTikTokUno.number_tiktok_micro')"
+                    >
+                      +
+                    </button>
+                  </div>
+                </div>
+
+                <h4>Perfil Nano Influencer</h4>
+                <div class="data-package">
+                  <p>Cantidad</p>
+                  <div class="paquete-botones-input">
+                    <button
+                      class="button-content"
+                      type="button"
+                      (click)="restShort('newSaleTikTokUno.number_nano')"
+                    >
+                      -
+                    </button>
+                    <input
+                      disabled
+                      (ngModelChange)="changeValor()"
+                      [(ngModel)]="newSaleTikTokUno.number_nano"
+                      [ngModelOptions]="{ standalone: true }"
+                      type="number"
+                      value="20"
+                    />
+
+                    <button
+                      class="button-content"
+                      type="button"
+                      (click)="sumShort('newSaleTikTokUno.number_nano')"
+                    >
+                      +
+                    </button>
+                  </div>
+                </div>
+
+                <div class="data-package">
+                  <p>Numero de TikToks (c/u)</p>
+                  <div class="paquete-botones-input">
+                    <button
+                      class="button-content"
+                      type="button"
+                      (click)="restShort('newSaleTikTokUno.number_tiktok_nano')"
+                    >
+                      -
+                    </button>
+                    <input
+                      disabled
+                      (ngModelChange)="changeValor()"
+                      [(ngModel)]="newSaleTikTokUno.number_tiktok_nano"
+                      [ngModelOptions]="{ standalone: true }"
+                      type="number"
+                      value="10"
+                    />
+                    <button
+                      class="button-content"
+                      type="button"
+                      (click)="sumShort('newSaleTikTokUno.number_tiktok_nano')"
+                    >
+                      +
+                    </button>
+                  </div>
+                </div>
+
+                <p>
+                  <strong>Contenidos Totales:</strong>
+                  {{ totalContentTiktTokOne }}
+                </p>
+                <p><strong>Alcance: </strong>{{ ReachTotalPaqueteTres }}</p>
+                <p><strong>Valor: </strong>{{ ValorTotalPaqueteTres }} USD</p>
+                <br />
+                <h2>Cantidad de paquetes</h2>
+                <div class="agrega-paquetes">
+                  <p>
+                    Si seleccionas mas de un paquete podras desplegarlos <br />
+                    en varios meses
+                  </p>
+                  <div class="data-package">
+                    <div class="paquete-botones-input">
+                      <button
+                        class="button-content"
+                        type="button"
+                        (click)="restShort('numeroContentTiktTokOne')"
+                      >
+                        -
+                      </button>
+                      <input
+                        (ngModelChange)="changeValor()"
+                        [(ngModel)]="numeroContentTiktTokOne"
+                        [ngModelOptions]="{ standalone: true }"
+                        type="number"
+                        value="20"
+                      />
+                      <button
+                        class="button-content"
+                        type="button"
+                        (click)="addSaleTikTokUno()"
+                        (click)="sumShort('numeroContentTiktTokOne')"
+                      >
+                        +
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </form>
+
+            <form (ngSubmit)="addSaleTikTokDos()">
+              <div class="package" *ngIf="showTikTokPackage">
+                <h3>Paquete 2 TikTok</h3>
+
+                <h4>Perfil Micro Influencer</h4>
+                <div class="data-package">
+                  <p>Cantidad</p>
+                  <div class="paquete-botones-input">
+                    <button
+                      class="button-content"
+                      type="button"
+                      (click)="restShort('newSaleTikTokDos.number_micro')"
+                    >
+                      -
+                    </button>
+                    <input
+                      disabled
+                      (ngModelChange)="changeValor()"
+                      [(ngModel)]="newSaleTikTokDos.number_micro"
+                      [ngModelOptions]="{ standalone: true }"
+                      type="number"
+                      value="20"
+                    />
+                    <button
+                      class="button-content"
+                      type="button"
+                      (click)="sumShort('newSaleTikTokDos.number_micro')"
+                    >
+                      +
+                    </button>
+                  </div>
+                </div>
+
+                <div class="data-package">
+                  <p>Numero de TikToks (c/u)</p>
+                  <div class="paquete-botones-input">
+                    <button
+                      class="button-content"
+                      type="button"
+                      (click)="
+                        restShort('newSaleTikTokDos.number_tiktok_micro')
+                      "
+                    >
+                      -
+                    </button>
+                    <input
+                      disabled
+                      (ngModelChange)="changeValor()"
+                      [(ngModel)]="newSaleTikTokDos.number_tiktok_micro"
+                      [ngModelOptions]="{ standalone: true }"
+                      type="number"
+                      value="10"
+                    />
+                    <button
+                      class="button-content"
+                      type="button"
+                      (click)="sumShort('newSaleTikTokDos.number_tiktok_micro')"
+                    >
+                      +
+                    </button>
+                  </div>
+                </div>
+
+                <h4>Perfil Nano Influencer</h4>
+                <div class="data-package">
+                  <p>Cantidad</p>
+                  <div class="paquete-botones-input">
+                    <button
+                      class="button-content"
+                      type="button"
+                      (click)="restShort('newSaleTikTokDos.number_nano')"
+                    >
+                      -
+                    </button>
+                    <input
+                      disabled
+                      (ngModelChange)="changeValor()"
+                      [(ngModel)]="newSaleTikTokDos.number_nano"
+                      [ngModelOptions]="{ standalone: true }"
+                      type="number"
+                      value="20"
+                    />
+                    <button
+                      class="button-content"
+                      type="button"
+                      (click)="sumShort('newSaleTikTokDos.number_nano')"
+                    >
+                      +
+                    </button>
+                  </div>
+                </div>
+
+                <div class="data-package">
+                  <p>Numero de TikToks (c/u)</p>
+                  <div class="paquete-botones-input">
+                    <button
+                      class="button-content"
+                      type="button"
+                      (click)="restShort('newSaleTikTokDos.number_tiktok_nano')"
+                    >
+                      -
+                    </button>
+                    <input
+                      disabled
+                      (ngModelChange)="changeValor()"
+                      [(ngModel)]="newSaleTikTokDos.number_tiktok_nano"
+                      [ngModelOptions]="{ standalone: true }"
+                      type="number"
+                      value="10"
+                    />
+                    <button
+                      class="button-content"
+                      type="button"
+                      (click)="sumShort('newSaleTikTokDos.number_tiktok_nano')"
+                    >
+                      +
+                    </button>
+                  </div>
+                </div>
+
+                <p>
+                  <strong>Contenidos Totales:</strong>
+                  {{ totalContentTiktTokTwo }}
+                </p>
+                <p><strong>Alcance: </strong>{{ ReachTotalPaqueteCuatro }}</p>
+                <p><strong>Valor: </strong>{{ ValorTotalPaqueteCuatro }} USD</p>
+                <br />
+                <h2>Cantidad de paquetes</h2>
+                <div class="agrega-paquetes">
+                  <p>
+                    Si seleccionas mas de un paquete podras desplegarlos <br />
+                    en varios meses
+                  </p>
+                  <div class="data-package">
+                    <div class="paquete-botones-input">
+                      <button
+                        class="button-content"
+                        type="button"
+                        (click)="restShort('numeroContentTiktTokTwo')"
+                      >
+                        -
+                      </button>
+                      <input
+                        (ngModelChange)="changeValor()"
+                        [(ngModel)]="numeroContentTiktTokTwo"
+                        [ngModelOptions]="{ standalone: true }"
+                        type="number"
+                        value="20"
+                      />
+                      <button
+                        class="button-content"
+                        type="button"
+                        (click)="addSaleTikTokDos()"
+                        (click)="sumShort('numeroContentTiktTokTwo')"
+                      >
+                        +
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </form>
+          </div>
+          <button type="button" (click)="savePackagesCrowdposting()">
+            Comprar
+          </button>
         </div>
-      </label>
-
-      <input
-        type="radio"
-        id="package-2"
-        name="selectedPackage"
-        value="2"
-        hidden
-      />
-      <label for="package-2">
-        <div class="package">
-          <h3>Paquete 2</h3>
-          <p>Descripción del paquete 2</p>
+      </mat-card>
+      <mat-card>
+        <div class="recommendations">
+          <h3>Recomendaciones</h3>
+          <p>
+            Te recomendamos usar el mismo numero de Nano y Micro influencers
+          </p>
         </div>
-      </label>
-
-      <input
-        type="radio"
-        id="package-3"
-        name="selectedPackage"
-        value="3"
-        hidden
-      />
-      <label for="package-3">
-        <div class="package">
-          <h3>Paquete 3</h3>
-          <p>Descripción del paquete 3</p>
-        </div>
-      </label>
-
-      <input
-        type="radio"
-        id="package-4"
-        name="selectedPackage"
-        value="4"
-        hidden
-      />
-      <label for="package-4">
-        <div class="package">
-          <h3>Paquete 4</h3>
-          <p>Descripción del paquete 4</p>
-        </div>
-      </label>
+      </mat-card>
     </div>
-  </form>
 
-  <div class="recommendations">
-    <h3>Recomendaciones</h3>
-    <p></p>
+    <div class="summary">
+      <img
+        id="realup-summary"
+        src="assets/images/RealUpSummary.svg"
+        alt="Logo RealUp"
+      />
+      <img
+        id="shopping-cart"
+        src="assets/icons/Shopping cart.svg"
+        alt="Shopping cart"
+      />
+      <h2>Shopping Cart</h2>
+      <div class="data">
+        <label for="country">País</label>
+        <p>{{ selectedCountry }}</p>
+      </div>
+      <div class="data">
+        <label for="number-cities">Número de ciudades</label>
+        <p>
+          {{ 100 }}
+        </p>
+      </div>
+      <div class="data">
+        <label for="total-contenidos">Total Contenidos</label>
+        <p>
+          {{
+            numeroContentIgOne * totalContentIgOne +
+              numeroContentIgTwo * totalContentIgTwo +
+              numeroContentTiktTokOne * totalContentTiktTokOne +
+              numeroContentTiktTokTwo * totalContentTiktTokTwo
+          }}
+        </p>
+      </div>
+      <div class="data">
+        <label for="valor-contenidos">Valor promedio por contenido</label>
+        <p>
+          {{
+            (
+              (ValorTotalPaqueteUno +
+                ValorTotalPaqueteDos +
+                ValorTotalPaqueteTres +
+                ValorTotalPaqueteCuatro) /
+              (numeroContentIgOne * totalContentIgOne +
+                numeroContentIgTwo * totalContentIgTwo +
+                numeroContentTiktTokOne * totalContentTiktTokOne +
+                numeroContentTiktTokTwo * totalContentTiktTokTwo)
+            ).toFixed(0)
+          }}
+        </p>
+      </div>
+      <div class="data">
+        <label for="Reach">Alcance Total</label>
+        <p>
+          {{
+            numeroContentIgOne * ReachTotalPaqueteUno +
+              numeroContentIgTwo * ReachTotalPaqueteDos +
+              numeroContentTiktTokOne * ReachTotalPaqueteTres +
+              numeroContentTiktTokTwo * ReachTotalPaqueteCuatro
+          }}
+        </p>
+      </div>
+      <div class="data">
+        <label for="CPV">CPV</label>
+        <p>
+          {{
+            (
+              (numeroContentIgOne * ValorTotalPaqueteUno +
+                numeroContentIgTwo * ValorTotalPaqueteDos +
+                numeroContentTiktTokOne * ValorTotalPaqueteTres +
+                numeroContentTiktTokTwo * ValorTotalPaqueteCuatro) /
+              (numeroContentIgOne * ReachTotalPaqueteUno +
+                numeroContentIgTwo * ReachTotalPaqueteDos +
+                numeroContentTiktTokOne * ReachTotalPaqueteTres +
+                numeroContentTiktTokTwo * ReachTotalPaqueteCuatro)
+            ).toFixed(2)
+          }}
+        </p>
+      </div>
+      <div class="data">
+        <label for="total">Valor Total</label>
+        <p>
+          {{
+            numeroContentIgOne * ValorTotalPaqueteUno +
+              numeroContentIgTwo * ValorTotalPaqueteDos +
+              numeroContentTiktTokOne * ValorTotalPaqueteTres +
+              numeroContentTiktTokTwo * ValorTotalPaqueteCuatro
+          }}
+          USD
+        </p>
+      </div>
+    </div>
   </div>
-
-  <!-- <div class="registration">
-    <h3>Registro</h3>
-    <div>
-      <label for="country">País:</label>
-      <span>{{ selectedCountry || "-" }}</span>
-    </div>
-    <div>
-      <label for="videoCount">Número de videos:</label>
-      <span>{{ videoCount || "-" }}</span>
-    </div>
-    <div>
-      <label for="videoType">Tipo de videos:</label>
-      <span>{{ selectedVideoType || "-" }}</span>
-    </div>
-  </div> -->
-
-  <form>
-    <div class="total">
-      <p>Valor Total: $10.000.000 COP</p>
-    </div>
-    <button type="submit">Submit</button>
-  </form>
 </div>

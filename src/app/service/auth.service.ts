@@ -47,6 +47,7 @@ export class AuthService {
 
   verificarToken(){
     const token = localStorage.getItem('JWT');
+    
   
     // Verifica si el token está presente
     if (token) {

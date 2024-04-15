@@ -39,7 +39,7 @@ export class LoginComponent {
       if (response.jwtToken) {
         const jwtToken = response.jwtToken;
         localStorage.setItem('JWT', jwtToken);
-        this.router.navigateByUrl('/crowdposting');
+        this.router.navigateByUrl('/home');
       }
     },
     (error) => {
