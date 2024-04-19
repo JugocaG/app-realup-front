@@ -104,6 +104,7 @@
               <mat-form-field class="select-country">
                 <mat-label>Pais</mat-label>
                 <mat-select
+                  [(ngModel)]="selectedCountry"
                   (selectionChange)="changeCountry()"
                   disableRipple
                   id="country"
@@ -224,6 +225,7 @@
             <mat-form-field class="select-age select">
               <mat-label>Creator followers</mat-label>
               <mat-select
+                multiple
                 name="minimum_followers"
                 id="minimum_followers"
                 formControlName="minimum_followers"

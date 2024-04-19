@@ -3,7 +3,7 @@ import { Injectable } from '@angular/core';
 import { Observable, of } from 'rxjs';
 
 
-const BASE_URL = ['http://localhost:8080/']
+const BASE_URL = ['https://shielded-waters-57044-1dfb83ef6590.herokuapp.com/']
 
 @Injectable({
   providedIn: 'root'
@@ -57,7 +57,7 @@ export class AuthService {
       });
   
       // Realiza la solicitud GET con los encabezados configurados
-      this.http.get('http://localhost:8080/api/v1/crowdposting/see-sales', { headers }).subscribe(
+      this.http.get('https://shielded-waters-57044-1dfb83ef6590.herokuapp.com/api/v1/crowdposting/see-sales', { headers }).subscribe(
         (data) => {
           // Manejar la respuesta exitosa aquí
           console.log('Respuesta exitosa');
