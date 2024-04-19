@@ -14,27 +14,26 @@
           alt="Logo RealUp"
         />
       </div>
-      <div class="videos">
+      <div class="videos-muestra">
         <img
+          [@brand]="isOpenBrand ? 'open' : 'close'"
           id="imagen"
-          *ngIf="showImageBrand"
-          class="video-brand {{ showImageBrand ? 'show' : '' }}"
-          src="assets/images/MOCKUP CELULAR Brand.png"
-          alt="Imagen de apoyo"
-          width="35%"
-          (mouseover)="animarImagen()"
-        />
-        <img
-          *ngIf="showImageCrowdposting"
-          class="video-crowdposting"
-          src="assets/images/MOCKUP CELULAR Crowdposting.png"
+          class="imagen-brand"
+          src="assets/images/imagen-brand.png"
           alt="Imagen de apoyo"
           width="35%"
         />
         <img
-          *ngIf="showImageUGC"
-          class="video-ugc"
-          src="assets/images/MOCKUP CELULAR UGC.png"
+          [@crowdposting]="isOpenCrowdposting ? 'open' : 'close'"
+          class="imagen-crowdposting"
+          src="assets/images/imagen-crowdposting.png"
+          alt="Imagen de apoyo"
+          width="35%"
+        />
+        <img
+          [@ugc]="isOpenUGC ? 'open' : 'close'"
+          class="imagen-ugc"
+          src="assets/images/imagen-ugc.png"
           alt="Imagen de apoyo"
           width="35%"
         />
@@ -42,39 +41,44 @@
     </div>
     <div class="links">
       <div class="buttons">
-        <img src="../../../assets/icons/FLECHAS.svg" alt="Flechas" />
+        <img
+          [@row-ugc]="isOpenRowUGC ? 'open' : 'close'"
+          src="../../../assets/icons/FLECHAS.svg"
+          alt="Flechas"
+        />
         <div class="button-background">
-          <button
-            type="button"
-            (click)="linkUCG()"
-            (mouseover)="linkUCGHover(true)"
-          >
+          <button type="button" (click)="linkUCG()" (mouseover)="toggleUGC()">
             UGC
           </button>
         </div>
       </div>
       <div class="buttons">
-        <img src="../../../assets/icons/FLECHAS.svg" alt="Flechas" />
+        <img
+          [@row-crowdposting]="isOpenRowCrowdposting ? 'open' : 'close'"
+          src="../../../assets/icons/FLECHAS.svg"
+          alt="Flechas"
+        />
         <div class="button-background">
           <button
-            class="open-close-container"
-            [@openClose]="isOpen ? 'open' : 'closed'"
             type="button"
             (click)="linkCrowdposting()"
-            (mouseover)="linkCrowdpostingHover(true)"
-            (mouseover)="toggle()"
+            (mouseover)="toggleCrowdposting()"
           >
             Crowdposting
           </button>
         </div>
       </div>
       <div class="buttons">
-        <img src="../../../assets/icons/FLECHAS.svg" alt="Flechas" />
+        <img
+          [@row-brand]="isOpenRowBrand ? 'open' : 'close'"
+          src="../../../assets/icons/FLECHAS.svg"
+          alt="Flechas"
+        />
         <div class="button-background">
           <button
+            (mouseover)="toggleBrand()"
             type="button"
             (click)="linkBrand()"
-            (mouseover)="linkBrandHover(true)"
           >
             Brand Ambassador
           </button>

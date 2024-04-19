@@ -28,6 +28,7 @@ h1 {
 }
 
 .links {
+  max-height: 100vh;
   width: 40%;
   display: flex;
   flex-direction: column;
@@ -89,16 +90,43 @@ img {
   }
 }
 
-:host {
-  display: block;
-  margin-top: 1rem;
-}
-
 .open-close-container {
   border: 1px solid #dddddd;
-  margin-top: 1em;
   padding: 20px 20px 0px 20px;
   color: #000000;
   font-weight: bold;
   font-size: 20px;
+}
+
+.videos-muestra {
+  position: relative;
+}
+.imagen-ugc {
+  position: absolute;
+  left: 10%;
+  z-index: 0;
+}
+
+.imagen-crowdposting {
+  position: absolute;
+  left: 30%;
+  z-index: 1;
+}
+
+.imagen-brand {
+  position: absolute;
+  left: 50%;
+  z-index: 0;
+  position: absolute;
+}
+
+button:hover {
+  cursor: pointer;
+  /* transform: translateX(100px); */
+  filter: drop-shadow(1px 1px 10px rgba(210, 9, 128, 0.5));
+  transition: 1s;
+}
+
+button {
+  transition: 1s;
 }

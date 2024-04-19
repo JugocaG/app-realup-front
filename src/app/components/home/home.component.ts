@@ -7,26 +7,131 @@ import {trigger, state, style, animate, transition, } from '@angular/animations'
   templateUrl: './home.component.html',
   styleUrl: './home.component.css',
   animations: [
-    trigger('openClose', [
-      // ...
+    trigger('crowdposting', [
+      // Crowdposting
       state('open', style({
-        height: '200px',
         opacity: 1,
-        backgroundColor: 'yellow'
+        filter: 'drop-shadow(1px 1px 20px #d8007f)',
+        transform: 'scale(1.1)',
+        left: '30%',
+        zIndex: 1,
+
       })),
-      state('closed', style({
-        height: '100px',
-        opacity: 0.8,
-        backgroundColor: 'blue'
+      state('close', style({
+        opacity: 0.3,
+        zIndex: 0,
+
       })),
-      transition('open => closed', [
-        animate('1s')
+      transition('open => close', [
+        animate('0.7s ease-in-out')
       ]),
-      transition('closed => open', [
-        animate('0.5s')
+      transition('close => open', [
+        animate('0.7s ease-in-out')
       ]),
     ]),
+
+    trigger('ugc', [
+      // UGC
+      state('open', style({
+        opacity: 1,
+        filter: 'drop-shadow(1px 1px 20px #d8007f)',
+        transform: 'scale(1.1)',
+        left: '30%',
+
+        zIndex: 1,
+
+      })),
+      state('close', style({
+        opacity: 0.3,
+        zIndex: 0,
+
+      })),
+      transition('open => close', [
+        animate('0.7s ease-in-out')
+      ]),
+      transition('close => open', [
+        animate('0.7s ease-in-out')
+      ]),
+    ])
+    ,
+    trigger('brand', [
+      // UGC
+      state('open', style({
+        opacity: 1,
+        filter: 'drop-shadow(1px 1px 20px #d8007f)',
+        transform: 'scale(1.1)',
+        left: '30%',
+
+        zIndex: 1,
+
+      })),
+      state('close', style({
+        opacity: 0.3,
+        zIndex: 0,
+
+      })),
+      transition('open => close', [
+        animate('0.7s ease-in-out')
+      ]),
+      transition('close => open', [
+        animate('0.7s ease-in-out')
+      ]),
+    ]),
+
+    trigger('row-crowdposting', [
+      // UGC
+      state('open', style({ 
+        transform: 'rotate(-90deg)'
+
+      })),
+      state('close', style({
+
+      })),
+      transition('open => close', [
+        animate('0.7s ease-in-out')
+      ]),
+      transition('close => open', [
+        animate('0.7s ease-in-out')
+      ]),
+    ]),
+
+    trigger('row-ugc', [
+      // UGC
+      state('open', style({ 
+        transform: 'rotate(-90deg)'
+
+      })),
+      state('close', style({
+
+      })),
+      transition('open => close', [
+        animate('0.7s ease-in-out')
+      ]),
+      transition('close => open', [
+        animate('0.7s ease-in-out')
+      ]),
+    ]),
+
+    trigger('row-brand', [
+      // UGC
+      state('open', style({ 
+        transform: 'rotate(-90deg)'
+
+      })),
+      state('close', style({
+
+      })),
+      transition('open => close', [
+        animate('0.7s ease-in-out')
+      ]),
+      transition('close => open', [
+        animate('0.7s ease-in-out')
+      ]),
+    ]),
+
+
   ],
+  
 })
 export class HomeComponent {
 
@@ -57,42 +162,39 @@ export class HomeComponent {
     this.router.navigateByUrl('/brand-ambassador');
   }
 
-  linkUCGHover(show: boolean){
-    this.showImageUGC = show,
-    this.showImageBrand = false,
-    this.showImageCrowdposting = false
+  isOpenCrowdposting = true;
+  isOpenUGC = false;
+  isOpenBrand = false;
+  isOpenRowCrowdposting = false
+  isOpenRowUGC = false
+  isOpenRowBrand = false
+
+
+  toggleCrowdposting() {
+    this.isOpenRowCrowdposting = true
+    this.isOpenRowUGC = false
+    this.isOpenRowBrand = false
+    this.isOpenCrowdposting = true;
+    this.isOpenUGC = false;
+    this.isOpenBrand = false;
   }
 
-  linkCrowdpostingHover(show: boolean){
-    this.showImageCrowdposting = show,
-    this.showImageUGC = false,
-    this.showImageBrand = false
-    const imagen = document.getElementById('imagen');
-    if(imagen){
-      imagen.style.animation = 'imagen-flotar 2s ease-in-out';
-    }
-    
-    
+  
+  toggleUGC() {
+    this.isOpenRowCrowdposting = false
+    this.isOpenRowUGC = true
+    this.isOpenRowBrand = false
+    this.isOpenUGC = true;
+    this.isOpenBrand = false;
+    this.isOpenCrowdposting = false;
   }
 
-  linkBrandHover(show: boolean){
-    this.showImageBrand = show,
-    this.showImageCrowdposting = false,
-    this.showImageUGC = false
-    
+  toggleBrand(){
+    this.isOpenRowCrowdposting = false
+    this.isOpenRowUGC = false
+    this.isOpenRowBrand = true
+    this.isOpenUGC = false;
+    this.isOpenBrand = true;
+    this.isOpenCrowdposting = false;
   }
-
-  animarImagen() {
-    const imagen = document.getElementById('imagen');
-    if (imagen) {
-      imagen.style.animation = 'imagen-flotar 1s ease-in-out';
-    }
-  }
-
-  isOpen = true;
-
-  toggle() {
-    this.isOpen = !this.isOpen;
-  }
-
 }
