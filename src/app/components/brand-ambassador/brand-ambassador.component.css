@@ -275,3 +275,15 @@ input[type="number"]::-webkit-outer-spin-button {
   align-items: center;
   justify-content: center;
 }
+
+.cities-selected {
+  display: flex;
+  flex-direction: row;
+}
+
+.cities {
+  text-align: center;
+  p {
+    margin: 0;
+  }
+}

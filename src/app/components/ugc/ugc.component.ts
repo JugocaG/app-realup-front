@@ -1,109 +1,44 @@
-import { Component } from '@angular/core';
-import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { Component, OnInit } from '@angular/core';
+import {
+  FormBuilder,
+  FormControl,
+  FormGroup,
+  Validators,
+} from '@angular/forms';
 import { Router } from '@angular/router';
 import { AuthService } from 'src/app/service/auth.service';
 import { UgcService } from 'src/app/service/ugc.service';
+import { CitiesService } from 'src/app/service/cities.service';
 
 @Component({
   selector: 'app-ugc',
   templateUrl: './ugc.component.html',
-  styleUrls: ['./ugc.component.css']
+  styleUrls: ['./ugc.component.css'],
 })
+export class UgcComponent implements OnInit {
+  citiesFinal: { name: string; code: string }[] = [];
 
+  citiesListArgentina: { name: string; code: string }[] = [];
 
-export class UgcComponent {
+  citiesListColombia: { name: string; code: string }[] = [];
 
+  citiesListBolivia: { name: string; code: string }[] = [];
 
-  citiesFinal: string[] = [''];
+  citiesListBrasil: { name: string; code: string }[] = [];
 
-  citiesListColombia: string[] = [
-    'Armenia', 'Barranquilla', 'Bogotá', 'Bucaramanga', 'Cali', 'Cartagena', 'Cúcuta', 'Ibagué', 'Manizales', 'Medellín',
-    'Montería', 'Neiva', 'Pereira', 'Pasto', 'Popayán', 'Santa Marta', 'Sincelejo', 'Tunja', 'Valledupar', 'Villavicencio',
-    'Soledad', 'Bello', 'Palmira', 'Valle del Cauca', 'Buenaventura', 'Barrancabermeja', 'Floridablanca', 'Itagüí', 'Tuluá',
-    'Envigado', 'Dosquebradas', 'Maicao', 'Cartago', 'Florencia', 'Girardot', 'Sogamoso', 'Buenaventura', 'Riohacha', 'Duitama',
-    'Sincelejo', 'Magangué', 'Girón', 'Ipiales', 'Tumaco', 'Ocaña', 'Barrancas', 'Túquerres', 'Mocoa'
-];
+  citiesListChile: { name: string; code: string }[] = [];
 
-  citiesListArgentina: string[] = [
-    'Bahía Blanca', 'Buenos Aires', 'Córdoba', 'La Plata', 'Mar del Plata', 'Mendoza', 'Rosario', 'Salta', 'San Juan', 'Santa Fe',
-    'Tucumán', 'Corrientes', 'Posadas', 'Resistencia', 'Neuquén', 'Formosa', 'San Salvador de Jujuy', 'Paraná', 'Santiago del Estero',
-    'San Miguel de Tucumán', 'San Fernando del Valle de Catamarca', 'Santa Rosa', 'Rawson', 'Viedma', 'San Luis', 'La Rioja',
-    'Ushuaia', 'Rio Grande', 'Comodoro Rivadavia', 'San Carlos de Bariloche', 'Puerto Madryn', 'Tandil', 'Río Cuarto', 'Zárate',
-    'Campana', 'Gualeguaychú', 'Concordia', 'Pergamino', 'Junín', 'Olavarría', 'Chivilcoy', 'Azul', 'Trenque Lauquen', 'Chacabuco',
-    'Mercedes', 'General Pico', 'Santa Rosa', 'Villa María', 'Venado Tuerto'
-];
+  citiesListEcuador: { name: string; code: string }[] = [];
 
-  citiesListBolivia: string[] = [
-    'La Paz', 'Santa Cruz de la Sierra', 'Cochabamba', 'Sucre', 'Oruro', 'Tarija', 'Potosí', 'Sacaba', 'Montero', 'Quillacollo',
-    'Trinidad', 'El Alto', 'Yacuiba', 'Riberalta', 'Guayaramerín', 'Cobija', 'Villazón', 'Warnes', 'La Guardia', 'Viacha',
-    'Cotoca', 'Camiri', 'Villa Montes', 'Tiquipaya', 'Vinto', 'Llallagua', 'Villamontes', 'San Ignacio de Velasco', 'Entre Ríos',
-    'Portachuelo', 'Bermejo', 'Puerto Suárez', 'Santiago del Torno', 'Reyes', 'Padilla', 'Cliza', 'Monteagudo', 'Achacachi',
-    'Tarabuco', 'San Borja', 'Aiquile', 'San Julián', 'Colomi', 'Patacamaya', 'Capinota', 'Rurrenabaque', 'San Ramón', 'Ascensión de Guarayos'
-];
+  citiesListParaguay: { name: string; code: string }[] = [];
 
-  citiesListBrasil: string[] = [
-    'São Paulo', 'Rio de Janeiro', 'Brasília', 'Salvador', 'Fortaleza', 'Belo Horizonte', 'Manaus', 'Curitiba', 'Recife', 'Goiânia',
-    'Belém', 'Porto Alegre', 'São Luís', 'Natal', 'Campo Grande', 'Teresina', 'João Pessoa', 'Cuiabá', 'Aracaju', 'Florianópolis',
-    'Macapá', 'Maceió', 'Vitória', 'Rio Branco', 'Porto Velho', 'Boa Vista', 'Palmas', 'São José do Rio Preto', 'Campinas', 'Sorocaba',
-    'Ribeirão Preto', 'Uberlândia', 'Santo André', 'Osasco', 'Duque de Caxias', 'São Bernardo do Campo', 'Jaboatão dos Guararapes',
-    'São José dos Campos', 'Contagem', 'Feira de Santana', 'Joinville', 'Ribeirão das Neves', 'Campos dos Goytacazes', 'Carapicuíba',
-    'Olinda', 'Campina Grande', 'Santarém', 'Caxias do Sul', 'Diadema'
-];
+  citiesListPeru: { name: string; code: string }[] = [];
 
-  citiesListChile: string[] = [
-    'Santiago', 'Puente Alto', 'Maipú', 'Antofagasta', 'Viña del Mar', 'Valparaíso', 'La Serena', 'Temuco', 'Concepción', 'Talcahuano',
-    'Rancagua', 'Arica', 'Talca', 'Chillán', 'Iquique', 'Los Ángeles', 'San Bernardo', 'Calama', 'Quilpué', 'Copiapó',
-    'Valdivia', 'Punta Arenas', 'Curicó', 'Osorno', 'Copiapó', 'Quilicura', 'Villa Alemana', 'Huechuraba', 'Concón', 'Lampa',
-    'La Pintana', 'Colina', 'Puerto Montt', 'La Florida', 'San Felipe', 'Peñaflor', 'Melipilla', 'Lo Prado', 'Linares',
-    'Coyhaique', 'Penco', 'Los Andes', 'Chiguayante', 'San Antonio', 'Buin', 'Talagante', 'Tomé', 'Paine', 'La Granja'
-];
+  citiesListUruguay: { name: string; code: string }[] = [];
 
-  citiesListEcuador: string[] = [
-    'Guayaquil', 'Quito', 'Cuenca', 'Santo Domingo', 'Machala', 'Durán', 'Manta', 'Portoviejo', 'Ambato', 'Riobamba',
-    'Esmeraldas', 'Quevedo', 'Loja', 'Ibarra', 'Quito', 'Milagro', 'La Libertad', 'Ventanas', 'Latacunga', 'Babahoyo',
-    'La Troncal', 'Sangolquí', 'Pasaje', 'Chone', 'Santa Elena', 'Cayambe', 'Machachi', 'Nueva Loja', 'Tulcán', 'Huaquillas',
-    'Montecristi', 'Yaguachi', 'Otavalo', 'El Carmen', 'Puerto Francisco de Orellana', 'Naranjal', 'Playas', 'Salinas',
-    'La Concordia', 'Daule', 'Atuntaqui', 'Azogues', 'Tena', 'Santa Rosa', 'Balzar', 'Banos', 'Macas'
-];
+  citiesListVenezuela: { name: string; code: string }[] = [];
 
-  citiesListParaguay: string[] = [
-  'Asunción', 'Ciudad del Este', 'San Lorenzo', 'Capiatá', 'Lambaré', 'Fernando de la Mora', 'Limpio', 'Ñemby', 'Encarnación', 'Mariano Roque Alonso',
-  'Pedro Juan Caballero', 'Villa Elisa', 'Coronel Oviedo', 'Itauguá', 'Presidente Franco', 'Concepción', 'Villarrica', 'Caaguazú', 'Caacupé', 'Salto del Guairá',
-  'Caazapá', 'San Juan Bautista', 'Paraguarí', 'Pilar', 'Caapucú', 'Areguá', 'San Antonio', 'Ypacaraí', 'Guarambaré', 'Quiindy', 'Colonia Mariano Roque Alonso',
-  'San Estanislao', 'San Pedro del Ycuamandiyú', 'Ybycuí', 'Yuty', 'Coronel Bogado', 'Ygatimí', 'San Ignacio', 'Hohenau', 'Puerto Rosario', 'San Pablo',
-  'Benjamín Aceval', 'San Bernardino', 'Ybytimí', 'José Leandro Oviedo', 'Bella Vista', 'Doctor Juan León Mallorquín', 'Altos', 'J. Augusto Saldívar',
-  'San Cosme y Damián'
-];
-
-  citiesListPeru: string[] = [
-  'Lima', 'Arequipa', 'Trujillo', 'Chiclayo', 'Piura', 'Iquitos', 'Cusco', 'Chimbote', 'Huancayo', 'Tacna',
-  'Ica', 'Juliaca', 'Sullana', 'Chincha Alta', 'Huanuco', 'Ayacucho', 'Cajamarca', 'Pucallpa', 'Tumbes', 'Talara',
-  'Huaraz', 'Puno', 'Tarapoto', 'Moquegua', 'Huacho', 'Pisco', 'Puerto Maldonado', 'Chosica', 'Yurimaguas', 'Chocope',
-  'Camaná', 'Imperial', 'Abancay', 'Tarma', 'Tingo Maria', 'Jaén', 'Barranca', 'Moyobamba', 'Lambayeque', 'Zaña',
-  'Sicuani', 'Huancavelica', 'San Vicente de Cañete', 'Huanta', 'Rioja', 'Virú', 'Moche', 'Marcavelica', 'Jauja',
-  'Chota', 'San Ramón'
-];
-
-  citiesListUruguay: string[] = [
-  'Montevideo', 'Salto', 'Paysandú', 'Las Piedras', 'Rivera', 'Maldonado', 'Tacuarembó', 'Meloo', 'Mercedes', 'Artigas',
-  'Minas', 'San José de Mayo', 'Durazno', 'Florida', 'Barros Blancos', 'San Carlos', 'Colonia del Sacramento', 'Pando', 'Treinta y Tres',
-  'Rocha', 'Fray Bentos', 'Trinidad', 'Delta del Tigre', 'Canelones', 'Carmelo', 'Santa Lucía', 'Progreso', 'Young', 'Dolores',
-  'Nueva Helvecia', 'Nueva Palmira', 'Tranqueras', 'Paso de los Toros', 'Rosario', 'Juan L. Lacaze', 'Sarandí del Yi', 'Bella Unión',
-  'La Paz', 'Libertad', 'José Pedro Varela', 'Tala', 'Guichón', 'San Jacinto', 'La Paloma', 'Vergara', 'Santa Rosa'
-];
-
-  citiesListVenezuela: string[] = [
-  'Caracas', 'Maracaibo', 'Valencia', 'Barquisimeto', 'Maracay', 'Ciudad Guayana', 'San Cristóbal', 'Maturín', 'Barcelona', 'Puerto La Cruz',
-  'Petare', 'Turmero', 'Barinas', 'Mérida', 'Los Teques', 'Cabimas', 'Coro', 'Guacara', 'Ciudad Bolívar', 'Cumaná',
-  'Guanare', 'Punto Fijo', 'Acarigua', 'Carúpano', 'Santa Teresa del Tuy', 'Cúa', 'Guarenas', 'Ocumare del Tuy', 'El Tigre',
-  'El Limón', 'Porlamar', 'La Victoria', 'Tinaquillo', 'San Fernando de Apure', 'Valera', 'El Cafetal', 'San Carlos',
-  'San Felipe', 'Villa de Cura', 'El Vigía', 'Chacao', 'Las Tejerías', 'La Asunción', 'Los Dos Caminos', 'Santa Rita',
-  'Guatire', 'San Juan de los Morros', 'Machiques', 'Tariba'
-];
-
-  countryHtml: string = "Selecciona el pais"
-  numeroCreadores: number = 10;
-  ValorTotal: number = 0;
+  countryHtml: string = 'Selecciona el pais';
 
   name_client = new FormControl('', Validators.required);
   campaign_name = new FormControl('', Validators.required);
@@ -119,6 +54,7 @@ export class UgcComponent {
   number_short_videos = new FormControl('', Validators.required);
   number_long_videos = new FormControl('', Validators.required);
   number_carrousel = new FormControl('', Validators.required);
+  brief_campaign_objective = new FormControl('', Validators.required);
 
   saveUGCForm = new FormGroup({
     name_client: this.name_client,
@@ -135,153 +71,680 @@ export class UgcComponent {
     number_short_videos: this.number_short_videos,
     number_long_videos: this.number_long_videos,
     number_carrousel: this.number_carrousel,
-
+    brief_campaign_objective: this.brief_campaign_objective,
   });
 
   summary: number = 0;
   selectedCountry: string = '';
   videoCount: number = 0;
   selectedVideoType: string = '';
+
+  //  Number of contents for each country
+  ValorTotal: number = 0;
   numeroCarrousel: number = 1;
   numeroLongVideos: number = 1;
   numeroShortVideos: number = 1;
+  numeroCreadores: number = 10;
+
+  ValorTotalArgentina: number = 0;
+  numeroCarrouselArgentina: number = 1;
+  numeroLongVideosArgentina: number = 1;
+  numeroShortVideosArgentina: number = 1;
+  numeroCreadoresArgentina: number = 11;
+
+  ValorTotalBolivia: number = 0;
+  numeroCarrouselBolivia: number = 1;
+  numeroLongVideosBolivia: number = 1;
+  numeroShortVideosBolivia: number = 1;
+  numeroCreadoresBolivia: number = 10;
+
+  ValorTotalBrasil: number = 0;
+  numeroCarrouselBrasil: number = 1;
+  numeroLongVideosBrasil: number = 1;
+  numeroShortVideosBrasil: number = 1;
+  numeroCreadoresBrasil: number = 10;
+
+  ValorTotalChile: number = 0;
+  numeroCarrouselChile: number = 1;
+  numeroLongVideosChile: number = 1;
+  numeroShortVideosChile: number = 1;
+  numeroCreadoresChile: number = 10;
+
+  ValorTotalColombia: number = 0;
+  numeroCarrouselColombia: number = 1;
+  numeroLongVideosColombia: number = 1;
+  numeroShortVideosColombia: number = 1;
+  numeroCreadoresColombia: number = 10;
+
+  ValorTotalEcuador: number = 0;
+  numeroCarrouselEcuador: number = 1;
+  numeroLongVideosEcuador: number = 1;
+  numeroShortVideosEcuador: number = 1;
+  numeroCreadoresEcuador: number = 10;
+
+  ValorTotalParaguay: number = 0;
+  numeroCarrouselParaguay: number = 1;
+  numeroLongVideosParaguay: number = 1;
+  numeroShortVideosParaguay: number = 1;
+  numeroCreadoresParaguay: number = 10;
+
+  ValorTotalPeru: number = 0;
+  numeroCarrouselPeru: number = 1;
+  numeroLongVideosPeru: number = 1;
+  numeroShortVideosPeru: number = 1;
+  numeroCreadoresPeru: number = 10;
+
+  ValorTotalUruguay: number = 0;
+  numeroCarrouselUruguay: number = 1;
+  numeroLongVideosUruguay: number = 1;
+  numeroShortVideosUruguay: number = 1;
+  numeroCreadoresUruguay: number = 10;
+
+  ValorTotalVenezuela: number = 0;
+  numeroCarrouselVenezuela: number = 1;
+  numeroLongVideosVenezuela: number = 1;
+  numeroShortVideosVenezuela: number = 1;
+  numeroCreadoresVenezuela: number = 10;
 
   constructor(
     private service: AuthService,
     private fb: FormBuilder,
     private router: Router,
     private UGCService: UgcService,
+    private citiesService: CitiesService
   ) {}
-  
-  ngOnInit(){
-    this.service.verificarToken()
+
+  ngOnInit() {
+    this.service.verificarToken();
+    this.getCities();
   }
 
-  saveSaleUGC(){
+  saveSaleUGC() {
     console.log(this.saveUGCForm.value);
     this.UGCService.saveSaleUGC(this.saveUGCForm.value).subscribe(() => {
       console.log();
       this.router.navigateByUrl('/home');
-    
-    })
-
+    });
   }
-  
+  // Sum buttons types of contents
+  // -------------------------------------- General -------------------------------------------------
 
-  changeCountry(){
-    this.changeContents()
-    
-    if(this.selectedCountry == 'Argentina'){
-      this.citiesFinal = this.citiesListArgentina
-    }
-    if(this.selectedCountry == 'Bolivia'){
-      this.citiesFinal = this.citiesListBolivia
-    }
-    if(this.selectedCountry == 'Brasil'){
-      this.citiesFinal = this.citiesListBrasil
-    }
-    if(this.selectedCountry == 'Chile'){
-      this.citiesFinal = this.citiesListChile
-    }
-    if(this.selectedCountry == 'Colombia'){
-      this.citiesFinal = this.citiesListColombia
-    }
-    if(this.selectedCountry == 'Ecuador'){
-      this.citiesFinal = this.citiesListEcuador
-    }
-    if(this.selectedCountry == 'Paraguay'){
-      this.citiesFinal = this.citiesListParaguay
-    }
-    if(this.selectedCountry == 'Peru'){
-      this.citiesFinal = this.citiesListPeru
-    }
-    if(this.selectedCountry == 'Uruguay'){
-      this.citiesFinal = this.citiesListUruguay
-    }
-    if(this.selectedCountry == 'Venezuela'){
-      this.citiesFinal = this.citiesListVenezuela
-    }
-    
+  sumCarrousel() {
+    this.numeroCarrousel += 1;
   }
 
-  sumCarrousel(){
-    this.numeroCarrousel += 1
-  }
-
-  restCarrousel(){
+  restCarrousel() {
     if (this.numeroCarrousel > 0) {
       this.numeroCarrousel--;
     }
   }
 
-  sumLong(){
-    this.numeroLongVideos += 1
+  sumLong() {
+    this.numeroLongVideos += 1;
   }
 
-  restLong(){
+  restLong() {
     if (this.numeroLongVideos > 0) {
       this.numeroLongVideos--;
     }
   }
 
-  sumShort(){
-    this.numeroShortVideos += 1
+  sumShort() {
+    this.numeroShortVideos += 1;
   }
 
-  restShort(){
+  restShort() {
     if (this.numeroShortVideos > 0) {
       this.numeroShortVideos--;
     }
   }
 
-  sumCreators(){
-    this.numeroCreadores += 1
+  sumCreators() {
+    this.numeroCreadores += 1;
   }
 
-  restCreators(){
+  restCreators() {
     if (this.numeroCreadores > 10) {
       this.numeroCreadores--;
     }
   }
 
-  putCreators(event: number){
-    this.numeroCreadores = event
+  putCreators(event: number) {
+    this.numeroCreadores = event;
   }
-  
-  // Carrito de compras
 
-  changeContents(){
-    if (this.selectedCountry == 'Argentina'){
-      this.ValorTotal = ((this.numeroCarrousel * 100) + (this.numeroLongVideos * 300) + (this.numeroShortVideos * 150)) * this.numeroCreadores
-    }
-    if(this.selectedCountry == 'Bolivia'){
-      this.ValorTotal = ((this.numeroCarrousel * 40) + (this.numeroLongVideos * 70) + (this.numeroShortVideos * 90)) * this.numeroCreadores
-    }
-    if(this.selectedCountry == 'Brasil'){
-      this.ValorTotal = ((this.numeroCarrousel * 100) + (this.numeroLongVideos * 250) + (this.numeroShortVideos * 150)) * this.numeroCreadores
-    }
-    if(this.selectedCountry == 'Chile'){
-      this.ValorTotal = ((this.numeroCarrousel * 20) + (this.numeroLongVideos * 70) + (this.numeroShortVideos * 50)) * this.numeroCreadores
-    }
-    if(this.selectedCountry == 'Colombia'){
-      this.ValorTotal = ((this.numeroCarrousel * 50) + (this.numeroLongVideos * 77) + (this.numeroShortVideos * 44)) * this.numeroCreadores
-    }
-    if(this.selectedCountry == 'Ecuador'){
-      this.ValorTotal = ((this.numeroCarrousel * 50) + (this.numeroLongVideos * 66) + (this.numeroShortVideos * 90)) * this.numeroCreadores
-    }
-    if(this.selectedCountry == 'Paraguay'){
-      this.ValorTotal = ((this.numeroCarrousel * 75) + (this.numeroLongVideos * 65) + (this.numeroShortVideos * 95)) * this.numeroCreadores
-    }
-    if(this.selectedCountry == 'Peru'){
-      this.ValorTotal = ((this.numeroCarrousel * 80) + (this.numeroLongVideos * 150) + (this.numeroShortVideos * 100)) * this.numeroCreadores
-    }
-    if(this.selectedCountry == 'Uruguay'){
-      this.ValorTotal = ((this.numeroCarrousel * 80) + (this.numeroLongVideos * 100) + (this.numeroShortVideos * 50)) * this.numeroCreadores
-    }
-    if(this.selectedCountry == 'Venezuela'){
-      this.ValorTotal = ((this.numeroCarrousel * 10) + (this.numeroLongVideos * 30) + (this.numeroShortVideos * 20)) * this.numeroCreadores
+  // -------------------------------------- Argentina -------------------------------------------------
+
+  sumCarrouselArgentina() {
+    this.numeroCarrouselArgentina += 1;
+  }
+
+  restCarrouselArgentina() {
+    if (this.numeroCarrouselArgentina > 0) {
+      this.numeroCarrouselArgentina--;
     }
   }
+
+  sumLongArgentina() {
+    this.numeroLongVideosArgentina += 1;
+  }
+
+  restLongArgentina() {
+    if (this.numeroLongVideosArgentina > 0) {
+      this.numeroLongVideosArgentina--;
+    }
+  }
+
+  sumShortArgentina() {
+    this.numeroShortVideosArgentina += 1;
+  }
+
+  restShortArgentina() {
+    if (this.numeroShortVideosArgentina > 0) {
+      this.numeroShortVideosArgentina--;
+    }
+  }
+
+  sumCreatorsArgentina() {
+    this.numeroCreadoresArgentina += 1;
+  }
+
+  restCreatorsArgentina() {
+    if (this.numeroCreadoresArgentina > 10) {
+      this.numeroCreadoresArgentina--;
+    }
+  }
+
+  putCreatorsArgentina(event: number) {
+    this.numeroCreadoresArgentina = event;
+  }
+
+  // -------------------------------------- Bolivia -------------------------------------------------
+
+  sumCarrouselBolivia() {
+    this.numeroCarrouselBolivia += 1;
+  }
+
+  restCarrouselBolivia() {
+    if (this.numeroCarrouselBolivia > 0) {
+      this.numeroCarrouselBolivia--;
+    }
+  }
+
+  sumLongBolivia() {
+    this.numeroLongVideosBolivia += 1;
+  }
+
+  restLongBolivia() {
+    if (this.numeroLongVideosBolivia > 0) {
+      this.numeroLongVideosBolivia--;
+    }
+  }
+
+  sumShortBolivia() {
+    this.numeroShortVideosBolivia += 1;
+  }
+
+  restShortBolivia() {
+    if (this.numeroShortVideosBolivia > 0) {
+      this.numeroShortVideosBolivia--;
+    }
+  }
+
+  sumCreatorsBolivia() {
+    this.numeroCreadoresBolivia += 1;
+  }
+
+  restCreatorsBolivia() {
+    if (this.numeroCreadoresBolivia > 10) {
+      this.numeroCreadoresBolivia--;
+    }
+  }
+
+  putCreatorsBolivia(event: number) {
+    this.numeroCreadoresBolivia = event;
+  }
+
+  // -------------------------------------- Brasil -------------------------------------------------
+
+  sumCarrouselBrasil() {
+    this.numeroCarrousel += 1;
+  }
+
+  restCarrouselBrasil() {
+    if (this.numeroCarrousel > 0) {
+      this.numeroCarrousel--;
+    }
+  }
+
+  sumLongBrasil() {
+    this.numeroLongVideos += 1;
+  }
+
+  restLongBrasil() {
+    if (this.numeroLongVideos > 0) {
+      this.numeroLongVideos--;
+    }
+  }
+
+  sumShortBrasil() {
+    this.numeroShortVideos += 1;
+  }
+
+  restShortBrasil() {
+    if (this.numeroShortVideos > 0) {
+      this.numeroShortVideos--;
+    }
+  }
+
+  sumCreatorsBrasil() {
+    this.numeroCreadores += 1;
+  }
+
+  restCreatorsBrasil() {
+    if (this.numeroCreadores > 10) {
+      this.numeroCreadores--;
+    }
+  }
+
+  putCreatorsBrasil(event: number) {
+    this.numeroCreadores = event;
+  }
+
+  // -------------------------------------- Chile -------------------------------------------------
+
+  sumCarrouselChile() {
+    this.numeroCarrousel += 1;
+  }
+
+  restCarrouselChile() {
+    if (this.numeroCarrousel > 0) {
+      this.numeroCarrousel--;
+    }
+  }
+
+  sumLongChile() {
+    this.numeroLongVideos += 1;
+  }
+
+  restLongChile() {
+    if (this.numeroLongVideos > 0) {
+      this.numeroLongVideos--;
+    }
+  }
+
+  sumShortChile() {
+    this.numeroShortVideos += 1;
+  }
+
+  restShortChile() {
+    if (this.numeroShortVideos > 0) {
+      this.numeroShortVideos--;
+    }
+  }
+
+  sumCreatorsChile() {
+    this.numeroCreadores += 1;
+  }
+
+  restCreatorsChile() {
+    if (this.numeroCreadores > 10) {
+      this.numeroCreadores--;
+    }
+  }
+
+  putCreatorsChile(event: number) {
+    this.numeroCreadores = event;
+  }
+
+  // -------------------------------------- Colombia -------------------------------------------------
+
+  sumCarrouselColombia() {
+    this.numeroCarrousel += 1;
+  }
+
+  restCarrouselColombia() {
+    if (this.numeroCarrousel > 0) {
+      this.numeroCarrousel--;
+    }
+  }
+
+  sumLongColombia() {
+    this.numeroLongVideos += 1;
+  }
+
+  restLongColombia() {
+    if (this.numeroLongVideos > 0) {
+      this.numeroLongVideos--;
+    }
+  }
+
+  sumShortColombia() {
+    this.numeroShortVideos += 1;
+  }
+
+  restShortColombia() {
+    if (this.numeroShortVideos > 0) {
+      this.numeroShortVideos--;
+    }
+  }
+
+  sumCreatorsColombia() {
+    this.numeroCreadores += 1;
+  }
+
+  restCreatorsColombia() {
+    if (this.numeroCreadores > 10) {
+      this.numeroCreadores--;
+    }
+  }
+
+  putCreatorsColombia(event: number) {
+    this.numeroCreadores = event;
+  }
+  // -------------------------------------- Ecuador -------------------------------------------------
+
+  sumCarrouselEcuador() {
+    this.numeroCarrousel += 1;
+  }
+
+  restCarrouselEcuador() {
+    if (this.numeroCarrousel > 0) {
+      this.numeroCarrousel--;
+    }
+  }
+
+  sumLongEcuador() {
+    this.numeroLongVideos += 1;
+  }
+
+  restLongEcuador() {
+    if (this.numeroLongVideos > 0) {
+      this.numeroLongVideos--;
+    }
+  }
+
+  sumShortEcuador() {
+    this.numeroShortVideos += 1;
+  }
+
+  restShortEcuador() {
+    if (this.numeroShortVideos > 0) {
+      this.numeroShortVideos--;
+    }
+  }
+
+  sumCreatorsEcuador() {
+    this.numeroCreadores += 1;
+  }
+
+  restCreatorsEcuador() {
+    if (this.numeroCreadores > 10) {
+      this.numeroCreadores--;
+    }
+  }
+
+  putCreatorsEcuador(event: number) {
+    this.numeroCreadores = event;
+  }
+
+  // -------------------------------------- Paraguay -------------------------------------------------
+
+  sumCarrouselParaguay() {
+    this.numeroCarrousel += 1;
+  }
+
+  restCarrouselParaguay() {
+    if (this.numeroCarrousel > 0) {
+      this.numeroCarrousel--;
+    }
+  }
+
+  sumLongParaguay() {
+    this.numeroLongVideos += 1;
+  }
+
+  restLongParaguay() {
+    if (this.numeroLongVideos > 0) {
+      this.numeroLongVideos--;
+    }
+  }
+
+  sumShortParaguay() {
+    this.numeroShortVideos += 1;
+  }
+
+  restShortParaguay() {
+    if (this.numeroShortVideos > 0) {
+      this.numeroShortVideos--;
+    }
+  }
+
+  sumCreatorsParaguay() {
+    this.numeroCreadores += 1;
+  }
+
+  restCreatorsParaguay() {
+    if (this.numeroCreadores > 10) {
+      this.numeroCreadores--;
+    }
+  }
+
+  putCreatorsParaguay(event: number) {
+    this.numeroCreadores = event;
+  }
+
+  // -------------------------------------- Peru -------------------------------------------------
+
+  sumCarrouselPeru() {
+    this.numeroCarrousel += 1;
+  }
+
+  restCarrouselPeru() {
+    if (this.numeroCarrousel > 0) {
+      this.numeroCarrousel--;
+    }
+  }
+
+  sumLongPeru() {
+    this.numeroLongVideos += 1;
+  }
+
+  restLongPeru() {
+    if (this.numeroLongVideos > 0) {
+      this.numeroLongVideos--;
+    }
+  }
+
+  sumShortPeru() {
+    this.numeroShortVideos += 1;
+  }
+
+  restShortPeru() {
+    if (this.numeroShortVideos > 0) {
+      this.numeroShortVideos--;
+    }
+  }
+
+  sumCreatorsPeru() {
+    this.numeroCreadores += 1;
+  }
+
+  restCreatorsPeru() {
+    if (this.numeroCreadores > 10) {
+      this.numeroCreadores--;
+    }
+  }
+
+  putCreatorsPeru(event: number) {
+    this.numeroCreadores = event;
+  }
+
+  // -------------------------------------- Uruguay -------------------------------------------------
+
+  sumCarrouselUruguay() {
+    this.numeroCarrousel += 1;
+  }
+
+  restCarrouselUruguay() {
+    if (this.numeroCarrousel > 0) {
+      this.numeroCarrousel--;
+    }
+  }
+
+  sumLongUruguay() {
+    this.numeroLongVideos += 1;
+  }
+
+  restLongUruguay() {
+    if (this.numeroLongVideos > 0) {
+      this.numeroLongVideos--;
+    }
+  }
+
+  sumShortUruguay() {
+    this.numeroShortVideos += 1;
+  }
+
+  restShortUruguay() {
+    if (this.numeroShortVideos > 0) {
+      this.numeroShortVideos--;
+    }
+  }
+
+  sumCreatorsUruguay() {
+    this.numeroCreadores += 1;
+  }
+
+  restCreatorsUruguay() {
+    if (this.numeroCreadores > 10) {
+      this.numeroCreadores--;
+    }
+  }
+
+  putCreatorsUruguay(event: number) {
+    this.numeroCreadores = event;
+  }
+
+  // -------------------------------------- Venezuela -------------------------------------------------
+
+  sumCarrouselVenezuela() {
+    this.numeroCarrousel += 1;
+  }
+
+  restCarrouselVenezuela() {
+    if (this.numeroCarrousel > 0) {
+      this.numeroCarrousel--;
+    }
+  }
+
+  sumLongVenezuela() {
+    this.numeroLongVideos += 1;
+  }
+
+  restLongVenezuela() {
+    if (this.numeroLongVideos > 0) {
+      this.numeroLongVideos--;
+    }
+  }
+
+  sumShortVenezuela() {
+    this.numeroShortVideos += 1;
+  }
+
+  restShortVenezuela() {
+    if (this.numeroShortVideos > 0) {
+      this.numeroShortVideos--;
+    }
+  }
+
+  sumCreatorsVenezuela() {
+    this.numeroCreadores += 1;
+  }
+
+  restCreatorsVenezuela() {
+    if (this.numeroCreadores > 10) {
+      this.numeroCreadores--;
+    }
+  }
+
+  putCreatorsVenezuela(event: number) {
+    this.numeroCreadores = event;
+  }
+
+  // Carrito de compras antiguo
+  // changeContents() {
+  //   if (this.selectedCountry == 'Argentina') {
+  //     this.ValorTotal =
+  //       (this.numeroCarrousel * 100 +
+  //         this.numeroLongVideos * 300 +
+  //         this.numeroShortVideos * 150) *
+  //       this.numeroCreadores;
+  //   }
+  //   if (this.selectedCountry == 'Bolivia') {
+  //     this.ValorTotal =
+  //       (this.numeroCarrousel * 40 +
+  //         this.numeroLongVideos * 70 +
+  //         this.numeroShortVideos * 90) *
+  //       this.numeroCreadores;
+  //   }
+  //   if (this.selectedCountry == 'Brasil') {
+  //     this.ValorTotal =
+  //       (this.numeroCarrousel * 100 +
+  //         this.numeroLongVideos * 250 +
+  //         this.numeroShortVideos * 150) *
+  //       this.numeroCreadores;
+  //   }
+  //   if (this.selectedCountry == 'Chile') {
+  //     this.ValorTotal =
+  //       (this.numeroCarrousel * 20 +
+  //         this.numeroLongVideos * 70 +
+  //         this.numeroShortVideos * 50) *
+  //       this.numeroCreadores;
+  //   }
+  //   if (this.selectedCountry == 'Colombia') {
+  //     this.ValorTotal =
+  //       (this.numeroCarrousel * 50 +
+  //         this.numeroLongVideos * 77 +
+  //         this.numeroShortVideos * 44) *
+  //       this.numeroCreadores;
+  //   }
+  //   if (this.selectedCountry == 'Ecuador') {
+  //     this.ValorTotal =
+  //       (this.numeroCarrousel * 50 +
+  //         this.numeroLongVideos * 66 +
+  //         this.numeroShortVideos * 90) *
+  //       this.numeroCreadores;
+  //   }
+  //   if (this.selectedCountry == 'Paraguay') {
+  //     this.ValorTotal =
+  //       (this.numeroCarrousel * 75 +
+  //         this.numeroLongVideos * 65 +
+  //         this.numeroShortVideos * 95) *
+  //       this.numeroCreadores;
+  //   }
+  //   if (this.selectedCountry == 'Peru') {
+  //     this.ValorTotal =
+  //       (this.numeroCarrousel * 80 +
+  //         this.numeroLongVideos * 150 +
+  //         this.numeroShortVideos * 100) *
+  //       this.numeroCreadores;
+  //   }
+  //   if (this.selectedCountry == 'Uruguay') {
+  //     this.ValorTotal =
+  //       (this.numeroCarrousel * 80 +
+  //         this.numeroLongVideos * 100 +
+  //         this.numeroShortVideos * 50) *
+  //       this.numeroCreadores;
+  //   }
+  //   if (this.selectedCountry == 'Venezuela') {
+  //     this.ValorTotal =
+  //       (this.numeroCarrousel * 10 +
+  //         this.numeroLongVideos * 30 +
+  //         this.numeroShortVideos * 20) *
+  //       this.numeroCreadores;
+  //   }
+  // }
 
   verificarArgentina: boolean = false;
   verificarBolivia: boolean = false;
@@ -293,63 +756,160 @@ export class UgcComponent {
   verificarPeru: boolean = false;
   verificarUruguay: boolean = false;
   verificarVenezuela: boolean = false;
-  
+
   // Mostrar ciudades
-  showCities(){
-    if(this.selectedCountry.includes('Argentina')){
-      this.verificarArgentina = true
-      console.log(this.selectedCountry) 
-
+  showCities() {
+    if (this.selectedCountry.includes('Argentina')) {
+      this.verificarArgentina = true;
+      console.log(this.selectedCountry);
+    } else {
+      this.verificarArgentina = false;
     }
-    if(this.selectedCountry.includes('Bolivia')){
-      this.verificarBolivia = true
-      console.log(this.selectedCountry) 
-
+    if (this.selectedCountry.includes('Bolivia')) {
+      this.verificarBolivia = true;
+      console.log(this.selectedCountry);
+    } else {
+      this.verificarBolivia = false;
     }
-    if(this.selectedCountry.includes('Brasil')){
-      this.verificarBrasil = true
-      console.log(this.selectedCountry) 
-
+    if (this.selectedCountry.includes('Brasil')) {
+      this.verificarBrasil = true;
+      console.log(this.selectedCountry);
+    } else {
+      this.verificarBrasil = false;
     }
-    if(this.selectedCountry.includes('Chile')){
-      this.verificarChile = true
-      console.log(this.selectedCountry) 
-
+    if (this.selectedCountry.includes('Chile')) {
+      this.verificarChile = true;
+      console.log(this.selectedCountry);
+    } else {
+      this.verificarChile = false;
     }
-    if(this.selectedCountry.includes('Colombia')){
-      this.verificarColombia = true
-      console.log(this.selectedCountry) 
-
+    if (this.selectedCountry.includes('Colombia')) {
+      this.verificarColombia = true;
+      console.log(this.selectedCountry);
+    } else {
+      this.verificarColombia = false;
     }
-    if(this.selectedCountry.includes('Ecuador')){
-      this.verificarEcuador = true
-      console.log(this.selectedCountry) 
-
+    if (this.selectedCountry.includes('Ecuador')) {
+      this.verificarEcuador = true;
+      console.log(this.selectedCountry);
+    } else {
+      this.verificarEcuador = false;
     }
-    if(this.selectedCountry.includes('Paraguay')){
-      this.verificarParaguay = true
-      console.log(this.selectedCountry) 
-
+    if (this.selectedCountry.includes('Paraguay')) {
+      this.verificarParaguay = true;
+      console.log(this.selectedCountry);
+    } else {
+      this.verificarParaguay = false;
     }
-    if(this.selectedCountry.includes('Peru')){
-      this.verificarPeru = true
-      console.log(this.selectedCountry) 
-
+    if (this.selectedCountry.includes('Peru')) {
+      this.verificarPeru = true;
+      console.log(this.selectedCountry);
+    } else {
+      this.verificarPeru = false;
     }
-    if(this.selectedCountry.includes('Uruguay')){
-      this.verificarUruguay = true
-      console.log(this.selectedCountry) 
-
+    if (this.selectedCountry.includes('Uruguay')) {
+      this.verificarUruguay = true;
+      console.log(this.selectedCountry);
+    } else {
+      this.verificarUruguay = false;
     }
-    if(this.selectedCountry.includes('Venezuela')){
-      this.verificarVenezuela = true
-      console.log(this.selectedCountry) 
-
+    if (this.selectedCountry.includes('Venezuela')) {
+      this.verificarVenezuela = true;
+      console.log(this.selectedCountry);
     }
   }
 
+  // Extraer los datos de las ciudades
+  getCities() {
+    this.citiesService.seeCitiesArgentina().subscribe(
+      (cities: { name: string; code: string }[]) => {
+        this.citiesListArgentina = cities;
+      },
+      (error) => {
+        console.error('Error al obtener las ciudades:', error);
+      }
+    );
 
+    this.citiesService.seeCitiesBolivia().subscribe(
+      (cities: { name: string; code: string }[]) => {
+        this.citiesListBolivia = cities;
+        console.log(this.citiesListBrasil);
+      },
+      (error) => {
+        console.error('Error al obtener las ciudades:', error);
+      }
+    );
 
+    this.citiesService.seeCitiesBrazil().subscribe(
+      (cities: { name: string; code: string }[]) => {
+        this.citiesListBrasil = cities;
+      },
+      (error) => {
+        console.error('Error al obtener las ciudades:', error);
+      }
+    );
 
-  
+    this.citiesService.seeCitiesChile().subscribe(
+      (cities: { name: string; code: string }[]) => {
+        this.citiesListChile = cities;
+      },
+      (error) => {
+        console.error('Error al obtener las ciudades:', error);
+      }
+    );
+
+    this.citiesService.seeCitiesColombia().subscribe(
+      (cities: { name: string; code: string }[]) => {
+        this.citiesListColombia = cities;
+      },
+      (error) => {
+        console.error('Error al obtener las ciudades:', error);
+      }
+    );
+
+    this.citiesService.seeCitiesEcuador().subscribe(
+      (cities: { name: string; code: string }[]) => {
+        this.citiesListEcuador = cities;
+      },
+      (error) => {
+        console.error('Error al obtener las ciudades:', error);
+      }
+    );
+
+    this.citiesService.seeCitiesParaguay().subscribe(
+      (cities: { name: string; code: string }[]) => {
+        this.citiesListParaguay = cities;
+      },
+      (error) => {
+        console.error('Error al obtener las ciudades:', error);
+      }
+    );
+
+    this.citiesService.seeCitiesPeru().subscribe(
+      (cities: { name: string; code: string }[]) => {
+        this.citiesListPeru = cities;
+      },
+      (error) => {
+        console.error('Error al obtener las ciudades:', error);
+      }
+    );
+
+    this.citiesService.seeCitiesUruguay().subscribe(
+      (cities: { name: string; code: string }[]) => {
+        this.citiesListUruguay = cities;
+      },
+      (error) => {
+        console.error('Error al obtener las ciudades:', error);
+      }
+    );
+
+    this.citiesService.seeCitiesVenezuela().subscribe(
+      (cities: { name: string; code: string }[]) => {
+        this.citiesListVenezuela = cities;
+      },
+      (error) => {
+        console.error('Error al obtener las ciudades:', error);
+      }
+    );
+  }
 }

@@ -3,7 +3,7 @@ import { Injectable } from '@angular/core';
 import { Observable, of } from 'rxjs';
 
 
-const BASE_URL = ['https://shielded-waters-57044-1dfb83ef6590.herokuapp.com/']
+const BASE_URL = ['http://localhost:8080/']
 
 @Injectable({
   providedIn: 'root'

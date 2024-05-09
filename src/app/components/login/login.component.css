@@ -23,7 +23,8 @@
 }
 
 .image-login-back {
-  margin: 20px;
+  margin: 10px;
+  transform: scale(0.9);
 }
 
 .loginForm {
@@ -85,7 +86,7 @@ input {
   font-style: normal;
   background-color: transparent;
   border: none;
-  width: 280px;
+  width: 90%;
   margin-left: 10px;
 }
 
@@ -99,6 +100,10 @@ button {
   background-color: #00eced;
   color: #d8007f;
   border-radius: 31px;
+}
+
+button:hover {
+  cursor: pointer;
 }
 
 .FormLogin {

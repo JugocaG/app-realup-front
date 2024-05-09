@@ -83,8 +83,9 @@ button:hover {
 }
 
 .title {
-  height: 48px;
-  width: 30%;
+  height: 8vh;
+  width: 50%;
+  font-size: 1.3vw;
   border-top-right-radius: 162px;
   border-bottom-right-radius: 162px;
   background-color: #d8007f;
@@ -106,19 +107,18 @@ mat-card {
 .campaign-name {
   display: flex;
   flex-direction: row;
-  justify-content: center;
+  justify-content: space-around;
   input {
     background-color: #00eced;
     font-family: "Poppins", sans-serif;
     font-weight: 700;
     font-style: normal;
-    font-size: 25px;
     color: #000000;
     border: none;
     border-radius: 20px;
-    width: 500px;
+    margin-top: 20px;
+    width: 40%;
     height: 48px;
-    margin: 20px;
     text-indent: 10px;
   }
 
@@ -126,13 +126,14 @@ mat-card {
     font-family: "Poppins", sans-serif;
     font-weight: 700;
     font-style: normal;
-    font-size: 25px;
+    font-size: 1.2vw;
+
     align-items: center;
   }
 }
 
 .radio-product-boxes {
-  width: 70%;
+  width: 80%;
   display: flex;
   flex-direction: row;
   justify-content: space-between;
@@ -142,7 +143,7 @@ mat-card {
   font-family: "Poppins", sans-serif;
   font-weight: 700;
   font-style: normal;
-  font-size: 18px;
+  font-size: 1vw;
 }
 
 /* Estilos generales para el contenedor */
@@ -349,8 +350,101 @@ mat-card {
 
 #brief-campaign-objective {
   resize: none;
+  font-size: 1vw;
 }
 .brief-campaign-objective {
   margin-top: 30px;
-  width: 1000px;
+  width: 80%;
+}
+
+.label-brief {
+  font-size: 1.2vw;
+}
+
+.button-shop {
+  margin: 20px;
+}
+
+.packages-recommended {
+  text-align: center;
+}
+
+.packages-defined {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  font-size: 1vw;
+}
+
+.package-defined {
+  width: 28%;
+  text-align: center;
+  background-color: #a6f4f6;
+  padding: 10px;
+  margin: 10px;
+  border-radius: 10px;
+}
+
+.packages-combos {
+  font-size: 0.8vw;
+  padding: 5%;
+  background-color: #ffffff;
+  input[type="number"] {
+    width: 80px; /* Ancho del input */
+    padding: 8px; /* Ajustar el relleno */
+    border-radius: 5px; /* Agregar bordes redondeados */
+    text-align: center; /* Centrar el texto dentro del input */
+    opacity: 1; /* Mantener la opacidad normal */
+    background-color: #ffffff;
+  }
+  input[type="number"]::-webkit-inner-spin-button,
+  input[type="number"]::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+  }
+  input:disabled {
+    border: #212121 solid 2px;
+    opacity: 1; /* Mantener la opacidad normal */
+  }
+}
+
+.data-package-combos {
+  margin: 0 5%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.data-package {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.bolsa {
+  padding: 2%;
+  background-color: rgba(0, 236, 237, 0.48);
+}
+
+.cities-selected {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  width: 100%;
+  flex-wrap: wrap;
+}
+
+.cities {
+  text-align: center;
+  width: 30%;
+
+  p {
+    margin: 0;
+  }
+}
+
+::ng-deep .brasil-multiselect {
+  width: 100%;
+  margin-bottom: 20px;
 }

@@ -12,7 +12,7 @@ import {trigger, state, style, animate, transition, } from '@angular/animations'
       state('open', style({
         opacity: 1,
         filter: 'drop-shadow(1px 1px 20px #d8007f)',
-        transform: 'scale(1.1)',
+        transform: 'scale(1)',
         left: '30%',
         zIndex: 1,
 
@@ -35,7 +35,7 @@ import {trigger, state, style, animate, transition, } from '@angular/animations'
       state('open', style({
         opacity: 1,
         filter: 'drop-shadow(1px 1px 20px #d8007f)',
-        transform: 'scale(1.1)',
+        transform: 'scale(1)',
         left: '30%',
 
         zIndex: 1,
@@ -59,7 +59,7 @@ import {trigger, state, style, animate, transition, } from '@angular/animations'
       state('open', style({
         opacity: 1,
         filter: 'drop-shadow(1px 1px 20px #d8007f)',
-        transform: 'scale(1.1)',
+        transform: 'scale(1)',
         left: '30%',
 
         zIndex: 1,

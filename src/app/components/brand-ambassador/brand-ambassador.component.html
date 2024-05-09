@@ -104,8 +104,9 @@
               <mat-form-field class="select-country">
                 <mat-label>Pais</mat-label>
                 <mat-select
+                  multiple
                   [(ngModel)]="selectedCountry"
-                  (selectionChange)="changeCountry()"
+                  (selectionChange)="showCities()"
                   disableRipple
                   id="country"
                   name="country"
@@ -121,19 +122,189 @@
               </mat-form-field>
             </div>
             <div class="cities">
-              <mat-form-field class="select-cities">
-                <mat-label>Cities</mat-label>
-                <mat-select
-                  name="cities"
-                  id="cities"
-                  formControlName="cities"
-                  multiple
-                >
-                  <mat-option *ngFor="let city of citiesFinal" [value]="city">{{
-                    city
-                  }}</mat-option>
-                </mat-select>
-              </mat-form-field>
+              <div class="cities" *ngIf="verificarArgentina">
+                <p>Ciudades Argentina</p>
+                <mat-form-field class="select-cities">
+                  <mat-label>Cities</mat-label>
+                  <mat-select
+                    name="cities"
+                    id="cities"
+                    formControlName="cities"
+                    multiple
+                  >
+                    <mat-option
+                      *ngFor="let city of citiesListArgentina"
+                      [value]="city"
+                      >{{ city }}</mat-option
+                    >
+                  </mat-select>
+                </mat-form-field>
+              </div>
+              <div class="cities" *ngIf="verificarBolivia">
+                <p>Ciudades Bolivia</p>
+                <mat-form-field class="select-cities">
+                  <mat-label>Cities</mat-label>
+                  <mat-select
+                    name="cities"
+                    id="cities"
+                    formControlName="cities"
+                    multiple
+                  >
+                    <mat-option
+                      *ngFor="let city of citiesListBolivia"
+                      [value]="city"
+                      >{{ city }}</mat-option
+                    >
+                  </mat-select>
+                </mat-form-field>
+              </div>
+              <div class="cities" *ngIf="verificarBrasil">
+                <p>Ciudades Brasil</p>
+                <mat-form-field class="select-cities">
+                  <mat-label>Cities</mat-label>
+                  <mat-select
+                    name="cities"
+                    id="cities"
+                    formControlName="cities"
+                    multiple
+                  >
+                    <mat-option
+                      *ngFor="let city of citiesListBrasil"
+                      [value]="city"
+                      >{{ city }}</mat-option
+                    >
+                  </mat-select>
+                </mat-form-field>
+              </div>
+              <div class="cities" *ngIf="verificarChile">
+                <p>Ciudades Chile</p>
+                <mat-form-field class="select-cities">
+                  <mat-label>Cities</mat-label>
+                  <mat-select
+                    name="cities"
+                    id="cities"
+                    formControlName="cities"
+                    multiple
+                  >
+                    <mat-option
+                      *ngFor="let city of citiesListChile"
+                      [value]="city"
+                      >{{ city }}</mat-option
+                    >
+                  </mat-select>
+                </mat-form-field>
+              </div>
+              <div class="cities" *ngIf="verificarColombia">
+                <p>Ciudades Colombia</p>
+                <mat-form-field class="select-cities">
+                  <mat-label>Cities</mat-label>
+                  <mat-select
+                    name="cities"
+                    id="cities"
+                    formControlName="cities"
+                    multiple
+                  >
+                    <mat-option
+                      *ngFor="let city of citiesListColombia"
+                      [value]="city"
+                      >{{ city }}</mat-option
+                    >
+                  </mat-select>
+                </mat-form-field>
+              </div>
+
+              <div class="cities" *ngIf="verificarEcuador">
+                <p>Ciudades Ecuador</p>
+                <mat-form-field class="select-cities">
+                  <mat-label>Cities</mat-label>
+                  <mat-select
+                    name="cities"
+                    id="cities"
+                    formControlName="cities"
+                    multiple
+                  >
+                    <mat-option
+                      *ngFor="let city of citiesListEcuador"
+                      [value]="city"
+                      >{{ city }}</mat-option
+                    >
+                  </mat-select>
+                </mat-form-field>
+              </div>
+
+              <div class="cities" *ngIf="verificarParaguay">
+                <p>Ciudades Paraguay</p>
+                <mat-form-field class="select-cities">
+                  <mat-label>Cities</mat-label>
+                  <mat-select
+                    name="cities"
+                    id="cities"
+                    formControlName="cities"
+                    multiple
+                  >
+                    <mat-option
+                      *ngFor="let city of citiesListParaguay"
+                      [value]="city"
+                      >{{ city }}</mat-option
+                    >
+                  </mat-select>
+                </mat-form-field>
+              </div>
+              <div class="cities" *ngIf="verificarPeru">
+                <p>Ciudades Peru</p>
+                <mat-form-field class="select-cities">
+                  <mat-label>Cities</mat-label>
+                  <mat-select
+                    name="cities"
+                    id="cities"
+                    formControlName="cities"
+                    multiple
+                  >
+                    <mat-option
+                      *ngFor="let city of citiesListPeru"
+                      [value]="city"
+                      >{{ city }}</mat-option
+                    >
+                  </mat-select>
+                </mat-form-field>
+              </div>
+              <div class="cities" *ngIf="verificarUruguay">
+                <p>Ciudades Uruguay</p>
+                <mat-form-field class="select-cities">
+                  <mat-label>Cities</mat-label>
+                  <mat-select
+                    name="cities"
+                    id="cities"
+                    formControlName="cities"
+                    multiple
+                  >
+                    <mat-option
+                      *ngFor="let city of citiesListUruguay"
+                      [value]="city"
+                      >{{ city }}</mat-option
+                    >
+                  </mat-select>
+                </mat-form-field>
+              </div>
+
+              <div class="cities" *ngIf="verificarVenezuela">
+                <p>Ciudades Venezuela</p>
+                <mat-form-field class="select-cities">
+                  <mat-label>Cities</mat-label>
+                  <mat-select
+                    name="cities"
+                    id="cities"
+                    formControlName="cities"
+                    multiple
+                  >
+                    <mat-option
+                      *ngFor="let city of citiesListVenezuela"
+                      [value]="city"
+                      >{{ city }}</mat-option
+                    >
+                  </mat-select>
+                </mat-form-field>
+              </div>
             </div>
           </div>
         </mat-card>
