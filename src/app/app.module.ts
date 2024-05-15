@@ -24,13 +24,7 @@ import { MatCardModule } from '@angular/material/card';
 import { MatButtonModule } from '@angular/material/button';
 import { BrandAmbassadorComponent } from './components/brand-ambassador/brand-ambassador.component';
 import { MatTabsModule } from '@angular/material/tabs';
-import {
-  trigger,
-  state,
-  style,
-  animate,
-  transition,
-} from '@angular/animations';
+import { CardModule } from 'primeng/card';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatIconModule } from '@angular/material/icon';
 import { MatDividerModule } from '@angular/material/divider';
@@ -74,6 +68,7 @@ import { MultiSelectModule } from 'primeng/multiselect';
     MatAutocompleteModule,
     AsyncPipe,
     MultiSelectModule,
+    CardModule,
   ],
   providers: [provideAnimationsAsync()],
   bootstrap: [AppComponent],

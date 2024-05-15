@@ -18,7 +18,7 @@ export class CitiesService {
   // }
   seeCitiesArgentina(): Observable<{ name: string; code: string }[]> {
     return this.http
-      .get<string[]>('assets/responseArgentina.json', {
+      .get<string[]>(BASE_URL + 'api/v1/cities/see-cities/Argentina', {
         headers: this.service.createAuthorizationHeader(),
       })
       .pipe(

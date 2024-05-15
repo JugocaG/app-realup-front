@@ -4,6 +4,7 @@ import {
   FormControl,
   FormGroup,
   Validators,
+  FormArray,
 } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AuthService } from 'src/app/service/auth.service';
@@ -40,39 +41,44 @@ export class UgcComponent implements OnInit {
 
   countryHtml: string = 'Selecciona el pais';
 
-  name_client = new FormControl('', Validators.required);
-  campaign_name = new FormControl('', Validators.required);
-  country = new FormControl('');
-  number_creators = new FormControl(null, Validators.required);
-  campaign_objective = new FormControl('');
-  type_product = new FormControl('', Validators.required);
-  name_product = new FormControl('', Validators.required);
-  brief = new FormControl('', Validators.required);
-  cities = new FormControl('', Validators.required);
-  guideline = new FormControl('', Validators.required);
-  delivery = new FormControl('', Validators.required);
-  number_short_videos = new FormControl('', Validators.required);
-  number_long_videos = new FormControl('', Validators.required);
-  number_carrousel = new FormControl('', Validators.required);
-  brief_campaign_objective = new FormControl('', Validators.required);
+  // name_client = new FormControl('', Validators.required);
+  // campaign_name = new FormControl('', Validators.required);
+  // country = new FormControl('');
+  // campaign_objective = new FormControl('');
+  // brief_campaign_objective = new FormControl('', Validators.required);
+  // type_product = new FormControl('', Validators.required);
+  // name_product = new FormControl('', Validators.required);
+  // brief = new FormControl('', Validators.required);
+  // guideline = new FormControl('', Validators.required);
+  // delivery = new FormControl('', Validators.required);
+  // cities = new FormControl('', Validators.required);
+  // number_creators = new FormControl(null, Validators.required);
+  // number_short_videos = new FormControl('', Validators.required);
+  // number_long_videos = new FormControl('', Validators.required);
+  // number_carrousel = new FormControl('', Validators.required);
 
-  saveUGCForm = new FormGroup({
-    name_client: this.name_client,
-    country: this.country,
-    campaign_objective: this.campaign_objective,
-    number_creators: this.number_creators,
-    campaign_name: this.campaign_name,
-    type_product: this.type_product,
-    name_product: this.name_product,
-    brief: this.brief,
-    cities: this.cities,
-    guideline: this.guideline,
-    delivery: this.delivery,
-    number_short_videos: this.number_short_videos,
-    number_long_videos: this.number_long_videos,
-    number_carrousel: this.number_carrousel,
-    brief_campaign_objective: this.brief_campaign_objective,
-  });
+  // saveUGCForm = new FormGroup({
+  //   name_client: this.name_client,
+  //   country: this.country,
+  //   campaign_objective: this.campaign_objective,
+  //   campaign_name: this.campaign_name,
+  //   type_product: this.type_product,
+  //   name_product: this.name_product,
+  //   brief: this.brief,
+  //   guideline: this.guideline,
+  //   brief_campaign_objective: this.brief_campaign_objective,
+  //   delivery: this.delivery,
+  //   // cities: this.cities,
+  //   // number_short_videos: this.number_short_videos,
+  //   // number_long_videos: this.number_long_videos,
+  //   // number_carrousel: this.number_carrousel,
+  //   // number_creators: this.number_creators,
+  // });
+
+  //Implementacion combinacion de forms
+  combinedForm: FormGroup;
+  formGroupCities: FormGroup;
+  saveUGCForm: FormGroup;
 
   summary: number = 0;
   selectedCountry: string = '';
@@ -152,19 +158,66 @@ export class UgcComponent implements OnInit {
     private router: Router,
     private UGCService: UgcService,
     private citiesService: CitiesService
-  ) {}
+  ) {
+    this.formGroupCities = this.fb.group({
+      cities: ['', Validators.required],
+      number_creators: ['', Validators.required],
+      number_short_videos: ['', Validators.required],
+      number_long_videos: ['', Validators.required],
+      number_carrousel: ['', Validators.required],
+      guideline: [''],
+    });
+    this.saveUGCForm = this.fb.group({
+      name_client: ['', Validators.required],
+      campaign_name: ['', Validators.required],
+      country: ['', Validators.required],
+      campaign_objective: this.fb.array([]),
+      brief_campaign_objective: ['', Validators.required],
+      type_product: ['', Validators.required],
+      name_product: ['', Validators.required],
+      brief: ['', Validators.required],
+      delivery: ['', Validators.required],
+    });
+
+    this.combinedForm = this.fb.group({
+      saveUGCForm: this.saveUGCForm,
+      formGroupCities: this.formGroupCities,
+    });
+  }
 
   ngOnInit() {
     this.service.verificarToken();
     this.getCities();
   }
 
+  getCitiesNames(citiesList: { name: string; code: string }[]): string[] {
+    return citiesList.map((city) => city.name);
+  }
+
   saveSaleUGC() {
-    console.log(this.saveUGCForm.value);
-    this.UGCService.saveSaleUGC(this.saveUGCForm.value).subscribe(() => {
-      console.log();
-      this.router.navigateByUrl('/home');
-    });
+    if (this.combinedForm.valid) {
+      const combinedFormData = this.combinedForm.value;
+
+      // Obtener los nombres de las ciudades y ajustarlos
+      const citiesData: { name: string }[] =
+        combinedFormData.formGroupCities.cities;
+      const citiesArray = citiesData.map((cityObject) => cityObject.name);
+      this.formGroupCities.value.cities = citiesArray;
+
+      const combinedData = {
+        ...this.saveUGCForm.value,
+        ...this.formGroupCities.value,
+      };
+
+      console.log(combinedData);
+
+      this.UGCService.saveSaleUGC(combinedData).subscribe(() => {
+        console.log();
+        this.router.navigateByUrl('/home');
+      });
+    } else {
+      console.log('Form is invalid');
+    }
   }
   // Sum buttons types of contents
   // -------------------------------------- General -------------------------------------------------
@@ -911,5 +964,43 @@ export class UgcComponent implements OnInit {
         console.error('Error al obtener las ciudades:', error);
       }
     );
+  }
+
+  // Seleccion de tipo de producto - funcion para aparecer el Delivery o no
+
+  productType: boolean = false;
+  productTypeProduct: string = '';
+
+  changeProductType() {
+    if (this.productTypeProduct == 'Physical product') {
+      this.productType = true;
+    }
+    if (this.productTypeProduct == 'Service') {
+      this.productType = false;
+    }
+  }
+
+  // Pequeño cambio en las opciones de campaña
+
+  options = [
+    { id: 'brand-awarness', label: 'Brand Awarness', value: 0 },
+    { id: 'consideration', label: 'Consideracion', value: 1 },
+    { id: 'conversion', label: 'Conversion', value: 2 },
+    { id: 'retention', label: 'Retencion', value: 3 },
+  ];
+
+  onCheckboxChange(event: any) {
+    const formArray: FormArray = this.saveUGCForm.get(
+      'campaign_objective'
+    ) as FormArray;
+
+    if (event.target.checked) {
+      formArray.push(new FormControl(Number(event.target.value)));
+    } else {
+      const index = formArray.controls.findIndex(
+        (x) => x.value === Number(event.target.value)
+      );
+      formArray.removeAt(index);
+    }
   }
 }
