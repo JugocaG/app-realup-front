@@ -57,6 +57,7 @@ h1 {
   font-style: normal;
   color: white;
   text-align: center;
+  font-size: x-large;
 }
 
 .email,
@@ -71,13 +72,13 @@ h1 {
   flex-wrap: wrap;
   align-content: center;
   align-items: center;
-  justify-content: center;
 }
 
 .email img,
 .password img {
   height: 37.24px;
   width: 28px;
+  margin-left: 10px;
 }
 
 input {
@@ -112,4 +113,8 @@ button:hover {
   align-content: center;
   align-items: center;
   justify-content: center;
+}
+
+.form-group {
+  width: 80%;
 }

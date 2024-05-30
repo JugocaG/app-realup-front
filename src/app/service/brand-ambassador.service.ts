@@ -3,7 +3,7 @@ import { AuthService } from './auth.service';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 
-const BASE_URL = ['http://localhost:8080/'];
+const BASE_URL = ['https://shielded-waters-57044-1dfb83ef6590.herokuapp.com/'];
 
 @Injectable({
   providedIn: 'root',
