@@ -615,7 +615,7 @@ export class UgcComponent implements OnInit {
   }
 
   restCreators() {
-    if (this.numeroCreadores > 10) {
+    if (this.numeroCreadores > 0) {
       this.numeroCreadores--;
     }
   }
@@ -661,7 +661,7 @@ export class UgcComponent implements OnInit {
   }
 
   restCreatorsArgentina() {
-    if (this.numeroCreadoresArgentina > 10) {
+    if (this.numeroCreadoresArgentina > 0) {
       this.numeroCreadoresArgentina--;
     }
   }
@@ -707,7 +707,7 @@ export class UgcComponent implements OnInit {
   }
 
   restCreatorsBolivia() {
-    if (this.numeroCreadoresBolivia > 10) {
+    if (this.numeroCreadoresBolivia > 0) {
       this.numeroCreadoresBolivia--;
     }
   }
@@ -753,7 +753,7 @@ export class UgcComponent implements OnInit {
   }
 
   restCreatorsBrasil() {
-    if (this.numeroCreadoresBrasil > 10) {
+    if (this.numeroCreadoresBrasil > 0) {
       this.numeroCreadoresBrasil--;
     }
   }
@@ -799,7 +799,7 @@ export class UgcComponent implements OnInit {
   }
 
   restCreatorsChile() {
-    if (this.numeroCreadoresChile > 10) {
+    if (this.numeroCreadoresChile > 0) {
       this.numeroCreadoresChile--;
     }
   }
@@ -845,7 +845,7 @@ export class UgcComponent implements OnInit {
   }
 
   restCreatorsColombia() {
-    if (this.numeroCreadoresColombia > 10) {
+    if (this.numeroCreadoresColombia > 0) {
       this.numeroCreadoresColombia--;
     }
   }
@@ -890,7 +890,7 @@ export class UgcComponent implements OnInit {
   }
 
   restCreatorsEcuador() {
-    if (this.numeroCreadoresEcuador > 10) {
+    if (this.numeroCreadoresEcuador > 0) {
       this.numeroCreadoresEcuador--;
     }
   }
@@ -936,7 +936,7 @@ export class UgcComponent implements OnInit {
   }
 
   restCreatorsParaguay() {
-    if (this.numeroCreadoresParaguay > 10) {
+    if (this.numeroCreadoresParaguay > 0) {
       this.numeroCreadoresParaguay--;
     }
   }
@@ -982,7 +982,7 @@ export class UgcComponent implements OnInit {
   }
 
   restCreatorsPeru() {
-    if (this.numeroCreadoresPeru > 10) {
+    if (this.numeroCreadoresPeru > 0) {
       this.numeroCreadoresPeru--;
     }
   }
@@ -1028,7 +1028,7 @@ export class UgcComponent implements OnInit {
   }
 
   restCreatorsUruguay() {
-    if (this.numeroCreadoresUruguay > 10) {
+    if (this.numeroCreadoresUruguay > 0) {
       this.numeroCreadoresUruguay--;
     }
   }
@@ -1074,7 +1074,7 @@ export class UgcComponent implements OnInit {
   }
 
   restCreatorsVenezuela() {
-    if (this.numeroCreadoresVenezuela > 10) {
+    if (this.numeroCreadoresVenezuela > 0) {
       this.numeroCreadoresVenezuela--;
     }
   }
@@ -1120,7 +1120,7 @@ export class UgcComponent implements OnInit {
   }
 
   restCreatorsCostaRica() {
-    if (this.numeroCreadoresCostaRica > 10) {
+    if (this.numeroCreadoresCostaRica > 0) {
       this.numeroCreadoresCostaRica--;
     }
   }
@@ -1166,7 +1166,7 @@ export class UgcComponent implements OnInit {
   }
 
   restCreatorsCuba() {
-    if (this.numeroCreadoresCuba > 10) {
+    if (this.numeroCreadoresCuba > 0) {
       this.numeroCreadoresCuba--;
     }
   }
@@ -1212,7 +1212,7 @@ export class UgcComponent implements OnInit {
   }
 
   restCreatorsElSalvador() {
-    if (this.numeroCreadoresElSalvador > 10) {
+    if (this.numeroCreadoresElSalvador > 0) {
       this.numeroCreadoresElSalvador--;
     }
   }
@@ -1258,7 +1258,7 @@ export class UgcComponent implements OnInit {
   }
 
   restCreatorsGuatemala() {
-    if (this.numeroCreadoresGuatemala > 10) {
+    if (this.numeroCreadoresGuatemala > 0) {
       this.numeroCreadoresGuatemala--;
     }
   }
@@ -1304,7 +1304,7 @@ export class UgcComponent implements OnInit {
   }
 
   restCreatorsHonduras() {
-    if (this.numeroCreadoresHonduras > 10) {
+    if (this.numeroCreadoresHonduras > 0) {
       this.numeroCreadoresHonduras--;
     }
   }
@@ -1350,7 +1350,7 @@ export class UgcComponent implements OnInit {
   }
 
   restCreatorsMexico() {
-    if (this.numeroCreadoresMexico > 10) {
+    if (this.numeroCreadoresMexico > 0) {
       this.numeroCreadoresMexico--;
     }
   }
@@ -1396,7 +1396,7 @@ export class UgcComponent implements OnInit {
   }
 
   restCreatorsNicaragua() {
-    if (this.numeroCreadoresNicaragua > 10) {
+    if (this.numeroCreadoresNicaragua > 0) {
       this.numeroCreadoresNicaragua--;
     }
   }
@@ -1442,7 +1442,7 @@ export class UgcComponent implements OnInit {
   }
 
   restCreatorsPanama() {
-    if (this.numeroCreadoresPanama > 10) {
+    if (this.numeroCreadoresPanama > 0) {
       this.numeroCreadoresPanama--;
     }
   }
@@ -1488,7 +1488,7 @@ export class UgcComponent implements OnInit {
   }
 
   restCreatorsPuertoRico() {
-    if (this.numeroCreadoresPuertoRico > 10) {
+    if (this.numeroCreadoresPuertoRico > 0) {
       this.numeroCreadoresPuertoRico--;
     }
   }
@@ -1534,7 +1534,7 @@ export class UgcComponent implements OnInit {
   }
 
   restCreatorsDominicanRepublic() {
-    if (this.numeroCreadoresDominicanRepublic > 10) {
+    if (this.numeroCreadoresDominicanRepublic > 0) {
       this.numeroCreadoresDominicanRepublic--;
     }
   }
@@ -1580,7 +1580,7 @@ export class UgcComponent implements OnInit {
   }
 
   restCreatorsUnitedStates() {
-    if (this.numeroCreadoresUnitedStates > 10) {
+    if (this.numeroCreadoresUnitedStates > 0) {
       this.numeroCreadoresUnitedStates--;
     }
   }
@@ -1626,7 +1626,7 @@ export class UgcComponent implements OnInit {
   }
 
   restCreatorsCanada() {
-    if (this.numeroCreadoresCanada > 10) {
+    if (this.numeroCreadoresCanada > 0) {
       this.numeroCreadoresCanada--;
     }
   }
@@ -1990,10 +1990,10 @@ export class UgcComponent implements OnInit {
   // Pequeño cambio en las opciones de campaña
 
   options = [
-    { id: 'brand-awarness', label: 'Brand Awarness', value: 0 },
-    { id: 'consideration', label: 'Consideracion', value: 1 },
+    { id: 'awareness', label: 'Awareness', value: 0 },
+    { id: 'consideration', label: 'Consideration', value: 1 },
     { id: 'conversion', label: 'Conversion', value: 2 },
-    { id: 'retention', label: 'Retencion', value: 3 },
+    { id: 'loyalty', label: 'Loyalty', value: 3 },
   ];
 
   onCheckboxChange(event: any) {
@@ -2016,6 +2016,8 @@ export class UgcComponent implements OnInit {
   valorShortTotal: number = 0;
   valorLongTotal: number = 0;
   valorPromedioContenido: number = 0;
+  ValorCiudadesTotal: number = 0;
+  ValorNumeroCreadores: number = 0;
 
   citiesSelectedArgentina: String = '';
   citiesSelectedBolivia: String = '';
@@ -2048,8 +2050,15 @@ export class UgcComponent implements OnInit {
       this.valorLongTotal = 0;
       this.valorContenidosTotal = 0;
       this.ValorTotal = 0;
+      this.ValorCiudadesTotal = 0;
+      this.ValorNumeroCreadores = 0;
       // Change Values for Argentina
       if (this.verificarArgentina == true) {
+        //Numero de creadores
+        this.ValorNumeroCreadores += this.numeroCreadoresArgentina;
+        //Ciudades
+        this.ValorCiudadesTotal += this.citiesSelectedArgentina.length;
+
         // Valor Total
 
         this.ValorTotal +=
@@ -2089,6 +2098,11 @@ export class UgcComponent implements OnInit {
 
       // Change Values for Bolivia
       if (this.verificarBolivia == true) {
+        //Numero de creadores
+        this.ValorNumeroCreadores += this.numeroCreadoresBolivia;
+
+        //Ciudades
+        this.ValorCiudadesTotal += this.citiesSelectedBolivia.length;
         // Valor Total
 
         this.ValorTotal +=
@@ -2128,6 +2142,10 @@ export class UgcComponent implements OnInit {
 
       // Change Values for Brasil
       if (this.verificarBrasil == true) {
+        //Numero de creadores
+        this.ValorNumeroCreadores += this.numeroCreadoresBrasil;
+        //Ciudades
+        this.ValorCiudadesTotal += this.citiesSelectedBrasil.length;
         // Valor Total
 
         this.ValorTotal +=
@@ -2167,6 +2185,10 @@ export class UgcComponent implements OnInit {
 
       // Change Values for Chile
       if (this.verificarChile == true) {
+        //Numero de creadores
+        this.ValorNumeroCreadores += this.numeroCreadoresChile;
+        //Ciudades
+        this.ValorCiudadesTotal += this.citiesSelectedChile.length;
         // Valor Total
 
         this.ValorTotal +=
@@ -2206,6 +2228,10 @@ export class UgcComponent implements OnInit {
 
       // Change Values for Colombia
       if (this.verificarColombia == true) {
+        //Numero de creadores
+        this.ValorNumeroCreadores += this.numeroCreadoresColombia;
+        //Ciudades
+        this.ValorCiudadesTotal += this.citiesSelectedColombia.length;
         // Valor Total
 
         this.ValorTotal +=
@@ -2245,6 +2271,10 @@ export class UgcComponent implements OnInit {
 
       // Change Values for Ecuador
       if (this.verificarEcuador == true) {
+        //Numero de creadores
+        this.ValorNumeroCreadores += this.numeroCreadoresEcuador;
+        //Ciudades
+        this.ValorCiudadesTotal += this.citiesSelectedEcuador.length;
         // Valor Total
 
         this.ValorTotal +=
@@ -2284,6 +2314,10 @@ export class UgcComponent implements OnInit {
 
       // Change Values for Paraguay
       if (this.verificarParaguay == true) {
+        //Numero de creadores
+        this.ValorNumeroCreadores += this.numeroCreadoresParaguay;
+        //Ciudades
+        this.ValorCiudadesTotal += this.citiesSelectedParaguay.length;
         // Valor Total
 
         this.ValorTotal +=
@@ -2323,6 +2357,10 @@ export class UgcComponent implements OnInit {
 
       // Change Values for Peru
       if (this.verificarPeru == true) {
+        //Numero de creadores
+        this.ValorNumeroCreadores += this.numeroCreadoresPeru;
+        //Ciudades
+        this.ValorCiudadesTotal += this.citiesSelectedPeru.length;
         // Valor Total
 
         this.ValorTotal +=
@@ -2362,6 +2400,10 @@ export class UgcComponent implements OnInit {
 
       // Change Values for Uruguay
       if (this.verificarUruguay == true) {
+        //Numero de creadores
+        this.ValorNumeroCreadores += this.numeroCreadoresUruguay;
+        //Ciudades
+        this.ValorCiudadesTotal += this.citiesSelectedUruguay.length;
         // Valor Total
 
         this.ValorTotal +=
@@ -2401,6 +2443,10 @@ export class UgcComponent implements OnInit {
 
       // Change Values for Venezuela
       if (this.verificarVenezuela == true) {
+        //Numero de creadores
+        this.ValorNumeroCreadores += this.numeroCreadoresVenezuela;
+        //Ciudades
+        this.ValorCiudadesTotal += this.citiesSelectedVenezuela.length;
         // Valor Total
 
         this.ValorTotal +=
@@ -2440,6 +2486,10 @@ export class UgcComponent implements OnInit {
 
       // Change Values for CostaRica
       if (this.verificarCostaRica == true) {
+        //Numero de creadores
+        this.ValorNumeroCreadores += this.numeroCreadoresCostaRica;
+        //Ciudades
+        this.ValorCiudadesTotal += this.citiesSelectedCostaRica.length;
         // Valor Total
 
         this.ValorTotal +=
@@ -2479,6 +2529,10 @@ export class UgcComponent implements OnInit {
 
       // Change Values for Cuba
       if (this.verificarCuba == true) {
+        //Numero de creadores
+        this.ValorNumeroCreadores += this.numeroCreadoresCuba;
+        //Ciudades
+        this.ValorCiudadesTotal += this.citiesSelectedCuba.length;
         // Valor Total
 
         this.ValorTotal +=
@@ -2518,6 +2572,10 @@ export class UgcComponent implements OnInit {
 
       // Change Values for ElSalvador
       if (this.verificarElSalvador == true) {
+        //Numero de creadores
+        this.ValorNumeroCreadores += this.numeroCreadoresElSalvador;
+        //Ciudades
+        this.ValorCiudadesTotal += this.citiesSelectedElSalvador.length;
         // Valor Total
 
         this.ValorTotal +=
@@ -2557,6 +2615,10 @@ export class UgcComponent implements OnInit {
 
       // Change Values for Guatemala
       if (this.verificarGuatemala == true) {
+        //Numero de creadores
+        this.ValorNumeroCreadores += this.numeroCreadoresGuatemala;
+        //Ciudades
+        this.ValorCiudadesTotal += this.citiesSelectedGuatemala.length;
         // Valor Total
 
         this.ValorTotal +=
@@ -2596,6 +2658,10 @@ export class UgcComponent implements OnInit {
 
       // Change Values for Honduras
       if (this.verificarHonduras == true) {
+        //Numero de creadores
+        this.ValorNumeroCreadores += this.numeroCreadoresHonduras;
+        //Ciudades
+        this.ValorCiudadesTotal += this.citiesSelectedHonduras.length;
         // Valor Total
 
         this.ValorTotal +=
@@ -2635,6 +2701,10 @@ export class UgcComponent implements OnInit {
 
       // Change Values for Mexico
       if (this.verificarMexico == true) {
+        //Numero de creadores
+        this.ValorNumeroCreadores += this.numeroCreadoresMexico;
+        //Ciudades
+        this.ValorCiudadesTotal += this.citiesSelectedMexico.length;
         // Valor Total
 
         this.ValorTotal +=
@@ -2674,6 +2744,10 @@ export class UgcComponent implements OnInit {
 
       // Change Values for Nicaragua
       if (this.verificarNicaragua == true) {
+        //Numero de creadores
+        this.ValorNumeroCreadores += this.numeroCreadoresNicaragua;
+        //Ciudades
+        this.ValorCiudadesTotal += this.citiesSelectedNicaragua.length;
         // Valor Total
 
         this.ValorTotal +=
@@ -2713,6 +2787,10 @@ export class UgcComponent implements OnInit {
 
       // Change Values for Panama
       if (this.verificarPanama == true) {
+        //Numero de creadores
+        this.ValorNumeroCreadores += this.numeroCreadoresPanama;
+        //Ciudades
+        this.ValorCiudadesTotal += this.citiesSelectedPanama.length;
         // Valor Total
 
         this.ValorTotal +=
@@ -2752,6 +2830,10 @@ export class UgcComponent implements OnInit {
 
       // Change Values for PuertoRico
       if (this.verificarPuertoRico == true) {
+        //Numero de creadores
+        this.ValorNumeroCreadores += this.numeroCreadoresPuertoRico;
+        //Ciudades
+        this.ValorCiudadesTotal += this.citiesSelectedPuertoRico.length;
         // Valor Total
 
         this.ValorTotal +=
@@ -2791,6 +2873,10 @@ export class UgcComponent implements OnInit {
 
       // Change Values for DominicanRepublic
       if (this.verificarDominicanRepublic == true) {
+        //Numero de creadores
+        this.ValorNumeroCreadores += this.numeroCreadoresDominicanRepublic;
+        //Ciudades
+        this.ValorCiudadesTotal += this.citiesSelectedDominicanRepublic.length;
         // Valor Total
 
         this.ValorTotal +=
@@ -2830,6 +2916,10 @@ export class UgcComponent implements OnInit {
 
       // Change Values for UnitedStates
       if (this.verificarUnitedStates == true) {
+        //Numero de creadores
+        this.ValorNumeroCreadores += this.numeroCreadoresUnitedStates;
+        //Ciudades
+        this.ValorCiudadesTotal += this.citiesSelectedUnitedStates.length;
         // Valor Total
 
         this.ValorTotal +=
@@ -2869,6 +2959,10 @@ export class UgcComponent implements OnInit {
 
       // Change Values for Canada
       if (this.verificarCanada == true) {
+        //Numero de creadores
+        this.ValorNumeroCreadores += this.numeroCreadoresCanada;
+        //Ciudades
+        this.ValorCiudadesTotal += this.citiesSelectedCanada.length;
         // Valor Total
 
         this.ValorTotal +=

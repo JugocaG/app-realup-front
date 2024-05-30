@@ -1,12 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
-import {
-  FormControl,
-  FormGroup,
-  ReactiveFormsModule,
-  Validators,
-  FormBuilder,
-} from '@angular/forms';
+import { FormControl, FormGroup, Validators, FormArray } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AuthService } from 'src/app/service/auth.service';
 import { BrandAmbassadorService } from 'src/app/service/brand-ambassador.service';
@@ -18,9 +12,36 @@ import { CitiesService } from 'src/app/service/cities.service';
   styleUrl: './brand-ambassador.component.css',
 })
 export class BrandAmbassadorComponent {
+  date: Date[] | undefined;
+
   citiesFinal: string[] = [''];
   selectedCountry: string = '';
   numeroCreadores: number = 1;
+
+  countries: string[] = [
+    'Argentina',
+    'Bolivia',
+    'Brasil',
+    'Canada',
+    'Chile',
+    'Colombia',
+    'Costa Rica',
+    'Cuba',
+    'Dominican Republic',
+    'Ecuador',
+    'El Salvador',
+    'Guatemala',
+    'Honduras',
+    'Mexico',
+    'Nicaragua',
+    'Panama',
+    'Paraguay',
+    'Peru',
+    'Puerto Rico',
+    'United States',
+    'Uruguay',
+    'Venezuela',
+  ];
   citiesListArgentina: { name: string; code: string }[] = [];
 
   citiesListColombia: { name: string; code: string }[] = [];
@@ -40,6 +61,30 @@ export class BrandAmbassadorComponent {
   citiesListUruguay: { name: string; code: string }[] = [];
 
   citiesListVenezuela: { name: string; code: string }[] = [];
+
+  citiesListCostaRica: { name: string; code: string }[] = [];
+
+  citiesListCuba: { name: string; code: string }[] = [];
+
+  citiesListElSalvador: { name: string; code: string }[] = [];
+
+  citiesListGuatemala: { name: string; code: string }[] = [];
+
+  citiesListHonduras: { name: string; code: string }[] = [];
+
+  citiesListMexico: { name: string; code: string }[] = [];
+
+  citiesListNicaragua: { name: string; code: string }[] = [];
+
+  citiesListPanama: { name: string; code: string }[] = [];
+
+  citiesListPuertoRico: { name: string; code: string }[] = [];
+
+  citiesListDominicanRepublic: { name: string; code: string }[] = [];
+
+  citiesListUnitedStates: { name: string; code: string }[] = [];
+
+  citiesListCanada: { name: string; code: string }[] = [];
   generalInterests: string[] = [
     'Lifestyle',
     'Comedia',
@@ -183,65 +228,129 @@ export class BrandAmbassadorComponent {
   verificarPeru: boolean = false;
   verificarUruguay: boolean = false;
   verificarVenezuela: boolean = false;
+  verificarCostaRica: boolean = false;
+  verificarCuba: boolean = false;
+  verificarElSalvador: boolean = false;
+  verificarGuatemala: boolean = false;
+  verificarHonduras: boolean = false;
+  verificarMexico: boolean = false;
+  verificarNicaragua: boolean = false;
+  verificarPanama: boolean = false;
+  verificarPuertoRico: boolean = false;
+  verificarDominicanRepublic: boolean = false;
+  verificarUnitedStates: boolean = false;
+  verificarCanada: boolean = false;
 
   showCities() {
     if (this.selectedCountry.includes('Argentina')) {
       this.verificarArgentina = true;
-      console.log(this.selectedCountry);
     } else {
       this.verificarArgentina = false;
     }
     if (this.selectedCountry.includes('Bolivia')) {
       this.verificarBolivia = true;
-      console.log(this.selectedCountry);
     } else {
       this.verificarBolivia = false;
     }
     if (this.selectedCountry.includes('Brasil')) {
       this.verificarBrasil = true;
-      console.log(this.selectedCountry);
     } else {
       this.verificarBrasil = false;
     }
     if (this.selectedCountry.includes('Chile')) {
       this.verificarChile = true;
-      console.log(this.selectedCountry);
     } else {
       this.verificarChile = false;
     }
     if (this.selectedCountry.includes('Colombia')) {
       this.verificarColombia = true;
-      console.log(this.selectedCountry);
     } else {
       this.verificarColombia = false;
     }
     if (this.selectedCountry.includes('Ecuador')) {
       this.verificarEcuador = true;
-      console.log(this.selectedCountry);
     } else {
       this.verificarEcuador = false;
     }
     if (this.selectedCountry.includes('Paraguay')) {
       this.verificarParaguay = true;
-      console.log(this.selectedCountry);
     } else {
       this.verificarParaguay = false;
     }
     if (this.selectedCountry.includes('Peru')) {
       this.verificarPeru = true;
-      console.log(this.selectedCountry);
     } else {
       this.verificarPeru = false;
     }
     if (this.selectedCountry.includes('Uruguay')) {
       this.verificarUruguay = true;
-      console.log(this.selectedCountry);
     } else {
       this.verificarUruguay = false;
     }
     if (this.selectedCountry.includes('Venezuela')) {
       this.verificarVenezuela = true;
-      console.log(this.selectedCountry);
+    } else {
+      this.verificarVenezuela = false;
+    }
+    if (this.selectedCountry.includes('Costa Rica')) {
+      this.verificarCostaRica = true;
+    } else {
+      this.verificarCostaRica = false;
+    }
+    if (this.selectedCountry.includes('Cuba')) {
+      this.verificarCuba = true;
+    } else {
+      this.verificarCuba = false;
+    }
+    if (this.selectedCountry.includes('El Salvador')) {
+      this.verificarElSalvador = true;
+    } else {
+      this.verificarElSalvador = false;
+    }
+    if (this.selectedCountry.includes('Guatemala')) {
+      this.verificarGuatemala = true;
+    } else {
+      this.verificarGuatemala = false;
+    }
+    if (this.selectedCountry.includes('Honduras')) {
+      this.verificarHonduras = true;
+    } else {
+      this.verificarHonduras = false;
+    }
+    if (this.selectedCountry.includes('Mexico')) {
+      this.verificarMexico = true;
+    } else {
+      this.verificarMexico = false;
+    }
+    if (this.selectedCountry.includes('Nicaragua')) {
+      this.verificarNicaragua = true;
+    } else {
+      this.verificarNicaragua = false;
+    }
+    if (this.selectedCountry.includes('Panama')) {
+      this.verificarPanama = true;
+    } else {
+      this.verificarPanama = false;
+    }
+    if (this.selectedCountry.includes('Puerto Rico')) {
+      this.verificarPuertoRico = true;
+    } else {
+      this.verificarPuertoRico = false;
+    }
+    if (this.selectedCountry.includes('Dominican Republic')) {
+      this.verificarDominicanRepublic = true;
+    } else {
+      this.verificarDominicanRepublic = false;
+    }
+    if (this.selectedCountry.includes('United States')) {
+      this.verificarUnitedStates = true;
+    } else {
+      this.verificarUnitedStates = false;
+    }
+    if (this.selectedCountry.includes('Canada')) {
+      this.verificarCanada = true;
+    } else {
+      this.verificarCanada = false;
     }
   }
 
@@ -337,5 +446,120 @@ export class BrandAmbassadorComponent {
         console.error('Error al obtener las ciudades:', error);
       }
     );
+
+    this.citiesService.seeCitiesCostaRica().subscribe(
+      (cities: { name: string; code: string }[]) => {
+        this.citiesListCostaRica = cities;
+      },
+      (error) => {
+        console.error('Error al obtener las ciudades:', error);
+      }
+    );
+
+    this.citiesService.seeCitiesCuba().subscribe(
+      (cities: { name: string; code: string }[]) => {
+        this.citiesListCuba = cities;
+      },
+      (error) => {
+        console.error('Error al obtener las ciudades:', error);
+      }
+    );
+
+    this.citiesService.seeCitiesElSalvador().subscribe(
+      (cities: { name: string; code: string }[]) => {
+        this.citiesListElSalvador = cities;
+      },
+      (error) => {
+        console.error('Error al obtener las ciudades:', error);
+      }
+    );
+
+    this.citiesService.seeCitiesGuatemala().subscribe(
+      (cities: { name: string; code: string }[]) => {
+        this.citiesListGuatemala = cities;
+      },
+      (error) => {
+        console.error('Error al obtener las ciudades:', error);
+      }
+    );
+
+    this.citiesService.seeCitiesHonduras().subscribe(
+      (cities: { name: string; code: string }[]) => {
+        this.citiesListHonduras = cities;
+      },
+      (error) => {
+        console.error('Error al obtener las ciudades:', error);
+      }
+    );
+
+    this.citiesService.seeCitiesMexico().subscribe(
+      (cities: { name: string; code: string }[]) => {
+        this.citiesListMexico = cities;
+      },
+      (error) => {
+        console.error('Error al obtener las ciudades:', error);
+      }
+    );
+
+    this.citiesService.seeCitiesNicaragua().subscribe(
+      (cities: { name: string; code: string }[]) => {
+        this.citiesListNicaragua = cities;
+      },
+      (error) => {
+        console.error('Error al obtener las ciudades:', error);
+      }
+    );
+
+    this.citiesService.seeCitiesPanama().subscribe(
+      (cities: { name: string; code: string }[]) => {
+        this.citiesListPanama = cities;
+      },
+      (error) => {
+        console.error('Error al obtener las ciudades:', error);
+      }
+    );
+
+    this.citiesService.seeCitiesPuertoRico().subscribe(
+      (cities: { name: string; code: string }[]) => {
+        this.citiesListPuertoRico = cities;
+      },
+      (error) => {
+        console.error('Error al obtener las ciudades:', error);
+      }
+    );
+
+    this.citiesService.seeCitiesDominicanRepublic().subscribe(
+      (cities: { name: string; code: string }[]) => {
+        this.citiesListDominicanRepublic = cities;
+      },
+      (error) => {
+        console.error('Error al obtener las ciudades:', error);
+      }
+    );
+
+    this.citiesService.seeCitiesUnitedStates().subscribe(
+      (cities: { name: string; code: string }[]) => {
+        this.citiesListUnitedStates = cities;
+      },
+      (error) => {
+        console.error('Error al obtener las ciudades:', error);
+      }
+    );
+
+    this.citiesService.seeCitiesCanada().subscribe(
+      (cities: { name: string; code: string }[]) => {
+        this.citiesListCanada = cities;
+      },
+      (error) => {
+        console.error('Error al obtener las ciudades:', error);
+      }
+    );
   }
+
+  options = [
+    { id: 'awareness', label: 'Awareness', value: 0 },
+    { id: 'consideration', label: 'Consideration', value: 1 },
+    { id: 'conversion', label: 'Conversion', value: 2 },
+    { id: 'loyalty', label: 'Loyalty', value: 3 },
+  ];
 }

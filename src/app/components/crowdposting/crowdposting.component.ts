@@ -1287,10 +1287,10 @@ export class CrowdpostingComponent {
   // Campaing Objetives
 
   options = [
-    { id: 'brand-awarness', label: 'Brand Awarness', value: 0 },
-    { id: 'consideration', label: 'Consideracion', value: 1 },
+    { id: 'awareness', label: 'Awareness', value: 0 },
+    { id: 'consideration', label: 'Consideration', value: 1 },
     { id: 'conversion', label: 'Conversion', value: 2 },
-    { id: 'retention', label: 'Retencion', value: 3 },
+    { id: 'loyalty', label: 'Loyalty', value: 3 },
   ];
 
   onCheckboxChange(event: any) {

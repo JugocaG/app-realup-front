@@ -8,7 +8,7 @@ describe('UgcComponent', () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      declarations: [UgcComponent]
+      declarations: [UgcComponent],
     });
     fixture = TestBed.createComponent(UgcComponent);
     component = fixture.componentInstance;

@@ -1,7 +1,8 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, of } from 'rxjs';
-
+//https://shielded-waters-57044-1dfb83ef6590.herokuapp.com/
+//http://localhost:8080/
 const BASE_URL = ['http://localhost:8080/'];
 
 @Injectable({

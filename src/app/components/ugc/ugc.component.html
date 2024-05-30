@@ -23,29 +23,18 @@
       <div class="title">
         <h1>UGC</h1>
       </div>
+      <mat-card style="margin: 20px">
+        <h2 style="padding: 0 20px">
+          The following quotation will be sent to our sales executives, who will
+          respond within one business day.
+        </h2>
+      </mat-card>
       <div class="form-content">
         <form class="form-ugc" [formGroup]="combinedForm">
           <div formGroupName="saveUGCForm">
-            <div class="introduction-ugc">
-              <input
-                type="text"
-                id="client"
-                name="client"
-                placeholder="Marca"
-                formControlName="name_client"
-              />
-              <input
-                type="text"
-                id="campaign_name"
-                name="campaign_name"
-                placeholder="Nombre de la campaña"
-                formControlName="campaign_name"
-              />
-            </div>
-
             <div>
               <div class="product">
-                <h2>Producto</h2>
+                <h2>Product</h2>
               </div>
               <mat-card class="card-product">
                 <div class="product-form">
@@ -54,12 +43,12 @@
                       type="text"
                       name="name_product"
                       id="name_product"
-                      placeholder="Nombre del producto"
+                      placeholder="Product name"
                       formControlName="name_product"
                     />
                   </div>
                   <div class="type-product">
-                    <h2>Tipo de producto</h2>
+                    <h2>Type of product</h2>
                     <div class="radio-product-boxes">
                       <div class="radio-product-box">
                         <input
@@ -72,7 +61,7 @@
                           formControlName="type_product"
                           (ngModelChange)="changeProductType()"
                         />
-                        <label for="physical-product">Producto Fisico</label>
+                        <label for="physical-product">Physical product</label>
                       </div>
                       <div class="radio-product-box">
                         <input
@@ -85,7 +74,7 @@
                           formControlName="type_product"
                           (ngModelChange)="changeProductType()"
                         />
-                        <label for="service">Servicio</label>
+                        <label for="service">Service</label>
                       </div>
                     </div>
                   </div>
@@ -136,11 +125,33 @@
             </div>
 
             <div class="title-campaing">
-              <h2>Campaña</h2>
+              <h2>Campaign</h2>
             </div>
             <div>
               <mat-card class="card-campaign-objetive">
-                <h2>Objetivo de campaña</h2>
+                <div class="introduction-ugc">
+                  <input
+                    type="text"
+                    id="cliente"
+                    name="cliente"
+                    placeholder="Your Name"
+                  />
+                  <input
+                    type="text"
+                    id="client"
+                    name="client"
+                    placeholder="Brand"
+                    formControlName="name_client"
+                  />
+                  <input
+                    type="text"
+                    id="campaign_name"
+                    name="campaign_name"
+                    placeholder="Campaign name"
+                    formControlName="campaign_name"
+                  />
+                </div>
+                <h2>Campaign objective</h2>
                 <div class="radio-product-boxes">
                   <div class="radio-product-box" *ngFor="let option of options">
                     <input
@@ -175,7 +186,7 @@
               <div class="location">
                 <h2>Location</h2>
                 <p class="text-packages">
-                  ¿En qué países te gustaría lanzar tus campañas?
+                  In which countries would you like to launch your campaigns?
                 </p>
                 <div class="country">
                   <mat-form-field class="select-country">
@@ -211,8 +222,7 @@
               <mat-card class="card-creators">
                 <div class="cities recommendations-cities">
                   <p>
-                    Selecciona las ciudades en donde quieres que sean vistos tus
-                    contenidos
+                    Select the cities where you want your content to be viewed
                   </p>
 
                   <p-multiSelect
@@ -230,7 +240,7 @@
                 </div>
                 <div class="creators-recommendations">
                   <div class="creators">
-                    <label for="number-creators">Numero de creadores</label>
+                    <label for="number-creators">Number of creators</label>
                     <div class="button-creators-div">
                       <button
                         (click)="restCreatorsArgentina()"
@@ -246,7 +256,7 @@
                         type="number"
                         id="numberCreators"
                         name="numberCreators"
-                        placeholder="Numero de creadores"
+                        placeholder="Number"
                         formControlName="number_creators"
                       />
                       <button
@@ -280,14 +290,13 @@
                   </div>
                   <div class="recommendations">
                     <p>
-                      Para lograr resultados efectivos en la campaña
-                      publicitaria, sugerimos la participación de al menos 20
-                      influencers. Sin embargo, según nuestras estadísticas, el
-                      uso de 50 influencers podría generar un incremento de
-                      ventas duplicado.
+                      To achieve effective results in the advertising campaign,
+                      we suggest the participation of at least 20 influencers.
+                      However, according to our statistics, the use of 50
+                      influencers could generate a doubled increase in sales.
                       <strong
-                        >El número de contenidos seleccionados será la cantidad
-                        que se mostrará en cada ciudad.</strong
+                        >The number of content selected will be the amount that
+                        will be shown in each city.</strong
                       >
                     </p>
                   </div>
@@ -295,7 +304,7 @@
               </mat-card>
               <div class="all-type-contents">
                 <div class="type-contents">
-                  <h2>Carrusel de fotos</h2>
+                  <h2>Photo Carousel</h2>
                   <img src="assets/icons/carrousel.svg" alt="Icono Carrousel" />
                   <div class="number-button">
                     <button
@@ -313,7 +322,7 @@
                       type="number"
                       id="numberCreators"
                       name="numberCreators"
-                      placeholder="Numero de creadores"
+                      placeholder="Number"
                       formControlName="number_carrousel"
                     />
                     <button
@@ -327,7 +336,7 @@
                 </div>
 
                 <div class="type-contents">
-                  <h2>Video de 0 a 15 Seg</h2>
+                  <h2>Video from 0 to 15 Sec</h2>
                   <img src="assets/icons/videos.svg" alt="Icono videos" />
                   <div class="number-button">
                     <button
@@ -344,7 +353,7 @@
                       type="number"
                       id="numberCreators"
                       name="numberCreators"
-                      placeholder="Numero de creadores"
+                      placeholder="Number"
                       formControlName="number_short_videos"
                     />
                     <button
@@ -357,7 +366,7 @@
                   </div>
                 </div>
                 <div class="type-contents">
-                  <h2>Video de 15 a 30 Seg</h2>
+                  <h2>Video from 15 to 30 Sec</h2>
                   <img src="assets/icons/videos.svg" alt="Icono videos" />
                   <div class="number-button">
                     <button
@@ -374,7 +383,7 @@
                       type="number"
                       id="numberCreators"
                       name="numberCreators"
-                      placeholder="Numero de creadores"
+                      placeholder="Number"
                       formControlName="number_long_videos"
                     />
                     <button
@@ -387,23 +396,6 @@
                   </div>
                 </div>
               </div>
-              <div>
-                <mat-card class="guideline">
-                  <mat-card-content id="card-pauta"
-                    >¿Deseas pautar estos contenidos?</mat-card-content
-                  >
-                  <mat-card-content id="card-pauta">
-                    <mat-slide-toggle
-                      type="checkbox"
-                      value="true"
-                      id="guideline"
-                      name="guideline"
-                      formControlName="guideline"
-                    >
-                    </mat-slide-toggle>
-                  </mat-card-content>
-                </mat-card>
-              </div>
             </div>
           </div>
           <div *ngIf="verificarBolivia">
@@ -412,8 +404,7 @@
               <mat-card class="card-creators">
                 <div class="cities recommendations-cities">
                   <p>
-                    Selecciona las ciudades en donde quieres que sean vistos tus
-                    contenidos
+                    Select the cities where you want your content to be viewed
                   </p>
 
                   <p-multiSelect
@@ -430,7 +421,7 @@
                 </div>
                 <div class="creators-recommendations">
                   <div class="creators">
-                    <label for="number-creators">Numero de creadores</label>
+                    <label for="number-creators">Number of creators</label>
                     <div class="button-creators-div">
                       <button
                         (click)="restCreatorsBolivia()"
@@ -446,7 +437,7 @@
                         type="number"
                         id="numberCreators"
                         name="numberCreators"
-                        placeholder="Numero de creadores"
+                        placeholder="Number"
                         formControlName="number_creators"
                       />
                       <button
@@ -480,14 +471,13 @@
                   </div>
                   <div class="recommendations">
                     <p>
-                      Para lograr resultados efectivos en la campaña
-                      publicitaria, sugerimos la participación de al menos 20
-                      influencers. Sin embargo, según nuestras estadísticas, el
-                      uso de 50 influencers podría generar un incremento de
-                      ventas duplicado.
+                      To achieve effective results in the advertising campaign,
+                      we suggest the participation of at least 20 influencers.
+                      However, according to our statistics, the use of 50
+                      influencers could generate a doubled increase in sales.
                       <strong
-                        >El número de contenidos seleccionados será la cantidad
-                        que se mostrará en cada ciudad.</strong
+                        >The number of content selected will be the amount that
+                        will be shown in each city.</strong
                       >
                     </p>
                   </div>
@@ -495,7 +485,7 @@
               </mat-card>
               <div class="all-type-contents">
                 <div class="type-contents">
-                  <h2>Carrusel de fotos</h2>
+                  <h2>Photo Carousel</h2>
                   <img src="assets/icons/carrousel.svg" alt="Icono Carrousel" />
                   <div class="number-button">
                     <button
@@ -513,7 +503,7 @@
                       type="number"
                       id="numberCreators"
                       name="numberCreators"
-                      placeholder="Numero de creadores"
+                      placeholder="Number"
                       formControlName="number_carrousel"
                     />
                     <button
@@ -527,7 +517,7 @@
                 </div>
 
                 <div class="type-contents">
-                  <h2>Video de 0 a 15 Seg</h2>
+                  <h2>Video from 0 to 15 Sec</h2>
                   <img src="assets/icons/videos.svg" alt="Icono videos" />
                   <div class="number-button">
                     <button
@@ -544,7 +534,7 @@
                       type="number"
                       id="numberCreators"
                       name="numberCreators"
-                      placeholder="Numero de creadores"
+                      placeholder="Number"
                       formControlName="number_short_videos"
                     />
                     <button
@@ -557,7 +547,7 @@
                   </div>
                 </div>
                 <div class="type-contents">
-                  <h2>Video de 15 a 30 Seg</h2>
+                  <h2>Video from 15 to 30 Sec</h2>
                   <img src="assets/icons/videos.svg" alt="Icono videos" />
                   <div class="number-button">
                     <button
@@ -574,7 +564,7 @@
                       type="number"
                       id="numberCreators"
                       name="numberCreators"
-                      placeholder="Numero de creadores"
+                      placeholder="Number"
                       formControlName="number_long_videos"
                     />
                     <button
@@ -586,23 +576,6 @@
                     </button>
                   </div>
                 </div>
-              </div>
-              <div>
-                <mat-card class="guideline">
-                  <mat-card-content id="card-pauta"
-                    >¿Deseas pautar estos videos?</mat-card-content
-                  >
-                  <mat-card-content id="card-pauta">
-                    <mat-slide-toggle
-                      type="checkbox"
-                      value="true"
-                      id="guideline"
-                      name="guideline"
-                      formControlName="guideline"
-                    >
-                    </mat-slide-toggle>
-                  </mat-card-content>
-                </mat-card>
               </div>
             </div>
           </div>
@@ -630,7 +603,7 @@
                 </div>
                 <div class="creators-recommendations">
                   <div class="creators">
-                    <label for="number-creators">Numero de creadores</label>
+                    <label for="number-creators">Number of creators</label>
                     <div class="button-creators-div">
                       <button
                         (click)="restCreatorsBrasil()"
@@ -645,7 +618,7 @@
                         type="number"
                         id="numberCreators"
                         name="numberCreators"
-                        placeholder="Numero de creadores"
+                        placeholder="Number"
                         formControlName="number_creators"
                         (ngModelChange)="changeValues()"
                       />
@@ -680,14 +653,13 @@
                   </div>
                   <div class="recommendations">
                     <p>
-                      Para lograr resultados efectivos en la campaña
-                      publicitaria, sugerimos la participación de al menos 20
-                      influencers. Sin embargo, según nuestras estadísticas, el
-                      uso de 50 influencers podría generar un incremento de
-                      ventas duplicado.
+                      To achieve effective results in the advertising campaign,
+                      we suggest the participation of at least 20 influencers.
+                      However, according to our statistics, the use of 50
+                      influencers could generate a doubled increase in sales.
                       <strong
-                        >El número de contenidos seleccionados será la cantidad
-                        que se mostrará en cada ciudad.</strong
+                        >The number of content selected will be the amount that
+                        will be shown in each city.</strong
                       >
                     </p>
                   </div>
@@ -695,7 +667,7 @@
               </mat-card>
               <div class="all-type-contents">
                 <div class="type-contents">
-                  <h2>Carrusel de fotos</h2>
+                  <h2>Photo Carousel</h2>
                   <img src="assets/icons/carrousel.svg" alt="Icono Carrousel" />
                   <div class="number-button">
                     <button
@@ -712,7 +684,7 @@
                       type="number"
                       id="numberCreators"
                       name="numberCreators"
-                      placeholder="Numero de creadores"
+                      placeholder="Number"
                       formControlName="number_carrousel"
                       (ngModelChange)="changeValues()"
                     />
@@ -727,7 +699,7 @@
                 </div>
 
                 <div class="type-contents">
-                  <h2>Video de 0 a 15 Seg</h2>
+                  <h2>Video from 0 to 15 Sec</h2>
                   <img src="assets/icons/videos.svg" alt="Icono videos" />
                   <div class="number-button">
                     <button
@@ -743,7 +715,7 @@
                       type="number"
                       id="numberCreators"
                       name="numberCreators"
-                      placeholder="Numero de creadores"
+                      placeholder="Number"
                       formControlName="number_short_videos"
                       (ngModelChange)="changeValues()"
                     />
@@ -757,7 +729,7 @@
                   </div>
                 </div>
                 <div class="type-contents">
-                  <h2>Video de 15 a 30 Seg</h2>
+                  <h2>Video from 15 to 30 Sec</h2>
                   <img src="assets/icons/videos.svg" alt="Icono videos" />
                   <div class="number-button">
                     <button
@@ -773,7 +745,7 @@
                       type="number"
                       id="numberCreators"
                       name="numberCreators"
-                      placeholder="Numero de creadores"
+                      placeholder="Number"
                       formControlName="number_long_videos"
                       (ngModelChange)="changeValues()"
                     />
@@ -787,23 +759,6 @@
                   </div>
                 </div>
               </div>
-              <div>
-                <mat-card class="guideline">
-                  <mat-card-content id="card-pauta"
-                    >¿Deseas pautar estos videos?</mat-card-content
-                  >
-                  <mat-card-content id="card-pauta">
-                    <mat-slide-toggle
-                      type="checkbox"
-                      value="true"
-                      id="guideline"
-                      name="guideline"
-                      formControlName="guideline"
-                    >
-                    </mat-slide-toggle>
-                  </mat-card-content>
-                </mat-card>
-              </div>
             </div>
           </div>
           <div *ngIf="verificarChile">
@@ -812,8 +767,7 @@
               <mat-card class="card-creators">
                 <div class="cities recommendations-cities">
                   <p>
-                    Selecciona las ciudades en donde quieres que sean vistos tus
-                    contenidos
+                    Select the cities where you want your content to be viewed
                   </p>
 
                   <p-multiSelect
@@ -830,7 +784,7 @@
                 </div>
                 <div class="creators-recommendations">
                   <div class="creators">
-                    <label for="number-creators">Numero de creadores</label>
+                    <label for="number-creators">Number of creators</label>
                     <div class="button-creators-div">
                       <button
                         (click)="restCreatorsChile()"
@@ -845,7 +799,7 @@
                         type="number"
                         id="numberCreators"
                         name="numberCreators"
-                        placeholder="Numero de creadores"
+                        placeholder="Number"
                         formControlName="number_creators"
                         (ngModelChange)="changeValues()"
                       />
@@ -871,14 +825,13 @@
                   </div>
                   <div class="recommendations">
                     <p>
-                      Para lograr resultados efectivos en la campaña
-                      publicitaria, sugerimos la participación de al menos 20
-                      influencers. Sin embargo, según nuestras estadísticas, el
-                      uso de 50 influencers podría generar un incremento de
-                      ventas duplicado.
+                      To achieve effective results in the advertising campaign,
+                      we suggest the participation of at least 20 influencers.
+                      However, according to our statistics, the use of 50
+                      influencers could generate a doubled increase in sales.
                       <strong
-                        >El número de contenidos seleccionados será la cantidad
-                        que se mostrará en cada ciudad.</strong
+                        >The number of content selected will be the amount that
+                        will be shown in each city.</strong
                       >
                     </p>
                   </div>
@@ -886,7 +839,7 @@
               </mat-card>
               <div class="all-type-contents">
                 <div class="type-contents">
-                  <h2>Carrusel de fotos</h2>
+                  <h2>Photo Carousel</h2>
                   <img src="assets/icons/carrousel.svg" alt="Icono Carrousel" />
                   <div class="number-button">
                     <button
@@ -903,7 +856,7 @@
                       type="number"
                       id="numberCreators"
                       name="numberCreators"
-                      placeholder="Numero de creadores"
+                      placeholder="Number"
                       formControlName="number_carrousel"
                       (ngModelChange)="changeValues()"
                     />
@@ -918,7 +871,7 @@
                 </div>
 
                 <div class="type-contents">
-                  <h2>Video de 0 a 15 Seg</h2>
+                  <h2>Video from 0 to 15 Sec</h2>
                   <img src="assets/icons/videos.svg" alt="Icono videos" />
                   <div class="number-button">
                     <button
@@ -934,7 +887,7 @@
                       type="number"
                       id="numberCreators"
                       name="numberCreators"
-                      placeholder="Numero de creadores"
+                      placeholder="Number"
                       formControlName="number_short_videos"
                       (ngModelChange)="changeValues()"
                     />
@@ -948,7 +901,7 @@
                   </div>
                 </div>
                 <div class="type-contents">
-                  <h2>Video de 15 a 30 Seg</h2>
+                  <h2>Video from 15 to 30 Sec</h2>
                   <img src="assets/icons/videos.svg" alt="Icono videos" />
                   <div class="number-button">
                     <button
@@ -964,7 +917,7 @@
                       type="number"
                       id="numberCreators"
                       name="numberCreators"
-                      placeholder="Numero de creadores"
+                      placeholder="Number"
                       formControlName="number_long_videos"
                       (ngModelChange)="changeValues()"
                     />
@@ -978,23 +931,6 @@
                   </div>
                 </div>
               </div>
-              <div>
-                <mat-card class="guideline">
-                  <mat-card-content id="card-pauta"
-                    >¿Deseas pautar estos videos?</mat-card-content
-                  >
-                  <mat-card-content id="card-pauta">
-                    <mat-slide-toggle
-                      type="checkbox"
-                      value="true"
-                      id="guideline"
-                      name="guideline"
-                      formControlName="guideline"
-                    >
-                    </mat-slide-toggle>
-                  </mat-card-content>
-                </mat-card>
-              </div>
             </div>
           </div>
           <div *ngIf="verificarColombia">
@@ -1003,8 +939,7 @@
               <mat-card class="card-creators">
                 <div class="cities recommendations-cities">
                   <p>
-                    Selecciona las ciudades en donde quieres que sean vistos tus
-                    contenidos
+                    Select the cities where you want your content to be viewed
                   </p>
 
                   <p-multiSelect
@@ -1021,7 +956,7 @@
                 </div>
                 <div class="creators-recommendations">
                   <div class="creators">
-                    <label for="number-creators">Numero de creadores</label>
+                    <label for="number-creators">Number of creators</label>
                     <div class="button-creators-div">
                       <button
                         (click)="restCreatorsColombia()"
@@ -1036,7 +971,7 @@
                         type="number"
                         id="numberCreators"
                         name="numberCreators"
-                        placeholder="Numero de creadores"
+                        placeholder="Number"
                         formControlName="number_creators"
                         (ngModelChange)="changeValues()"
                       />
@@ -1071,14 +1006,13 @@
                   </div>
                   <div class="recommendations">
                     <p>
-                      Para lograr resultados efectivos en la campaña
-                      publicitaria, sugerimos la participación de al menos 20
-                      influencers. Sin embargo, según nuestras estadísticas, el
-                      uso de 50 influencers podría generar un incremento de
-                      ventas duplicado.
+                      To achieve effective results in the advertising campaign,
+                      we suggest the participation of at least 20 influencers.
+                      However, according to our statistics, the use of 50
+                      influencers could generate a doubled increase in sales.
                       <strong
-                        >El número de contenidos seleccionados será la cantidad
-                        que se mostrará en cada ciudad.</strong
+                        >The number of content selected will be the amount that
+                        will be shown in each city.</strong
                       >
                     </p>
                   </div>
@@ -1086,7 +1020,7 @@
               </mat-card>
               <div class="all-type-contents">
                 <div class="type-contents">
-                  <h2>Carrusel de fotos</h2>
+                  <h2>Photo Carousel</h2>
                   <img src="assets/icons/carrousel.svg" alt="Icono Carrousel" />
                   <div class="number-button">
                     <button
@@ -1103,7 +1037,7 @@
                       type="number"
                       id="numberCreators"
                       name="numberCreators"
-                      placeholder="Numero de creadores"
+                      placeholder="Number"
                       formControlName="number_carrousel"
                       (ngModelChange)="changeValues()"
                     />
@@ -1118,7 +1052,7 @@
                 </div>
 
                 <div class="type-contents">
-                  <h2>Video de 0 a 15 Seg</h2>
+                  <h2>Video from 0 to 15 Sec</h2>
                   <img src="assets/icons/videos.svg" alt="Icono videos" />
                   <div class="number-button">
                     <button
@@ -1134,7 +1068,7 @@
                       type="number"
                       id="numberCreators"
                       name="numberCreators"
-                      placeholder="Numero de creadores"
+                      placeholder="Number"
                       formControlName="number_short_videos"
                       (ngModelChange)="changeValues()"
                     />
@@ -1148,7 +1082,7 @@
                   </div>
                 </div>
                 <div class="type-contents">
-                  <h2>Video de 15 a 30 Seg</h2>
+                  <h2>Video from 15 to 30 Sec</h2>
                   <img src="assets/icons/videos.svg" alt="Icono videos" />
                   <div class="number-button">
                     <button
@@ -1164,7 +1098,7 @@
                       type="number"
                       id="numberCreators"
                       name="numberCreators"
-                      placeholder="Numero de creadores"
+                      placeholder="Number"
                       formControlName="number_long_videos"
                       (ngModelChange)="changeValues()"
                     />
@@ -1178,23 +1112,6 @@
                   </div>
                 </div>
               </div>
-              <div>
-                <mat-card class="guideline">
-                  <mat-card-content id="card-pauta"
-                    >¿Deseas pautar estos videos?</mat-card-content
-                  >
-                  <mat-card-content id="card-pauta">
-                    <mat-slide-toggle
-                      type="checkbox"
-                      value="true"
-                      id="guideline"
-                      name="guideline"
-                      formControlName="guideline"
-                    >
-                    </mat-slide-toggle>
-                  </mat-card-content>
-                </mat-card>
-              </div>
             </div>
           </div>
           <div *ngIf="verificarEcuador">
@@ -1203,8 +1120,7 @@
               <mat-card class="card-creators">
                 <div class="cities recommendations-cities">
                   <p>
-                    Selecciona las ciudades en donde quieres que sean vistos tus
-                    contenidos
+                    Select the cities where you want your content to be viewed
                   </p>
 
                   <p-multiSelect
@@ -1221,7 +1137,7 @@
                 </div>
                 <div class="creators-recommendations">
                   <div class="creators">
-                    <label for="number-creators">Numero de creadores</label>
+                    <label for="number-creators">Number of creators</label>
                     <div class="button-creators-div">
                       <button
                         (click)="restCreatorsEcuador()"
@@ -1236,7 +1152,7 @@
                         type="number"
                         id="numberCreators"
                         name="numberCreators"
-                        placeholder="Numero de creadores"
+                        placeholder="Number"
                         formControlName="number_creators"
                         (ngModelChange)="changeValues()"
                       />
@@ -1271,14 +1187,13 @@
                   </div>
                   <div class="recommendations">
                     <p>
-                      Para lograr resultados efectivos en la campaña
-                      publicitaria, sugerimos la participación de al menos 20
-                      influencers. Sin embargo, según nuestras estadísticas, el
-                      uso de 50 influencers podría generar un incremento de
-                      ventas duplicado.
+                      To achieve effective results in the advertising campaign,
+                      we suggest the participation of at least 20 influencers.
+                      However, according to our statistics, the use of 50
+                      influencers could generate a doubled increase in sales.
                       <strong
-                        >El número de contenidos seleccionados será la cantidad
-                        que se mostrará en cada ciudad.</strong
+                        >The number of content selected will be the amount that
+                        will be shown in each city.</strong
                       >
                     </p>
                   </div>
@@ -1286,7 +1201,7 @@
               </mat-card>
               <div class="all-type-contents">
                 <div class="type-contents">
-                  <h2>Carrusel de fotos</h2>
+                  <h2>Photo Carousel</h2>
                   <img src="assets/icons/carrousel.svg" alt="Icono Carrousel" />
                   <div class="number-button">
                     <button
@@ -1303,7 +1218,7 @@
                       type="number"
                       id="numberCreators"
                       name="numberCreators"
-                      placeholder="Numero de creadores"
+                      placeholder="Number"
                       formControlName="number_carrousel"
                       (ngModelChange)="changeValues()"
                     />
@@ -1318,7 +1233,7 @@
                 </div>
 
                 <div class="type-contents">
-                  <h2>Video de 0 a 15 Seg</h2>
+                  <h2>Video from 0 to 15 Sec</h2>
                   <img src="assets/icons/videos.svg" alt="Icono videos" />
                   <div class="number-button">
                     <button
@@ -1334,7 +1249,7 @@
                       type="number"
                       id="numberCreators"
                       name="numberCreators"
-                      placeholder="Numero de creadores"
+                      placeholder="Number"
                       formControlName="number_short_videos"
                       (ngModelChange)="changeValues()"
                     />
@@ -1348,7 +1263,7 @@
                   </div>
                 </div>
                 <div class="type-contents">
-                  <h2>Video de 15 a 30 Seg</h2>
+                  <h2>Video from 15 to 30 Sec</h2>
                   <img src="assets/icons/videos.svg" alt="Icono videos" />
                   <div class="number-button">
                     <button
@@ -1364,7 +1279,7 @@
                       type="number"
                       id="numberCreators"
                       name="numberCreators"
-                      placeholder="Numero de creadores"
+                      placeholder="Number"
                       formControlName="number_long_videos"
                       (ngModelChange)="changeValues()"
                     />
@@ -1378,23 +1293,6 @@
                   </div>
                 </div>
               </div>
-              <div>
-                <mat-card class="guideline">
-                  <mat-card-content id="card-pauta"
-                    >¿Deseas pautar estos videos?</mat-card-content
-                  >
-                  <mat-card-content id="card-pauta">
-                    <mat-slide-toggle
-                      type="checkbox"
-                      value="true"
-                      id="guideline"
-                      name="guideline"
-                      formControlName="guideline"
-                    >
-                    </mat-slide-toggle>
-                  </mat-card-content>
-                </mat-card>
-              </div>
             </div>
           </div>
           <div *ngIf="verificarParaguay">
@@ -1403,8 +1301,7 @@
               <mat-card class="card-creators">
                 <div class="cities recommendations-cities">
                   <p>
-                    Selecciona las ciudades en donde quieres que sean vistos tus
-                    contenidos
+                    Select the cities where you want your content to be viewed
                   </p>
 
                   <p-multiSelect
@@ -1421,7 +1318,7 @@
                 </div>
                 <div class="creators-recommendations">
                   <div class="creators">
-                    <label for="number-creators">Numero de creadores</label>
+                    <label for="number-creators">Number of creators</label>
                     <div class="button-creators-div">
                       <button
                         (click)="restCreatorsParaguay()"
@@ -1436,7 +1333,7 @@
                         type="number"
                         id="numberCreators"
                         name="numberCreators"
-                        placeholder="Numero de creadores"
+                        placeholder="Number"
                         formControlName="number_creators"
                         (ngModelChange)="changeValues()"
                       />
@@ -1471,14 +1368,13 @@
                   </div>
                   <div class="recommendations">
                     <p>
-                      Para lograr resultados efectivos en la campaña
-                      publicitaria, sugerimos la participación de al menos 20
-                      influencers. Sin embargo, según nuestras estadísticas, el
-                      uso de 50 influencers podría generar un incremento de
-                      ventas duplicado.
+                      To achieve effective results in the advertising campaign,
+                      we suggest the participation of at least 20 influencers.
+                      However, according to our statistics, the use of 50
+                      influencers could generate a doubled increase in sales.
                       <strong
-                        >El número de contenidos seleccionados será la cantidad
-                        que se mostrará en cada ciudad.</strong
+                        >The number of content selected will be the amount that
+                        will be shown in each city.</strong
                       >
                     </p>
                   </div>
@@ -1486,7 +1382,7 @@
               </mat-card>
               <div class="all-type-contents">
                 <div class="type-contents">
-                  <h2>Carrusel de fotos</h2>
+                  <h2>Photo Carousel</h2>
                   <img src="assets/icons/carrousel.svg" alt="Icono Carrousel" />
                   <div class="number-button">
                     <button
@@ -1503,7 +1399,7 @@
                       type="number"
                       id="numberCreators"
                       name="numberCreators"
-                      placeholder="Numero de creadores"
+                      placeholder="Number"
                       formControlName="number_carrousel"
                       (ngModelChange)="changeValues()"
                     />
@@ -1518,7 +1414,7 @@
                 </div>
 
                 <div class="type-contents">
-                  <h2>Video de 0 a 15 Seg</h2>
+                  <h2>Video from 0 to 15 Sec</h2>
                   <img src="assets/icons/videos.svg" alt="Icono videos" />
                   <div class="number-button">
                     <button
@@ -1534,7 +1430,7 @@
                       type="number"
                       id="numberCreators"
                       name="numberCreators"
-                      placeholder="Numero de creadores"
+                      placeholder="Number"
                       formControlName="number_short_videos"
                       (ngModelChange)="changeValues()"
                     />
@@ -1548,7 +1444,7 @@
                   </div>
                 </div>
                 <div class="type-contents">
-                  <h2>Video de 15 a 30 Seg</h2>
+                  <h2>Video from 15 to 30 Sec</h2>
                   <img src="assets/icons/videos.svg" alt="Icono videos" />
                   <div class="number-button">
                     <button
@@ -1564,7 +1460,7 @@
                       type="number"
                       id="numberCreators"
                       name="numberCreators"
-                      placeholder="Numero de creadores"
+                      placeholder="Number"
                       formControlName="number_long_videos"
                       (ngModelChange)="changeValues()"
                     />
@@ -1578,23 +1474,6 @@
                   </div>
                 </div>
               </div>
-              <div>
-                <mat-card class="guideline">
-                  <mat-card-content id="card-pauta"
-                    >¿Deseas pautar estos videos?</mat-card-content
-                  >
-                  <mat-card-content id="card-pauta">
-                    <mat-slide-toggle
-                      type="checkbox"
-                      value="true"
-                      id="guideline"
-                      name="guideline"
-                      formControlName="guideline"
-                    >
-                    </mat-slide-toggle>
-                  </mat-card-content>
-                </mat-card>
-              </div>
             </div>
           </div>
           <div *ngIf="verificarPeru">
@@ -1603,8 +1482,7 @@
               <mat-card class="card-creators">
                 <div class="cities recommendations-cities">
                   <p>
-                    Selecciona las ciudades en donde quieres que sean vistos tus
-                    contenidos
+                    Select the cities where you want your content to be viewed
                   </p>
 
                   <p-multiSelect
@@ -1621,7 +1499,7 @@
                 </div>
                 <div class="creators-recommendations">
                   <div class="creators">
-                    <label for="number-creators">Numero de creadores</label>
+                    <label for="number-creators">Number of creators</label>
                     <div class="button-creators-div">
                       <button
                         (click)="restCreatorsPeru()"
@@ -1636,7 +1514,7 @@
                         type="number"
                         id="numberCreators"
                         name="numberCreators"
-                        placeholder="Numero de creadores"
+                        placeholder="Number"
                         formControlName="number_creators"
                         (ngModelChange)="changeValues()"
                       />
@@ -1662,14 +1540,13 @@
                   </div>
                   <div class="recommendations">
                     <p>
-                      Para lograr resultados efectivos en la campaña
-                      publicitaria, sugerimos la participación de al menos 20
-                      influencers. Sin embargo, según nuestras estadísticas, el
-                      uso de 50 influencers podría generar un incremento de
-                      ventas duplicado.
+                      To achieve effective results in the advertising campaign,
+                      we suggest the participation of at least 20 influencers.
+                      However, according to our statistics, the use of 50
+                      influencers could generate a doubled increase in sales.
                       <strong
-                        >El número de contenidos seleccionados será la cantidad
-                        que se mostrará en cada ciudad.</strong
+                        >The number of content selected will be the amount that
+                        will be shown in each city.</strong
                       >
                     </p>
                   </div>
@@ -1677,7 +1554,7 @@
               </mat-card>
               <div class="all-type-contents">
                 <div class="type-contents">
-                  <h2>Carrusel de fotos</h2>
+                  <h2>Photo Carousel</h2>
                   <img src="assets/icons/carrousel.svg" alt="Icono Carrousel" />
                   <div class="number-button">
                     <button
@@ -1694,7 +1571,7 @@
                       type="number"
                       id="numberCreators"
                       name="numberCreators"
-                      placeholder="Numero de creadores"
+                      placeholder="Number"
                       formControlName="number_carrousel"
                       (ngModelChange)="changeValues()"
                     />
@@ -1709,7 +1586,7 @@
                 </div>
 
                 <div class="type-contents">
-                  <h2>Video de 0 a 15 Seg</h2>
+                  <h2>Video from 0 to 15 Sec</h2>
                   <img src="assets/icons/videos.svg" alt="Icono videos" />
                   <div class="number-button">
                     <button
@@ -1725,7 +1602,7 @@
                       type="number"
                       id="numberCreators"
                       name="numberCreators"
-                      placeholder="Numero de creadores"
+                      placeholder="Number"
                       formControlName="number_short_videos"
                       (ngModelChange)="changeValues()"
                     />
@@ -1739,7 +1616,7 @@
                   </div>
                 </div>
                 <div class="type-contents">
-                  <h2>Video de 15 a 30 Seg</h2>
+                  <h2>Video from 15 to 30 Sec</h2>
                   <img src="assets/icons/videos.svg" alt="Icono videos" />
                   <div class="number-button">
                     <button
@@ -1755,7 +1632,7 @@
                       type="number"
                       id="numberCreators"
                       name="numberCreators"
-                      placeholder="Numero de creadores"
+                      placeholder="Number"
                       formControlName="number_long_videos"
                       (ngModelChange)="changeValues()"
                     />
@@ -1769,23 +1646,6 @@
                   </div>
                 </div>
               </div>
-              <div>
-                <mat-card class="guideline">
-                  <mat-card-content id="card-pauta"
-                    >¿Deseas pautar estos videos?</mat-card-content
-                  >
-                  <mat-card-content id="card-pauta">
-                    <mat-slide-toggle
-                      type="checkbox"
-                      value="true"
-                      id="guideline"
-                      name="guideline"
-                      formControlName="guideline"
-                    >
-                    </mat-slide-toggle>
-                  </mat-card-content>
-                </mat-card>
-              </div>
             </div>
           </div>
           <div *ngIf="verificarUruguay">
@@ -1794,8 +1654,7 @@
               <mat-card class="card-creators">
                 <div class="cities recommendations-cities">
                   <p>
-                    Selecciona las ciudades en donde quieres que sean vistos tus
-                    contenidos
+                    Select the cities where you want your content to be viewed
                   </p>
 
                   <p-multiSelect
@@ -1812,7 +1671,7 @@
                 </div>
                 <div class="creators-recommendations">
                   <div class="creators">
-                    <label for="number-creators">Numero de creadores</label>
+                    <label for="number-creators">Number of creators</label>
                     <div class="button-creators-div">
                       <button
                         (click)="restCreatorsUruguay()"
@@ -1827,7 +1686,7 @@
                         type="number"
                         id="numberCreators"
                         name="numberCreators"
-                        placeholder="Numero de creadores"
+                        placeholder="Number"
                         formControlName="number_creators"
                         (ngModelChange)="changeValues()"
                       />
@@ -1862,14 +1721,13 @@
                   </div>
                   <div class="recommendations">
                     <p>
-                      Para lograr resultados efectivos en la campaña
-                      publicitaria, sugerimos la participación de al menos 20
-                      influencers. Sin embargo, según nuestras estadísticas, el
-                      uso de 50 influencers podría generar un incremento de
-                      ventas duplicado.
+                      To achieve effective results in the advertising campaign,
+                      we suggest the participation of at least 20 influencers.
+                      However, according to our statistics, the use of 50
+                      influencers could generate a doubled increase in sales.
                       <strong
-                        >El número de contenidos seleccionados será la cantidad
-                        que se mostrará en cada ciudad.</strong
+                        >The number of content selected will be the amount that
+                        will be shown in each city.</strong
                       >
                     </p>
                   </div>
@@ -1877,7 +1735,7 @@
               </mat-card>
               <div class="all-type-contents">
                 <div class="type-contents">
-                  <h2>Carrusel de fotos</h2>
+                  <h2>Photo Carousel</h2>
                   <img src="assets/icons/carrousel.svg" alt="Icono Carrousel" />
                   <div class="number-button">
                     <button
@@ -1894,7 +1752,7 @@
                       type="number"
                       id="numberCreators"
                       name="numberCreators"
-                      placeholder="Numero de creadores"
+                      placeholder="Number"
                       formControlName="number_carrousel"
                       (ngModelChange)="changeValues()"
                     />
@@ -1909,7 +1767,7 @@
                 </div>
 
                 <div class="type-contents">
-                  <h2>Video de 0 a 15 Seg</h2>
+                  <h2>Video from 0 to 15 Sec</h2>
                   <img src="assets/icons/videos.svg" alt="Icono videos" />
                   <div class="number-button">
                     <button
@@ -1925,7 +1783,7 @@
                       type="number"
                       id="numberCreators"
                       name="numberCreators"
-                      placeholder="Numero de creadores"
+                      placeholder="Number"
                       formControlName="number_short_videos"
                       (ngModelChange)="changeValues()"
                     />
@@ -1939,7 +1797,7 @@
                   </div>
                 </div>
                 <div class="type-contents">
-                  <h2>Video de 15 a 30 Seg</h2>
+                  <h2>Video from 15 to 30 Sec</h2>
                   <img src="assets/icons/videos.svg" alt="Icono videos" />
                   <div class="number-button">
                     <button
@@ -1955,7 +1813,7 @@
                       type="number"
                       id="numberCreators"
                       name="numberCreators"
-                      placeholder="Numero de creadores"
+                      placeholder="Number"
                       formControlName="number_long_videos"
                       (ngModelChange)="changeValues()"
                     />
@@ -1969,23 +1827,6 @@
                   </div>
                 </div>
               </div>
-              <div>
-                <mat-card class="guideline">
-                  <mat-card-content id="card-pauta"
-                    >¿Deseas pautar estos videos?</mat-card-content
-                  >
-                  <mat-card-content id="card-pauta">
-                    <mat-slide-toggle
-                      type="checkbox"
-                      value="true"
-                      id="guideline"
-                      name="guideline"
-                      formControlName="guideline"
-                    >
-                    </mat-slide-toggle>
-                  </mat-card-content>
-                </mat-card>
-              </div>
             </div>
           </div>
           <div *ngIf="verificarVenezuela">
@@ -1994,8 +1835,7 @@
               <mat-card class="card-creators">
                 <div class="cities recommendations-cities">
                   <p>
-                    Selecciona las ciudades en donde quieres que sean vistos tus
-                    contenidos
+                    Select the cities where you want your content to be viewed
                   </p>
 
                   <p-multiSelect
@@ -2012,7 +1852,7 @@
                 </div>
                 <div class="creators-recommendations">
                   <div class="creators">
-                    <label for="number-creators">Numero de creadores</label>
+                    <label for="number-creators">Number of creators</label>
                     <div class="button-creators-div">
                       <button
                         (click)="restCreatorsVenezuela()"
@@ -2027,7 +1867,7 @@
                         type="number"
                         id="numberCreators"
                         name="numberCreators"
-                        placeholder="Numero de creadores"
+                        placeholder="Number"
                         formControlName="number_creators"
                         (ngModelChange)="changeValues()"
                       />
@@ -2062,14 +1902,13 @@
                   </div>
                   <div class="recommendations">
                     <p>
-                      Para lograr resultados efectivos en la campaña
-                      publicitaria, sugerimos la participación de al menos 20
-                      influencers. Sin embargo, según nuestras estadísticas, el
-                      uso de 50 influencers podría generar un incremento de
-                      ventas duplicado.
+                      To achieve effective results in the advertising campaign,
+                      we suggest the participation of at least 20 influencers.
+                      However, according to our statistics, the use of 50
+                      influencers could generate a doubled increase in sales.
                       <strong
-                        >El número de contenidos seleccionados será la cantidad
-                        que se mostrará en cada ciudad.</strong
+                        >The number of content selected will be the amount that
+                        will be shown in each city.</strong
                       >
                     </p>
                   </div>
@@ -2077,7 +1916,7 @@
               </mat-card>
               <div class="all-type-contents">
                 <div class="type-contents">
-                  <h2>Carrusel de fotos</h2>
+                  <h2>Photo Carousel</h2>
                   <img src="assets/icons/carrousel.svg" alt="Icono Carrousel" />
                   <div class="number-button">
                     <button
@@ -2094,7 +1933,7 @@
                       type="number"
                       id="numberCreators"
                       name="numberCreators"
-                      placeholder="Numero de creadores"
+                      placeholder="Number"
                       formControlName="number_carrousel"
                       (ngModelChange)="changeValues()"
                     />
@@ -2109,7 +1948,7 @@
                 </div>
 
                 <div class="type-contents">
-                  <h2>Video de 0 a 15 Seg</h2>
+                  <h2>Video from 0 to 15 Sec</h2>
                   <img src="assets/icons/videos.svg" alt="Icono videos" />
                   <div class="number-button">
                     <button
@@ -2125,7 +1964,7 @@
                       type="number"
                       id="numberCreators"
                       name="numberCreators"
-                      placeholder="Numero de creadores"
+                      placeholder="Number"
                       formControlName="number_short_videos"
                       (ngModelChange)="changeValues()"
                     />
@@ -2139,7 +1978,7 @@
                   </div>
                 </div>
                 <div class="type-contents">
-                  <h2>Video de 15 a 30 Seg</h2>
+                  <h2>Video from 15 to 30 Sec</h2>
                   <img src="assets/icons/videos.svg" alt="Icono videos" />
                   <div class="number-button">
                     <button
@@ -2155,7 +1994,7 @@
                       type="number"
                       id="numberCreators"
                       name="numberCreators"
-                      placeholder="Numero de creadores"
+                      placeholder="Number"
                       formControlName="number_long_videos"
                       (ngModelChange)="changeValues()"
                     />
@@ -2169,23 +2008,6 @@
                   </div>
                 </div>
               </div>
-              <div>
-                <mat-card class="guideline">
-                  <mat-card-content id="card-pauta"
-                    >¿Deseas pautar estos videos?</mat-card-content
-                  >
-                  <mat-card-content id="card-pauta">
-                    <mat-slide-toggle
-                      type="checkbox"
-                      value="true"
-                      id="guideline"
-                      name="guideline"
-                      formControlName="guideline"
-                    >
-                    </mat-slide-toggle>
-                  </mat-card-content>
-                </mat-card>
-              </div>
             </div>
           </div>
           <div *ngIf="verificarCostaRica">
@@ -2194,8 +2016,7 @@
               <mat-card class="card-creators">
                 <div class="cities recommendations-cities">
                   <p>
-                    Selecciona las ciudades en donde quieres que sean vistos tus
-                    contenidos
+                    Select the cities where you want your content to be viewed
                   </p>
 
                   <p-multiSelect
@@ -2212,7 +2033,7 @@
                 </div>
                 <div class="creators-recommendations">
                   <div class="creators">
-                    <label for="number-creators">Numero de creadores</label>
+                    <label for="number-creators">Number of creators</label>
                     <div class="button-creators-div">
                       <button
                         (click)="restCreatorsCostaRica()"
@@ -2227,7 +2048,7 @@
                         type="number"
                         id="numberCreators"
                         name="numberCreators"
-                        placeholder="Numero de creadores"
+                        placeholder="Number"
                         formControlName="number_creators"
                         (ngModelChange)="changeValues()"
                       />
@@ -2262,14 +2083,13 @@
                   </div>
                   <div class="recommendations">
                     <p>
-                      Para lograr resultados efectivos en la campaña
-                      publicitaria, sugerimos la participación de al menos 20
-                      influencers. Sin embargo, según nuestras estadísticas, el
-                      uso de 50 influencers podría generar un incremento de
-                      ventas duplicado.
+                      To achieve effective results in the advertising campaign,
+                      we suggest the participation of at least 20 influencers.
+                      However, according to our statistics, the use of 50
+                      influencers could generate a doubled increase in sales.
                       <strong
-                        >El número de contenidos seleccionados será la cantidad
-                        que se mostrará en cada ciudad.</strong
+                        >The number of content selected will be the amount that
+                        will be shown in each city.</strong
                       >
                     </p>
                   </div>
@@ -2277,7 +2097,7 @@
               </mat-card>
               <div class="all-type-contents">
                 <div class="type-contents">
-                  <h2>Carrusel de fotos</h2>
+                  <h2>Photo Carousel</h2>
                   <img src="assets/icons/carrousel.svg" alt="Icono Carrousel" />
                   <div class="number-button">
                     <button
@@ -2294,7 +2114,7 @@
                       type="number"
                       id="numberCreators"
                       name="numberCreators"
-                      placeholder="Numero de creadores"
+                      placeholder="Number"
                       formControlName="number_carrousel"
                       (ngModelChange)="changeValues()"
                     />
@@ -2309,7 +2129,7 @@
                 </div>
 
                 <div class="type-contents">
-                  <h2>Video de 0 a 15 Seg</h2>
+                  <h2>Video from 0 to 15 Sec</h2>
                   <img src="assets/icons/videos.svg" alt="Icono videos" />
                   <div class="number-button">
                     <button
@@ -2325,7 +2145,7 @@
                       type="number"
                       id="numberCreators"
                       name="numberCreators"
-                      placeholder="Numero de creadores"
+                      placeholder="Number"
                       formControlName="number_short_videos"
                       (ngModelChange)="changeValues()"
                     />
@@ -2339,7 +2159,7 @@
                   </div>
                 </div>
                 <div class="type-contents">
-                  <h2>Video de 15 a 30 Seg</h2>
+                  <h2>Video from 15 to 30 Sec</h2>
                   <img src="assets/icons/videos.svg" alt="Icono videos" />
                   <div class="number-button">
                     <button
@@ -2355,7 +2175,7 @@
                       type="number"
                       id="numberCreators"
                       name="numberCreators"
-                      placeholder="Numero de creadores"
+                      placeholder="Number"
                       formControlName="number_long_videos"
                       (ngModelChange)="changeValues()"
                     />
@@ -2369,23 +2189,6 @@
                   </div>
                 </div>
               </div>
-              <div>
-                <mat-card class="guideline">
-                  <mat-card-content id="card-pauta"
-                    >¿Deseas pautar estos videos?</mat-card-content
-                  >
-                  <mat-card-content id="card-pauta">
-                    <mat-slide-toggle
-                      type="checkbox"
-                      value="true"
-                      id="guideline"
-                      name="guideline"
-                      formControlName="guideline"
-                    >
-                    </mat-slide-toggle>
-                  </mat-card-content>
-                </mat-card>
-              </div>
             </div>
           </div>
           <div *ngIf="verificarCuba">
@@ -2394,8 +2197,7 @@
               <mat-card class="card-creators">
                 <div class="cities recommendations-cities">
                   <p>
-                    Selecciona las ciudades en donde quieres que sean vistos tus
-                    contenidos
+                    Select the cities where you want your content to be viewed
                   </p>
 
                   <p-multiSelect
@@ -2412,7 +2214,7 @@
                 </div>
                 <div class="creators-recommendations">
                   <div class="creators">
-                    <label for="number-creators">Numero de creadores</label>
+                    <label for="number-creators">Number of creators</label>
                     <div class="button-creators-div">
                       <button
                         (click)="restCreatorsCuba()"
@@ -2427,7 +2229,7 @@
                         type="number"
                         id="numberCreators"
                         name="numberCreators"
-                        placeholder="Numero de creadores"
+                        placeholder="Number"
                         formControlName="number_creators"
                         (ngModelChange)="changeValues()"
                       />
@@ -2453,14 +2255,13 @@
                   </div>
                   <div class="recommendations">
                     <p>
-                      Para lograr resultados efectivos en la campaña
-                      publicitaria, sugerimos la participación de al menos 20
-                      influencers. Sin embargo, según nuestras estadísticas, el
-                      uso de 50 influencers podría generar un incremento de
-                      ventas duplicado.
+                      To achieve effective results in the advertising campaign,
+                      we suggest the participation of at least 20 influencers.
+                      However, according to our statistics, the use of 50
+                      influencers could generate a doubled increase in sales.
                       <strong
-                        >El número de contenidos seleccionados será la cantidad
-                        que se mostrará en cada ciudad.</strong
+                        >The number of content selected will be the amount that
+                        will be shown in each city.</strong
                       >
                     </p>
                   </div>
@@ -2468,7 +2269,7 @@
               </mat-card>
               <div class="all-type-contents">
                 <div class="type-contents">
-                  <h2>Carrusel de fotos</h2>
+                  <h2>Photo Carousel</h2>
                   <img src="assets/icons/carrousel.svg" alt="Icono Carrousel" />
                   <div class="number-button">
                     <button
@@ -2485,7 +2286,7 @@
                       type="number"
                       id="numberCreators"
                       name="numberCreators"
-                      placeholder="Numero de creadores"
+                      placeholder="Number"
                       formControlName="number_carrousel"
                       (ngModelChange)="changeValues()"
                     />
@@ -2500,7 +2301,7 @@
                 </div>
 
                 <div class="type-contents">
-                  <h2>Video de 0 a 15 Seg</h2>
+                  <h2>Video from 0 to 15 Sec</h2>
                   <img src="assets/icons/videos.svg" alt="Icono videos" />
                   <div class="number-button">
                     <button
@@ -2516,7 +2317,7 @@
                       type="number"
                       id="numberCreators"
                       name="numberCreators"
-                      placeholder="Numero de creadores"
+                      placeholder="Number"
                       formControlName="number_short_videos"
                       (ngModelChange)="changeValues()"
                     />
@@ -2530,7 +2331,7 @@
                   </div>
                 </div>
                 <div class="type-contents">
-                  <h2>Video de 15 a 30 Seg</h2>
+                  <h2>Video from 15 to 30 Sec</h2>
                   <img src="assets/icons/videos.svg" alt="Icono videos" />
                   <div class="number-button">
                     <button
@@ -2546,7 +2347,7 @@
                       type="number"
                       id="numberCreators"
                       name="numberCreators"
-                      placeholder="Numero de creadores"
+                      placeholder="Number"
                       formControlName="number_long_videos"
                       (ngModelChange)="changeValues()"
                     />
@@ -2560,23 +2361,6 @@
                   </div>
                 </div>
               </div>
-              <div>
-                <mat-card class="guideline">
-                  <mat-card-content id="card-pauta"
-                    >¿Deseas pautar estos videos?</mat-card-content
-                  >
-                  <mat-card-content id="card-pauta">
-                    <mat-slide-toggle
-                      type="checkbox"
-                      value="true"
-                      id="guideline"
-                      name="guideline"
-                      formControlName="guideline"
-                    >
-                    </mat-slide-toggle>
-                  </mat-card-content>
-                </mat-card>
-              </div>
             </div>
           </div>
           <div *ngIf="verificarElSalvador">
@@ -2585,8 +2369,7 @@
               <mat-card class="card-creators">
                 <div class="cities recommendations-cities">
                   <p>
-                    Selecciona las ciudades en donde quieres que sean vistos tus
-                    contenidos
+                    Select the cities where you want your content to be viewed
                   </p>
 
                   <p-multiSelect
@@ -2603,7 +2386,7 @@
                 </div>
                 <div class="creators-recommendations">
                   <div class="creators">
-                    <label for="number-creators">Numero de creadores</label>
+                    <label for="number-creators">Number of creators</label>
                     <div class="button-creators-div">
                       <button
                         (click)="restCreatorsElSalvador()"
@@ -2618,7 +2401,7 @@
                         type="number"
                         id="numberCreators"
                         name="numberCreators"
-                        placeholder="Numero de creadores"
+                        placeholder="Number"
                         formControlName="number_creators"
                         (ngModelChange)="changeValues()"
                       />
@@ -2653,14 +2436,13 @@
                   </div>
                   <div class="recommendations">
                     <p>
-                      Para lograr resultados efectivos en la campaña
-                      publicitaria, sugerimos la participación de al menos 20
-                      influencers. Sin embargo, según nuestras estadísticas, el
-                      uso de 50 influencers podría generar un incremento de
-                      ventas duplicado.
+                      To achieve effective results in the advertising campaign,
+                      we suggest the participation of at least 20 influencers.
+                      However, according to our statistics, the use of 50
+                      influencers could generate a doubled increase in sales.
                       <strong
-                        >El número de contenidos seleccionados será la cantidad
-                        que se mostrará en cada ciudad.</strong
+                        >The number of content selected will be the amount that
+                        will be shown in each city.</strong
                       >
                     </p>
                   </div>
@@ -2668,7 +2450,7 @@
               </mat-card>
               <div class="all-type-contents">
                 <div class="type-contents">
-                  <h2>Carrusel de fotos</h2>
+                  <h2>Photo Carousel</h2>
                   <img src="assets/icons/carrousel.svg" alt="Icono Carrousel" />
                   <div class="number-button">
                     <button
@@ -2685,7 +2467,7 @@
                       type="number"
                       id="numberCreators"
                       name="numberCreators"
-                      placeholder="Numero de creadores"
+                      placeholder="Number"
                       formControlName="number_carrousel"
                       (ngModelChange)="changeValues()"
                     />
@@ -2700,7 +2482,7 @@
                 </div>
 
                 <div class="type-contents">
-                  <h2>Video de 0 a 15 Seg</h2>
+                  <h2>Video from 0 to 15 Sec</h2>
                   <img src="assets/icons/videos.svg" alt="Icono videos" />
                   <div class="number-button">
                     <button
@@ -2716,7 +2498,7 @@
                       type="number"
                       id="numberCreators"
                       name="numberCreators"
-                      placeholder="Numero de creadores"
+                      placeholder="Number"
                       formControlName="number_short_videos"
                       (ngModelChange)="changeValues()"
                     />
@@ -2730,7 +2512,7 @@
                   </div>
                 </div>
                 <div class="type-contents">
-                  <h2>Video de 15 a 30 Seg</h2>
+                  <h2>Video from 15 to 30 Sec</h2>
                   <img src="assets/icons/videos.svg" alt="Icono videos" />
                   <div class="number-button">
                     <button
@@ -2746,7 +2528,7 @@
                       type="number"
                       id="numberCreators"
                       name="numberCreators"
-                      placeholder="Numero de creadores"
+                      placeholder="Number"
                       formControlName="number_long_videos"
                       (ngModelChange)="changeValues()"
                     />
@@ -2760,23 +2542,6 @@
                   </div>
                 </div>
               </div>
-              <div>
-                <mat-card class="guideline">
-                  <mat-card-content id="card-pauta"
-                    >¿Deseas pautar estos videos?</mat-card-content
-                  >
-                  <mat-card-content id="card-pauta">
-                    <mat-slide-toggle
-                      type="checkbox"
-                      value="true"
-                      id="guideline"
-                      name="guideline"
-                      formControlName="guideline"
-                    >
-                    </mat-slide-toggle>
-                  </mat-card-content>
-                </mat-card>
-              </div>
             </div>
           </div>
           <div *ngIf="verificarGuatemala">
@@ -2785,8 +2550,7 @@
               <mat-card class="card-creators">
                 <div class="cities recommendations-cities">
                   <p>
-                    Selecciona las ciudades en donde quieres que sean vistos tus
-                    contenidos
+                    Select the cities where you want your content to be viewed
                   </p>
 
                   <p-multiSelect
@@ -2803,7 +2567,7 @@
                 </div>
                 <div class="creators-recommendations">
                   <div class="creators">
-                    <label for="number-creators">Numero de creadores</label>
+                    <label for="number-creators">Number of creators</label>
                     <div class="button-creators-div">
                       <button
                         (click)="restCreatorsGuatemala()"
@@ -2818,7 +2582,7 @@
                         type="number"
                         id="numberCreators"
                         name="numberCreators"
-                        placeholder="Numero de creadores"
+                        placeholder="Number"
                         formControlName="number_creators"
                         (ngModelChange)="changeValues()"
                       />
@@ -2853,14 +2617,13 @@
                   </div>
                   <div class="recommendations">
                     <p>
-                      Para lograr resultados efectivos en la campaña
-                      publicitaria, sugerimos la participación de al menos 20
-                      influencers. Sin embargo, según nuestras estadísticas, el
-                      uso de 50 influencers podría generar un incremento de
-                      ventas duplicado.
+                      To achieve effective results in the advertising campaign,
+                      we suggest the participation of at least 20 influencers.
+                      However, according to our statistics, the use of 50
+                      influencers could generate a doubled increase in sales.
                       <strong
-                        >El número de contenidos seleccionados será la cantidad
-                        que se mostrará en cada ciudad.</strong
+                        >The number of content selected will be the amount that
+                        will be shown in each city.</strong
                       >
                     </p>
                   </div>
@@ -2868,7 +2631,7 @@
               </mat-card>
               <div class="all-type-contents">
                 <div class="type-contents">
-                  <h2>Carrusel de fotos</h2>
+                  <h2>Photo Carousel</h2>
                   <img src="assets/icons/carrousel.svg" alt="Icono Carrousel" />
                   <div class="number-button">
                     <button
@@ -2885,7 +2648,7 @@
                       type="number"
                       id="numberCreators"
                       name="numberCreators"
-                      placeholder="Numero de creadores"
+                      placeholder="Number"
                       formControlName="number_carrousel"
                       (ngModelChange)="changeValues()"
                     />
@@ -2900,7 +2663,7 @@
                 </div>
 
                 <div class="type-contents">
-                  <h2>Video de 0 a 15 Seg</h2>
+                  <h2>Video from 0 to 15 Sec</h2>
                   <img src="assets/icons/videos.svg" alt="Icono videos" />
                   <div class="number-button">
                     <button
@@ -2916,7 +2679,7 @@
                       type="number"
                       id="numberCreators"
                       name="numberCreators"
-                      placeholder="Numero de creadores"
+                      placeholder="Number"
                       formControlName="number_short_videos"
                       (ngModelChange)="changeValues()"
                     />
@@ -2930,7 +2693,7 @@
                   </div>
                 </div>
                 <div class="type-contents">
-                  <h2>Video de 15 a 30 Seg</h2>
+                  <h2>Video from 15 to 30 Sec</h2>
                   <img src="assets/icons/videos.svg" alt="Icono videos" />
                   <div class="number-button">
                     <button
@@ -2946,7 +2709,7 @@
                       type="number"
                       id="numberCreators"
                       name="numberCreators"
-                      placeholder="Numero de creadores"
+                      placeholder="Number"
                       formControlName="number_long_videos"
                       (ngModelChange)="changeValues()"
                     />
@@ -2960,23 +2723,6 @@
                   </div>
                 </div>
               </div>
-              <div>
-                <mat-card class="guideline">
-                  <mat-card-content id="card-pauta"
-                    >¿Deseas pautar estos videos?</mat-card-content
-                  >
-                  <mat-card-content id="card-pauta">
-                    <mat-slide-toggle
-                      type="checkbox"
-                      value="true"
-                      id="guideline"
-                      name="guideline"
-                      formControlName="guideline"
-                    >
-                    </mat-slide-toggle>
-                  </mat-card-content>
-                </mat-card>
-              </div>
             </div>
           </div>
           <div *ngIf="verificarHonduras">
@@ -2985,8 +2731,7 @@
               <mat-card class="card-creators">
                 <div class="cities recommendations-cities">
                   <p>
-                    Selecciona las ciudades en donde quieres que sean vistos tus
-                    contenidos
+                    Select the cities where you want your content to be viewed
                   </p>
 
                   <p-multiSelect
@@ -3003,7 +2748,7 @@
                 </div>
                 <div class="creators-recommendations">
                   <div class="creators">
-                    <label for="number-creators">Numero de creadores</label>
+                    <label for="number-creators">Number of creators</label>
                     <div class="button-creators-div">
                       <button
                         (click)="restCreatorsHonduras()"
@@ -3018,7 +2763,7 @@
                         type="number"
                         id="numberCreators"
                         name="numberCreators"
-                        placeholder="Numero de creadores"
+                        placeholder="Number"
                         formControlName="number_creators"
                         (ngModelChange)="changeValues()"
                       />
@@ -3053,14 +2798,13 @@
                   </div>
                   <div class="recommendations">
                     <p>
-                      Para lograr resultados efectivos en la campaña
-                      publicitaria, sugerimos la participación de al menos 20
-                      influencers. Sin embargo, según nuestras estadísticas, el
-                      uso de 50 influencers podría generar un incremento de
-                      ventas duplicado.
+                      To achieve effective results in the advertising campaign,
+                      we suggest the participation of at least 20 influencers.
+                      However, according to our statistics, the use of 50
+                      influencers could generate a doubled increase in sales.
                       <strong
-                        >El número de contenidos seleccionados será la cantidad
-                        que se mostrará en cada ciudad.</strong
+                        >The number of content selected will be the amount that
+                        will be shown in each city.</strong
                       >
                     </p>
                   </div>
@@ -3068,7 +2812,7 @@
               </mat-card>
               <div class="all-type-contents">
                 <div class="type-contents">
-                  <h2>Carrusel de fotos</h2>
+                  <h2>Photo Carousel</h2>
                   <img src="assets/icons/carrousel.svg" alt="Icono Carrousel" />
                   <div class="number-button">
                     <button
@@ -3085,7 +2829,7 @@
                       type="number"
                       id="numberCreators"
                       name="numberCreators"
-                      placeholder="Numero de creadores"
+                      placeholder="Number"
                       formControlName="number_carrousel"
                       (ngModelChange)="changeValues()"
                     />
@@ -3100,7 +2844,7 @@
                 </div>
 
                 <div class="type-contents">
-                  <h2>Video de 0 a 15 Seg</h2>
+                  <h2>Video from 0 to 15 Sec</h2>
                   <img src="assets/icons/videos.svg" alt="Icono videos" />
                   <div class="number-button">
                     <button
@@ -3116,7 +2860,7 @@
                       type="number"
                       id="numberCreators"
                       name="numberCreators"
-                      placeholder="Numero de creadores"
+                      placeholder="Number"
                       formControlName="number_short_videos"
                       (ngModelChange)="changeValues()"
                     />
@@ -3130,7 +2874,7 @@
                   </div>
                 </div>
                 <div class="type-contents">
-                  <h2>Video de 15 a 30 Seg</h2>
+                  <h2>Video from 15 to 30 Sec</h2>
                   <img src="assets/icons/videos.svg" alt="Icono videos" />
                   <div class="number-button">
                     <button
@@ -3146,7 +2890,7 @@
                       type="number"
                       id="numberCreators"
                       name="numberCreators"
-                      placeholder="Numero de creadores"
+                      placeholder="Number"
                       formControlName="number_long_videos"
                       (ngModelChange)="changeValues()"
                     />
@@ -3160,23 +2904,6 @@
                   </div>
                 </div>
               </div>
-              <div>
-                <mat-card class="guideline">
-                  <mat-card-content id="card-pauta"
-                    >¿Deseas pautar estos videos?</mat-card-content
-                  >
-                  <mat-card-content id="card-pauta">
-                    <mat-slide-toggle
-                      type="checkbox"
-                      value="true"
-                      id="guideline"
-                      name="guideline"
-                      formControlName="guideline"
-                    >
-                    </mat-slide-toggle>
-                  </mat-card-content>
-                </mat-card>
-              </div>
             </div>
           </div>
           <div *ngIf="verificarMexico">
@@ -3185,8 +2912,7 @@
               <mat-card class="card-creators">
                 <div class="cities recommendations-cities">
                   <p>
-                    Selecciona las ciudades en donde quieres que sean vistos tus
-                    contenidos
+                    Select the cities where you want your content to be viewed
                   </p>
 
                   <p-multiSelect
@@ -3203,7 +2929,7 @@
                 </div>
                 <div class="creators-recommendations">
                   <div class="creators">
-                    <label for="number-creators">Numero de creadores</label>
+                    <label for="number-creators">Number of creators</label>
                     <div class="button-creators-div">
                       <button
                         (click)="restCreatorsMexico()"
@@ -3218,7 +2944,7 @@
                         type="number"
                         id="numberCreators"
                         name="numberCreators"
-                        placeholder="Numero de creadores"
+                        placeholder="Number"
                         formControlName="number_creators"
                         (ngModelChange)="changeValues()"
                       />
@@ -3253,14 +2979,13 @@
                   </div>
                   <div class="recommendations">
                     <p>
-                      Para lograr resultados efectivos en la campaña
-                      publicitaria, sugerimos la participación de al menos 20
-                      influencers. Sin embargo, según nuestras estadísticas, el
-                      uso de 50 influencers podría generar un incremento de
-                      ventas duplicado.
+                      To achieve effective results in the advertising campaign,
+                      we suggest the participation of at least 20 influencers.
+                      However, according to our statistics, the use of 50
+                      influencers could generate a doubled increase in sales.
                       <strong
-                        >El número de contenidos seleccionados será la cantidad
-                        que se mostrará en cada ciudad.</strong
+                        >The number of content selected will be the amount that
+                        will be shown in each city.</strong
                       >
                     </p>
                   </div>
@@ -3268,7 +2993,7 @@
               </mat-card>
               <div class="all-type-contents">
                 <div class="type-contents">
-                  <h2>Carrusel de fotos</h2>
+                  <h2>Photo Carousel</h2>
                   <img src="assets/icons/carrousel.svg" alt="Icono Carrousel" />
                   <div class="number-button">
                     <button
@@ -3285,7 +3010,7 @@
                       type="number"
                       id="numberCreators"
                       name="numberCreators"
-                      placeholder="Numero de creadores"
+                      placeholder="Number"
                       formControlName="number_carrousel"
                       (ngModelChange)="changeValues()"
                     />
@@ -3300,7 +3025,7 @@
                 </div>
 
                 <div class="type-contents">
-                  <h2>Video de 0 a 15 Seg</h2>
+                  <h2>Video from 0 to 15 Sec</h2>
                   <img src="assets/icons/videos.svg" alt="Icono videos" />
                   <div class="number-button">
                     <button
@@ -3316,7 +3041,7 @@
                       type="number"
                       id="numberCreators"
                       name="numberCreators"
-                      placeholder="Numero de creadores"
+                      placeholder="Number"
                       formControlName="number_short_videos"
                       (ngModelChange)="changeValues()"
                     />
@@ -3330,7 +3055,7 @@
                   </div>
                 </div>
                 <div class="type-contents">
-                  <h2>Video de 15 a 30 Seg</h2>
+                  <h2>Video from 15 to 30 Sec</h2>
                   <img src="assets/icons/videos.svg" alt="Icono videos" />
                   <div class="number-button">
                     <button
@@ -3346,7 +3071,7 @@
                       type="number"
                       id="numberCreators"
                       name="numberCreators"
-                      placeholder="Numero de creadores"
+                      placeholder="Number"
                       formControlName="number_long_videos"
                       (ngModelChange)="changeValues()"
                     />
@@ -3360,23 +3085,6 @@
                   </div>
                 </div>
               </div>
-              <div>
-                <mat-card class="guideline">
-                  <mat-card-content id="card-pauta"
-                    >¿Deseas pautar estos videos?</mat-card-content
-                  >
-                  <mat-card-content id="card-pauta">
-                    <mat-slide-toggle
-                      type="checkbox"
-                      value="true"
-                      id="guideline"
-                      name="guideline"
-                      formControlName="guideline"
-                    >
-                    </mat-slide-toggle>
-                  </mat-card-content>
-                </mat-card>
-              </div>
             </div>
           </div>
           <div *ngIf="verificarNicaragua">
@@ -3385,8 +3093,7 @@
               <mat-card class="card-creators">
                 <div class="cities recommendations-cities">
                   <p>
-                    Selecciona las ciudades en donde quieres que sean vistos tus
-                    contenidos
+                    Select the cities where you want your content to be viewed
                   </p>
 
                   <p-multiSelect
@@ -3403,7 +3110,7 @@
                 </div>
                 <div class="creators-recommendations">
                   <div class="creators">
-                    <label for="number-creators">Numero de creadores</label>
+                    <label for="number-creators">Number of creators</label>
                     <div class="button-creators-div">
                       <button
                         (click)="restCreatorsNicaragua()"
@@ -3418,7 +3125,7 @@
                         type="number"
                         id="numberCreators"
                         name="numberCreators"
-                        placeholder="Numero de creadores"
+                        placeholder="Number"
                         formControlName="number_creators"
                         (ngModelChange)="changeValues()"
                       />
@@ -3453,14 +3160,13 @@
                   </div>
                   <div class="recommendations">
                     <p>
-                      Para lograr resultados efectivos en la campaña
-                      publicitaria, sugerimos la participación de al menos 20
-                      influencers. Sin embargo, según nuestras estadísticas, el
-                      uso de 50 influencers podría generar un incremento de
-                      ventas duplicado.
+                      To achieve effective results in the advertising campaign,
+                      we suggest the participation of at least 20 influencers.
+                      However, according to our statistics, the use of 50
+                      influencers could generate a doubled increase in sales.
                       <strong
-                        >El número de contenidos seleccionados será la cantidad
-                        que se mostrará en cada ciudad.</strong
+                        >The number of content selected will be the amount that
+                        will be shown in each city.</strong
                       >
                     </p>
                   </div>
@@ -3468,7 +3174,7 @@
               </mat-card>
               <div class="all-type-contents">
                 <div class="type-contents">
-                  <h2>Carrusel de fotos</h2>
+                  <h2>Photo Carousel</h2>
                   <img src="assets/icons/carrousel.svg" alt="Icono Carrousel" />
                   <div class="number-button">
                     <button
@@ -3485,7 +3191,7 @@
                       type="number"
                       id="numberCreators"
                       name="numberCreators"
-                      placeholder="Numero de creadores"
+                      placeholder="Number"
                       formControlName="number_carrousel"
                       (ngModelChange)="changeValues()"
                     />
@@ -3500,7 +3206,7 @@
                 </div>
 
                 <div class="type-contents">
-                  <h2>Video de 0 a 15 Seg</h2>
+                  <h2>Video from 0 to 15 Sec</h2>
                   <img src="assets/icons/videos.svg" alt="Icono videos" />
                   <div class="number-button">
                     <button
@@ -3516,7 +3222,7 @@
                       type="number"
                       id="numberCreators"
                       name="numberCreators"
-                      placeholder="Numero de creadores"
+                      placeholder="Number"
                       formControlName="number_short_videos"
                       (ngModelChange)="changeValues()"
                     />
@@ -3530,7 +3236,7 @@
                   </div>
                 </div>
                 <div class="type-contents">
-                  <h2>Video de 15 a 30 Seg</h2>
+                  <h2>Video from 15 to 30 Sec</h2>
                   <img src="assets/icons/videos.svg" alt="Icono videos" />
                   <div class="number-button">
                     <button
@@ -3546,7 +3252,7 @@
                       type="number"
                       id="numberCreators"
                       name="numberCreators"
-                      placeholder="Numero de creadores"
+                      placeholder="Number"
                       formControlName="number_long_videos"
                       (ngModelChange)="changeValues()"
                     />
@@ -3560,23 +3266,6 @@
                   </div>
                 </div>
               </div>
-              <div>
-                <mat-card class="guideline">
-                  <mat-card-content id="card-pauta"
-                    >¿Deseas pautar estos videos?</mat-card-content
-                  >
-                  <mat-card-content id="card-pauta">
-                    <mat-slide-toggle
-                      type="checkbox"
-                      value="true"
-                      id="guideline"
-                      name="guideline"
-                      formControlName="guideline"
-                    >
-                    </mat-slide-toggle>
-                  </mat-card-content>
-                </mat-card>
-              </div>
             </div>
           </div>
           <div *ngIf="verificarPanama">
@@ -3585,8 +3274,7 @@
               <mat-card class="card-creators">
                 <div class="cities recommendations-cities">
                   <p>
-                    Selecciona las ciudades en donde quieres que sean vistos tus
-                    contenidos
+                    Select the cities where you want your content to be viewed
                   </p>
 
                   <p-multiSelect
@@ -3603,7 +3291,7 @@
                 </div>
                 <div class="creators-recommendations">
                   <div class="creators">
-                    <label for="number-creators">Numero de creadores</label>
+                    <label for="number-creators">Number of creators</label>
                     <div class="button-creators-div">
                       <button
                         (click)="restCreatorsPanama()"
@@ -3618,7 +3306,7 @@
                         type="number"
                         id="numberCreators"
                         name="numberCreators"
-                        placeholder="Numero de creadores"
+                        placeholder="Number"
                         formControlName="number_creators"
                         (ngModelChange)="changeValues()"
                       />
@@ -3653,14 +3341,13 @@
                   </div>
                   <div class="recommendations">
                     <p>
-                      Para lograr resultados efectivos en la campaña
-                      publicitaria, sugerimos la participación de al menos 20
-                      influencers. Sin embargo, según nuestras estadísticas, el
-                      uso de 50 influencers podría generar un incremento de
-                      ventas duplicado.
+                      To achieve effective results in the advertising campaign,
+                      we suggest the participation of at least 20 influencers.
+                      However, according to our statistics, the use of 50
+                      influencers could generate a doubled increase in sales.
                       <strong
-                        >El número de contenidos seleccionados será la cantidad
-                        que se mostrará en cada ciudad.</strong
+                        >The number of content selected will be the amount that
+                        will be shown in each city.</strong
                       >
                     </p>
                   </div>
@@ -3668,7 +3355,7 @@
               </mat-card>
               <div class="all-type-contents">
                 <div class="type-contents">
-                  <h2>Carrusel de fotos</h2>
+                  <h2>Photo Carousel</h2>
                   <img src="assets/icons/carrousel.svg" alt="Icono Carrousel" />
                   <div class="number-button">
                     <button
@@ -3685,7 +3372,7 @@
                       type="number"
                       id="numberCreators"
                       name="numberCreators"
-                      placeholder="Numero de creadores"
+                      placeholder="Number"
                       formControlName="number_carrousel"
                       (ngModelChange)="changeValues()"
                     />
@@ -3700,7 +3387,7 @@
                 </div>
 
                 <div class="type-contents">
-                  <h2>Video de 0 a 15 Seg</h2>
+                  <h2>Video from 0 to 15 Sec</h2>
                   <img src="assets/icons/videos.svg" alt="Icono videos" />
                   <div class="number-button">
                     <button
@@ -3716,7 +3403,7 @@
                       type="number"
                       id="numberCreators"
                       name="numberCreators"
-                      placeholder="Numero de creadores"
+                      placeholder="Number"
                       formControlName="number_short_videos"
                       (ngModelChange)="changeValues()"
                     />
@@ -3730,7 +3417,7 @@
                   </div>
                 </div>
                 <div class="type-contents">
-                  <h2>Video de 15 a 30 Seg</h2>
+                  <h2>Video from 15 to 30 Sec</h2>
                   <img src="assets/icons/videos.svg" alt="Icono videos" />
                   <div class="number-button">
                     <button
@@ -3746,7 +3433,7 @@
                       type="number"
                       id="numberCreators"
                       name="numberCreators"
-                      placeholder="Numero de creadores"
+                      placeholder="Number"
                       formControlName="number_long_videos"
                       (ngModelChange)="changeValues()"
                     />
@@ -3760,23 +3447,6 @@
                   </div>
                 </div>
               </div>
-              <div>
-                <mat-card class="guideline">
-                  <mat-card-content id="card-pauta"
-                    >¿Deseas pautar estos videos?</mat-card-content
-                  >
-                  <mat-card-content id="card-pauta">
-                    <mat-slide-toggle
-                      type="checkbox"
-                      value="true"
-                      id="guideline"
-                      name="guideline"
-                      formControlName="guideline"
-                    >
-                    </mat-slide-toggle>
-                  </mat-card-content>
-                </mat-card>
-              </div>
             </div>
           </div>
           <div *ngIf="verificarPuertoRico">
@@ -3785,8 +3455,7 @@
               <mat-card class="card-creators">
                 <div class="cities recommendations-cities">
                   <p>
-                    Selecciona las ciudades en donde quieres que sean vistos tus
-                    contenidos
+                    Select the cities where you want your content to be viewed
                   </p>
 
                   <p-multiSelect
@@ -3803,7 +3472,7 @@
                 </div>
                 <div class="creators-recommendations">
                   <div class="creators">
-                    <label for="number-creators">Numero de creadores</label>
+                    <label for="number-creators">Number of creators</label>
                     <div class="button-creators-div">
                       <button
                         (click)="restCreatorsPuertoRico()"
@@ -3818,7 +3487,7 @@
                         type="number"
                         id="numberCreators"
                         name="numberCreators"
-                        placeholder="Numero de creadores"
+                        placeholder="Number"
                         formControlName="number_creators"
                         (ngModelChange)="changeValues()"
                       />
@@ -3853,14 +3522,13 @@
                   </div>
                   <div class="recommendations">
                     <p>
-                      Para lograr resultados efectivos en la campaña
-                      publicitaria, sugerimos la participación de al menos 20
-                      influencers. Sin embargo, según nuestras estadísticas, el
-                      uso de 50 influencers podría generar un incremento de
-                      ventas duplicado.
+                      To achieve effective results in the advertising campaign,
+                      we suggest the participation of at least 20 influencers.
+                      However, according to our statistics, the use of 50
+                      influencers could generate a doubled increase in sales.
                       <strong
-                        >El número de contenidos seleccionados será la cantidad
-                        que se mostrará en cada ciudad.</strong
+                        >The number of content selected will be the amount that
+                        will be shown in each city.</strong
                       >
                     </p>
                   </div>
@@ -3868,7 +3536,7 @@
               </mat-card>
               <div class="all-type-contents">
                 <div class="type-contents">
-                  <h2>Carrusel de fotos</h2>
+                  <h2>Photo Carousel</h2>
                   <img src="assets/icons/carrousel.svg" alt="Icono Carrousel" />
                   <div class="number-button">
                     <button
@@ -3885,7 +3553,7 @@
                       type="number"
                       id="numberCreators"
                       name="numberCreators"
-                      placeholder="Numero de creadores"
+                      placeholder="Number"
                       formControlName="number_carrousel"
                       (ngModelChange)="changeValues()"
                     />
@@ -3900,7 +3568,7 @@
                 </div>
 
                 <div class="type-contents">
-                  <h2>Video de 0 a 15 Seg</h2>
+                  <h2>Video from 0 to 15 Sec</h2>
                   <img src="assets/icons/videos.svg" alt="Icono videos" />
                   <div class="number-button">
                     <button
@@ -3916,7 +3584,7 @@
                       type="number"
                       id="numberCreators"
                       name="numberCreators"
-                      placeholder="Numero de creadores"
+                      placeholder="Number"
                       formControlName="number_short_videos"
                       (ngModelChange)="changeValues()"
                     />
@@ -3930,7 +3598,7 @@
                   </div>
                 </div>
                 <div class="type-contents">
-                  <h2>Video de 15 a 30 Seg</h2>
+                  <h2>Video from 15 to 30 Sec</h2>
                   <img src="assets/icons/videos.svg" alt="Icono videos" />
                   <div class="number-button">
                     <button
@@ -3946,7 +3614,7 @@
                       type="number"
                       id="numberCreators"
                       name="numberCreators"
-                      placeholder="Numero de creadores"
+                      placeholder="Number"
                       formControlName="number_long_videos"
                       (ngModelChange)="changeValues()"
                     />
@@ -3960,23 +3628,6 @@
                   </div>
                 </div>
               </div>
-              <div>
-                <mat-card class="guideline">
-                  <mat-card-content id="card-pauta"
-                    >¿Deseas pautar estos videos?</mat-card-content
-                  >
-                  <mat-card-content id="card-pauta">
-                    <mat-slide-toggle
-                      type="checkbox"
-                      value="true"
-                      id="guideline"
-                      name="guideline"
-                      formControlName="guideline"
-                    >
-                    </mat-slide-toggle>
-                  </mat-card-content>
-                </mat-card>
-              </div>
             </div>
           </div>
           <div *ngIf="verificarDominicanRepublic">
@@ -3985,8 +3636,7 @@
               <mat-card class="card-creators">
                 <div class="cities recommendations-cities">
                   <p>
-                    Selecciona las ciudades en donde quieres que sean vistos tus
-                    contenidos
+                    Select the cities where you want your content to be viewed
                   </p>
 
                   <p-multiSelect
@@ -4003,7 +3653,7 @@
                 </div>
                 <div class="creators-recommendations">
                   <div class="creators">
-                    <label for="number-creators">Numero de creadores</label>
+                    <label for="number-creators">Number of creators</label>
                     <div class="button-creators-div">
                       <button
                         (click)="restCreatorsDominicanRepublic()"
@@ -4018,7 +3668,7 @@
                         type="number"
                         id="numberCreators"
                         name="numberCreators"
-                        placeholder="Numero de creadores"
+                        placeholder="Number"
                         formControlName="number_creators"
                         (ngModelChange)="changeValues()"
                       />
@@ -4053,14 +3703,13 @@
                   </div>
                   <div class="recommendations">
                     <p>
-                      Para lograr resultados efectivos en la campaña
-                      publicitaria, sugerimos la participación de al menos 20
-                      influencers. Sin embargo, según nuestras estadísticas, el
-                      uso de 50 influencers podría generar un incremento de
-                      ventas duplicado.
+                      To achieve effective results in the advertising campaign,
+                      we suggest the participation of at least 20 influencers.
+                      However, according to our statistics, the use of 50
+                      influencers could generate a doubled increase in sales.
                       <strong
-                        >El número de contenidos seleccionados será la cantidad
-                        que se mostrará en cada ciudad.</strong
+                        >The number of content selected will be the amount that
+                        will be shown in each city.</strong
                       >
                     </p>
                   </div>
@@ -4068,7 +3717,7 @@
               </mat-card>
               <div class="all-type-contents">
                 <div class="type-contents">
-                  <h2>Carrusel de fotos</h2>
+                  <h2>Photo Carousel</h2>
                   <img src="assets/icons/carrousel.svg" alt="Icono Carrousel" />
                   <div class="number-button">
                     <button
@@ -4085,7 +3734,7 @@
                       type="number"
                       id="numberCreators"
                       name="numberCreators"
-                      placeholder="Numero de creadores"
+                      placeholder="Number"
                       formControlName="number_carrousel"
                       (ngModelChange)="changeValues()"
                     />
@@ -4100,7 +3749,7 @@
                 </div>
 
                 <div class="type-contents">
-                  <h2>Video de 0 a 15 Seg</h2>
+                  <h2>Video from 0 to 15 Sec</h2>
                   <img src="assets/icons/videos.svg" alt="Icono videos" />
                   <div class="number-button">
                     <button
@@ -4116,7 +3765,7 @@
                       type="number"
                       id="numberCreators"
                       name="numberCreators"
-                      placeholder="Numero de creadores"
+                      placeholder="Number"
                       formControlName="number_short_videos"
                       (ngModelChange)="changeValues()"
                     />
@@ -4130,7 +3779,7 @@
                   </div>
                 </div>
                 <div class="type-contents">
-                  <h2>Video de 15 a 30 Seg</h2>
+                  <h2>Video from 15 to 30 Sec</h2>
                   <img src="assets/icons/videos.svg" alt="Icono videos" />
                   <div class="number-button">
                     <button
@@ -4146,7 +3795,7 @@
                       type="number"
                       id="numberCreators"
                       name="numberCreators"
-                      placeholder="Numero de creadores"
+                      placeholder="Number"
                       formControlName="number_long_videos"
                       (ngModelChange)="changeValues()"
                     />
@@ -4160,23 +3809,6 @@
                   </div>
                 </div>
               </div>
-              <div>
-                <mat-card class="guideline">
-                  <mat-card-content id="card-pauta"
-                    >¿Deseas pautar estos videos?</mat-card-content
-                  >
-                  <mat-card-content id="card-pauta">
-                    <mat-slide-toggle
-                      type="checkbox"
-                      value="true"
-                      id="guideline"
-                      name="guideline"
-                      formControlName="guideline"
-                    >
-                    </mat-slide-toggle>
-                  </mat-card-content>
-                </mat-card>
-              </div>
             </div>
           </div>
           <div *ngIf="verificarUnitedStates">
@@ -4185,8 +3817,7 @@
               <mat-card class="card-creators">
                 <div class="cities recommendations-cities">
                   <p>
-                    Selecciona las ciudades en donde quieres que sean vistos tus
-                    contenidos
+                    Select the cities where you want your content to be viewed
                   </p>
 
                   <p-multiSelect
@@ -4203,7 +3834,7 @@
                 </div>
                 <div class="creators-recommendations">
                   <div class="creators">
-                    <label for="number-creators">Numero de creadores</label>
+                    <label for="number-creators">Number of creators</label>
                     <div class="button-creators-div">
                       <button
                         (click)="restCreatorsUnitedStates()"
@@ -4218,7 +3849,7 @@
                         type="number"
                         id="numberCreators"
                         name="numberCreators"
-                        placeholder="Numero de creadores"
+                        placeholder="Number"
                         formControlName="number_creators"
                         (ngModelChange)="changeValues()"
                       />
@@ -4253,14 +3884,13 @@
                   </div>
                   <div class="recommendations">
                     <p>
-                      Para lograr resultados efectivos en la campaña
-                      publicitaria, sugerimos la participación de al menos 20
-                      influencers. Sin embargo, según nuestras estadísticas, el
-                      uso de 50 influencers podría generar un incremento de
-                      ventas duplicado.
+                      To achieve effective results in the advertising campaign,
+                      we suggest the participation of at least 20 influencers.
+                      However, according to our statistics, the use of 50
+                      influencers could generate a doubled increase in sales.
                       <strong
-                        >El número de contenidos seleccionados será la cantidad
-                        que se mostrará en cada ciudad.</strong
+                        >The number of content selected will be the amount that
+                        will be shown in each city.</strong
                       >
                     </p>
                   </div>
@@ -4268,7 +3898,7 @@
               </mat-card>
               <div class="all-type-contents">
                 <div class="type-contents">
-                  <h2>Carrusel de fotos</h2>
+                  <h2>Photo Carousel</h2>
                   <img src="assets/icons/carrousel.svg" alt="Icono Carrousel" />
                   <div class="number-button">
                     <button
@@ -4285,7 +3915,7 @@
                       type="number"
                       id="numberCreators"
                       name="numberCreators"
-                      placeholder="Numero de creadores"
+                      placeholder="Number"
                       formControlName="number_carrousel"
                       (ngModelChange)="changeValues()"
                     />
@@ -4300,7 +3930,7 @@
                 </div>
 
                 <div class="type-contents">
-                  <h2>Video de 0 a 15 Seg</h2>
+                  <h2>Video from 0 to 15 Sec</h2>
                   <img src="assets/icons/videos.svg" alt="Icono videos" />
                   <div class="number-button">
                     <button
@@ -4316,7 +3946,7 @@
                       type="number"
                       id="numberCreators"
                       name="numberCreators"
-                      placeholder="Numero de creadores"
+                      placeholder="Number"
                       formControlName="number_short_videos"
                       (ngModelChange)="changeValues()"
                     />
@@ -4330,7 +3960,7 @@
                   </div>
                 </div>
                 <div class="type-contents">
-                  <h2>Video de 15 a 30 Seg</h2>
+                  <h2>Video from 15 to 30 Sec</h2>
                   <img src="assets/icons/videos.svg" alt="Icono videos" />
                   <div class="number-button">
                     <button
@@ -4346,7 +3976,7 @@
                       type="number"
                       id="numberCreators"
                       name="numberCreators"
-                      placeholder="Numero de creadores"
+                      placeholder="Number"
                       formControlName="number_long_videos"
                       (ngModelChange)="changeValues()"
                     />
@@ -4360,23 +3990,6 @@
                   </div>
                 </div>
               </div>
-              <div>
-                <mat-card class="guideline">
-                  <mat-card-content id="card-pauta"
-                    >¿Deseas pautar estos videos?</mat-card-content
-                  >
-                  <mat-card-content id="card-pauta">
-                    <mat-slide-toggle
-                      type="checkbox"
-                      value="true"
-                      id="guideline"
-                      name="guideline"
-                      formControlName="guideline"
-                    >
-                    </mat-slide-toggle>
-                  </mat-card-content>
-                </mat-card>
-              </div>
             </div>
           </div>
           <div *ngIf="verificarCanada">
@@ -4385,8 +3998,7 @@
               <mat-card class="card-creators">
                 <div class="cities recommendations-cities">
                   <p>
-                    Selecciona las ciudades en donde quieres que sean vistos tus
-                    contenidos
+                    Select the cities where you want your content to be viewed
                   </p>
 
                   <p-multiSelect
@@ -4403,7 +4015,7 @@
                 </div>
                 <div class="creators-recommendations">
                   <div class="creators">
-                    <label for="number-creators">Numero de creadores</label>
+                    <label for="number-creators">Number of creators</label>
                     <div class="button-creators-div">
                       <button
                         (click)="restCreatorsCanada()"
@@ -4418,7 +4030,7 @@
                         type="number"
                         id="numberCreators"
                         name="numberCreators"
-                        placeholder="Numero de creadores"
+                        placeholder="Number"
                         formControlName="number_creators"
                         (ngModelChange)="changeValues()"
                       />
@@ -4453,14 +4065,13 @@
                   </div>
                   <div class="recommendations">
                     <p>
-                      Para lograr resultados efectivos en la campaña
-                      publicitaria, sugerimos la participación de al menos 20
-                      influencers. Sin embargo, según nuestras estadísticas, el
-                      uso de 50 influencers podría generar un incremento de
-                      ventas duplicado.
+                      To achieve effective results in the advertising campaign,
+                      we suggest the participation of at least 20 influencers.
+                      However, according to our statistics, the use of 50
+                      influencers could generate a doubled increase in sales.
                       <strong
-                        >El número de contenidos seleccionados será la cantidad
-                        que se mostrará en cada ciudad.</strong
+                        >The number of content selected will be the amount that
+                        will be shown in each city.</strong
                       >
                     </p>
                   </div>
@@ -4468,7 +4079,7 @@
               </mat-card>
               <div class="all-type-contents">
                 <div class="type-contents">
-                  <h2>Carrusel de fotos</h2>
+                  <h2>Photo Carousel</h2>
                   <img src="assets/icons/carrousel.svg" alt="Icono Carrousel" />
                   <div class="number-button">
                     <button
@@ -4485,7 +4096,7 @@
                       type="number"
                       id="numberCreators"
                       name="numberCreators"
-                      placeholder="Numero de creadores"
+                      placeholder="Number"
                       formControlName="number_carrousel"
                       (ngModelChange)="changeValues()"
                     />
@@ -4500,7 +4111,7 @@
                 </div>
 
                 <div class="type-contents">
-                  <h2>Video de 0 a 15 Seg</h2>
+                  <h2>Video from 0 to 15 Sec</h2>
                   <img src="assets/icons/videos.svg" alt="Icono videos" />
                   <div class="number-button">
                     <button
@@ -4516,7 +4127,7 @@
                       type="number"
                       id="numberCreators"
                       name="numberCreators"
-                      placeholder="Numero de creadores"
+                      placeholder="Number"
                       formControlName="number_short_videos"
                       (ngModelChange)="changeValues()"
                     />
@@ -4530,7 +4141,7 @@
                   </div>
                 </div>
                 <div class="type-contents">
-                  <h2>Video de 15 a 30 Seg</h2>
+                  <h2>Video from 15 to 30 Sec</h2>
                   <img src="assets/icons/videos.svg" alt="Icono videos" />
                   <div class="number-button">
                     <button
@@ -4546,7 +4157,7 @@
                       type="number"
                       id="numberCreators"
                       name="numberCreators"
-                      placeholder="Numero de creadores"
+                      placeholder="Number"
                       formControlName="number_long_videos"
                       (ngModelChange)="changeValues()"
                     />
@@ -4559,23 +4170,6 @@
                     </button>
                   </div>
                 </div>
-              </div>
-              <div>
-                <mat-card class="guideline">
-                  <mat-card-content id="card-pauta"
-                    >¿Deseas pautar estos videos?</mat-card-content
-                  >
-                  <mat-card-content id="card-pauta">
-                    <mat-slide-toggle
-                      type="checkbox"
-                      value="true"
-                      id="guideline"
-                      name="guideline"
-                      formControlName="guideline"
-                    >
-                    </mat-slide-toggle>
-                  </mat-card-content>
-                </mat-card>
               </div>
             </div>
           </div>
@@ -4600,34 +4194,47 @@
       />
       <h2>Shopping Cart</h2>
       <div class="data">
-        <label for="country">País</label>
+        <label for="country">Country</label>
         <p>{{ selectedCountry }}</p>
       </div>
       <div class="data">
-        <label for="videoCount">Número de contenidos</label>
+        <label for="videoCount">Total Cities</label>
+        <p>
+          {{ ValorCiudadesTotal }}
+        </p>
+      </div>
+      <div class="data">
+        <label for="videoCount">Creators</label>
+        <p>
+          {{ ValorNumeroCreadores }}
+        </p>
+      </div>
+
+      <div class="data">
+        <label for="videoCount">Total Contents</label>
         <p>
           {{ valorContenidosTotal }}
         </p>
       </div>
       <div class="data">
-        <label for="numberCarrousel">Contenidos Carrousel</label>
+        <label for="numberCarrousel">Carrousel Contents</label>
         <p>{{ valorCarrouselTotal }}</p>
       </div>
       <div class="data">
-        <label for="numeroLongVideos">Contenidos Largos</label>
+        <label for="numeroLongVideos">Long Contents</label>
         <p>{{ valorLongTotal }}</p>
       </div>
       <div class="data">
-        <label for="numberShortVideos">Contenidos Cortos</label>
+        <label for="numberShortVideos">Short Contents</label>
         <p>{{ valorShortTotal }}</p>
       </div>
       <div class="data">
-        <label for="videoType">Average value per content</label>
+        <label for="videoType">Average per content</label>
         <p>{{ valorPromedioContenido | number : "1.0-1" }} USD</p>
       </div>
 
       <div class="data">
-        <p id="total">Valor Total:</p>
+        <p id="total">TOTAL VALUE:</p>
         <p>
           {{
             this.ValorTotal + (0.35 * this.ValorTotal) / 0.65 | number : "1.0-1"

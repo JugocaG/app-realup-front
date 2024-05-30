@@ -16,78 +16,52 @@
     <div class="title">
       <h1>Brand Ambassador</h1>
     </div>
+    <mat-card style="margin: 20px">
+      <h2 style="padding: 0 20px">
+        The following quotation will be sent to our sales executives, who will
+        respond within one business day.
+      </h2>
+    </mat-card>
     <div class="content-form">
       <form [formGroup]="saveClientForm" class="form-brand-ambassador">
         <div class="title-campaing">
-          <h2>Campaña</h2>
+          <h2>Campaign</h2>
         </div>
+
         <mat-card class="card-campaign">
           <div class="campaign-name">
-            <div>
-              <input
-                type="text"
-                id="client"
-                name="client"
-                placeholder="Cliente"
-                formControlName="client"
-              />
-            </div>
-            <div>
-              <input
-                type="text"
-                name="campaign_name"
-                id="campaign_name"
-                placeholder="Nombre de la camapaña"
-                formControlName="campaign_name"
-              />
-            </div>
+            <input
+              type="text"
+              id="cliente"
+              name="cliente"
+              placeholder="Your Name"
+            />
+            <input
+              type="text"
+              id="client"
+              name="client"
+              placeholder="Brand"
+              formControlName="client"
+            />
+            <input
+              type="text"
+              name="campaign_name"
+              id="campaign_name"
+              placeholder="Campaign name"
+              formControlName="campaign_name"
+            />
           </div>
           <div class="campaign-objetive">
-            <h2>Objetivo de campaña</h2>
+            <h2>Campaign objective</h2>
             <div class="radio-product-boxes">
-              <div class="radio-product-box">
+              <div class="radio-product-box" *ngFor="let option of options">
                 <input
                   class="radio-product"
-                  value="0"
-                  type="radio"
-                  id="brand-awarness"
-                  name="campaign_objective"
-                  formControlName="campaign_objective"
+                  type="checkbox"
+                  [value]="option.value"
+                  [id]="option.id"
                 />
-                <label for="brand-awarness">Brand Awarness</label>
-              </div>
-              <div class="radio-product-box">
-                <input
-                  class="radio-product"
-                  value="1"
-                  type="radio"
-                  id="consideration"
-                  name="campaign_objective"
-                  formControlName="campaign_objective"
-                />
-                <label for="consideration">Consideracion</label>
-              </div>
-              <div class="radio-product-box">
-                <input
-                  class="radio-product"
-                  value="2"
-                  type="radio"
-                  id="conversion"
-                  name="campaign_objective"
-                  formControlName="campaign_objective"
-                />
-                <label for="conversion">Conversion</label>
-              </div>
-              <div class="radio-product-box">
-                <input
-                  class="radio-product"
-                  value="3"
-                  type="radio"
-                  id="retention"
-                  name="campaign_objective"
-                  formControlName="campaign_objective"
-                />
-                <label for="retention">Retencion</label>
+                <label [for]="option.id">{{ option.label }}</label>
               </div>
             </div>
           </div>
@@ -108,14 +82,14 @@
           </div>
         </mat-card>
         <div class="title-campaing">
-          <h2>Audicencia</h2>
+          <h2>Audience</h2>
         </div>
         <mat-card class="location-card card-campaign">
           <div class="location">
             <h2>Location</h2>
             <div class="country">
               <mat-form-field class="select-country">
-                <mat-label>Pais</mat-label>
+                <mat-label>Country</mat-label>
                 <mat-select
                   multiple
                   [(ngModel)]="selectedCountry"
@@ -125,16 +99,12 @@
                   name="country"
                   formControlName="location"
                 >
-                  <mat-option value="Argentina">Argentina</mat-option>
-                  <mat-option value="Bolivia">Bolivia</mat-option>
-                  <mat-option value="Brasil">Brasil</mat-option>
-                  <mat-option value="Chile">Chile</mat-option>
-                  <mat-option value="Colombia">Colombia</mat-option>
-                  <mat-option value="Ecuador">Ecuador</mat-option>
-                  <mat-option value="Paraguay">Paraguay</mat-option>
-                  <mat-option value="Peru">Peru</mat-option>
-                  <mat-option value="Uruguay">Uruguay</mat-option>
-                  <mat-option value="Venezuela">Venezuela</mat-option>
+                  <mat-option
+                    *ngFor="let country of countries"
+                    [value]="country"
+                  >
+                    {{ country }}
+                  </mat-option>
                 </mat-select>
               </mat-form-field>
             </div>
@@ -256,6 +226,150 @@
                 [virtualScrollItemSize]="43"
                 [showClear]="true"
               ></p-multiSelect>
+
+              <p-multiSelect
+                *ngIf="verificarCostaRica"
+                formControlName="cities_costa_rica"
+                [options]="citiesListCostaRica"
+                optionLabel="name"
+                styleClass="cities-multiselect"
+                placeholder="Cities Costa Rica"
+                [virtualScroll]="true"
+                [virtualScrollItemSize]="43"
+                [showClear]="true"
+              ></p-multiSelect>
+
+              <p-multiSelect
+                *ngIf="verificarCuba"
+                formControlName="cities_cuba"
+                [options]="citiesListCuba"
+                optionLabel="name"
+                styleClass="cities-multiselect"
+                placeholder="Cities Cuba"
+                [virtualScroll]="true"
+                [virtualScrollItemSize]="43"
+                [showClear]="true"
+              ></p-multiSelect>
+
+              <p-multiSelect
+                *ngIf="verificarElSalvador"
+                formControlName="cities_el_salvador"
+                [options]="citiesListElSalvador"
+                optionLabel="name"
+                styleClass="cities-multiselect"
+                placeholder="Cities El Salvador"
+                [virtualScroll]="true"
+                [virtualScrollItemSize]="43"
+                [showClear]="true"
+              ></p-multiSelect>
+
+              <p-multiSelect
+                *ngIf="verificarGuatemala"
+                formControlName="cities_guatemala"
+                [options]="citiesListGuatemala"
+                optionLabel="name"
+                styleClass="cities-multiselect"
+                placeholder="Cities Guatemala"
+                [virtualScroll]="true"
+                [virtualScrollItemSize]="43"
+                [showClear]="true"
+              ></p-multiSelect>
+
+              <p-multiSelect
+                *ngIf="verificarHonduras"
+                formControlName="cities_honduras"
+                [options]="citiesListHonduras"
+                optionLabel="name"
+                styleClass="cities-multiselect"
+                placeholder="Cities Honduras"
+                [virtualScroll]="true"
+                [virtualScrollItemSize]="43"
+                [showClear]="true"
+              ></p-multiSelect>
+
+              <p-multiSelect
+                *ngIf="verificarMexico"
+                formControlName="cities_mexico"
+                [options]="citiesListMexico"
+                optionLabel="name"
+                styleClass="cities-multiselect"
+                placeholder="Cities Mexico"
+                [virtualScroll]="true"
+                [virtualScrollItemSize]="43"
+                [showClear]="true"
+              ></p-multiSelect>
+
+              <p-multiSelect
+                *ngIf="verificarNicaragua"
+                formControlName="cities_nicaragua"
+                [options]="citiesListNicaragua"
+                optionLabel="name"
+                styleClass="cities-multiselect"
+                placeholder="Cities Nicaragua"
+                [virtualScroll]="true"
+                [virtualScrollItemSize]="43"
+                [showClear]="true"
+              ></p-multiSelect>
+
+              <p-multiSelect
+                *ngIf="verificarPanama"
+                formControlName="cities_panama"
+                [options]="citiesListPanama"
+                optionLabel="name"
+                styleClass="cities-multiselect"
+                placeholder="Cities Panama"
+                [virtualScroll]="true"
+                [virtualScrollItemSize]="43"
+                [showClear]="true"
+              ></p-multiSelect>
+
+              <p-multiSelect
+                *ngIf="verificarPuertoRico"
+                formControlName="cities_puerto_rico"
+                [options]="citiesListPuertoRico"
+                optionLabel="name"
+                styleClass="cities-multiselect"
+                placeholder="Cities Puerto Rico"
+                [virtualScroll]="true"
+                [virtualScrollItemSize]="43"
+                [showClear]="true"
+              ></p-multiSelect>
+
+              <p-multiSelect
+                *ngIf="verificarDominicanRepublic"
+                formControlName="cities_dominican_republic"
+                [options]="citiesListDominicanRepublic"
+                optionLabel="name"
+                styleClass="cities-multiselect"
+                placeholder="Cities Dominican Republic"
+                [virtualScroll]="true"
+                [virtualScrollItemSize]="43"
+                [showClear]="true"
+              ></p-multiSelect>
+
+              <p-multiSelect
+                *ngIf="verificarCanada"
+                formControlName="cities_canada"
+                [options]="citiesListCanada"
+                optionLabel="name"
+                styleClass="cities-multiselect"
+                placeholder="Cities Canada"
+                [virtualScroll]="true"
+                [virtualScrollItemSize]="43"
+                [showClear]="true"
+              ></p-multiSelect>
+
+              <p-multiSelect
+                *ngIf="verificarUnitedStates"
+                formControlName="cities_united_states"
+                [options]="citiesListUnitedStates"
+                optionLabel="name"
+                styleClass="cities-multiselect"
+                placeholder="Cities United States"
+                [virtualScroll]="true"
+                [virtualScrollItemSize]="43"
+                [showClear]="true"
+              ></p-multiSelect>
             </div>
           </div>
         </mat-card>
@@ -318,13 +432,13 @@
               >
                 <mat-option value="Male">Male</mat-option>
                 <mat-option value="Female">Female</mat-option>
-                <mat-option value="Indiferente">Indiferente</mat-option>
+                <mat-option value="No preference">No preference</mat-option>
               </mat-select>
             </mat-form-field>
           </div>
         </mat-card>
         <div class="title-campaing">
-          <h2>Contenido</h2>
+          <h2>Content</h2>
         </div>
         <mat-card class="card-campaign">
           <h2>Creators</h2>
@@ -377,7 +491,7 @@
               >
                 <mat-option value="Male">Male</mat-option>
                 <mat-option value="Female">Female</mat-option>
-                <mat-option value="Indiferente">Indiferente</mat-option>
+                <mat-option value="No preference">No preference</mat-option>
               </mat-select>
             </mat-form-field>
             <div>
@@ -396,7 +510,7 @@
               </mat-form-field>
             </div>
             <div class="creators">
-              <label>Numero de creadores</label>
+              <label>Number of creators</label>
               <div class="button-creators-div">
                 <button
                   (click)="restCreators()"
@@ -412,7 +526,7 @@
                   type="number"
                   id="numberCreators"
                   name="numberCreators"
-                  placeholder="Numero de creadores"
+                  placeholder="Number of creators"
                   formControlName="number_creators"
                 />
                 <button
@@ -430,153 +544,15 @@
               </div>
             </div>
           </div>
-          <div class="campaign-objetive">
-            <h2>Date</h2>
-            <div class="radio-product-boxes radio-date-boxes">
-              <div class="radio-product-box">
-                <input
-                  class="radio-product radio-date"
-                  type="radio"
-                  name="date_publish"
-                  id="enero"
-                  value="Enero"
-                  formControlName="date_publish"
-                />
-                <label for="enero">Enero</label>
-              </div>
-              <div class="radio-product-box">
-                <input
-                  class="radio-product radio-date"
-                  type="radio"
-                  name="date_publish"
-                  id="febrero"
-                  value="Febrero"
-                  formControlName="date_publish"
-                />
-                <label for="febrero">Febrero</label>
-              </div>
 
-              <div class="radio-product-box">
-                <input
-                  class="radio-product radio-date"
-                  type="radio"
-                  name="date_publish"
-                  id="marzo"
-                  value="Marzo"
-                  formControlName="date_publish"
-                />
-                <label for="marzo">Marzo</label>
-              </div>
-
-              <div class="radio-product-box">
-                <input
-                  class="radio-product radio-date"
-                  type="radio"
-                  name="date_publish"
-                  id="abril"
-                  value="Abril"
-                  formControlName="date_publish"
-                />
-                <label for="abril">Abril</label>
-              </div>
-
-              <div class="radio-product-box">
-                <input
-                  class="radio-product radio-date"
-                  type="radio"
-                  name="date_publish"
-                  id="mayo"
-                  value="Mayo"
-                  formControlName="date_publish"
-                />
-                <label for="mayo">Mayo</label>
-              </div>
-
-              <div class="radio-product-box">
-                <input
-                  class="radio-product radio-date"
-                  type="radio"
-                  name="date_publish"
-                  id="junio"
-                  value="Junio"
-                  formControlName="date_publish"
-                />
-                <label for="junio">Junio</label>
-              </div>
-            </div>
-            <div class="radio-product-boxes radio-date-boxes">
-              <div class="radio-product-box">
-                <input
-                  class="radio-product radio-date"
-                  type="radio"
-                  name="date_publish"
-                  id="julio"
-                  value="Julio"
-                  formControlName="date_publish"
-                />
-                <label for="julio">Julio</label>
-              </div>
-
-              <div class="radio-product-box">
-                <input
-                  class="radio-product radio-date"
-                  type="radio"
-                  name="date_publish"
-                  id="agosto"
-                  value="Agosto"
-                  formControlName="date_publish"
-                />
-                <label for="agosto">Agosto</label>
-              </div>
-
-              <div class="radio-product-box">
-                <input
-                  class="radio-product radio-date"
-                  type="radio"
-                  name="date_publish"
-                  id="septiembre"
-                  value="Septiembre"
-                  formControlName="date_publish"
-                />
-                <label for="septiembre">Septiembre</label>
-              </div>
-
-              <div class="radio-product-box">
-                <input
-                  class="radio-product radio-date"
-                  type="radio"
-                  name="date_publish"
-                  id="octubre"
-                  value="Octubre"
-                  formControlName="date_publish"
-                />
-                <label for="octubre">Octubre</label>
-              </div>
-
-              <div class="radio-product-box">
-                <input
-                  class="radio-product radio-date"
-                  type="radio"
-                  name="date_publish"
-                  id="noviembre"
-                  value="Noviembre"
-                  formControlName="date_publish"
-                />
-                <label for="noviembre">Noviembre</label>
-              </div>
-
-              <div class="radio-product-box">
-                <input
-                  class="radio-product radio-date"
-                  type="radio"
-                  name="date_publish"
-                  id="diciembre"
-                  value="Diciembre"
-                  formControlName="date_publish"
-                />
-                <label for="diciembre">Diciembre</label>
-              </div>
-            </div>
+          <div class="campaign-objetive flex justify-content-center calendar">
+            <h2>Select the date of content deployment</h2>
+            <p-calendar
+              selectionMode="range"
+              [(ngModel)]="date"
+              [inline]="true"
+              [showWeek]="true"
+            />
           </div>
         </mat-card>
         <div class="button-final">

@@ -32,7 +32,7 @@ import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { AsyncPipe } from '@angular/common';
 import { MultiSelectModule } from 'primeng/multiselect';
 import { ConfirmDialogModule } from 'primeng/confirmdialog';
-
+import { CalendarModule } from 'primeng/calendar';
 import { ToastModule } from 'primeng/toast';
 
 @NgModule({
@@ -74,6 +74,7 @@ import { ToastModule } from 'primeng/toast';
     CardModule,
     ConfirmDialogModule,
     ToastModule,
+    CalendarModule,
   ],
   providers: [provideAnimationsAsync()],
   bootstrap: [AppComponent],

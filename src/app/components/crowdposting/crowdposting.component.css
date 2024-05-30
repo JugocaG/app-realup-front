@@ -110,6 +110,7 @@ mat-card {
   flex-direction: row;
   justify-content: space-around;
   input {
+    font-size: 18px;
     background-color: #00eced;
     font-family: "Poppins", sans-serif;
     font-weight: 700;
@@ -118,7 +119,7 @@ mat-card {
     border: none;
     border-radius: 20px;
     margin-top: 20px;
-    width: 40%;
+    width: 30%;
     height: 48px;
     text-indent: 10px;
   }
@@ -193,12 +194,12 @@ mat-card {
   font-size: 14px;
 
   width: 25%;
-  margin: 40px;
-  height: 75%;
+  margin: 3vh;
+  height: 80%;
   border-radius: 33px;
   background-color: #d8007f;
   position: fixed;
-  right: 0%;
+  right: 2%;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -226,6 +227,7 @@ mat-card {
 }
 
 .data {
+  font-size: 2vh;
   display: flex;
   flex-direction: row;
   align-items: center;
@@ -237,9 +239,15 @@ mat-card {
     font-style: normal;
   }
   p {
+    margin: 1.2vh 0;
+
     font-family: "Poppins", sans-serif;
     font-weight: 400;
     font-style: normal;
+  }
+
+  label {
+    margin: 1.2vh 0;
   }
 }
 

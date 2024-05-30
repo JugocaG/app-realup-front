@@ -37,13 +37,13 @@
 input[type="text"] {
   background-color: #00eced;
   font-family: "Poppins", sans-serif;
-  font-weight: 700;
+  font-weight: 500;
   font-style: normal;
-  font-size: 25px;
+  font-size: 20px;
   color: #000000;
   border: none;
   border-radius: 20px;
-  width: 500px;
+  width: 30%;
   height: 48px;
   margin: 20px;
   text-indent: 10px;
@@ -58,6 +58,7 @@ input[type="text"]::placeholder {
 }
 
 .campaign-name {
+  width: 80%;
   display: flex;
   flex-direction: row;
 }
@@ -338,4 +339,8 @@ input[type="number"]::-webkit-outer-spin-button {
 .nav-links a:hover {
   background-color: #d20981; /* Fondo rosa para el hover */
   color: white; /* Color de texto blanco para el hover */
+}
+
+.calendar {
+  margin: 30px;
 }

@@ -17,7 +17,14 @@
       <div class="title">
         <h1>Crowdposting</h1>
       </div>
+
       <div class="content-form">
+        <mat-card style="margin: 30px">
+          <h2 style="padding: 0 20px">
+            The following quotation will be sent to our sales executives, who
+            will respond within one business day.
+          </h2>
+        </mat-card>
         <mat-card class="campaign-info">
           <form [formGroup]="saveClientForm">
             <div class="campaign-name">
@@ -25,18 +32,24 @@
                 type="text"
                 id="cliente"
                 name="cliente"
-                placeholder="Nombre Cliente"
+                placeholder="Your Name"
+              />
+              <input
+                type="text"
+                id="cliente"
+                name="cliente"
+                placeholder="Brand"
                 formControlName="name_client"
               />
               <input
                 type="text"
                 name="campaign_name"
                 id="campaign_name"
-                placeholder="Nombre de la camapaña"
+                placeholder="Campaign name"
               />
             </div>
             <div class="campaign-objetive">
-              <h2>Objetivo de campaña</h2>
+              <h2>Campaign objective</h2>
               <div class="radio-product-boxes">
                 <div class="radio-product-box" *ngFor="let option of options">
                   <input
@@ -67,12 +80,12 @@
               <div class="country">
                 <h2>Location</h2>
                 <p class="text-packages">
-                  Selecciona el país y las ciudades en donde deseas que tus
-                  contenidos sean vistos
+                  Select the country and cities where you want your content to
+                  be viewed
                 </p>
 
                 <mat-form-field class="select-country">
-                  <mat-label>Pais</mat-label>
+                  <mat-label>Country</mat-label>
                   <mat-select
                     (selectionChange)="changeValor()"
                     (selectionChange)="showCities()"
@@ -113,6 +126,7 @@
 
                   <p-multiSelect
                     formControlName="cities"
+                    [(ngModel)]="citiesSelected"
                     [options]="citiesListBolivia"
                     optionLabel="name"
                     styleClass="cities-multiselect"
@@ -127,6 +141,7 @@
 
                   <p-multiSelect
                     formControlName="cities"
+                    [(ngModel)]="citiesSelected"
                     [options]="citiesListBrasil"
                     optionLabel="name"
                     styleClass="cities-multiselect"
@@ -141,6 +156,7 @@
 
                   <p-multiSelect
                     formControlName="cities"
+                    [(ngModel)]="citiesSelected"
                     [options]="citiesListChile"
                     optionLabel="name"
                     styleClass="cities-multiselect"
@@ -155,6 +171,7 @@
 
                   <p-multiSelect
                     formControlName="cities"
+                    [(ngModel)]="citiesSelected"
                     [options]="citiesListColombia"
                     optionLabel="name"
                     styleClass="cities-multiselect"
@@ -169,6 +186,7 @@
 
                   <p-multiSelect
                     formControlName="cities"
+                    [(ngModel)]="citiesSelected"
                     [options]="citiesListEcuador"
                     optionLabel="name"
                     styleClass="cities-multiselect"
@@ -183,6 +201,7 @@
 
                   <p-multiSelect
                     formControlName="cities"
+                    [(ngModel)]="citiesSelected"
                     [options]="citiesListParaguay"
                     optionLabel="name"
                     styleClass="cities-multiselect"
@@ -197,6 +216,7 @@
 
                   <p-multiSelect
                     formControlName="cities"
+                    [(ngModel)]="citiesSelected"
                     [options]="citiesListPeru"
                     optionLabel="name"
                     styleClass="cities-multiselect"
@@ -211,6 +231,7 @@
 
                   <p-multiSelect
                     formControlName="cities"
+                    [(ngModel)]="citiesSelected"
                     [options]="citiesListUruguay"
                     optionLabel="name"
                     styleClass="cities-multiselect"
@@ -225,6 +246,7 @@
 
                   <p-multiSelect
                     formControlName="cities"
+                    [(ngModel)]="citiesSelected"
                     [options]="citiesListVenezuela"
                     optionLabel="name"
                     styleClass="cities-multiselect"
@@ -239,6 +261,7 @@
 
                   <p-multiSelect
                     formControlName="cities"
+                    [(ngModel)]="citiesSelected"
                     [options]="citiesListCostaRica"
                     optionLabel="name"
                     styleClass="cities-multiselect"
@@ -253,6 +276,7 @@
 
                   <p-multiSelect
                     formControlName="cities"
+                    [(ngModel)]="citiesSelected"
                     [options]="citiesListCuba"
                     optionLabel="name"
                     styleClass="cities-multiselect"
@@ -267,6 +291,7 @@
 
                   <p-multiSelect
                     formControlName="cities"
+                    [(ngModel)]="citiesSelected"
                     [options]="citiesListElSalvador"
                     optionLabel="name"
                     styleClass="cities-multiselect"
@@ -281,6 +306,7 @@
 
                   <p-multiSelect
                     formControlName="cities"
+                    [(ngModel)]="citiesSelected"
                     [options]="citiesListGuatemala"
                     optionLabel="name"
                     styleClass="cities-multiselect"
@@ -295,6 +321,7 @@
 
                   <p-multiSelect
                     formControlName="cities"
+                    [(ngModel)]="citiesSelected"
                     [options]="citiesListHonduras"
                     optionLabel="name"
                     styleClass="cities-multiselect"
@@ -309,6 +336,7 @@
 
                   <p-multiSelect
                     formControlName="cities"
+                    [(ngModel)]="citiesSelected"
                     [options]="citiesListMexico"
                     optionLabel="name"
                     styleClass="cities-multiselect"
@@ -323,6 +351,7 @@
 
                   <p-multiSelect
                     formControlName="cities"
+                    [(ngModel)]="citiesSelected"
                     [options]="citiesListNicaragua"
                     optionLabel="name"
                     styleClass="cities-multiselect"
@@ -337,6 +366,7 @@
 
                   <p-multiSelect
                     formControlName="cities"
+                    [(ngModel)]="citiesSelected"
                     [options]="citiesListPanama"
                     optionLabel="name"
                     styleClass="cities-multiselect"
@@ -351,6 +381,7 @@
 
                   <p-multiSelect
                     formControlName="cities"
+                    [(ngModel)]="citiesSelected"
                     [options]="citiesListPuertoRico"
                     optionLabel="name"
                     styleClass="cities-multiselect"
@@ -365,6 +396,7 @@
 
                   <p-multiSelect
                     formControlName="cities"
+                    [(ngModel)]="citiesSelected"
                     [options]="citiesListDominicanRepublic"
                     optionLabel="name"
                     styleClass="cities-multiselect"
@@ -379,6 +411,7 @@
 
                   <p-multiSelect
                     formControlName="cities"
+                    [(ngModel)]="citiesSelected"
                     [options]="citiesListUnitedStates"
                     optionLabel="name"
                     styleClass="cities-multiselect"
@@ -393,6 +426,7 @@
 
                   <p-multiSelect
                     formControlName="cities"
+                    [(ngModel)]="citiesSelected"
                     [options]="citiesListCanada"
                     optionLabel="name"
                     styleClass="cities-multiselect"
@@ -411,13 +445,12 @@
       <div>
         <h2 style="text-align: center"></h2>
         <mat-card class="packages-recommended">
-          <h2>Paquetes recomendados por ciudad</h2>
+          <h2>Recommended packages per city</h2>
           <p class="text-packages">
-            A continuación, te recomendamos algunos de los paquetes que
-            ofrecemos para alcanzar esas métricas que tanto deseas. Puedes
-            agregar cuantos paquetes quieras, ya sea para probar ciertos
-            paquetes en una ciudad u otra o para lanzar los contenidos en
-            diferentes fechas. ¡Los límites los pones tú!
+            Below, we recommend some of the packages we offer to achieve those
+            metrics you want so much. You can add as many packages as you want,
+            either to test certain packages in one city or another or to launch
+            content on different dates, the limits are up to you!
           </p>
           <div class="packages-defined">
             <div class="package-defined">
@@ -430,37 +463,37 @@
                 />
 
                 <h3 style="margin-top: 0">Instagram</h3>
-                <!-- Perfil Micro Influencer -->
+                <!-- Micro Influencer Profile -->
                 <div class="div-title-micro">
-                  <h4 class="title-micro">Perfil Micro Influencer</h4>
+                  <h4 class="title-micro">Micro Influencer Profile</h4>
                 </div>
                 <div class="data-package-combos">
-                  <p><strong>Cantidad</strong></p>
+                  <p><strong>Quantity</strong></p>
                   <p>15</p>
                 </div>
                 <div class="data-package-combos">
-                  <p><strong>Numero de Historias (c/u)</strong></p>
+                  <p><strong>Number of Stories (each)</strong></p>
                   <p>3</p>
                 </div>
                 <div class="data-package-combos">
-                  <p><strong>Numero de Reels (c/u)</strong></p>
+                  <p><strong>Number of Reels (each)</strong></p>
                   <p>1</p>
                 </div>
 
-                <!-- Perfil Nano Influencer -->
+                <!-- Nano Influencer Profile -->
                 <div class="div-title-nano">
-                  <h4 class="title-nano">Perfil Nano Influencer</h4>
+                  <h4 class="title-nano">Nano Influencer Profile</h4>
                 </div>
                 <div class="data-package-combos">
-                  <p><strong>Cantidad</strong></p>
+                  <p><strong>Quantity</strong></p>
                   <p>30</p>
                 </div>
                 <div class="data-package-combos">
-                  <p><strong>Numero de Historias (c/u)</strong></p>
+                  <p><strong>Number of Stories (each)</strong></p>
                   <p>3</p>
                 </div>
                 <div class="data-package-combos">
-                  <p><strong>Numero de Reels (c/u)</strong></p>
+                  <p><strong>Number of Reels (each)</strong></p>
                   <p>1</p>
                 </div>
                 <div class="div-tax-accountant">
@@ -471,14 +504,14 @@
                   />
                   <div class="text-tax-accountant">
                     <p>
-                      <strong>Contenidos Totales: </strong>
+                      <strong>Total Contents: </strong>
                       {{ 180 }}
                     </p>
                     <p>
-                      <strong>Alcance: </strong>{{ ReachTotalPaqueteUnoNormal }}
+                      <strong>Reach: </strong>{{ ReachTotalPaqueteUnoNormal }}
                     </p>
                     <p>
-                      <strong>Valor: </strong
+                      <strong>Value: </strong
                       >{{
                         this.ValorTotalPaqueteUnoNormal +
                           (0.35 * this.ValorTotalPaqueteUnoNormal) / 0.65
@@ -489,7 +522,7 @@
                   </div>
                 </div>
 
-                <p class="bolsa">Agregar a la bolsa</p>
+                <p class="bolsa">Add to cart</p>
 
                 <!-- Boton sumar - restar -->
                 <div class="data-packages-combos">
@@ -529,29 +562,29 @@
                   alt="Icono TikTok"
                 />
                 <h3 style="margin-top: 0">TikTok</h3>
-                <!-- Perfil Micro Influencer -->
+                <!-- Micro Influencer Profile -->
                 <div class="div-title-micro">
-                  <h4 class="title-micro">Perfil Micro Influencer</h4>
+                  <h4 class="title-micro">Micro Influencer Profile</h4>
                 </div>
                 <div class="data-package-combos">
-                  <p><strong>Cantidad</strong></p>
+                  <p><strong>Quantity</strong></p>
                   <p>15</p>
                 </div>
                 <div class="data-package-combos">
-                  <p><strong>Numero de TikToks (c/u)</strong></p>
+                  <p><strong>Number of TikToks (each)</strong></p>
                   <p>1</p>
                 </div>
 
-                <!-- Perfil Nano Influencer -->
+                <!-- Nano Influencer Profile -->
                 <div class="div-title-nano">
-                  <h4 class="title-nano">Perfil Nano Influencer</h4>
+                  <h4 class="title-nano">Nano Influencer Profile</h4>
                 </div>
                 <div class="data-package-combos">
-                  <p><strong>Cantidad</strong></p>
+                  <p><strong>Quantity</strong></p>
                   <p>30</p>
                 </div>
                 <div class="data-package-combos">
-                  <p><strong>Numero de TikToks (c/u)</strong></p>
+                  <p><strong>Number of TikToks (each)</strong></p>
                   <p>1</p>
                 </div>
                 <div class="div-tax-accountant div-tax-accountant-special">
@@ -562,14 +595,14 @@
                   />
                   <div class="text-tax-accountant">
                     <p>
-                      <strong>Contenidos Totales: </strong>
+                      <strong>Total Contents: </strong>
                       {{ 45 }}
                     </p>
                     <p>
-                      <strong>Alcance: </strong>{{ ReachTotalPaqueteDosNormal }}
+                      <strong>Reach: </strong>{{ ReachTotalPaqueteDosNormal }}
                     </p>
                     <p>
-                      <strong>Valor: </strong
+                      <strong>Value: </strong
                       >{{
                         this.ValorTotalPaqueteDosNormal +
                           (0.35 * this.ValorTotalPaqueteDosNormal) / 0.65
@@ -579,7 +612,7 @@
                     </p>
                   </div>
                 </div>
-                <p class="bolsa bolsa-tiktok">Agregar a la bolsa</p>
+                <p class="bolsa bolsa-tiktok">Add to cart</p>
 
                 <!-- Boton sumar - restar -->
                 <div class="data-packages-combos">
@@ -625,37 +658,37 @@
                   alt="Icono TikTok"
                 />
                 <h3 style="margin-top: 0">Instagram + TikTok</h3>
-                <!-- Perfil Micro Influencer -->
+                <!-- Micro Influencer Profile -->
                 <div class="div-title-micro">
-                  <h4 class="title-micro">Perfil Micro Influencer</h4>
+                  <h4 class="title-micro">Micro Influencer Profile</h4>
                 </div>
                 <div class="data-package-combos">
-                  <p><strong>Cantidad</strong></p>
+                  <p><strong>Quantity</strong></p>
                   <p>15</p>
                 </div>
                 <div class="data-package-combos">
-                  <p><strong>Numero de Historias (c/u)</strong></p>
+                  <p><strong>Number of Stories (each)</strong></p>
                   <p>3</p>
                 </div>
                 <div class="data-package-combos">
-                  <p><strong>Numero de Reels (c/u)</strong></p>
+                  <p><strong>Number of Reels (each)</strong></p>
                   <p>1</p>
                 </div>
 
-                <!-- Perfil Nano Influencer -->
+                <!-- Nano Influencer Profile -->
                 <div class="div-title-nano">
-                  <h4 class="title-nano">Perfil Nano Influencer</h4>
+                  <h4 class="title-nano">Nano Influencer Profile</h4>
                 </div>
                 <div class="data-package-combos">
-                  <p><strong>Cantidad</strong></p>
+                  <p><strong>Quantity</strong></p>
                   <p>30</p>
                 </div>
                 <div class="data-package-combos">
-                  <p><strong>Numero de Historias (c/u)</strong></p>
+                  <p><strong>Number of Stories (each)</strong></p>
                   <p>3</p>
                 </div>
                 <div class="data-package-combos">
-                  <p><strong>Numero de Reels (c/u)</strong></p>
+                  <p><strong>Number of Reels (each)</strong></p>
                   <p>1</p>
                 </div>
                 <div class="div-tax-accountant">
@@ -666,15 +699,14 @@
                   />
                   <div class="text-tax-accountant">
                     <p>
-                      <strong>Contenidos Totales: </strong>
+                      <strong>Total Contents: </strong>
                       {{ 180 }}
                     </p>
                     <p>
-                      <strong>Alcance: </strong
-                      >{{ ReachTotalPaqueteTresNormal }}
+                      <strong>Reach: </strong>{{ ReachTotalPaqueteTresNormal }}
                     </p>
                     <p>
-                      <strong>Valor: </strong
+                      <strong>Value: </strong
                       >{{
                         this.ValorTotalPaqueteTresNormal +
                           (0.35 * this.ValorTotalPaqueteTresNormal) / 0.65
@@ -684,7 +716,7 @@
                     </p>
                   </div>
                 </div>
-                <p class="bolsa">Agregar a la bolsa</p>
+                <p class="bolsa">Add to cart</p>
                 <!-- Boton sumar - restar -->
                 <div class="data-packages-combos">
                   <div class="paquete-botones-input">
@@ -719,8 +751,8 @@
         <mat-card>
           <div class="button-platform">
             <p style="width: 90%" class="text-packages">
-              ¿Encontraste lo que buscabas? Si no, desliza el toggle para armar
-              paquetes totalmente personalizados según tus necesidades
+              Did you find what you were looking for? If not, slide the toggle
+              to put together fully customized packages according to your needs.
             </p>
             <mat-card-content style="width: 10%" id="card-pauta">
               <mat-slide-toggle
@@ -735,13 +767,13 @@
           </div>
           <div class="content-max" *ngIf="checkPlatform">
             <div class="platform">
-              <h2>Plataformas</h2>
+              <h2>Platforms</h2>
               <p class="text-packages">
-                Selecciona las redes sociales en las que deseas publicar tus
-                contenidos. Puedes crear paquetes para que tus publicaciones
-                salgan con el mismo influenciador en diferentes plataformas
-                simultáneamente. Así, podrás maximizar el alcance y la
-                efectividad de tus campañas.
+                Select the social networks where you want to publish your
+                content. You can create packages so that your publications
+                appear with the same influencer on different platforms
+                simultaneously. This way, you can maximize the reach and
+                effectiveness of your campaigns.
               </p>
               <section #carrousel class="checkbox-package">
                 <mat-checkbox
@@ -776,10 +808,10 @@
                   <h3 style="margin-top: 0">Instagram</h3>
 
                   <div class="div-title-micro">
-                    <h4 class="title-micro">Perfil Micro Influencer</h4>
+                    <h4 class="title-micro">Micro Influencer Profile</h4>
                   </div>
                   <div class="data-package">
-                    <p>Cantidad</p>
+                    <p>Quantity</p>
                     <div class="paquete-botones-input">
                       <button
                         class="button-content"
@@ -805,7 +837,7 @@
                     </div>
                   </div>
                   <div class="data-package">
-                    <p>Numero de Historias (c/u)</p>
+                    <p>Number of Stories (each)</p>
                     <div class="paquete-botones-input">
                       <button
                         class="button-content"
@@ -836,7 +868,7 @@
                   </div>
 
                   <div class="data-package">
-                    <p>Numero de Reels (c/u)</p>
+                    <p>Number of Reels (each)</p>
                     <div class="paquete-botones-input">
                       <button
                         class="button-content"
@@ -867,11 +899,11 @@
                   </div>
 
                   <div class="div-title-nano">
-                    <h4 class="title-nano">Perfil Nano Influencer</h4>
+                    <h4 class="title-nano">Nano Influencer Profile</h4>
                   </div>
 
                   <div class="data-package">
-                    <p>Cantidad</p>
+                    <p>Quantity</p>
                     <div class="paquete-botones-input">
                       <button
                         class="button-content"
@@ -898,7 +930,7 @@
                   </div>
 
                   <div class="data-package">
-                    <p>Numero de Historias (c/u)</p>
+                    <p>Number of Stories (each)</p>
                     <div class="paquete-botones-input">
                       <button
                         class="button-content"
@@ -929,7 +961,7 @@
                   </div>
 
                   <div class="data-package">
-                    <p>Numero de Reels (c/u)</p>
+                    <p>Number of Reels (each)</p>
                     <div class="paquete-botones-input">
                       <button
                         class="button-content"
@@ -966,14 +998,12 @@
                     />
                     <div class="text-tax-accountant">
                       <p>
-                        <strong>Contenidos Totales: </strong>
+                        <strong>Total Contents: </strong>
                         {{ totalContentIgOne }}
                       </p>
+                      <p><strong>Reach: </strong>{{ ReachTotalPaqueteUno }}</p>
                       <p>
-                        <strong>Alcance: </strong>{{ ReachTotalPaqueteUno }}
-                      </p>
-                      <p>
-                        <strong>Valor: </strong
+                        <strong>Value: </strong
                         >{{
                           this.ValorTotalPaqueteUno +
                             (0.35 * this.ValorTotalPaqueteUno) / 0.65
@@ -986,11 +1016,11 @@
                   <!-- <button type="button" (click)="addSaleInstagramUno()">
                   Seleccionar
                 </button> -->
-                  <h2 style="margin-bottom: 0px">Cantidad de paquetes</h2>
+                  <h2 style="margin-bottom: 0px">Number of Packages</h2>
                   <div class="agrega-paquetes">
                     <p style="white-space: normal">
-                      Si seleccionas mas de un paquete podras desplegarlos en
-                      varios meses
+                      If you select more than one package you will be able to
+                      deploy them over several months
                     </p>
                     <div class="data-package">
                       <div class="paquete-botones-input">
@@ -1032,10 +1062,10 @@
                   <h3 style="margin-top: 0">Paquete TikTok</h3>
 
                   <div class="div-title-micro">
-                    <h4 class="title-micro">Perfil Micro Influencer</h4>
+                    <h4 class="title-micro">Micro Influencer Profile</h4>
                   </div>
                   <div class="data-package">
-                    <p>Cantidad</p>
+                    <p>Quantity</p>
                     <div class="paquete-botones-input">
                       <button
                         class="button-content"
@@ -1062,7 +1092,7 @@
                   </div>
 
                   <div class="data-package">
-                    <p>Numero de TikToks (c/u)</p>
+                    <p>Number of TikToks (each)</p>
                     <div class="paquete-botones-input">
                       <button
                         class="button-content"
@@ -1093,10 +1123,10 @@
                   </div>
 
                   <div class="div-title-nano">
-                    <h4 class="title-nano">Perfil Nano Influencer</h4>
+                    <h4 class="title-nano">Nano Influencer Profile</h4>
                   </div>
                   <div class="data-package">
-                    <p>Cantidad</p>
+                    <p>Quantity</p>
                     <div class="paquete-botones-input">
                       <button
                         class="button-content"
@@ -1124,7 +1154,7 @@
                   </div>
 
                   <div class="data-package">
-                    <p>Numero de TikToks (c/u)</p>
+                    <p>Number of TikToks (each)</p>
                     <div class="paquete-botones-input">
                       <button
                         class="button-content"
@@ -1161,14 +1191,12 @@
                     />
                     <div class="text-tax-accountant">
                       <p>
-                        <strong>Contenidos Totales:</strong>
+                        <strong>Total Contents:</strong>
                         {{ totalContentTikTokOne }}
                       </p>
+                      <p><strong>Reach: </strong>{{ ReachTotalPaqueteTres }}</p>
                       <p>
-                        <strong>Alcance: </strong>{{ ReachTotalPaqueteTres }}
-                      </p>
-                      <p>
-                        <strong>Valor: </strong
+                        <strong>Value: </strong
                         >{{
                           this.ValorTotalPaqueteTres +
                             (0.35 * this.ValorTotalPaqueteTres) / 0.65
@@ -1178,12 +1206,12 @@
                       </p>
                     </div>
                   </div>
-                  <h2 style="margin-bottom: 0px">Cantidad de paquetes</h2>
+                  <h2 style="margin-bottom: 0px">Number of Packages</h2>
 
                   <div class="agrega-paquetes">
                     <p style="white-space: normal">
-                      Si seleccionas mas de un paquete podras desplegarlos en
-                      varios meses
+                      If you select more than one package you will be able to
+                      deploy them over several months
                     </p>
                     <div class="data-package">
                       <div class="paquete-botones-input">
@@ -1219,9 +1247,9 @@
         </mat-card>
         <mat-card>
           <div class="recommendations">
-            <h3>Recomendaciones</h3>
+            <h3>Recommendations</h3>
             <p>
-              Te recomendamos usar el mismo numero de Nano y Micro influencers
+              We recommend using the same number of Nano and Micro influencers.
             </p>
           </div>
         </mat-card>
@@ -1233,7 +1261,7 @@
             type="button"
             (click)="savePackagesCrowdposting()"
           >
-            Enviar Propuesta
+            Send proposal
           </p-button>
         </div>
       </div>
@@ -1252,17 +1280,17 @@
       />
       <h2>Shopping Cart</h2>
       <div class="data">
-        <label for="country">País</label>
+        <label for="country">Country</label>
         <p>{{ selectedCountry }}</p>
       </div>
       <div class="data">
-        <label for="number-cities">Número de ciudades</label>
+        <label for="number-cities">Number of cities</label>
         <p>
           {{ citiesSelected.length }}
         </p>
       </div>
       <div class="data">
-        <label for="total-contenidos">Total Contenidos</label>
+        <label for="total-contenidos">Total Contents</label>
         <p>
           {{ totalContenidos }}
         </p>
@@ -1292,7 +1320,7 @@
         </p>
       </div>
       <div class="data">
-        <label for="Reach">Alcance Total</label>
+        <label for="Reach">Total Reach</label>
         <p>
           {{
             ReachTotalPaqueteUnoNormal * numeroContentIgOne +
@@ -1332,7 +1360,7 @@
         </p>
       </div>
       <div class="data">
-        <label for="total">Valor Total</label>
+        <label for="total">Total Value</label>
         <p>
           {{
             (this.ValorTotalPaqueteUnoNormal +
