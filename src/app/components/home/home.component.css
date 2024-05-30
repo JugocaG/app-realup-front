@@ -102,9 +102,10 @@ img {
 }
 
 .videos-muestra {
+  top: 10%;
   position: relative;
   img {
-    transform: scale(0.8);
+    transform: scale(1.2);
   }
 }
 .imagen-ugc {

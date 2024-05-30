@@ -1,4 +1,5 @@
 .container {
+  padding-top: 100px;
   background-image: url(../../../assets/images/fondoUGC.png);
   background-color: rgba(255, 255, 255, 0.9);
   background-size: cover;
@@ -160,6 +161,7 @@ input[type="text"]::placeholder {
 }
 
 .location {
+  width: 100%;
   h2 {
     margin-top: 0;
   }
@@ -167,7 +169,7 @@ input[type="text"]::placeholder {
 
 .radio-date + label {
   margin-top: 20px;
-  width: 100px;
+  width: 180px;
   text-align: center;
 }
 
@@ -281,9 +283,59 @@ input[type="number"]::-webkit-outer-spin-button {
   flex-direction: row;
 }
 
+::ng-deep .cities-multiselect {
+  margin: 20px;
+  width: 30%;
+}
+
 .cities {
   text-align: center;
   p {
     margin: 0;
   }
+}
+
+.navbar {
+  z-index: 3;
+  position: fixed;
+  height: 100px;
+  width: 100vw;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #ffffff;
+  box-shadow: 0 4px 4px rgb(0, 0, 0, 0.25);
+}
+
+.logo img {
+  height: 60px;
+  padding-left: 30px;
+}
+
+.nav-links {
+  list-style: none;
+  display: flex;
+  margin: 0;
+  padding: 0;
+}
+
+.nav-links li {
+  margin-left: 20px;
+}
+
+.nav-links {
+  padding-right: 30px;
+}
+
+.nav-links a {
+  color: #000000; /* Color de texto de los enlaces */
+  text-decoration: none;
+  font-size: 18px;
+  border-radius: 5px;
+  padding: 10px;
+}
+
+.nav-links a:hover {
+  background-color: #d20981; /* Fondo rosa para el hover */
+  color: white; /* Color de texto blanco para el hover */
 }

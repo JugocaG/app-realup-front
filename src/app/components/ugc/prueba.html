@@ -1,0 +1,180 @@
+<div *ngIf="verificarVenezuela">
+  <h1 style="text-align: center">Venezuela</h1>
+  <div formGroupName="formGroupCitiesVenezuela">
+    <mat-card class="card-creators">
+      <div class="cities recommendations-cities">
+        <p>
+          Selecciona las ciudades en donde quieres que sean vistos tus
+          contenidos
+        </p>
+
+        <p-multiSelect
+          formControlName="cities"
+          [options]="citiesListVenezuela"
+          optionLabel="name"
+          styleClass="cities-multiselect"
+          placeholder="Select Cities"
+          [virtualScroll]="true"
+          [virtualScrollItemSize]="43"
+        ></p-multiSelect>
+      </div>
+      <div class="creators-recommendations">
+        <div class="creators">
+          <label for="number-creators">Numero de creadores</label>
+          <div class="button-creators-div">
+            <button
+              (click)="restCreatorsVenezuela()"
+              type="button"
+              class="button-creators"
+            >
+              -
+            </button>
+            <input
+              class="form-control"
+              [(ngModel)]="numeroCreadoresVenezuela"
+              type="number"
+              id="numberCreators"
+              name="numberCreators"
+              placeholder="Numero de creadores"
+              formControlName="number_creators"
+            />
+            <button
+              (click)="sumCreatorsVenezuela()"
+              type="button"
+              class="button-creators"
+            >
+              +
+            </button>
+          </div>
+          <div class="button-number-contents">
+            <button mat-stroked-button (click)="putCreatorsVenezuela(20)">
+              20
+            </button>
+            <button mat-stroked-button (click)="putCreatorsVenezuela(40)">
+              40
+            </button>
+            <button mat-stroked-button (click)="putCreatorsVenezuela(60)">
+              60
+            </button>
+          </div>
+        </div>
+        <div class="recommendations">
+          <p>
+            Para lograr resultados efectivos en la campaña publicitaria,
+            sugerimos la participación de al menos 20 influencers. Sin embargo,
+            según nuestras estadísticas, el uso de 50 influencers podría generar
+            un incremento de ventas duplicado.
+          </p>
+        </div>
+      </div>
+    </mat-card>
+    <div class="all-type-contents">
+      <div class="type-contents">
+        <h2>Carrusel de fotos</h2>
+        <img src="assets/icons/carrousel.svg" alt="Icono Carrousel" />
+        <div class="number-button">
+          <button
+            class="button-content"
+            type="button"
+            (click)="restCarrouselVenezuela()"
+          >
+            -
+          </button>
+          <input
+            min="0"
+            [(ngModel)]="numeroCarrouselVenezuela"
+            class="form-control"
+            type="number"
+            id="numberCreators"
+            name="numberCreators"
+            placeholder="Numero de creadores"
+            formControlName="number_carrousel"
+          />
+          <button
+            class="button-content"
+            type="button"
+            (click)="sumCarrouselVenezuela()"
+          >
+            +
+          </button>
+        </div>
+      </div>
+
+      <div class="type-contents">
+        <h2>Video de 0 a 15 Seg</h2>
+        <img src="assets/icons/videos.svg" alt="Icono videos" />
+        <div class="number-button">
+          <button
+            class="button-content"
+            type="button"
+            (click)="restShortVenezuela()"
+          >
+            -
+          </button>
+          <input
+            [(ngModel)]="numeroShortVideosVenezuela"
+            class="form-control"
+            type="number"
+            id="numberCreators"
+            name="numberCreators"
+            placeholder="Numero de creadores"
+            formControlName="number_short_videos"
+          />
+          <button
+            class="button-content"
+            type="button"
+            (click)="sumShortVenezuela()"
+          >
+            +
+          </button>
+        </div>
+      </div>
+      <div class="type-contents">
+        <h2>Video de 15 a 30 Seg</h2>
+        <img src="assets/icons/videos.svg" alt="Icono videos" />
+        <div class="number-button">
+          <button
+            class="button-content"
+            type="button"
+            (click)="restLongVenezuela()"
+          >
+            -
+          </button>
+          <input
+            [(ngModel)]="numeroLongVideosVenezuela"
+            class="form-control"
+            type="number"
+            id="numberCreators"
+            name="numberCreators"
+            placeholder="Numero de creadores"
+            formControlName="number_long_videos"
+          />
+          <button
+            class="button-content"
+            type="button"
+            (click)="sumLongVenezuela()"
+          >
+            +
+          </button>
+        </div>
+      </div>
+    </div>
+    <div>
+      <mat-card class="guideline">
+        <mat-card-content id="card-pauta"
+          >¿Deseas pautar estos videos?</mat-card-content
+        >
+        <mat-card-content id="card-pauta">
+          <mat-slide-toggle
+            type="checkbox"
+            value="true"
+            id="guideline"
+            name="guideline"
+            formControlName="guideline"
+          >
+          </mat-slide-toggle>
+        </mat-card-content>
+      </mat-card>
+    </div>
+  </div>
+</div>

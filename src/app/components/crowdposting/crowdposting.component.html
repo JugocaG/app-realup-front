@@ -1,3 +1,16 @@
+<nav class="navbar">
+  <div class="logo">
+    <a href="/home">
+      <img src="assets/images/REAL UP.png" alt="Logo" />
+    </a>
+  </div>
+  <ul class="nav-links">
+    <li><a href="/home">HOME</a></li>
+    <li><a href="/crowdposting">CROWDPOSTING</a></li>
+    <li><a href="/ugc">UGC</a></li>
+    <li><a href="/brand-ambassador">BRAND AMBASSADOR</a></li>
+  </ul>
+</nav>
 <div class="container">
   <div class="content">
     <div class="content-sale">
@@ -25,49 +38,15 @@
             <div class="campaign-objetive">
               <h2>Objetivo de campaña</h2>
               <div class="radio-product-boxes">
-                <div class="radio-product-box">
+                <div class="radio-product-box" *ngFor="let option of options">
                   <input
                     class="radio-product"
-                    value="0"
-                    type="radio"
-                    id="brand-awarness"
-                    name="campaign_objective"
-                    formControlName="campaign_objective"
+                    type="checkbox"
+                    [value]="option.value"
+                    [id]="option.id"
+                    (change)="onCheckboxChange($event)"
                   />
-                  <label for="brand-awarness">Brand Awarness</label>
-                </div>
-                <div class="radio-product-box">
-                  <input
-                    class="radio-product"
-                    value="1"
-                    type="radio"
-                    id="consideration"
-                    name="campaign_objective"
-                    formControlName="campaign_objective"
-                  />
-                  <label for="consideration">Consideracion</label>
-                </div>
-                <div class="radio-product-box">
-                  <input
-                    class="radio-product"
-                    value="2"
-                    type="radio"
-                    id="conversion"
-                    name="campaign_objective"
-                    formControlName="campaign_objective"
-                  />
-                  <label for="conversion">Conversion</label>
-                </div>
-                <div class="radio-product-box">
-                  <input
-                    class="radio-product"
-                    value="3"
-                    type="radio"
-                    id="retention"
-                    name="campaign_objective"
-                    formControlName="campaign_objective"
-                  />
-                  <label for="retention">Retencion</label>
+                  <label [for]="option.id">{{ option.label }}</label>
                 </div>
               </div>
               <mat-form-field class="brief-campaign-objective">
@@ -87,6 +66,10 @@
             <div class="location">
               <div class="country">
                 <h2>Location</h2>
+                <p class="text-packages">
+                  Selecciona el país y las ciudades en donde deseas que tus
+                  contenidos sean vistos
+                </p>
 
                 <mat-form-field class="select-country">
                   <mat-label>Pais</mat-label>
@@ -98,18 +81,13 @@
                     id="country"
                     name="country"
                     formControlName="country"
-                    multiple
                   >
-                    <mat-option value="Argentina">Argentina</mat-option>
-                    <mat-option value="Bolivia">Bolivia</mat-option>
-                    <mat-option value="Brasil">Brasil</mat-option>
-                    <mat-option value="Chile">Chile</mat-option>
-                    <mat-option value="Colombia">Colombia</mat-option>
-                    <mat-option value="Ecuador">Ecuador</mat-option>
-                    <mat-option value="Paraguay">Paraguay</mat-option>
-                    <mat-option value="Peru">Peru</mat-option>
-                    <mat-option value="Uruguay">Uruguay</mat-option>
-                    <mat-option value="Venezuela">Venezuela</mat-option>
+                    <mat-option
+                      *ngFor="let country of countries"
+                      [value]="country"
+                    >
+                      {{ country }}
+                    </mat-option>
                   </mat-select>
                 </mat-form-field>
               </div>
@@ -120,9 +98,10 @@
 
                   <p-multiSelect
                     formControlName="cities"
+                    [(ngModel)]="citiesSelected"
                     [options]="citiesListArgentina"
                     optionLabel="name"
-                    styleClass="brasil-multiselect"
+                    styleClass="cities-multiselect"
                     placeholder="Select Cities"
                     [virtualScroll]="true"
                     [virtualScrollItemSize]="43"
@@ -136,7 +115,7 @@
                     formControlName="cities"
                     [options]="citiesListBolivia"
                     optionLabel="name"
-                    styleClass="brasil-multiselect"
+                    styleClass="cities-multiselect"
                     placeholder="Select Cities"
                     [virtualScroll]="true"
                     [virtualScrollItemSize]="43"
@@ -150,7 +129,7 @@
                     formControlName="cities"
                     [options]="citiesListBrasil"
                     optionLabel="name"
-                    styleClass="brasil-multiselect"
+                    styleClass="cities-multiselect"
                     placeholder="Select Cities"
                     [virtualScroll]="true"
                     [virtualScrollItemSize]="43"
@@ -164,7 +143,7 @@
                     formControlName="cities"
                     [options]="citiesListChile"
                     optionLabel="name"
-                    styleClass="brasil-multiselect"
+                    styleClass="cities-multiselect"
                     placeholder="Select Cities"
                     [virtualScroll]="true"
                     [virtualScrollItemSize]="43"
@@ -178,7 +157,7 @@
                     formControlName="cities"
                     [options]="citiesListColombia"
                     optionLabel="name"
-                    styleClass="brasil-multiselect"
+                    styleClass="cities-multiselect"
                     placeholder="Select Cities"
                     [virtualScroll]="true"
                     [virtualScrollItemSize]="43"
@@ -192,7 +171,7 @@
                     formControlName="cities"
                     [options]="citiesListEcuador"
                     optionLabel="name"
-                    styleClass="brasil-multiselect"
+                    styleClass="cities-multiselect"
                     placeholder="Select Cities"
                     [virtualScroll]="true"
                     [virtualScrollItemSize]="43"
@@ -206,7 +185,7 @@
                     formControlName="cities"
                     [options]="citiesListParaguay"
                     optionLabel="name"
-                    styleClass="brasil-multiselect"
+                    styleClass="cities-multiselect"
                     placeholder="Select Cities"
                     [virtualScroll]="true"
                     [virtualScrollItemSize]="43"
@@ -220,7 +199,7 @@
                     formControlName="cities"
                     [options]="citiesListPeru"
                     optionLabel="name"
-                    styleClass="brasil-multiselect"
+                    styleClass="cities-multiselect"
                     placeholder="Select Cities"
                     [virtualScroll]="true"
                     [virtualScrollItemSize]="43"
@@ -234,7 +213,7 @@
                     formControlName="cities"
                     [options]="citiesListUruguay"
                     optionLabel="name"
-                    styleClass="brasil-multiselect"
+                    styleClass="cities-multiselect"
                     placeholder="Select Cities"
                     [virtualScroll]="true"
                     [virtualScrollItemSize]="43"
@@ -248,28 +227,213 @@
                     formControlName="cities"
                     [options]="citiesListVenezuela"
                     optionLabel="name"
-                    styleClass="brasil-multiselect"
+                    styleClass="cities-multiselect"
                     placeholder="Select Cities"
                     [virtualScroll]="true"
                     [virtualScrollItemSize]="43"
                   ></p-multiSelect>
                 </div>
+
+                <div class="cities" *ngIf="verificarCostaRica">
+                  <p>Ciudades Costa Rica</p>
+
+                  <p-multiSelect
+                    formControlName="cities"
+                    [options]="citiesListCostaRica"
+                    optionLabel="name"
+                    styleClass="cities-multiselect"
+                    placeholder="Select Cities"
+                    [virtualScroll]="true"
+                    [virtualScrollItemSize]="43"
+                  ></p-multiSelect>
+                </div>
+
+                <div class="cities" *ngIf="verificarCuba">
+                  <p>Ciudades Cuba</p>
+
+                  <p-multiSelect
+                    formControlName="cities"
+                    [options]="citiesListCuba"
+                    optionLabel="name"
+                    styleClass="cities-multiselect"
+                    placeholder="Select Cities"
+                    [virtualScroll]="true"
+                    [virtualScrollItemSize]="43"
+                  ></p-multiSelect>
+                </div>
+
+                <div class="cities" *ngIf="verificarElSalvador">
+                  <p>Ciudades El Salvador</p>
+
+                  <p-multiSelect
+                    formControlName="cities"
+                    [options]="citiesListElSalvador"
+                    optionLabel="name"
+                    styleClass="cities-multiselect"
+                    placeholder="Select Cities"
+                    [virtualScroll]="true"
+                    [virtualScrollItemSize]="43"
+                  ></p-multiSelect>
+                </div>
+
+                <div class="cities" *ngIf="verificarGuatemala">
+                  <p>Ciudades Guatemala</p>
+
+                  <p-multiSelect
+                    formControlName="cities"
+                    [options]="citiesListGuatemala"
+                    optionLabel="name"
+                    styleClass="cities-multiselect"
+                    placeholder="Select Cities"
+                    [virtualScroll]="true"
+                    [virtualScrollItemSize]="43"
+                  ></p-multiSelect>
+                </div>
+
+                <div class="cities" *ngIf="verificarHonduras">
+                  <p>Ciudades Honduras</p>
+
+                  <p-multiSelect
+                    formControlName="cities"
+                    [options]="citiesListHonduras"
+                    optionLabel="name"
+                    styleClass="cities-multiselect"
+                    placeholder="Select Cities"
+                    [virtualScroll]="true"
+                    [virtualScrollItemSize]="43"
+                  ></p-multiSelect>
+                </div>
+
+                <div class="cities" *ngIf="verificarMexico">
+                  <p>Ciudades Mexico</p>
+
+                  <p-multiSelect
+                    formControlName="cities"
+                    [options]="citiesListMexico"
+                    optionLabel="name"
+                    styleClass="cities-multiselect"
+                    placeholder="Select Cities"
+                    [virtualScroll]="true"
+                    [virtualScrollItemSize]="43"
+                  ></p-multiSelect>
+                </div>
+
+                <div class="cities" *ngIf="verificarNicaragua">
+                  <p>Ciudades Nicaragua</p>
+
+                  <p-multiSelect
+                    formControlName="cities"
+                    [options]="citiesListNicaragua"
+                    optionLabel="name"
+                    styleClass="cities-multiselect"
+                    placeholder="Select Cities"
+                    [virtualScroll]="true"
+                    [virtualScrollItemSize]="43"
+                  ></p-multiSelect>
+                </div>
+
+                <div class="cities" *ngIf="verificarPanama">
+                  <p>Ciudades Panama</p>
+
+                  <p-multiSelect
+                    formControlName="cities"
+                    [options]="citiesListPanama"
+                    optionLabel="name"
+                    styleClass="cities-multiselect"
+                    placeholder="Select Cities"
+                    [virtualScroll]="true"
+                    [virtualScrollItemSize]="43"
+                  ></p-multiSelect>
+                </div>
+
+                <div class="cities" *ngIf="verificarPuertoRico">
+                  <p>Ciudades Puerto Rico</p>
+
+                  <p-multiSelect
+                    formControlName="cities"
+                    [options]="citiesListPuertoRico"
+                    optionLabel="name"
+                    styleClass="cities-multiselect"
+                    placeholder="Select Cities"
+                    [virtualScroll]="true"
+                    [virtualScrollItemSize]="43"
+                  ></p-multiSelect>
+                </div>
+
+                <div class="cities" *ngIf="verificarDominicanRepublic">
+                  <p>Ciudades Dominican Republic</p>
+
+                  <p-multiSelect
+                    formControlName="cities"
+                    [options]="citiesListDominicanRepublic"
+                    optionLabel="name"
+                    styleClass="cities-multiselect"
+                    placeholder="Select Cities"
+                    [virtualScroll]="true"
+                    [virtualScrollItemSize]="43"
+                  ></p-multiSelect>
+                </div>
+
+                <div class="cities" *ngIf="verificarUnitedStates">
+                  <p>Ciudades United States</p>
+
+                  <p-multiSelect
+                    formControlName="cities"
+                    [options]="citiesListUnitedStates"
+                    optionLabel="name"
+                    styleClass="cities-multiselect"
+                    placeholder="Select Cities"
+                    [virtualScroll]="true"
+                    [virtualScrollItemSize]="43"
+                  ></p-multiSelect>
+                </div>
+
+                <div class="cities" *ngIf="verificarCanada">
+                  <p>Ciudades Canada</p>
+
+                  <p-multiSelect
+                    formControlName="cities"
+                    [options]="citiesListCanada"
+                    optionLabel="name"
+                    styleClass="cities-multiselect"
+                    placeholder="Select Cities"
+                    [virtualScroll]="true"
+                    [virtualScrollItemSize]="43"
+                  ></p-multiSelect>
+                </div>
+
                 <!--  -->
               </div>
             </div>
           </form>
         </mat-card>
       </div>
-      <div *ngFor="let country of selectedCountry">
-        <h2 style="text-align: center">{{ country }}</h2>
+      <div>
+        <h2 style="text-align: center"></h2>
         <mat-card class="packages-recommended">
-          <h2>Paquetes recomendados</h2>
+          <h2>Paquetes recomendados por ciudad</h2>
+          <p class="text-packages">
+            A continuación, te recomendamos algunos de los paquetes que
+            ofrecemos para alcanzar esas métricas que tanto deseas. Puedes
+            agregar cuantos paquetes quieras, ya sea para probar ciertos
+            paquetes en una ciudad u otra o para lanzar los contenidos en
+            diferentes fechas. ¡Los límites los pones tú!
+          </p>
           <div class="packages-defined">
             <div class="package-defined">
+              <h3>Option 1</h3>
               <div class="packages-combos">
-                <h3>Instagram</h3>
+                <img
+                  class="icons-social"
+                  src="assets/icons/Instagram_light.svg"
+                  alt="Icono Instagram"
+                />
+
+                <h3 style="margin-top: 0">Instagram</h3>
                 <!-- Perfil Micro Influencer -->
-                <h4>Perfil Micro Influencer</h4>
+                <div class="div-title-micro">
+                  <h4 class="title-micro">Perfil Micro Influencer</h4>
+                </div>
                 <div class="data-package-combos">
                   <p><strong>Cantidad</strong></p>
                   <p>15</p>
@@ -284,7 +448,9 @@
                 </div>
 
                 <!-- Perfil Nano Influencer -->
-                <h4>Perfil Nano Influencer</h4>
+                <div class="div-title-nano">
+                  <h4 class="title-nano">Perfil Nano Influencer</h4>
+                </div>
                 <div class="data-package-combos">
                   <p><strong>Cantidad</strong></p>
                   <p>30</p>
@@ -295,14 +461,33 @@
                 </div>
                 <div class="data-package-combos">
                   <p><strong>Numero de Reels (c/u)</strong></p>
-                  <p>2</p>
+                  <p>1</p>
                 </div>
-                <p>
-                  <strong>Contenidos Totales: </strong>
-                  {{ totalContentIgOne }}
-                </p>
-                <p><strong>Alcance: </strong>{{ ReachTotalPaqueteUno }}</p>
-                <p><strong>Valor: </strong>{{ ValorTotalPaqueteUno }} USD</p>
+                <div class="div-tax-accountant">
+                  <img
+                    style="width: 80px; height: 80px"
+                    src="assets/icons/tax-accountant.svg"
+                    alt="tax-accountant"
+                  />
+                  <div class="text-tax-accountant">
+                    <p>
+                      <strong>Contenidos Totales: </strong>
+                      {{ 180 }}
+                    </p>
+                    <p>
+                      <strong>Alcance: </strong>{{ ReachTotalPaqueteUnoNormal }}
+                    </p>
+                    <p>
+                      <strong>Valor: </strong
+                      >{{
+                        this.ValorTotalPaqueteUnoNormal +
+                          (0.35 * this.ValorTotalPaqueteUnoNormal) / 0.65
+                          | number : "1.0-1"
+                      }}
+                      USD
+                    </p>
+                  </div>
+                </div>
 
                 <p class="bolsa">Agregar a la bolsa</p>
 
@@ -336,10 +521,18 @@
               </div>
             </div>
             <div class="package-defined">
+              <h3>Option 2</h3>
               <div class="packages-combos">
-                <h3>TikTok</h3>
+                <img
+                  class="icons-social"
+                  src="assets/icons/tiktok.svg"
+                  alt="Icono TikTok"
+                />
+                <h3 style="margin-top: 0">TikTok</h3>
                 <!-- Perfil Micro Influencer -->
-                <h4>Perfil Micro Influencer</h4>
+                <div class="div-title-micro">
+                  <h4 class="title-micro">Perfil Micro Influencer</h4>
+                </div>
                 <div class="data-package-combos">
                   <p><strong>Cantidad</strong></p>
                   <p>15</p>
@@ -350,22 +543,43 @@
                 </div>
 
                 <!-- Perfil Nano Influencer -->
-                <h4>Perfil Nano Influencer</h4>
+                <div class="div-title-nano">
+                  <h4 class="title-nano">Perfil Nano Influencer</h4>
+                </div>
                 <div class="data-package-combos">
                   <p><strong>Cantidad</strong></p>
                   <p>30</p>
                 </div>
                 <div class="data-package-combos">
                   <p><strong>Numero de TikToks (c/u)</strong></p>
-                  <p>2</p>
+                  <p>1</p>
                 </div>
-                <p>
-                  <strong>Contenidos Totales: </strong>
-                  {{ totalContentIgOne }}
-                </p>
-                <p><strong>Alcance: </strong>{{ ReachTotalPaqueteUno }}</p>
-                <p><strong>Valor: </strong>{{ ValorTotalPaqueteUno }} USD</p>
-                <p class="bolsa">Agregar a la bolsa</p>
+                <div class="div-tax-accountant div-tax-accountant-special">
+                  <img
+                    style="width: 80px; height: 80px"
+                    src="assets/icons/tax-accountant.svg"
+                    alt="tax-accountant"
+                  />
+                  <div class="text-tax-accountant">
+                    <p>
+                      <strong>Contenidos Totales: </strong>
+                      {{ 45 }}
+                    </p>
+                    <p>
+                      <strong>Alcance: </strong>{{ ReachTotalPaqueteDosNormal }}
+                    </p>
+                    <p>
+                      <strong>Valor: </strong
+                      >{{
+                        this.ValorTotalPaqueteDosNormal +
+                          (0.35 * this.ValorTotalPaqueteDosNormal) / 0.65
+                          | number : "1.0-1"
+                      }}
+                      USD
+                    </p>
+                  </div>
+                </div>
+                <p class="bolsa bolsa-tiktok">Agregar a la bolsa</p>
 
                 <!-- Boton sumar - restar -->
                 <div class="data-packages-combos">
@@ -373,13 +587,13 @@
                     <button
                       class="button-content"
                       type="button"
-                      (click)="restShort('numeroContentIgOne')"
+                      (click)="restShort('numeroContentTikTokOne')"
                     >
                       -
                     </button>
                     <input
                       (ngModelChange)="changeValor()"
-                      [(ngModel)]="numeroContentIgOne"
+                      [(ngModel)]="numeroContentTikTokOne"
                       [ngModelOptions]="{ standalone: true }"
                       type="number"
                       value="20"
@@ -388,7 +602,7 @@
                       class="button-content"
                       type="button"
                       (click)="addSaleInstagramUno()"
-                      (click)="sumShort('numeroContentIgOne')"
+                      (click)="sumShort('numeroContentTikTokOne')"
                     >
                       +
                     </button>
@@ -398,10 +612,23 @@
             </div>
 
             <div class="package-defined">
+              <h3>Option 3</h3>
               <div class="packages-combos">
-                <h3>Instagram + TikTok</h3>
+                <img
+                  class="icons-social"
+                  src="assets/icons/Instagram_light.svg"
+                  alt="Icono Instagram"
+                />
+                <img
+                  class="icons-social"
+                  src="assets/icons/tiktok.svg"
+                  alt="Icono TikTok"
+                />
+                <h3 style="margin-top: 0">Instagram + TikTok</h3>
                 <!-- Perfil Micro Influencer -->
-                <h4>Perfil Micro Influencer</h4>
+                <div class="div-title-micro">
+                  <h4 class="title-micro">Perfil Micro Influencer</h4>
+                </div>
                 <div class="data-package-combos">
                   <p><strong>Cantidad</strong></p>
                   <p>15</p>
@@ -416,7 +643,9 @@
                 </div>
 
                 <!-- Perfil Nano Influencer -->
-                <h4>Perfil Nano Influencer</h4>
+                <div class="div-title-nano">
+                  <h4 class="title-nano">Perfil Nano Influencer</h4>
+                </div>
                 <div class="data-package-combos">
                   <p><strong>Cantidad</strong></p>
                   <p>30</p>
@@ -427,14 +656,34 @@
                 </div>
                 <div class="data-package-combos">
                   <p><strong>Numero de Reels (c/u)</strong></p>
-                  <p>2</p>
+                  <p>1</p>
                 </div>
-                <p>
-                  <strong>Contenidos Totales: </strong>
-                  {{ totalContentIgOne }}
-                </p>
-                <p><strong>Alcance: </strong>{{ ReachTotalPaqueteUno }}</p>
-                <p><strong>Valor: </strong>{{ ValorTotalPaqueteUno }} USD</p>
+                <div class="div-tax-accountant">
+                  <img
+                    style="width: 80px; height: 80px"
+                    src="assets/icons/tax-accountant.svg"
+                    alt="tax-accountant"
+                  />
+                  <div class="text-tax-accountant">
+                    <p>
+                      <strong>Contenidos Totales: </strong>
+                      {{ 180 }}
+                    </p>
+                    <p>
+                      <strong>Alcance: </strong
+                      >{{ ReachTotalPaqueteTresNormal }}
+                    </p>
+                    <p>
+                      <strong>Valor: </strong
+                      >{{
+                        this.ValorTotalPaqueteTresNormal +
+                          (0.35 * this.ValorTotalPaqueteTresNormal) / 0.65
+                          | number : "1.0-1"
+                      }}
+                      USD
+                    </p>
+                  </div>
+                </div>
                 <p class="bolsa">Agregar a la bolsa</p>
                 <!-- Boton sumar - restar -->
                 <div class="data-packages-combos">
@@ -442,13 +691,13 @@
                     <button
                       class="button-content"
                       type="button"
-                      (click)="restShort('numeroContentIgOne')"
+                      (click)="restShort('numeroContentTikTokTwo')"
                     >
                       -
                     </button>
                     <input
                       (ngModelChange)="changeValor()"
-                      [(ngModel)]="numeroContentIgOne"
+                      [(ngModel)]="numeroContentTikTokTwo"
                       [ngModelOptions]="{ standalone: true }"
                       type="number"
                       value="20"
@@ -457,7 +706,7 @@
                       class="button-content"
                       type="button"
                       (click)="addSaleInstagramUno()"
-                      (click)="sumShort('numeroContentIgOne')"
+                      (click)="sumShort('numeroContentTikTokTwo')"
                     >
                       +
                     </button>
@@ -468,9 +717,32 @@
           </div>
         </mat-card>
         <mat-card>
-          <div class="content-max">
+          <div class="button-platform">
+            <p style="width: 90%" class="text-packages">
+              ¿Encontraste lo que buscabas? Si no, desliza el toggle para armar
+              paquetes totalmente personalizados según tus necesidades
+            </p>
+            <mat-card-content style="width: 10%" id="card-pauta">
+              <mat-slide-toggle
+                [(ngModel)]="checkPlatform"
+                type="checkbox"
+                id="guideline"
+                name="guideline"
+                (toggleChange)="changePlatform()"
+              >
+              </mat-slide-toggle>
+            </mat-card-content>
+          </div>
+          <div class="content-max" *ngIf="checkPlatform">
             <div class="platform">
               <h2>Plataformas</h2>
+              <p class="text-packages">
+                Selecciona las redes sociales en las que deseas publicar tus
+                contenidos. Puedes crear paquetes para que tus publicaciones
+                salgan con el mismo influenciador en diferentes plataformas
+                simultáneamente. Así, podrás maximizar el alcance y la
+                efectividad de tus campañas.
+              </p>
               <section #carrousel class="checkbox-package">
                 <mat-checkbox
                   [color]="color"
@@ -495,9 +767,17 @@
             <div class="carousel">
               <form (ngSubmit)="addSaleInstagramUno()">
                 <div class="package" *ngIf="showInstagramPackage">
-                  <h3>Paquete 1 Instagram</h3>
+                  <img
+                    class="icons-social"
+                    src="assets/icons/Instagram_light.svg"
+                    alt="Icono Instagram"
+                  />
 
-                  <h4>Perfil Micro Influencer</h4>
+                  <h3 style="margin-top: 0">Instagram</h3>
+
+                  <div class="div-title-micro">
+                    <h4 class="title-micro">Perfil Micro Influencer</h4>
+                  </div>
                   <div class="data-package">
                     <p>Cantidad</p>
                     <div class="paquete-botones-input">
@@ -509,7 +789,6 @@
                         -
                       </button>
                       <input
-                        disabled
                         (ngModelChange)="changeValor()"
                         [(ngModel)]="newSaleInstagramUno.number_micro"
                         [ngModelOptions]="{ standalone: true }"
@@ -538,7 +817,6 @@
                         -
                       </button>
                       <input
-                        disabled
                         (ngModelChange)="changeValor()"
                         [(ngModel)]="newSaleInstagramUno.number_stories_micro"
                         [ngModelOptions]="{ standalone: true }"
@@ -570,7 +848,6 @@
                         -
                       </button>
                       <input
-                        disabled
                         (ngModelChange)="changeValor()"
                         [(ngModel)]="newSaleInstagramUno.number_reels_micro"
                         [ngModelOptions]="{ standalone: true }"
@@ -589,7 +866,9 @@
                     </div>
                   </div>
 
-                  <h4>Perfil Nano Influencer</h4>
+                  <div class="div-title-nano">
+                    <h4 class="title-nano">Perfil Nano Influencer</h4>
+                  </div>
 
                   <div class="data-package">
                     <p>Cantidad</p>
@@ -602,7 +881,6 @@
                         -
                       </button>
                       <input
-                        disabled
                         (ngModelChange)="changeValor()"
                         [(ngModel)]="newSaleInstagramUno.number_nano"
                         [ngModelOptions]="{ standalone: true }"
@@ -632,7 +910,6 @@
                         -
                       </button>
                       <input
-                        disabled
                         (ngModelChange)="changeValor()"
                         [(ngModel)]="newSaleInstagramUno.number_stories_nano"
                         [ngModelOptions]="{ standalone: true }"
@@ -664,7 +941,6 @@
                         -
                       </button>
                       <input
-                        disabled
                         (ngModelChange)="changeValor()"
                         [(ngModel)]="newSaleInstagramUno.number_reels_nano"
                         [ngModelOptions]="{ standalone: true }"
@@ -682,36 +958,52 @@
                       </button>
                     </div>
                   </div>
-
-                  <p>
-                    <strong>Contenidos Totales: </strong>
-                    {{ totalContentIgOne }}
-                  </p>
-                  <p><strong>Alcance: </strong>{{ ReachTotalPaqueteUno }}</p>
-                  <p><strong>Valor: </strong>{{ ValorTotalPaqueteUno }} USD</p>
-                  <br />
+                  <div style="margin-top: 10px" class="div-tax-accountant">
+                    <img
+                      style="width: 100px; height: 100px"
+                      src="assets/icons/tax-accountant.svg"
+                      alt="tax-accountant"
+                    />
+                    <div class="text-tax-accountant">
+                      <p>
+                        <strong>Contenidos Totales: </strong>
+                        {{ totalContentIgOne }}
+                      </p>
+                      <p>
+                        <strong>Alcance: </strong>{{ ReachTotalPaqueteUno }}
+                      </p>
+                      <p>
+                        <strong>Valor: </strong
+                        >{{
+                          this.ValorTotalPaqueteUno +
+                            (0.35 * this.ValorTotalPaqueteUno) / 0.65
+                            | number : "1.0-1"
+                        }}
+                        USD
+                      </p>
+                    </div>
+                  </div>
                   <!-- <button type="button" (click)="addSaleInstagramUno()">
                   Seleccionar
                 </button> -->
-                  <h2>Cantidad de paquetes</h2>
+                  <h2 style="margin-bottom: 0px">Cantidad de paquetes</h2>
                   <div class="agrega-paquetes">
-                    <p>
-                      Si seleccionas mas de un paquete podras desplegarlos
-                      <br />
-                      en varios meses
+                    <p style="white-space: normal">
+                      Si seleccionas mas de un paquete podras desplegarlos en
+                      varios meses
                     </p>
                     <div class="data-package">
                       <div class="paquete-botones-input">
                         <button
                           class="button-content"
                           type="button"
-                          (click)="restShort('numeroContentIgOne')"
+                          (click)="restShort('numeroContentIgPersonal')"
                         >
                           -
                         </button>
                         <input
                           (ngModelChange)="changeValor()"
-                          [(ngModel)]="numeroContentIgOne"
+                          [(ngModel)]="numeroContentIgPersonal"
                           [ngModelOptions]="{ standalone: true }"
                           type="number"
                           value="20"
@@ -720,7 +1012,7 @@
                           class="button-content"
                           type="button"
                           (click)="addSaleInstagramUno()"
-                          (click)="sumShort('numeroContentIgOne')"
+                          (click)="sumShort('numeroContentIgPersonal')"
                         >
                           +
                         </button>
@@ -731,10 +1023,17 @@
               </form>
 
               <form (ngSubmit)="addSaleTikTokUno()">
-                <div class="package" *ngIf="showTikTokPackage">
-                  <h3>Paquete 1 TikTok</h3>
+                <div class="package package-special" *ngIf="showTikTokPackage">
+                  <img
+                    class="icons-social"
+                    src="assets/icons/tiktok.svg"
+                    alt="Icono TikTok"
+                  />
+                  <h3 style="margin-top: 0">Paquete TikTok</h3>
 
-                  <h4>Perfil Micro Influencer</h4>
+                  <div class="div-title-micro">
+                    <h4 class="title-micro">Perfil Micro Influencer</h4>
+                  </div>
                   <div class="data-package">
                     <p>Cantidad</p>
                     <div class="paquete-botones-input">
@@ -746,7 +1045,6 @@
                         -
                       </button>
                       <input
-                        disabled
                         (ngModelChange)="changeValor()"
                         [(ngModel)]="newSaleTikTokUno.number_micro"
                         [ngModelOptions]="{ standalone: true }"
@@ -776,7 +1074,6 @@
                         -
                       </button>
                       <input
-                        disabled
                         (ngModelChange)="changeValor()"
                         [(ngModel)]="newSaleTikTokUno.number_tiktok_micro"
                         [ngModelOptions]="{ standalone: true }"
@@ -795,7 +1092,9 @@
                     </div>
                   </div>
 
-                  <h4>Perfil Nano Influencer</h4>
+                  <div class="div-title-nano">
+                    <h4 class="title-nano">Perfil Nano Influencer</h4>
+                  </div>
                   <div class="data-package">
                     <p>Cantidad</p>
                     <div class="paquete-botones-input">
@@ -807,7 +1106,6 @@
                         -
                       </button>
                       <input
-                        disabled
                         (ngModelChange)="changeValor()"
                         [(ngModel)]="newSaleTikTokUno.number_nano"
                         [ngModelOptions]="{ standalone: true }"
@@ -838,7 +1136,6 @@
                         -
                       </button>
                       <input
-                        disabled
                         (ngModelChange)="changeValor()"
                         [(ngModel)]="newSaleTikTokUno.number_tiktok_nano"
                         [ngModelOptions]="{ standalone: true }"
@@ -856,33 +1153,50 @@
                       </button>
                     </div>
                   </div>
+                  <div class="div-tax-accountant div-tax-accountant-tiktok">
+                    <img
+                      style="width: 100px; height: 100px"
+                      src="assets/icons/tax-accountant.svg"
+                      alt="tax-accountant"
+                    />
+                    <div class="text-tax-accountant">
+                      <p>
+                        <strong>Contenidos Totales:</strong>
+                        {{ totalContentTikTokOne }}
+                      </p>
+                      <p>
+                        <strong>Alcance: </strong>{{ ReachTotalPaqueteTres }}
+                      </p>
+                      <p>
+                        <strong>Valor: </strong
+                        >{{
+                          this.ValorTotalPaqueteTres +
+                            (0.35 * this.ValorTotalPaqueteTres) / 0.65
+                            | number : "1.0-1"
+                        }}
+                        USD
+                      </p>
+                    </div>
+                  </div>
+                  <h2 style="margin-bottom: 0px">Cantidad de paquetes</h2>
 
-                  <p>
-                    <strong>Contenidos Totales:</strong>
-                    {{ totalContentTiktTokOne }}
-                  </p>
-                  <p><strong>Alcance: </strong>{{ ReachTotalPaqueteTres }}</p>
-                  <p><strong>Valor: </strong>{{ ValorTotalPaqueteTres }} USD</p>
-                  <br />
-                  <h2>Cantidad de paquetes</h2>
                   <div class="agrega-paquetes">
-                    <p>
-                      Si seleccionas mas de un paquete podras desplegarlos
-                      <br />
-                      en varios meses
+                    <p style="white-space: normal">
+                      Si seleccionas mas de un paquete podras desplegarlos en
+                      varios meses
                     </p>
                     <div class="data-package">
                       <div class="paquete-botones-input">
                         <button
                           class="button-content"
                           type="button"
-                          (click)="restShort('numeroContentTiktTokOne')"
+                          (click)="restShort('numeroContentTikTokPersonal')"
                         >
                           -
                         </button>
                         <input
                           (ngModelChange)="changeValor()"
-                          [(ngModel)]="numeroContentTiktTokOne"
+                          [(ngModel)]="numeroContentTikTokPersonal"
                           [ngModelOptions]="{ standalone: true }"
                           type="number"
                           value="20"
@@ -891,7 +1205,7 @@
                           class="button-content"
                           type="button"
                           (click)="addSaleTikTokUno()"
-                          (click)="sumShort('numeroContentTiktTokOne')"
+                          (click)="sumShort('numeroContentTikTokPersonal')"
                         >
                           +
                         </button>
@@ -901,15 +1215,6 @@
                 </div>
               </form>
             </div>
-            <button
-              class="button-shop"
-              mat-flat-button
-              color="accent"
-              type="button"
-              (click)="savePackagesCrowdposting()"
-            >
-              Comprar
-            </button>
           </div>
         </mat-card>
         <mat-card>
@@ -920,6 +1225,17 @@
             </p>
           </div>
         </mat-card>
+        <div>
+          <p-button
+            class="button-shop"
+            mat-flat-button
+            color="accent"
+            type="button"
+            (click)="savePackagesCrowdposting()"
+          >
+            Enviar Propuesta
+          </p-button>
+        </div>
       </div>
     </div>
 
@@ -942,45 +1258,48 @@
       <div class="data">
         <label for="number-cities">Número de ciudades</label>
         <p>
-          {{ 100 }}
+          {{ citiesSelected.length }}
         </p>
       </div>
       <div class="data">
         <label for="total-contenidos">Total Contenidos</label>
         <p>
-          {{
-            numeroContentIgOne * totalContentIgOne +
-              numeroContentIgTwo * totalContentIgTwo +
-              numeroContentTiktTokOne * totalContentTiktTokOne +
-              numeroContentTiktTokTwo * totalContentTiktTokTwo
-          }}
+          {{ totalContenidos }}
         </p>
       </div>
       <div class="data">
         <label for="valor-contenidos">Valor promedio por contenido</label>
         <p>
           {{
-            (
-              (ValorTotalPaqueteUno +
-                ValorTotalPaqueteDos +
-                ValorTotalPaqueteTres +
-                ValorTotalPaqueteCuatro) /
-              (numeroContentIgOne * totalContentIgOne +
-                numeroContentIgTwo * totalContentIgTwo +
-                numeroContentTiktTokOne * totalContentTiktTokOne +
-                numeroContentTiktTokTwo * totalContentTiktTokTwo)
-            ).toFixed(0)
+            ((this.ValorTotalPaqueteUnoNormal +
+              (0.35 * this.ValorTotalPaqueteUnoNormal) / 0.65) *
+              numeroContentIgOne +
+              (this.ValorTotalPaqueteDosNormal +
+                (0.35 * this.ValorTotalPaqueteDosNormal) / 0.65) *
+                numeroContentTikTokOne +
+              (this.ValorTotalPaqueteTresNormal +
+                (0.35 * this.ValorTotalPaqueteTresNormal) / 0.65) *
+                numeroContentTikTokTwo +
+              (this.ValorTotalPaqueteUno +
+                (0.35 * this.ValorTotalPaqueteUno) / 0.65) *
+                numeroContentIgPersonal +
+              (this.ValorTotalPaqueteTres +
+                (0.35 * this.ValorTotalPaqueteTres) / 0.65) *
+                numeroContentTikTokPersonal) /
+              totalContenidos | number : "1.0-1"
           }}
+          USD
         </p>
       </div>
       <div class="data">
         <label for="Reach">Alcance Total</label>
         <p>
           {{
-            numeroContentIgOne * ReachTotalPaqueteUno +
-              numeroContentIgTwo * ReachTotalPaqueteDos +
-              numeroContentTiktTokOne * ReachTotalPaqueteTres +
-              numeroContentTiktTokTwo * ReachTotalPaqueteCuatro
+            ReachTotalPaqueteUnoNormal * numeroContentIgOne +
+              ReachTotalPaqueteDosNormal * numeroContentTikTokOne +
+              ReachTotalPaqueteTresNormal * numeroContentTikTokTwo +
+              ReachTotalPaqueteUno * numeroContentIgPersonal +
+              ReachTotalPaqueteTres * numeroContentTikTokPersonal
           }}
         </p>
       </div>
@@ -988,16 +1307,27 @@
         <label for="CPV">CPV</label>
         <p>
           {{
-            (
-              (numeroContentIgOne * ValorTotalPaqueteUno +
-                numeroContentIgTwo * ValorTotalPaqueteDos +
-                numeroContentTiktTokOne * ValorTotalPaqueteTres +
-                numeroContentTiktTokTwo * ValorTotalPaqueteCuatro) /
-              (numeroContentIgOne * ReachTotalPaqueteUno +
-                numeroContentIgTwo * ReachTotalPaqueteDos +
-                numeroContentTiktTokOne * ReachTotalPaqueteTres +
-                numeroContentTiktTokTwo * ReachTotalPaqueteCuatro)
-            ).toFixed(2)
+            ((this.ValorTotalPaqueteUnoNormal +
+              (0.35 * this.ValorTotalPaqueteUnoNormal) / 0.65) *
+              numeroContentIgOne +
+              (this.ValorTotalPaqueteDosNormal +
+                (0.35 * this.ValorTotalPaqueteDosNormal) / 0.65) *
+                numeroContentTikTokOne +
+              (this.ValorTotalPaqueteTresNormal +
+                (0.35 * this.ValorTotalPaqueteTresNormal) / 0.65) *
+                numeroContentTikTokTwo +
+              (this.ValorTotalPaqueteUno +
+                (0.35 * this.ValorTotalPaqueteUno) / 0.65) *
+                numeroContentIgPersonal +
+              (this.ValorTotalPaqueteTres +
+                (0.35 * this.ValorTotalPaqueteTres) / 0.65) *
+                numeroContentTikTokPersonal) /
+              (ReachTotalPaqueteUnoNormal * numeroContentIgOne +
+                ReachTotalPaqueteDosNormal * numeroContentTikTokOne +
+                ReachTotalPaqueteTresNormal * numeroContentTikTokTwo +
+                ReachTotalPaqueteUno * numeroContentIgPersonal +
+                ReachTotalPaqueteTres * numeroContentTikTokPersonal)
+              | number : "1.0-3"
           }}
         </p>
       </div>
@@ -1005,10 +1335,21 @@
         <label for="total">Valor Total</label>
         <p>
           {{
-            numeroContentIgOne * ValorTotalPaqueteUno +
-              numeroContentIgTwo * ValorTotalPaqueteDos +
-              numeroContentTiktTokOne * ValorTotalPaqueteTres +
-              numeroContentTiktTokTwo * ValorTotalPaqueteCuatro
+            (this.ValorTotalPaqueteUnoNormal +
+              (0.35 * this.ValorTotalPaqueteUnoNormal) / 0.65) *
+              numeroContentIgOne +
+              (this.ValorTotalPaqueteDosNormal +
+                (0.35 * this.ValorTotalPaqueteDosNormal) / 0.65) *
+                numeroContentTikTokOne +
+              (this.ValorTotalPaqueteTresNormal +
+                (0.35 * this.ValorTotalPaqueteTresNormal) / 0.65) *
+                numeroContentTikTokTwo +
+              (this.ValorTotalPaqueteUno +
+                (0.35 * this.ValorTotalPaqueteUno) / 0.65) *
+                numeroContentIgPersonal +
+              (this.ValorTotalPaqueteTres +
+                (0.35 * this.ValorTotalPaqueteTres) / 0.65) *
+                numeroContentTikTokPersonal | number : "1.0-1"
           }}
           USD
         </p>

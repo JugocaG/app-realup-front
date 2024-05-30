@@ -79,6 +79,7 @@ button:hover {
 /* Demas estilos. Lo anterior es solo del carrusel */
 
 .container {
+  padding-top: 100px;
   background-image: url(../../../assets/images/fondoUGC.png);
 }
 
@@ -189,9 +190,11 @@ mat-card {
 }
 
 .summary {
+  font-size: 14px;
+
   width: 25%;
   margin: 40px;
-  height: 90%;
+  height: 75%;
   border-radius: 33px;
   background-color: #d8007f;
   position: fixed;
@@ -203,10 +206,8 @@ mat-card {
 }
 
 #realup-summary {
-  width: 35%;
+  width: 50%;
   padding: 50px;
-  padding-left: 10vh;
-  padding-right: 10vh;
   padding-bottom: 10px;
   border-bottom: 3px solid #ffffff;
 }
@@ -312,14 +313,14 @@ mat-card {
 /* Estilo para los botones "+" y "-" */
 .button-content {
   padding: 0;
-  width: 16px;
-  height: 16px;
+  width: 20px;
+  height: 20px;
   background-color: white; /* Color de fondo por defecto */
-  color: #00eced; /* Color del texto */
-  border: 2px solid #00eced; /* Borde sólido */
+  color: #000000; /* Color del texto */
+  border: 2px solid #000000; /* Borde sólido */
   margin: 0 5px; /* Añadir un margen entre los botones */
   cursor: pointer; /* Cambiar el cursor a pointer para indicar que es interactivo */
-  border-radius: 5px; /* Hacer los botones completamente redondos */
+  border-radius: 50%; /* Hacer los botones completamente redondos */
   transition: background-color 0.3s, color 0.3s; /* Transición suave para el color de fondo y el texto */
 }
 
@@ -377,6 +378,7 @@ mat-card {
 }
 
 .package-defined {
+  height: 100%;
   width: 28%;
   text-align: center;
   background-color: #a6f4f6;
@@ -386,6 +388,7 @@ mat-card {
 }
 
 .packages-combos {
+  border-radius: 10px;
   font-size: 0.8vw;
   padding: 5%;
   background-color: #ffffff;
@@ -423,6 +426,8 @@ mat-card {
 }
 
 .bolsa {
+  font-weight: bold;
+  border-radius: 20px;
   padding: 2%;
   background-color: rgba(0, 236, 237, 0.48);
 }
@@ -444,7 +449,119 @@ mat-card {
   }
 }
 
-::ng-deep .brasil-multiselect {
+::ng-deep .cities-multiselect {
   width: 100%;
   margin-bottom: 20px;
+}
+
+.icons-social {
+  width: 30px;
+  height: 30px;
+  margin: 5px;
+}
+
+.text-packages {
+  background-color: #e3e3e3;
+  margin-top: 10px;
+  margin: 20px;
+  padding: 20px;
+  border-radius: 20px;
+  text-align: left;
+}
+
+.button-platform {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-around;
+}
+
+/* New design */
+
+.div-title-micro {
+  display: flex;
+}
+.title-micro {
+  padding-left: 10px;
+  padding-right: 10px;
+  display: inline;
+  text-align: left;
+  background-color: #00eced;
+}
+
+.div-title-nano {
+  display: flex;
+}
+.title-nano {
+  color: #ffffff;
+  padding-left: 10px;
+  padding-right: 10px;
+  display: inline;
+  text-align: left;
+  background-color: #d8007f;
+}
+
+.div-tax-accountant {
+  border-top: #555 1px solid;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.text-tax-accountant {
+  text-align: left;
+}
+
+.navbar {
+  z-index: 3;
+  position: fixed;
+  height: 100px;
+  width: 100vw;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #ffffff;
+  box-shadow: 0 4px 4px rgb(0, 0, 0, 0.25);
+}
+
+.logo img {
+  height: 60px;
+  padding-left: 30px;
+}
+
+.nav-links {
+  list-style: none;
+  display: flex;
+  margin: 0;
+  padding: 0;
+}
+
+.nav-links li {
+  margin-left: 20px;
+}
+
+.nav-links {
+  padding-right: 30px;
+}
+
+.nav-links a {
+  color: #000000; /* Color de texto de los enlaces */
+  text-decoration: none;
+  font-size: 18px;
+  border-radius: 5px;
+  padding: 10px;
+}
+
+.nav-links a:hover {
+  background-color: #d20981; /* Fondo rosa para el hover */
+  color: white; /* Color de texto blanco para el hover */
+}
+
+.div-tax-accountant-special {
+  margin-top: 37%;
+}
+
+.div-tax-accountant-tiktok {
+  margin-top: 28%;
 }

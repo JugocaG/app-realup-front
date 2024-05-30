@@ -20,7 +20,7 @@ import {
         style({
           opacity: 1,
           filter: 'drop-shadow(1px 1px 20px #d8007f)',
-          transform: 'scale(1)',
+          transform: 'scale(1.5)',
           left: '30%',
           zIndex: 1,
         })
@@ -43,7 +43,7 @@ import {
         style({
           opacity: 1,
           filter: 'drop-shadow(1px 1px 20px #d8007f)',
-          transform: 'scale(1)',
+          transform: 'scale(1.5)',
           left: '30%',
 
           zIndex: 1,
@@ -66,7 +66,7 @@ import {
         style({
           opacity: 1,
           filter: 'drop-shadow(1px 1px 20px #d8007f)',
-          transform: 'scale(1)',
+          transform: 'scale(1.5)',
           left: '30%',
 
           zIndex: 1,

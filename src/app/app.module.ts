@@ -31,6 +31,9 @@ import { MatDividerModule } from '@angular/material/divider';
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { AsyncPipe } from '@angular/common';
 import { MultiSelectModule } from 'primeng/multiselect';
+import { ConfirmDialogModule } from 'primeng/confirmdialog';
+
+import { ToastModule } from 'primeng/toast';
 
 @NgModule({
   declarations: [
@@ -69,6 +72,8 @@ import { MultiSelectModule } from 'primeng/multiselect';
     AsyncPipe,
     MultiSelectModule,
     CardModule,
+    ConfirmDialogModule,
+    ToastModule,
   ],
   providers: [provideAnimationsAsync()],
   bootstrap: [AppComponent],

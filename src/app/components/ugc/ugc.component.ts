@@ -10,6 +10,7 @@ import { Router } from '@angular/router';
 import { AuthService } from 'src/app/service/auth.service';
 import { UgcService } from 'src/app/service/ugc.service';
 import { CitiesService } from 'src/app/service/cities.service';
+import { debounceTime } from 'rxjs/operators';
 
 @Component({
   selector: 'app-ugc',
@@ -17,6 +18,30 @@ import { CitiesService } from 'src/app/service/cities.service';
   styleUrls: ['./ugc.component.css'],
 })
 export class UgcComponent implements OnInit {
+  countries: string[] = [
+    'Argentina',
+    'Bolivia',
+    'Brasil',
+    'Canada',
+    'Chile',
+    'Colombia',
+    'Costa Rica',
+    'Cuba',
+    'Dominican Republic',
+    'Ecuador',
+    'El Salvador',
+    'Guatemala',
+    'Honduras',
+    'Mexico',
+    'Nicaragua',
+    'Panama',
+    'Paraguay',
+    'Peru',
+    'Puerto Rico',
+    'United States',
+    'Uruguay',
+    'Venezuela',
+  ];
   citiesFinal: { name: string; code: string }[] = [];
 
   citiesListArgentina: { name: string; code: string }[] = [];
@@ -39,47 +64,61 @@ export class UgcComponent implements OnInit {
 
   citiesListVenezuela: { name: string; code: string }[] = [];
 
+  citiesListCostaRica: { name: string; code: string }[] = [];
+
+  citiesListCuba: { name: string; code: string }[] = [];
+
+  citiesListElSalvador: { name: string; code: string }[] = [];
+
+  citiesListGuatemala: { name: string; code: string }[] = [];
+
+  citiesListHonduras: { name: string; code: string }[] = [];
+
+  citiesListMexico: { name: string; code: string }[] = [];
+
+  citiesListNicaragua: { name: string; code: string }[] = [];
+
+  citiesListPanama: { name: string; code: string }[] = [];
+
+  citiesListPuertoRico: { name: string; code: string }[] = [];
+
+  citiesListDominicanRepublic: { name: string; code: string }[] = [];
+
+  citiesListUnitedStates: { name: string; code: string }[] = [];
+
+  citiesListCanada: { name: string; code: string }[] = [];
+
   countryHtml: string = 'Selecciona el pais';
-
-  // name_client = new FormControl('', Validators.required);
-  // campaign_name = new FormControl('', Validators.required);
-  // country = new FormControl('');
-  // campaign_objective = new FormControl('');
-  // brief_campaign_objective = new FormControl('', Validators.required);
-  // type_product = new FormControl('', Validators.required);
-  // name_product = new FormControl('', Validators.required);
-  // brief = new FormControl('', Validators.required);
-  // guideline = new FormControl('', Validators.required);
-  // delivery = new FormControl('', Validators.required);
-  // cities = new FormControl('', Validators.required);
-  // number_creators = new FormControl(null, Validators.required);
-  // number_short_videos = new FormControl('', Validators.required);
-  // number_long_videos = new FormControl('', Validators.required);
-  // number_carrousel = new FormControl('', Validators.required);
-
-  // saveUGCForm = new FormGroup({
-  //   name_client: this.name_client,
-  //   country: this.country,
-  //   campaign_objective: this.campaign_objective,
-  //   campaign_name: this.campaign_name,
-  //   type_product: this.type_product,
-  //   name_product: this.name_product,
-  //   brief: this.brief,
-  //   guideline: this.guideline,
-  //   brief_campaign_objective: this.brief_campaign_objective,
-  //   delivery: this.delivery,
-  //   // cities: this.cities,
-  //   // number_short_videos: this.number_short_videos,
-  //   // number_long_videos: this.number_long_videos,
-  //   // number_carrousel: this.number_carrousel,
-  //   // number_creators: this.number_creators,
-  // });
 
   //Implementacion combinacion de forms
   combinedForm: FormGroup;
   formGroupCities: FormGroup;
   saveUGCForm: FormGroup;
 
+  formGroupCitiesArgentina: FormGroup;
+  formGroupCitiesBolivia: FormGroup;
+  formGroupCitiesBrasil: FormGroup;
+  formGroupCitiesChile: FormGroup;
+  formGroupCitiesColombia: FormGroup;
+  formGroupCitiesEcuador: FormGroup;
+  formGroupCitiesParaguay: FormGroup;
+  formGroupCitiesPeru: FormGroup;
+  formGroupCitiesUruguay: FormGroup;
+  formGroupCitiesVenezuela: FormGroup;
+  formGroupCitiesCostaRica: FormGroup;
+  formGroupCitiesCuba: FormGroup;
+  formGroupCitiesElSalvador: FormGroup;
+  formGroupCitiesGuatemala: FormGroup;
+  formGroupCitiesHonduras: FormGroup;
+  formGroupCitiesMexico: FormGroup;
+  formGroupCitiesNicaragua: FormGroup;
+  formGroupCitiesPanama: FormGroup;
+  formGroupCitiesPuertoRico: FormGroup;
+  formGroupCitiesDominicanRepublic: FormGroup;
+  formGroupCitiesUnitedStates: FormGroup;
+  formGroupCitiesCanada: FormGroup;
+
+  //
   summary: number = 0;
   selectedCountry: string = '';
   videoCount: number = 0;
@@ -87,70 +126,142 @@ export class UgcComponent implements OnInit {
 
   //  Number of contents for each country
   ValorTotal: number = 0;
-  numeroCarrousel: number = 1;
-  numeroLongVideos: number = 1;
-  numeroShortVideos: number = 1;
-  numeroCreadores: number = 10;
+  numeroCarrousel: number = 0;
+  numeroLongVideos: number = 0;
+  numeroShortVideos: number = 0;
+  numeroCreadores: number = 0;
 
   ValorTotalArgentina: number = 0;
-  numeroCarrouselArgentina: number = 1;
-  numeroLongVideosArgentina: number = 1;
-  numeroShortVideosArgentina: number = 1;
-  numeroCreadoresArgentina: number = 11;
+  numeroCarrouselArgentina: number = 0;
+  numeroLongVideosArgentina: number = 0;
+  numeroShortVideosArgentina: number = 0;
+  numeroCreadoresArgentina: number = 0;
 
   ValorTotalBolivia: number = 0;
-  numeroCarrouselBolivia: number = 1;
-  numeroLongVideosBolivia: number = 1;
-  numeroShortVideosBolivia: number = 1;
-  numeroCreadoresBolivia: number = 10;
+  numeroCarrouselBolivia: number = 0;
+  numeroLongVideosBolivia: number = 0;
+  numeroShortVideosBolivia: number = 0;
+  numeroCreadoresBolivia: number = 0;
 
   ValorTotalBrasil: number = 0;
-  numeroCarrouselBrasil: number = 1;
-  numeroLongVideosBrasil: number = 1;
-  numeroShortVideosBrasil: number = 1;
-  numeroCreadoresBrasil: number = 10;
+  numeroCarrouselBrasil: number = 0;
+  numeroLongVideosBrasil: number = 0;
+  numeroShortVideosBrasil: number = 0;
+  numeroCreadoresBrasil: number = 0;
 
   ValorTotalChile: number = 0;
-  numeroCarrouselChile: number = 1;
-  numeroLongVideosChile: number = 1;
-  numeroShortVideosChile: number = 1;
-  numeroCreadoresChile: number = 10;
+  numeroCarrouselChile: number = 0;
+  numeroLongVideosChile: number = 0;
+  numeroShortVideosChile: number = 0;
+  numeroCreadoresChile: number = 0;
 
   ValorTotalColombia: number = 0;
-  numeroCarrouselColombia: number = 1;
-  numeroLongVideosColombia: number = 1;
-  numeroShortVideosColombia: number = 1;
-  numeroCreadoresColombia: number = 10;
+  numeroCarrouselColombia: number = 0;
+  numeroLongVideosColombia: number = 0;
+  numeroShortVideosColombia: number = 0;
+  numeroCreadoresColombia: number = 0;
 
   ValorTotalEcuador: number = 0;
-  numeroCarrouselEcuador: number = 1;
-  numeroLongVideosEcuador: number = 1;
-  numeroShortVideosEcuador: number = 1;
-  numeroCreadoresEcuador: number = 10;
+  numeroCarrouselEcuador: number = 0;
+  numeroLongVideosEcuador: number = 0;
+  numeroShortVideosEcuador: number = 0;
+  numeroCreadoresEcuador: number = 0;
 
   ValorTotalParaguay: number = 0;
-  numeroCarrouselParaguay: number = 1;
-  numeroLongVideosParaguay: number = 1;
-  numeroShortVideosParaguay: number = 1;
-  numeroCreadoresParaguay: number = 10;
+  numeroCarrouselParaguay: number = 0;
+  numeroLongVideosParaguay: number = 0;
+  numeroShortVideosParaguay: number = 0;
+  numeroCreadoresParaguay: number = 0;
 
   ValorTotalPeru: number = 0;
-  numeroCarrouselPeru: number = 1;
-  numeroLongVideosPeru: number = 1;
-  numeroShortVideosPeru: number = 1;
-  numeroCreadoresPeru: number = 10;
+  numeroCarrouselPeru: number = 0;
+  numeroLongVideosPeru: number = 0;
+  numeroShortVideosPeru: number = 0;
+  numeroCreadoresPeru: number = 0;
 
   ValorTotalUruguay: number = 0;
-  numeroCarrouselUruguay: number = 1;
-  numeroLongVideosUruguay: number = 1;
-  numeroShortVideosUruguay: number = 1;
-  numeroCreadoresUruguay: number = 10;
+  numeroCarrouselUruguay: number = 0;
+  numeroLongVideosUruguay: number = 0;
+  numeroShortVideosUruguay: number = 0;
+  numeroCreadoresUruguay: number = 0;
 
   ValorTotalVenezuela: number = 0;
-  numeroCarrouselVenezuela: number = 1;
-  numeroLongVideosVenezuela: number = 1;
-  numeroShortVideosVenezuela: number = 1;
-  numeroCreadoresVenezuela: number = 10;
+  numeroCarrouselVenezuela: number = 0;
+  numeroLongVideosVenezuela: number = 0;
+  numeroShortVideosVenezuela: number = 0;
+  numeroCreadoresVenezuela: number = 0;
+
+  ValorTotalCostaRica: number = 0;
+  numeroCarrouselCostaRica: number = 0;
+  numeroLongVideosCostaRica: number = 0;
+  numeroShortVideosCostaRica: number = 0;
+  numeroCreadoresCostaRica: number = 0;
+
+  ValorTotalCuba: number = 0;
+  numeroCarrouselCuba: number = 0;
+  numeroLongVideosCuba: number = 0;
+  numeroShortVideosCuba: number = 0;
+  numeroCreadoresCuba: number = 0;
+
+  ValorTotalElSalvador: number = 0;
+  numeroCarrouselElSalvador: number = 0;
+  numeroLongVideosElSalvador: number = 0;
+  numeroShortVideosElSalvador: number = 0;
+  numeroCreadoresElSalvador: number = 0;
+
+  ValorTotalGuatemala: number = 0;
+  numeroCarrouselGuatemala: number = 0;
+  numeroLongVideosGuatemala: number = 0;
+  numeroShortVideosGuatemala: number = 0;
+  numeroCreadoresGuatemala: number = 0;
+
+  ValorTotalHonduras: number = 0;
+  numeroCarrouselHonduras: number = 0;
+  numeroLongVideosHonduras: number = 0;
+  numeroShortVideosHonduras: number = 0;
+  numeroCreadoresHonduras: number = 0;
+
+  ValorTotalMexico: number = 0;
+  numeroCarrouselMexico: number = 0;
+  numeroLongVideosMexico: number = 0;
+  numeroShortVideosMexico: number = 0;
+  numeroCreadoresMexico: number = 0;
+
+  ValorTotalNicaragua: number = 0;
+  numeroCarrouselNicaragua: number = 0;
+  numeroLongVideosNicaragua: number = 0;
+  numeroShortVideosNicaragua: number = 0;
+  numeroCreadoresNicaragua: number = 0;
+
+  ValorTotalPanama: number = 0;
+  numeroCarrouselPanama: number = 0;
+  numeroLongVideosPanama: number = 0;
+  numeroShortVideosPanama: number = 0;
+  numeroCreadoresPanama: number = 0;
+
+  ValorTotalPuertoRico: number = 0;
+  numeroCarrouselPuertoRico: number = 0;
+  numeroLongVideosPuertoRico: number = 0;
+  numeroShortVideosPuertoRico: number = 0;
+  numeroCreadoresPuertoRico: number = 0;
+
+  ValorTotalDominicanRepublic: number = 0;
+  numeroCarrouselDominicanRepublic: number = 0;
+  numeroLongVideosDominicanRepublic: number = 0;
+  numeroShortVideosDominicanRepublic: number = 0;
+  numeroCreadoresDominicanRepublic: number = 0;
+
+  ValorTotalUnitedStates: number = 0;
+  numeroCarrouselUnitedStates: number = 0;
+  numeroLongVideosUnitedStates: number = 0;
+  numeroShortVideosUnitedStates: number = 0;
+  numeroCreadoresUnitedStates: number = 0;
+
+  ValorTotalCanada: number = 0;
+  numeroCarrouselCanada: number = 0;
+  numeroLongVideosCanada: number = 0;
+  numeroShortVideosCanada: number = 0;
+  numeroCreadoresCanada: number = 0;
 
   constructor(
     private service: AuthService,
@@ -159,6 +270,7 @@ export class UgcComponent implements OnInit {
     private UGCService: UgcService,
     private citiesService: CitiesService
   ) {
+    // General
     this.formGroupCities = this.fb.group({
       cities: ['', Validators.required],
       number_creators: ['', Validators.required],
@@ -167,6 +279,219 @@ export class UgcComponent implements OnInit {
       number_carrousel: ['', Validators.required],
       guideline: [''],
     });
+
+    // Argentina
+    this.formGroupCitiesArgentina = this.fb.group({
+      cities: ['', Validators.required],
+      number_creators: ['', Validators.required],
+      number_short_videos: ['', Validators.required],
+      number_long_videos: ['', Validators.required],
+      number_carrousel: ['', Validators.required],
+      guideline: [''],
+    });
+
+    // Bolivia
+    this.formGroupCitiesBolivia = this.fb.group({
+      cities: ['', Validators.required],
+      number_creators: ['', Validators.required],
+      number_short_videos: ['', Validators.required],
+      number_long_videos: ['', Validators.required],
+      number_carrousel: ['', Validators.required],
+      guideline: [''],
+    });
+    // Brasil
+    this.formGroupCitiesBrasil = this.fb.group({
+      cities: ['', Validators.required],
+      number_creators: ['', Validators.required],
+      number_short_videos: ['', Validators.required],
+      number_long_videos: ['', Validators.required],
+      number_carrousel: ['', Validators.required],
+      guideline: [''],
+    });
+    // Chile
+    this.formGroupCitiesChile = this.fb.group({
+      cities: ['', Validators.required],
+      number_creators: ['', Validators.required],
+      number_short_videos: ['', Validators.required],
+      number_long_videos: ['', Validators.required],
+      number_carrousel: ['', Validators.required],
+      guideline: [''],
+    });
+    // Colombia
+    this.formGroupCitiesColombia = this.fb.group({
+      cities: ['', Validators.required],
+      number_creators: ['', Validators.required],
+      number_short_videos: ['', Validators.required],
+      number_long_videos: ['', Validators.required],
+      number_carrousel: ['', Validators.required],
+      guideline: [''],
+    });
+    // Ecuador
+    this.formGroupCitiesEcuador = this.fb.group({
+      cities: ['', Validators.required],
+      number_creators: ['', Validators.required],
+      number_short_videos: ['', Validators.required],
+      number_long_videos: ['', Validators.required],
+      number_carrousel: ['', Validators.required],
+      guideline: [''],
+    });
+    // Paraguay
+    this.formGroupCitiesParaguay = this.fb.group({
+      cities: ['', Validators.required],
+      number_creators: ['', Validators.required],
+      number_short_videos: ['', Validators.required],
+      number_long_videos: ['', Validators.required],
+      number_carrousel: ['', Validators.required],
+      guideline: [''],
+    });
+    // Peru
+    this.formGroupCitiesPeru = this.fb.group({
+      cities: ['', Validators.required],
+      number_creators: ['', Validators.required],
+      number_short_videos: ['', Validators.required],
+      number_long_videos: ['', Validators.required],
+      number_carrousel: ['', Validators.required],
+      guideline: [''],
+    });
+    // Uruguay
+    this.formGroupCitiesUruguay = this.fb.group({
+      cities: ['', Validators.required],
+      number_creators: ['', Validators.required],
+      number_short_videos: ['', Validators.required],
+      number_long_videos: ['', Validators.required],
+      number_carrousel: ['', Validators.required],
+      guideline: [''],
+    });
+    // Venezuela
+    this.formGroupCitiesVenezuela = this.fb.group({
+      cities: ['', Validators.required],
+      number_creators: ['', Validators.required],
+      number_short_videos: ['', Validators.required],
+      number_long_videos: ['', Validators.required],
+      number_carrousel: ['', Validators.required],
+      guideline: [''],
+    });
+
+    // CostaRica
+    this.formGroupCitiesCostaRica = this.fb.group({
+      cities: ['', Validators.required],
+      number_creators: ['', Validators.required],
+      number_short_videos: ['', Validators.required],
+      number_long_videos: ['', Validators.required],
+      number_carrousel: ['', Validators.required],
+      guideline: [''],
+    });
+
+    // Cuba
+    this.formGroupCitiesCuba = this.fb.group({
+      cities: ['', Validators.required],
+      number_creators: ['', Validators.required],
+      number_short_videos: ['', Validators.required],
+      number_long_videos: ['', Validators.required],
+      number_carrousel: ['', Validators.required],
+      guideline: [''],
+    });
+
+    // ElSalvador
+    this.formGroupCitiesElSalvador = this.fb.group({
+      cities: ['', Validators.required],
+      number_creators: ['', Validators.required],
+      number_short_videos: ['', Validators.required],
+      number_long_videos: ['', Validators.required],
+      number_carrousel: ['', Validators.required],
+      guideline: [''],
+    });
+
+    // Guatemala
+    this.formGroupCitiesGuatemala = this.fb.group({
+      cities: ['', Validators.required],
+      number_creators: ['', Validators.required],
+      number_short_videos: ['', Validators.required],
+      number_long_videos: ['', Validators.required],
+      number_carrousel: ['', Validators.required],
+      guideline: [''],
+    });
+
+    // Honduras
+    this.formGroupCitiesHonduras = this.fb.group({
+      cities: ['', Validators.required],
+      number_creators: ['', Validators.required],
+      number_short_videos: ['', Validators.required],
+      number_long_videos: ['', Validators.required],
+      number_carrousel: ['', Validators.required],
+      guideline: [''],
+    });
+
+    // Mexico
+    this.formGroupCitiesMexico = this.fb.group({
+      cities: ['', Validators.required],
+      number_creators: ['', Validators.required],
+      number_short_videos: ['', Validators.required],
+      number_long_videos: ['', Validators.required],
+      number_carrousel: ['', Validators.required],
+      guideline: [''],
+    });
+
+    // Nicaragua
+    this.formGroupCitiesNicaragua = this.fb.group({
+      cities: ['', Validators.required],
+      number_creators: ['', Validators.required],
+      number_short_videos: ['', Validators.required],
+      number_long_videos: ['', Validators.required],
+      number_carrousel: ['', Validators.required],
+      guideline: [''],
+    });
+
+    // Panama
+    this.formGroupCitiesPanama = this.fb.group({
+      cities: ['', Validators.required],
+      number_creators: ['', Validators.required],
+      number_short_videos: ['', Validators.required],
+      number_long_videos: ['', Validators.required],
+      number_carrousel: ['', Validators.required],
+      guideline: [''],
+    });
+
+    // PuertoRico
+    this.formGroupCitiesPuertoRico = this.fb.group({
+      cities: ['', Validators.required],
+      number_creators: ['', Validators.required],
+      number_short_videos: ['', Validators.required],
+      number_long_videos: ['', Validators.required],
+      number_carrousel: ['', Validators.required],
+      guideline: [''],
+    });
+
+    // DominicanRepublic
+    this.formGroupCitiesDominicanRepublic = this.fb.group({
+      cities: ['', Validators.required],
+      number_creators: ['', Validators.required],
+      number_short_videos: ['', Validators.required],
+      number_long_videos: ['', Validators.required],
+      number_carrousel: ['', Validators.required],
+      guideline: [''],
+    });
+
+    // UnitedStates
+    this.formGroupCitiesUnitedStates = this.fb.group({
+      cities: ['', Validators.required],
+      number_creators: ['', Validators.required],
+      number_short_videos: ['', Validators.required],
+      number_long_videos: ['', Validators.required],
+      number_carrousel: ['', Validators.required],
+      guideline: [''],
+    });
+
+    // Canada
+    this.formGroupCitiesCanada = this.fb.group({
+      cities: ['', Validators.required],
+      number_creators: ['', Validators.required],
+      number_short_videos: ['', Validators.required],
+      number_long_videos: ['', Validators.required],
+      number_carrousel: ['', Validators.required],
+      guideline: [''],
+    });
+
     this.saveUGCForm = this.fb.group({
       name_client: ['', Validators.required],
       campaign_name: ['', Validators.required],
@@ -182,6 +507,28 @@ export class UgcComponent implements OnInit {
     this.combinedForm = this.fb.group({
       saveUGCForm: this.saveUGCForm,
       formGroupCities: this.formGroupCities,
+      formGroupCitiesArgentina: this.formGroupCitiesArgentina,
+      formGroupCitiesBolivia: this.formGroupCitiesBolivia,
+      formGroupCitiesBrasil: this.formGroupCitiesBrasil,
+      formGroupCitiesChile: this.formGroupCitiesChile,
+      formGroupCitiesColombia: this.formGroupCitiesColombia,
+      formGroupCitiesEcuador: this.formGroupCitiesEcuador,
+      formGroupCitiesParaguay: this.formGroupCitiesParaguay,
+      formGroupCitiesPeru: this.formGroupCitiesPeru,
+      formGroupCitiesUruguay: this.formGroupCitiesUruguay,
+      formGroupCitiesVenezuela: this.formGroupCitiesVenezuela,
+      formGroupCitiesCostaRica: this.formGroupCitiesCostaRica,
+      formGroupCitiesCuba: this.formGroupCitiesCuba,
+      formGroupCitiesElSalvador: this.formGroupCitiesElSalvador,
+      formGroupCitiesGuatemala: this.formGroupCitiesGuatemala,
+      formGroupCitiesHonduras: this.formGroupCitiesHonduras,
+      formGroupCitiesMexico: this.formGroupCitiesMexico,
+      formGroupCitiesNicaragua: this.formGroupCitiesNicaragua,
+      formGroupCitiesPanama: this.formGroupCitiesPanama,
+      formGroupCitiesPuertoRico: this.formGroupCitiesPuertoRico,
+      formGroupCitiesDominicanRepublic: this.formGroupCitiesDominicanRepublic,
+      formGroupCitiesUnitedStates: this.formGroupCitiesUnitedStates,
+      formGroupCitiesCanada: this.formGroupCitiesCanada,
     });
   }
 
@@ -190,33 +537,44 @@ export class UgcComponent implements OnInit {
     this.getCities();
   }
 
-  getCitiesNames(citiesList: { name: string; code: string }[]): string[] {
-    return citiesList.map((city) => city.name);
-  }
-
   saveSaleUGC() {
-    if (this.combinedForm.valid) {
-      const combinedFormData = this.combinedForm.value;
-
+    // Argentina
+    if (this.selectedCountry.includes('Argentina')) {
       // Obtener los nombres de las ciudades y ajustarlos
       const citiesData: { name: string }[] =
-        combinedFormData.formGroupCities.cities;
+        this.formGroupCitiesArgentina.value.cities;
       const citiesArray = citiesData.map((cityObject) => cityObject.name);
-      this.formGroupCities.value.cities = citiesArray;
+      this.formGroupCitiesArgentina.value.cities = citiesArray;
 
       const combinedData = {
         ...this.saveUGCForm.value,
-        ...this.formGroupCities.value,
+        ...this.formGroupCitiesArgentina.value,
       };
 
-      console.log(combinedData);
+      // console.log(combinedData);
 
       this.UGCService.saveSaleUGC(combinedData).subscribe(() => {
-        console.log();
         this.router.navigateByUrl('/home');
       });
-    } else {
-      console.log('Form is invalid');
+    }
+
+    if (this.selectedCountry.includes('Bolivia')) {
+      // Obtener los nombres de las ciudades y ajustarlos
+      const citiesData: { name: string }[] =
+        this.formGroupCitiesBolivia.value.cities;
+      const citiesArray = citiesData.map((cityObject) => cityObject.name);
+      this.formGroupCitiesBolivia.value.cities = citiesArray;
+
+      const combinedData = {
+        ...this.saveUGCForm.value,
+        ...this.formGroupCitiesBolivia.value,
+      };
+
+      // console.log(combinedData);
+
+      this.UGCService.saveSaleUGC(combinedData).subscribe(() => {
+        this.router.navigateByUrl('/home');
+      });
     }
   }
   // Sum buttons types of contents
@@ -361,443 +719,921 @@ export class UgcComponent implements OnInit {
   // -------------------------------------- Brasil -------------------------------------------------
 
   sumCarrouselBrasil() {
-    this.numeroCarrousel += 1;
+    this.numeroCarrouselBrasil += 1;
   }
 
   restCarrouselBrasil() {
-    if (this.numeroCarrousel > 0) {
-      this.numeroCarrousel--;
+    if (this.numeroCarrouselBrasil > 0) {
+      this.numeroCarrouselBrasil--;
     }
   }
 
   sumLongBrasil() {
-    this.numeroLongVideos += 1;
+    this.numeroLongVideosBrasil += 1;
   }
 
   restLongBrasil() {
-    if (this.numeroLongVideos > 0) {
-      this.numeroLongVideos--;
+    if (this.numeroLongVideosBrasil > 0) {
+      this.numeroLongVideosBrasil--;
     }
   }
 
   sumShortBrasil() {
-    this.numeroShortVideos += 1;
+    this.numeroShortVideosBrasil += 1;
   }
 
   restShortBrasil() {
-    if (this.numeroShortVideos > 0) {
-      this.numeroShortVideos--;
+    if (this.numeroShortVideosBrasil > 0) {
+      this.numeroShortVideosBrasil--;
     }
   }
 
   sumCreatorsBrasil() {
-    this.numeroCreadores += 1;
+    this.numeroCreadoresBrasil += 1;
   }
 
   restCreatorsBrasil() {
-    if (this.numeroCreadores > 10) {
-      this.numeroCreadores--;
+    if (this.numeroCreadoresBrasil > 10) {
+      this.numeroCreadoresBrasil--;
     }
   }
 
   putCreatorsBrasil(event: number) {
-    this.numeroCreadores = event;
+    this.numeroCreadoresBrasil = event;
   }
 
   // -------------------------------------- Chile -------------------------------------------------
 
   sumCarrouselChile() {
-    this.numeroCarrousel += 1;
+    this.numeroCarrouselChile += 1;
   }
 
   restCarrouselChile() {
-    if (this.numeroCarrousel > 0) {
-      this.numeroCarrousel--;
+    if (this.numeroCarrouselChile > 0) {
+      this.numeroCarrouselChile--;
     }
   }
 
   sumLongChile() {
-    this.numeroLongVideos += 1;
+    this.numeroLongVideosChile += 1;
   }
 
   restLongChile() {
-    if (this.numeroLongVideos > 0) {
-      this.numeroLongVideos--;
+    if (this.numeroLongVideosChile > 0) {
+      this.numeroLongVideosChile--;
     }
   }
 
   sumShortChile() {
-    this.numeroShortVideos += 1;
+    this.numeroShortVideosChile += 1;
   }
 
   restShortChile() {
-    if (this.numeroShortVideos > 0) {
-      this.numeroShortVideos--;
+    if (this.numeroShortVideosChile > 0) {
+      this.numeroShortVideosChile--;
     }
   }
 
   sumCreatorsChile() {
-    this.numeroCreadores += 1;
+    this.numeroCreadoresChile += 1;
   }
 
   restCreatorsChile() {
-    if (this.numeroCreadores > 10) {
-      this.numeroCreadores--;
+    if (this.numeroCreadoresChile > 10) {
+      this.numeroCreadoresChile--;
     }
   }
 
   putCreatorsChile(event: number) {
-    this.numeroCreadores = event;
+    this.numeroCreadoresChile = event;
   }
 
   // -------------------------------------- Colombia -------------------------------------------------
 
   sumCarrouselColombia() {
-    this.numeroCarrousel += 1;
+    this.numeroCarrouselColombia += 1;
   }
 
   restCarrouselColombia() {
-    if (this.numeroCarrousel > 0) {
-      this.numeroCarrousel--;
+    if (this.numeroCarrouselColombia > 0) {
+      this.numeroCarrouselColombia--;
     }
   }
 
   sumLongColombia() {
-    this.numeroLongVideos += 1;
+    this.numeroLongVideosColombia += 1;
   }
 
   restLongColombia() {
-    if (this.numeroLongVideos > 0) {
-      this.numeroLongVideos--;
+    if (this.numeroLongVideosColombia > 0) {
+      this.numeroLongVideosColombia--;
     }
   }
 
   sumShortColombia() {
-    this.numeroShortVideos += 1;
+    this.numeroShortVideosColombia += 1;
   }
 
   restShortColombia() {
-    if (this.numeroShortVideos > 0) {
-      this.numeroShortVideos--;
+    if (this.numeroShortVideosColombia > 0) {
+      this.numeroShortVideosColombia--;
     }
   }
 
   sumCreatorsColombia() {
-    this.numeroCreadores += 1;
+    this.numeroCreadoresColombia += 1;
   }
 
   restCreatorsColombia() {
-    if (this.numeroCreadores > 10) {
-      this.numeroCreadores--;
+    if (this.numeroCreadoresColombia > 10) {
+      this.numeroCreadoresColombia--;
     }
   }
 
   putCreatorsColombia(event: number) {
-    this.numeroCreadores = event;
+    this.numeroCreadoresColombia = event;
   }
   // -------------------------------------- Ecuador -------------------------------------------------
 
   sumCarrouselEcuador() {
-    this.numeroCarrousel += 1;
+    this.numeroCarrouselEcuador += 1;
   }
 
   restCarrouselEcuador() {
-    if (this.numeroCarrousel > 0) {
-      this.numeroCarrousel--;
+    if (this.numeroCarrouselEcuador > 0) {
+      this.numeroCarrouselEcuador--;
     }
   }
 
   sumLongEcuador() {
-    this.numeroLongVideos += 1;
+    this.numeroLongVideosEcuador += 1;
   }
 
   restLongEcuador() {
-    if (this.numeroLongVideos > 0) {
-      this.numeroLongVideos--;
+    if (this.numeroLongVideosEcuador > 0) {
+      this.numeroLongVideosEcuador--;
     }
   }
 
   sumShortEcuador() {
-    this.numeroShortVideos += 1;
+    this.numeroShortVideosEcuador += 1;
   }
 
   restShortEcuador() {
-    if (this.numeroShortVideos > 0) {
-      this.numeroShortVideos--;
+    if (this.numeroShortVideosEcuador > 0) {
+      this.numeroShortVideosEcuador--;
     }
   }
 
   sumCreatorsEcuador() {
-    this.numeroCreadores += 1;
+    this.numeroCreadoresEcuador += 1;
   }
 
   restCreatorsEcuador() {
-    if (this.numeroCreadores > 10) {
-      this.numeroCreadores--;
+    if (this.numeroCreadoresEcuador > 10) {
+      this.numeroCreadoresEcuador--;
     }
   }
 
   putCreatorsEcuador(event: number) {
-    this.numeroCreadores = event;
+    this.numeroCreadoresEcuador = event;
   }
 
   // -------------------------------------- Paraguay -------------------------------------------------
 
   sumCarrouselParaguay() {
-    this.numeroCarrousel += 1;
+    this.numeroCarrouselParaguay += 1;
   }
 
   restCarrouselParaguay() {
-    if (this.numeroCarrousel > 0) {
-      this.numeroCarrousel--;
+    if (this.numeroCarrouselParaguay > 0) {
+      this.numeroCarrouselParaguay--;
     }
   }
 
   sumLongParaguay() {
-    this.numeroLongVideos += 1;
+    this.numeroLongVideosParaguay += 1;
   }
 
   restLongParaguay() {
-    if (this.numeroLongVideos > 0) {
-      this.numeroLongVideos--;
+    if (this.numeroLongVideosParaguay > 0) {
+      this.numeroLongVideosParaguay--;
     }
   }
 
   sumShortParaguay() {
-    this.numeroShortVideos += 1;
+    this.numeroShortVideosParaguay += 1;
   }
 
   restShortParaguay() {
-    if (this.numeroShortVideos > 0) {
-      this.numeroShortVideos--;
+    if (this.numeroShortVideosParaguay > 0) {
+      this.numeroShortVideosParaguay--;
     }
   }
 
   sumCreatorsParaguay() {
-    this.numeroCreadores += 1;
+    this.numeroCreadoresParaguay += 1;
   }
 
   restCreatorsParaguay() {
-    if (this.numeroCreadores > 10) {
-      this.numeroCreadores--;
+    if (this.numeroCreadoresParaguay > 10) {
+      this.numeroCreadoresParaguay--;
     }
   }
 
   putCreatorsParaguay(event: number) {
-    this.numeroCreadores = event;
+    this.numeroCreadoresParaguay = event;
   }
 
   // -------------------------------------- Peru -------------------------------------------------
 
   sumCarrouselPeru() {
-    this.numeroCarrousel += 1;
+    this.numeroCarrouselPeru += 1;
   }
 
   restCarrouselPeru() {
-    if (this.numeroCarrousel > 0) {
-      this.numeroCarrousel--;
+    if (this.numeroCarrouselPeru > 0) {
+      this.numeroCarrouselPeru--;
     }
   }
 
   sumLongPeru() {
-    this.numeroLongVideos += 1;
+    this.numeroLongVideosPeru += 1;
   }
 
   restLongPeru() {
-    if (this.numeroLongVideos > 0) {
-      this.numeroLongVideos--;
+    if (this.numeroLongVideosPeru > 0) {
+      this.numeroLongVideosPeru--;
     }
   }
 
   sumShortPeru() {
-    this.numeroShortVideos += 1;
+    this.numeroShortVideosPeru += 1;
   }
 
   restShortPeru() {
-    if (this.numeroShortVideos > 0) {
-      this.numeroShortVideos--;
+    if (this.numeroShortVideosPeru > 0) {
+      this.numeroShortVideosPeru--;
     }
   }
 
   sumCreatorsPeru() {
-    this.numeroCreadores += 1;
+    this.numeroCreadoresPeru += 1;
   }
 
   restCreatorsPeru() {
-    if (this.numeroCreadores > 10) {
-      this.numeroCreadores--;
+    if (this.numeroCreadoresPeru > 10) {
+      this.numeroCreadoresPeru--;
     }
   }
 
   putCreatorsPeru(event: number) {
-    this.numeroCreadores = event;
+    this.numeroCreadoresPeru = event;
   }
 
   // -------------------------------------- Uruguay -------------------------------------------------
 
   sumCarrouselUruguay() {
-    this.numeroCarrousel += 1;
+    this.numeroCarrouselUruguay += 1;
   }
 
   restCarrouselUruguay() {
-    if (this.numeroCarrousel > 0) {
-      this.numeroCarrousel--;
+    if (this.numeroCarrouselUruguay > 0) {
+      this.numeroCarrouselUruguay--;
     }
   }
 
   sumLongUruguay() {
-    this.numeroLongVideos += 1;
+    this.numeroLongVideosUruguay += 1;
   }
 
   restLongUruguay() {
-    if (this.numeroLongVideos > 0) {
-      this.numeroLongVideos--;
+    if (this.numeroLongVideosUruguay > 0) {
+      this.numeroLongVideosUruguay--;
     }
   }
 
   sumShortUruguay() {
-    this.numeroShortVideos += 1;
+    this.numeroShortVideosUruguay += 1;
   }
 
   restShortUruguay() {
-    if (this.numeroShortVideos > 0) {
-      this.numeroShortVideos--;
+    if (this.numeroShortVideosUruguay > 0) {
+      this.numeroShortVideosUruguay--;
     }
   }
 
   sumCreatorsUruguay() {
-    this.numeroCreadores += 1;
+    this.numeroCreadoresUruguay += 1;
   }
 
   restCreatorsUruguay() {
-    if (this.numeroCreadores > 10) {
-      this.numeroCreadores--;
+    if (this.numeroCreadoresUruguay > 10) {
+      this.numeroCreadoresUruguay--;
     }
   }
 
   putCreatorsUruguay(event: number) {
-    this.numeroCreadores = event;
+    this.numeroCreadoresUruguay = event;
   }
 
   // -------------------------------------- Venezuela -------------------------------------------------
 
   sumCarrouselVenezuela() {
-    this.numeroCarrousel += 1;
+    this.numeroCarrouselVenezuela += 1;
   }
 
   restCarrouselVenezuela() {
-    if (this.numeroCarrousel > 0) {
-      this.numeroCarrousel--;
+    if (this.numeroCarrouselVenezuela > 0) {
+      this.numeroCarrouselVenezuela--;
     }
   }
 
   sumLongVenezuela() {
-    this.numeroLongVideos += 1;
+    this.numeroLongVideosVenezuela += 1;
   }
 
   restLongVenezuela() {
-    if (this.numeroLongVideos > 0) {
-      this.numeroLongVideos--;
+    if (this.numeroLongVideosVenezuela > 0) {
+      this.numeroLongVideosVenezuela--;
     }
   }
 
   sumShortVenezuela() {
-    this.numeroShortVideos += 1;
+    this.numeroShortVideosVenezuela += 1;
   }
 
   restShortVenezuela() {
-    if (this.numeroShortVideos > 0) {
-      this.numeroShortVideos--;
+    if (this.numeroShortVideosVenezuela > 0) {
+      this.numeroShortVideosVenezuela--;
     }
   }
 
   sumCreatorsVenezuela() {
-    this.numeroCreadores += 1;
+    this.numeroCreadoresVenezuela += 1;
   }
 
   restCreatorsVenezuela() {
-    if (this.numeroCreadores > 10) {
-      this.numeroCreadores--;
+    if (this.numeroCreadoresVenezuela > 10) {
+      this.numeroCreadoresVenezuela--;
     }
   }
 
   putCreatorsVenezuela(event: number) {
-    this.numeroCreadores = event;
+    this.numeroCreadoresVenezuela = event;
   }
 
-  // Carrito de compras antiguo
-  // changeContents() {
-  //   if (this.selectedCountry == 'Argentina') {
-  //     this.ValorTotal =
-  //       (this.numeroCarrousel * 100 +
-  //         this.numeroLongVideos * 300 +
-  //         this.numeroShortVideos * 150) *
-  //       this.numeroCreadores;
-  //   }
-  //   if (this.selectedCountry == 'Bolivia') {
-  //     this.ValorTotal =
-  //       (this.numeroCarrousel * 40 +
-  //         this.numeroLongVideos * 70 +
-  //         this.numeroShortVideos * 90) *
-  //       this.numeroCreadores;
-  //   }
-  //   if (this.selectedCountry == 'Brasil') {
-  //     this.ValorTotal =
-  //       (this.numeroCarrousel * 100 +
-  //         this.numeroLongVideos * 250 +
-  //         this.numeroShortVideos * 150) *
-  //       this.numeroCreadores;
-  //   }
-  //   if (this.selectedCountry == 'Chile') {
-  //     this.ValorTotal =
-  //       (this.numeroCarrousel * 20 +
-  //         this.numeroLongVideos * 70 +
-  //         this.numeroShortVideos * 50) *
-  //       this.numeroCreadores;
-  //   }
-  //   if (this.selectedCountry == 'Colombia') {
-  //     this.ValorTotal =
-  //       (this.numeroCarrousel * 50 +
-  //         this.numeroLongVideos * 77 +
-  //         this.numeroShortVideos * 44) *
-  //       this.numeroCreadores;
-  //   }
-  //   if (this.selectedCountry == 'Ecuador') {
-  //     this.ValorTotal =
-  //       (this.numeroCarrousel * 50 +
-  //         this.numeroLongVideos * 66 +
-  //         this.numeroShortVideos * 90) *
-  //       this.numeroCreadores;
-  //   }
-  //   if (this.selectedCountry == 'Paraguay') {
-  //     this.ValorTotal =
-  //       (this.numeroCarrousel * 75 +
-  //         this.numeroLongVideos * 65 +
-  //         this.numeroShortVideos * 95) *
-  //       this.numeroCreadores;
-  //   }
-  //   if (this.selectedCountry == 'Peru') {
-  //     this.ValorTotal =
-  //       (this.numeroCarrousel * 80 +
-  //         this.numeroLongVideos * 150 +
-  //         this.numeroShortVideos * 100) *
-  //       this.numeroCreadores;
-  //   }
-  //   if (this.selectedCountry == 'Uruguay') {
-  //     this.ValorTotal =
-  //       (this.numeroCarrousel * 80 +
-  //         this.numeroLongVideos * 100 +
-  //         this.numeroShortVideos * 50) *
-  //       this.numeroCreadores;
-  //   }
-  //   if (this.selectedCountry == 'Venezuela') {
-  //     this.ValorTotal =
-  //       (this.numeroCarrousel * 10 +
-  //         this.numeroLongVideos * 30 +
-  //         this.numeroShortVideos * 20) *
-  //       this.numeroCreadores;
-  //   }
-  // }
+  // -------------------------------------- CostaRica -------------------------------------------------
+
+  sumCarrouselCostaRica() {
+    this.numeroCarrouselCostaRica += 1;
+  }
+
+  restCarrouselCostaRica() {
+    if (this.numeroCarrouselCostaRica > 0) {
+      this.numeroCarrouselCostaRica--;
+    }
+  }
+
+  sumLongCostaRica() {
+    this.numeroLongVideosCostaRica += 1;
+  }
+
+  restLongCostaRica() {
+    if (this.numeroLongVideosCostaRica > 0) {
+      this.numeroLongVideosCostaRica--;
+    }
+  }
+
+  sumShortCostaRica() {
+    this.numeroShortVideosCostaRica += 1;
+  }
+
+  restShortCostaRica() {
+    if (this.numeroShortVideosCostaRica > 0) {
+      this.numeroShortVideosCostaRica--;
+    }
+  }
+
+  sumCreatorsCostaRica() {
+    this.numeroCreadoresCostaRica += 1;
+  }
+
+  restCreatorsCostaRica() {
+    if (this.numeroCreadoresCostaRica > 10) {
+      this.numeroCreadoresCostaRica--;
+    }
+  }
+
+  putCreatorsCostaRica(event: number) {
+    this.numeroCreadoresCostaRica = event;
+  }
+
+  // -------------------------------------- Cuba -------------------------------------------------
+
+  sumCarrouselCuba() {
+    this.numeroCarrouselCuba += 1;
+  }
+
+  restCarrouselCuba() {
+    if (this.numeroCarrouselCuba > 0) {
+      this.numeroCarrouselCuba--;
+    }
+  }
+
+  sumLongCuba() {
+    this.numeroLongVideosCuba += 1;
+  }
+
+  restLongCuba() {
+    if (this.numeroLongVideosCuba > 0) {
+      this.numeroLongVideosCuba--;
+    }
+  }
+
+  sumShortCuba() {
+    this.numeroShortVideosCuba += 1;
+  }
+
+  restShortCuba() {
+    if (this.numeroShortVideosCuba > 0) {
+      this.numeroShortVideosCuba--;
+    }
+  }
+
+  sumCreatorsCuba() {
+    this.numeroCreadoresCuba += 1;
+  }
+
+  restCreatorsCuba() {
+    if (this.numeroCreadoresCuba > 10) {
+      this.numeroCreadoresCuba--;
+    }
+  }
+
+  putCreatorsCuba(event: number) {
+    this.numeroCreadoresCuba = event;
+  }
+
+  // -------------------------------------- ElSalvador -------------------------------------------------
+
+  sumCarrouselElSalvador() {
+    this.numeroCarrouselElSalvador += 1;
+  }
+
+  restCarrouselElSalvador() {
+    if (this.numeroCarrouselElSalvador > 0) {
+      this.numeroCarrouselElSalvador--;
+    }
+  }
+
+  sumLongElSalvador() {
+    this.numeroLongVideosElSalvador += 1;
+  }
+
+  restLongElSalvador() {
+    if (this.numeroLongVideosElSalvador > 0) {
+      this.numeroLongVideosElSalvador--;
+    }
+  }
+
+  sumShortElSalvador() {
+    this.numeroShortVideosElSalvador += 1;
+  }
+
+  restShortElSalvador() {
+    if (this.numeroShortVideosElSalvador > 0) {
+      this.numeroShortVideosElSalvador--;
+    }
+  }
+
+  sumCreatorsElSalvador() {
+    this.numeroCreadoresElSalvador += 1;
+  }
+
+  restCreatorsElSalvador() {
+    if (this.numeroCreadoresElSalvador > 10) {
+      this.numeroCreadoresElSalvador--;
+    }
+  }
+
+  putCreatorsElSalvador(event: number) {
+    this.numeroCreadoresElSalvador = event;
+  }
+
+  // -------------------------------------- Guatemala -------------------------------------------------
+
+  sumCarrouselGuatemala() {
+    this.numeroCarrouselGuatemala += 1;
+  }
+
+  restCarrouselGuatemala() {
+    if (this.numeroCarrouselGuatemala > 0) {
+      this.numeroCarrouselGuatemala--;
+    }
+  }
+
+  sumLongGuatemala() {
+    this.numeroLongVideosGuatemala += 1;
+  }
+
+  restLongGuatemala() {
+    if (this.numeroLongVideosGuatemala > 0) {
+      this.numeroLongVideosGuatemala--;
+    }
+  }
+
+  sumShortGuatemala() {
+    this.numeroShortVideosGuatemala += 1;
+  }
+
+  restShortGuatemala() {
+    if (this.numeroShortVideosGuatemala > 0) {
+      this.numeroShortVideosGuatemala--;
+    }
+  }
+
+  sumCreatorsGuatemala() {
+    this.numeroCreadoresGuatemala += 1;
+  }
+
+  restCreatorsGuatemala() {
+    if (this.numeroCreadoresGuatemala > 10) {
+      this.numeroCreadoresGuatemala--;
+    }
+  }
+
+  putCreatorsGuatemala(event: number) {
+    this.numeroCreadoresGuatemala = event;
+  }
+
+  // -------------------------------------- Honduras -------------------------------------------------
+
+  sumCarrouselHonduras() {
+    this.numeroCarrouselHonduras += 1;
+  }
+
+  restCarrouselHonduras() {
+    if (this.numeroCarrouselHonduras > 0) {
+      this.numeroCarrouselHonduras--;
+    }
+  }
+
+  sumLongHonduras() {
+    this.numeroLongVideosHonduras += 1;
+  }
+
+  restLongHonduras() {
+    if (this.numeroLongVideosHonduras > 0) {
+      this.numeroLongVideosHonduras--;
+    }
+  }
+
+  sumShortHonduras() {
+    this.numeroShortVideosHonduras += 1;
+  }
+
+  restShortHonduras() {
+    if (this.numeroShortVideosHonduras > 0) {
+      this.numeroShortVideosHonduras--;
+    }
+  }
+
+  sumCreatorsHonduras() {
+    this.numeroCreadoresHonduras += 1;
+  }
+
+  restCreatorsHonduras() {
+    if (this.numeroCreadoresHonduras > 10) {
+      this.numeroCreadoresHonduras--;
+    }
+  }
+
+  putCreatorsHonduras(event: number) {
+    this.numeroCreadoresHonduras = event;
+  }
+
+  // -------------------------------------- Mexico -------------------------------------------------
+
+  sumCarrouselMexico() {
+    this.numeroCarrouselMexico += 1;
+  }
+
+  restCarrouselMexico() {
+    if (this.numeroCarrouselMexico > 0) {
+      this.numeroCarrouselMexico--;
+    }
+  }
+
+  sumLongMexico() {
+    this.numeroLongVideosMexico += 1;
+  }
+
+  restLongMexico() {
+    if (this.numeroLongVideosMexico > 0) {
+      this.numeroLongVideosMexico--;
+    }
+  }
+
+  sumShortMexico() {
+    this.numeroShortVideosMexico += 1;
+  }
+
+  restShortMexico() {
+    if (this.numeroShortVideosMexico > 0) {
+      this.numeroShortVideosMexico--;
+    }
+  }
+
+  sumCreatorsMexico() {
+    this.numeroCreadoresMexico += 1;
+  }
+
+  restCreatorsMexico() {
+    if (this.numeroCreadoresMexico > 10) {
+      this.numeroCreadoresMexico--;
+    }
+  }
+
+  putCreatorsMexico(event: number) {
+    this.numeroCreadoresMexico = event;
+  }
+
+  // -------------------------------------- Nicaragua -------------------------------------------------
+
+  sumCarrouselNicaragua() {
+    this.numeroCarrouselNicaragua += 1;
+  }
+
+  restCarrouselNicaragua() {
+    if (this.numeroCarrouselNicaragua > 0) {
+      this.numeroCarrouselNicaragua--;
+    }
+  }
+
+  sumLongNicaragua() {
+    this.numeroLongVideosNicaragua += 1;
+  }
+
+  restLongNicaragua() {
+    if (this.numeroLongVideosNicaragua > 0) {
+      this.numeroLongVideosNicaragua--;
+    }
+  }
+
+  sumShortNicaragua() {
+    this.numeroShortVideosNicaragua += 1;
+  }
+
+  restShortNicaragua() {
+    if (this.numeroShortVideosNicaragua > 0) {
+      this.numeroShortVideosNicaragua--;
+    }
+  }
+
+  sumCreatorsNicaragua() {
+    this.numeroCreadoresNicaragua += 1;
+  }
+
+  restCreatorsNicaragua() {
+    if (this.numeroCreadoresNicaragua > 10) {
+      this.numeroCreadoresNicaragua--;
+    }
+  }
+
+  putCreatorsNicaragua(event: number) {
+    this.numeroCreadoresNicaragua = event;
+  }
+
+  // -------------------------------------- Panama -------------------------------------------------
+
+  sumCarrouselPanama() {
+    this.numeroCarrouselPanama += 1;
+  }
+
+  restCarrouselPanama() {
+    if (this.numeroCarrouselPanama > 0) {
+      this.numeroCarrouselPanama--;
+    }
+  }
+
+  sumLongPanama() {
+    this.numeroLongVideosPanama += 1;
+  }
+
+  restLongPanama() {
+    if (this.numeroLongVideosPanama > 0) {
+      this.numeroLongVideosPanama--;
+    }
+  }
+
+  sumShortPanama() {
+    this.numeroShortVideosPanama += 1;
+  }
+
+  restShortPanama() {
+    if (this.numeroShortVideosPanama > 0) {
+      this.numeroShortVideosPanama--;
+    }
+  }
+
+  sumCreatorsPanama() {
+    this.numeroCreadoresPanama += 1;
+  }
+
+  restCreatorsPanama() {
+    if (this.numeroCreadoresPanama > 10) {
+      this.numeroCreadoresPanama--;
+    }
+  }
+
+  putCreatorsPanama(event: number) {
+    this.numeroCreadoresPanama = event;
+  }
+
+  // -------------------------------------- PuertoRico -------------------------------------------------
+
+  sumCarrouselPuertoRico() {
+    this.numeroCarrouselPuertoRico += 1;
+  }
+
+  restCarrouselPuertoRico() {
+    if (this.numeroCarrouselPuertoRico > 0) {
+      this.numeroCarrouselPuertoRico--;
+    }
+  }
+
+  sumLongPuertoRico() {
+    this.numeroLongVideosPuertoRico += 1;
+  }
+
+  restLongPuertoRico() {
+    if (this.numeroLongVideosPuertoRico > 0) {
+      this.numeroLongVideosPuertoRico--;
+    }
+  }
+
+  sumShortPuertoRico() {
+    this.numeroShortVideosPuertoRico += 1;
+  }
+
+  restShortPuertoRico() {
+    if (this.numeroShortVideosPuertoRico > 0) {
+      this.numeroShortVideosPuertoRico--;
+    }
+  }
+
+  sumCreatorsPuertoRico() {
+    this.numeroCreadoresPuertoRico += 1;
+  }
+
+  restCreatorsPuertoRico() {
+    if (this.numeroCreadoresPuertoRico > 10) {
+      this.numeroCreadoresPuertoRico--;
+    }
+  }
+
+  putCreatorsPuertoRico(event: number) {
+    this.numeroCreadoresPuertoRico = event;
+  }
+
+  // -------------------------------------- DominicanRepublic -------------------------------------------------
+
+  sumCarrouselDominicanRepublic() {
+    this.numeroCarrouselDominicanRepublic += 1;
+  }
+
+  restCarrouselDominicanRepublic() {
+    if (this.numeroCarrouselDominicanRepublic > 0) {
+      this.numeroCarrouselDominicanRepublic--;
+    }
+  }
+
+  sumLongDominicanRepublic() {
+    this.numeroLongVideosDominicanRepublic += 1;
+  }
+
+  restLongDominicanRepublic() {
+    if (this.numeroLongVideosDominicanRepublic > 0) {
+      this.numeroLongVideosDominicanRepublic--;
+    }
+  }
+
+  sumShortDominicanRepublic() {
+    this.numeroShortVideosDominicanRepublic += 1;
+  }
+
+  restShortDominicanRepublic() {
+    if (this.numeroShortVideosDominicanRepublic > 0) {
+      this.numeroShortVideosDominicanRepublic--;
+    }
+  }
+
+  sumCreatorsDominicanRepublic() {
+    this.numeroCreadoresDominicanRepublic += 1;
+  }
+
+  restCreatorsDominicanRepublic() {
+    if (this.numeroCreadoresDominicanRepublic > 10) {
+      this.numeroCreadoresDominicanRepublic--;
+    }
+  }
+
+  putCreatorsDominicanRepublic(event: number) {
+    this.numeroCreadoresDominicanRepublic = event;
+  }
+
+  // -------------------------------------- UnitedStates -------------------------------------------------
+
+  sumCarrouselUnitedStates() {
+    this.numeroCarrouselUnitedStates += 1;
+  }
+
+  restCarrouselUnitedStates() {
+    if (this.numeroCarrouselUnitedStates > 0) {
+      this.numeroCarrouselUnitedStates--;
+    }
+  }
+
+  sumLongUnitedStates() {
+    this.numeroLongVideosUnitedStates += 1;
+  }
+
+  restLongUnitedStates() {
+    if (this.numeroLongVideosUnitedStates > 0) {
+      this.numeroLongVideosUnitedStates--;
+    }
+  }
+
+  sumShortUnitedStates() {
+    this.numeroShortVideosUnitedStates += 1;
+  }
+
+  restShortUnitedStates() {
+    if (this.numeroShortVideosUnitedStates > 0) {
+      this.numeroShortVideosUnitedStates--;
+    }
+  }
+
+  sumCreatorsUnitedStates() {
+    this.numeroCreadoresUnitedStates += 1;
+  }
+
+  restCreatorsUnitedStates() {
+    if (this.numeroCreadoresUnitedStates > 10) {
+      this.numeroCreadoresUnitedStates--;
+    }
+  }
+
+  putCreatorsUnitedStates(event: number) {
+    this.numeroCreadoresUnitedStates = event;
+  }
+
+  // -------------------------------------- Canada -------------------------------------------------
+
+  sumCarrouselCanada() {
+    this.numeroCarrouselCanada += 1;
+  }
+
+  restCarrouselCanada() {
+    if (this.numeroCarrouselCanada > 0) {
+      this.numeroCarrouselCanada--;
+    }
+  }
+
+  sumLongCanada() {
+    this.numeroLongVideosCanada += 1;
+  }
+
+  restLongCanada() {
+    if (this.numeroLongVideosCanada > 0) {
+      this.numeroLongVideosCanada--;
+    }
+  }
+
+  sumShortCanada() {
+    this.numeroShortVideosCanada += 1;
+  }
+
+  restShortCanada() {
+    if (this.numeroShortVideosCanada > 0) {
+      this.numeroShortVideosCanada--;
+    }
+  }
+
+  sumCreatorsCanada() {
+    this.numeroCreadoresCanada += 1;
+  }
+
+  restCreatorsCanada() {
+    if (this.numeroCreadoresCanada > 10) {
+      this.numeroCreadoresCanada--;
+    }
+  }
+
+  putCreatorsCanada(event: number) {
+    this.numeroCreadoresCanada = event;
+  }
 
   verificarArgentina: boolean = false;
   verificarBolivia: boolean = false;
@@ -809,66 +1645,130 @@ export class UgcComponent implements OnInit {
   verificarPeru: boolean = false;
   verificarUruguay: boolean = false;
   verificarVenezuela: boolean = false;
+  verificarCostaRica: boolean = false;
+  verificarCuba: boolean = false;
+  verificarElSalvador: boolean = false;
+  verificarGuatemala: boolean = false;
+  verificarHonduras: boolean = false;
+  verificarMexico: boolean = false;
+  verificarNicaragua: boolean = false;
+  verificarPanama: boolean = false;
+  verificarPuertoRico: boolean = false;
+  verificarDominicanRepublic: boolean = false;
+  verificarUnitedStates: boolean = false;
+  verificarCanada: boolean = false;
 
   // Mostrar ciudades
   showCities() {
     if (this.selectedCountry.includes('Argentina')) {
       this.verificarArgentina = true;
-      console.log(this.selectedCountry);
     } else {
       this.verificarArgentina = false;
     }
     if (this.selectedCountry.includes('Bolivia')) {
       this.verificarBolivia = true;
-      console.log(this.selectedCountry);
     } else {
       this.verificarBolivia = false;
     }
     if (this.selectedCountry.includes('Brasil')) {
       this.verificarBrasil = true;
-      console.log(this.selectedCountry);
     } else {
       this.verificarBrasil = false;
     }
     if (this.selectedCountry.includes('Chile')) {
       this.verificarChile = true;
-      console.log(this.selectedCountry);
     } else {
       this.verificarChile = false;
     }
     if (this.selectedCountry.includes('Colombia')) {
       this.verificarColombia = true;
-      console.log(this.selectedCountry);
     } else {
       this.verificarColombia = false;
     }
     if (this.selectedCountry.includes('Ecuador')) {
       this.verificarEcuador = true;
-      console.log(this.selectedCountry);
     } else {
       this.verificarEcuador = false;
     }
     if (this.selectedCountry.includes('Paraguay')) {
       this.verificarParaguay = true;
-      console.log(this.selectedCountry);
     } else {
       this.verificarParaguay = false;
     }
     if (this.selectedCountry.includes('Peru')) {
       this.verificarPeru = true;
-      console.log(this.selectedCountry);
     } else {
       this.verificarPeru = false;
     }
     if (this.selectedCountry.includes('Uruguay')) {
       this.verificarUruguay = true;
-      console.log(this.selectedCountry);
     } else {
       this.verificarUruguay = false;
     }
     if (this.selectedCountry.includes('Venezuela')) {
       this.verificarVenezuela = true;
-      console.log(this.selectedCountry);
+    } else {
+      this.verificarVenezuela = false;
+    }
+    if (this.selectedCountry.includes('Costa Rica')) {
+      this.verificarCostaRica = true;
+    } else {
+      this.verificarCostaRica = false;
+    }
+    if (this.selectedCountry.includes('Cuba')) {
+      this.verificarCuba = true;
+    } else {
+      this.verificarCuba = false;
+    }
+    if (this.selectedCountry.includes('El Salvador')) {
+      this.verificarElSalvador = true;
+    } else {
+      this.verificarElSalvador = false;
+    }
+    if (this.selectedCountry.includes('Guatemala')) {
+      this.verificarGuatemala = true;
+    } else {
+      this.verificarGuatemala = false;
+    }
+    if (this.selectedCountry.includes('Honduras')) {
+      this.verificarHonduras = true;
+    } else {
+      this.verificarHonduras = false;
+    }
+    if (this.selectedCountry.includes('Mexico')) {
+      this.verificarMexico = true;
+    } else {
+      this.verificarMexico = false;
+    }
+    if (this.selectedCountry.includes('Nicaragua')) {
+      this.verificarNicaragua = true;
+    } else {
+      this.verificarNicaragua = false;
+    }
+    if (this.selectedCountry.includes('Panama')) {
+      this.verificarPanama = true;
+    } else {
+      this.verificarPanama = false;
+    }
+    if (this.selectedCountry.includes('Puerto Rico')) {
+      this.verificarPuertoRico = true;
+    } else {
+      this.verificarPuertoRico = false;
+    }
+    if (this.selectedCountry.includes('Dominican Republic')) {
+      this.verificarDominicanRepublic = true;
+    } else {
+      this.verificarDominicanRepublic = false;
+    }
+    if (this.selectedCountry.includes('United States')) {
+      this.verificarUnitedStates = true;
+    } else {
+      this.verificarUnitedStates = false;
+    }
+    if (this.selectedCountry.includes('Canada')) {
+      this.verificarCanada = true;
+    } else {
+      this.verificarCanada = false;
     }
   }
 
@@ -886,7 +1786,6 @@ export class UgcComponent implements OnInit {
     this.citiesService.seeCitiesBolivia().subscribe(
       (cities: { name: string; code: string }[]) => {
         this.citiesListBolivia = cities;
-        console.log(this.citiesListBrasil);
       },
       (error) => {
         console.error('Error al obtener las ciudades:', error);
@@ -964,6 +1863,114 @@ export class UgcComponent implements OnInit {
         console.error('Error al obtener las ciudades:', error);
       }
     );
+
+    this.citiesService.seeCitiesCostaRica().subscribe(
+      (cities: { name: string; code: string }[]) => {
+        this.citiesListCostaRica = cities;
+      },
+      (error) => {
+        console.error('Error al obtener las ciudades:', error);
+      }
+    );
+
+    this.citiesService.seeCitiesCuba().subscribe(
+      (cities: { name: string; code: string }[]) => {
+        this.citiesListCuba = cities;
+      },
+      (error) => {
+        console.error('Error al obtener las ciudades:', error);
+      }
+    );
+
+    this.citiesService.seeCitiesElSalvador().subscribe(
+      (cities: { name: string; code: string }[]) => {
+        this.citiesListElSalvador = cities;
+      },
+      (error) => {
+        console.error('Error al obtener las ciudades:', error);
+      }
+    );
+
+    this.citiesService.seeCitiesGuatemala().subscribe(
+      (cities: { name: string; code: string }[]) => {
+        this.citiesListGuatemala = cities;
+      },
+      (error) => {
+        console.error('Error al obtener las ciudades:', error);
+      }
+    );
+
+    this.citiesService.seeCitiesHonduras().subscribe(
+      (cities: { name: string; code: string }[]) => {
+        this.citiesListHonduras = cities;
+      },
+      (error) => {
+        console.error('Error al obtener las ciudades:', error);
+      }
+    );
+
+    this.citiesService.seeCitiesMexico().subscribe(
+      (cities: { name: string; code: string }[]) => {
+        this.citiesListMexico = cities;
+      },
+      (error) => {
+        console.error('Error al obtener las ciudades:', error);
+      }
+    );
+
+    this.citiesService.seeCitiesNicaragua().subscribe(
+      (cities: { name: string; code: string }[]) => {
+        this.citiesListNicaragua = cities;
+      },
+      (error) => {
+        console.error('Error al obtener las ciudades:', error);
+      }
+    );
+
+    this.citiesService.seeCitiesPanama().subscribe(
+      (cities: { name: string; code: string }[]) => {
+        this.citiesListPanama = cities;
+      },
+      (error) => {
+        console.error('Error al obtener las ciudades:', error);
+      }
+    );
+
+    this.citiesService.seeCitiesPuertoRico().subscribe(
+      (cities: { name: string; code: string }[]) => {
+        this.citiesListPuertoRico = cities;
+      },
+      (error) => {
+        console.error('Error al obtener las ciudades:', error);
+      }
+    );
+
+    this.citiesService.seeCitiesDominicanRepublic().subscribe(
+      (cities: { name: string; code: string }[]) => {
+        this.citiesListDominicanRepublic = cities;
+      },
+      (error) => {
+        console.error('Error al obtener las ciudades:', error);
+      }
+    );
+
+    this.citiesService.seeCitiesUnitedStates().subscribe(
+      (cities: { name: string; code: string }[]) => {
+        this.citiesListUnitedStates = cities;
+      },
+      (error) => {
+        console.error('Error al obtener las ciudades:', error);
+      }
+    );
+
+    this.citiesService.seeCitiesCanada().subscribe(
+      (cities: { name: string; code: string }[]) => {
+        this.citiesListCanada = cities;
+      },
+      (error) => {
+        console.error('Error al obtener las ciudades:', error);
+      }
+    );
   }
 
   // Seleccion de tipo de producto - funcion para aparecer el Delivery o no
@@ -1002,5 +2009,906 @@ export class UgcComponent implements OnInit {
       );
       formArray.removeAt(index);
     }
+  }
+
+  valorContenidosTotal: number = 0;
+  valorCarrouselTotal: number = 0;
+  valorShortTotal: number = 0;
+  valorLongTotal: number = 0;
+  valorPromedioContenido: number = 0;
+
+  citiesSelectedArgentina: String = '';
+  citiesSelectedBolivia: String = '';
+  citiesSelectedBrasil: String = '';
+  citiesSelectedChile: String = '';
+  citiesSelectedColombia: String = '';
+  citiesSelectedEcuador: String = '';
+  citiesSelectedParaguay: String = '';
+  citiesSelectedPeru: String = '';
+  citiesSelectedUruguay: String = '';
+  citiesSelectedVenezuela: String = '';
+  citiesSelectedCostaRica: String = '';
+  citiesSelectedCuba: String = '';
+  citiesSelectedElSalvador: String = '';
+  citiesSelectedGuatemala: String = '';
+  citiesSelectedHonduras: String = '';
+  citiesSelectedMexico: String = '';
+  citiesSelectedNicaragua: String = '';
+  citiesSelectedPanama: String = '';
+  citiesSelectedPuertoRico: String = '';
+  citiesSelectedDominicanRepublic: String = '';
+  citiesSelectedUnitedStates: String = '';
+  citiesSelectedCanada: String = '';
+
+  changeValues() {
+    console.log(this.citiesSelectedArgentina.length);
+    setTimeout(() => {
+      this.valorCarrouselTotal = 0;
+      this.valorShortTotal = 0;
+      this.valorLongTotal = 0;
+      this.valorContenidosTotal = 0;
+      this.ValorTotal = 0;
+      // Change Values for Argentina
+      if (this.verificarArgentina == true) {
+        // Valor Total
+
+        this.ValorTotal +=
+          this.citiesSelectedArgentina.length *
+            this.numeroCreadoresArgentina *
+            this.numeroCarrouselArgentina *
+            100 +
+          this.citiesSelectedArgentina.length *
+            this.numeroCreadoresArgentina *
+            this.numeroShortVideosArgentina *
+            150 +
+          this.citiesSelectedArgentina.length *
+            this.numeroCreadoresArgentina *
+            this.numeroLongVideosArgentina *
+            300;
+
+        // Contenidos
+        this.valorCarrouselTotal +=
+          this.citiesSelectedArgentina.length *
+          this.numeroCreadoresArgentina *
+          this.numeroCarrouselArgentina;
+        this.valorShortTotal +=
+          this.citiesSelectedArgentina.length *
+          this.numeroCreadoresArgentina *
+          this.numeroShortVideosArgentina;
+        this.valorLongTotal +=
+          this.citiesSelectedArgentina.length *
+          this.numeroCreadoresArgentina *
+          this.numeroLongVideosArgentina;
+        this.valorContenidosTotal +=
+          this.citiesSelectedArgentina.length *
+          (this.numeroCreadoresArgentina *
+            (this.numeroCarrouselArgentina +
+              this.numeroLongVideosArgentina +
+              this.numeroShortVideosArgentina));
+      }
+
+      // Change Values for Bolivia
+      if (this.verificarBolivia == true) {
+        // Valor Total
+
+        this.ValorTotal +=
+          this.citiesSelectedBolivia.length *
+            this.numeroCreadoresBolivia *
+            this.numeroCarrouselBolivia *
+            40 +
+          this.citiesSelectedBolivia.length *
+            this.numeroCreadoresBolivia *
+            this.numeroShortVideosBolivia *
+            90 +
+          this.citiesSelectedBolivia.length *
+            this.numeroCreadoresBolivia *
+            this.numeroLongVideosBolivia *
+            70;
+
+        // Contenidos
+        this.valorCarrouselTotal +=
+          this.citiesSelectedBolivia.length *
+          this.numeroCreadoresBolivia *
+          this.numeroCarrouselBolivia;
+        this.valorShortTotal +=
+          this.citiesSelectedBolivia.length *
+          this.numeroCreadoresBolivia *
+          this.numeroShortVideosBolivia;
+        this.valorLongTotal +=
+          this.citiesSelectedBolivia.length *
+          this.numeroCreadoresBolivia *
+          this.numeroLongVideosBolivia;
+        this.valorContenidosTotal +=
+          this.citiesSelectedBolivia.length *
+          this.numeroCreadoresBolivia *
+          (this.numeroCarrouselBolivia +
+            this.numeroLongVideosBolivia +
+            this.numeroShortVideosBolivia);
+      }
+
+      // Change Values for Brasil
+      if (this.verificarBrasil == true) {
+        // Valor Total
+
+        this.ValorTotal +=
+          this.citiesSelectedBrasil.length *
+            this.numeroCreadoresBrasil *
+            this.numeroCarrouselBrasil *
+            100 +
+          this.citiesSelectedBrasil.length *
+            this.numeroCreadoresBrasil *
+            this.numeroShortVideosBrasil *
+            150 +
+          this.citiesSelectedBrasil.length *
+            this.numeroCreadoresBrasil *
+            this.numeroLongVideosBrasil *
+            250;
+
+        // Contenidos
+        this.valorCarrouselTotal +=
+          this.citiesSelectedBrasil.length *
+          this.numeroCreadoresBrasil *
+          this.numeroCarrouselBrasil;
+        this.valorShortTotal +=
+          this.citiesSelectedBrasil.length *
+          this.numeroCreadoresBrasil *
+          this.numeroShortVideosBrasil;
+        this.valorLongTotal +=
+          this.citiesSelectedBrasil.length *
+          this.numeroCreadoresBrasil *
+          this.numeroLongVideosBrasil;
+        this.valorContenidosTotal +=
+          this.citiesSelectedBrasil.length *
+          this.numeroCreadoresBrasil *
+          (this.numeroCarrouselBrasil +
+            this.numeroLongVideosBrasil +
+            this.numeroShortVideosBrasil);
+      }
+
+      // Change Values for Chile
+      if (this.verificarChile == true) {
+        // Valor Total
+
+        this.ValorTotal +=
+          this.citiesSelectedChile.length *
+            this.numeroCreadoresChile *
+            this.numeroCarrouselChile *
+            20 +
+          this.citiesSelectedChile.length *
+            this.numeroCreadoresChile *
+            this.numeroShortVideosChile *
+            50 +
+          this.citiesSelectedChile.length *
+            this.numeroCreadoresChile *
+            this.numeroLongVideosChile *
+            70;
+
+        // Contenidos
+        this.valorCarrouselTotal +=
+          this.citiesSelectedChile.length *
+          this.numeroCreadoresChile *
+          this.numeroCarrouselChile;
+        this.valorShortTotal +=
+          this.citiesSelectedChile.length *
+          this.numeroCreadoresChile *
+          this.numeroShortVideosChile;
+        this.valorLongTotal +=
+          this.citiesSelectedChile.length *
+          this.numeroCreadoresChile *
+          this.numeroLongVideosChile;
+        this.valorContenidosTotal +=
+          this.citiesSelectedChile.length *
+          this.numeroCreadoresChile *
+          (this.numeroCarrouselChile +
+            this.numeroLongVideosChile +
+            this.numeroShortVideosChile);
+      }
+
+      // Change Values for Colombia
+      if (this.verificarColombia == true) {
+        // Valor Total
+
+        this.ValorTotal +=
+          this.citiesSelectedColombia.length *
+            this.numeroCreadoresColombia *
+            this.numeroCarrouselColombia *
+            50 +
+          this.citiesSelectedColombia.length *
+            this.numeroCreadoresColombia *
+            this.numeroShortVideosColombia *
+            44 +
+          this.citiesSelectedColombia.length *
+            this.numeroCreadoresColombia *
+            this.numeroLongVideosColombia *
+            77;
+
+        // Contenidos
+        this.valorCarrouselTotal +=
+          this.citiesSelectedColombia.length *
+          this.numeroCreadoresColombia *
+          this.numeroCarrouselColombia;
+        this.valorShortTotal +=
+          this.citiesSelectedColombia.length *
+          this.numeroCreadoresColombia *
+          this.numeroShortVideosColombia;
+        this.valorLongTotal +=
+          this.citiesSelectedColombia.length *
+          this.numeroCreadoresColombia *
+          this.numeroLongVideosColombia;
+        this.valorContenidosTotal +=
+          this.citiesSelectedColombia.length *
+          this.numeroCreadoresColombia *
+          (this.numeroCarrouselColombia +
+            this.numeroLongVideosColombia +
+            this.numeroShortVideosColombia);
+      }
+
+      // Change Values for Ecuador
+      if (this.verificarEcuador == true) {
+        // Valor Total
+
+        this.ValorTotal +=
+          this.citiesSelectedEcuador.length *
+            this.numeroCreadoresEcuador *
+            this.numeroCarrouselEcuador *
+            50 +
+          this.citiesSelectedEcuador.length *
+            this.numeroCreadoresEcuador *
+            this.numeroShortVideosEcuador *
+            90 +
+          this.citiesSelectedEcuador.length *
+            this.numeroCreadoresEcuador *
+            this.numeroLongVideosEcuador *
+            66;
+
+        // Contenidos
+        this.valorCarrouselTotal +=
+          this.citiesSelectedEcuador.length *
+          this.numeroCreadoresEcuador *
+          this.numeroCarrouselEcuador;
+        this.valorShortTotal +=
+          this.citiesSelectedEcuador.length *
+          this.numeroCreadoresEcuador *
+          this.numeroShortVideosEcuador;
+        this.valorLongTotal +=
+          this.citiesSelectedEcuador.length *
+          this.numeroCreadoresEcuador *
+          this.numeroLongVideosEcuador;
+        this.valorContenidosTotal +=
+          this.citiesSelectedEcuador.length *
+          this.numeroCreadoresEcuador *
+          (this.numeroCarrouselEcuador +
+            this.numeroLongVideosEcuador +
+            this.numeroShortVideosEcuador);
+      }
+
+      // Change Values for Paraguay
+      if (this.verificarParaguay == true) {
+        // Valor Total
+
+        this.ValorTotal +=
+          this.citiesSelectedParaguay.length *
+            this.numeroCreadoresParaguay *
+            this.numeroCarrouselParaguay *
+            75 +
+          this.citiesSelectedParaguay.length *
+            this.numeroCreadoresParaguay *
+            this.numeroShortVideosParaguay *
+            95 +
+          this.citiesSelectedParaguay.length *
+            this.numeroCreadoresParaguay *
+            this.numeroLongVideosParaguay *
+            65;
+
+        // Contenidos
+        this.valorCarrouselTotal +=
+          this.citiesSelectedParaguay.length *
+          this.numeroCreadoresParaguay *
+          this.numeroCarrouselParaguay;
+        this.valorShortTotal +=
+          this.citiesSelectedParaguay.length *
+          this.numeroCreadoresParaguay *
+          this.numeroShortVideosParaguay;
+        this.valorLongTotal +=
+          this.citiesSelectedParaguay.length *
+          this.numeroCreadoresParaguay *
+          this.numeroLongVideosParaguay;
+        this.valorContenidosTotal +=
+          this.citiesSelectedParaguay.length *
+          this.numeroCreadoresParaguay *
+          (this.numeroCarrouselParaguay +
+            this.numeroLongVideosParaguay +
+            this.numeroShortVideosParaguay);
+      }
+
+      // Change Values for Peru
+      if (this.verificarPeru == true) {
+        // Valor Total
+
+        this.ValorTotal +=
+          this.citiesSelectedPeru.length *
+            this.numeroCreadoresPeru *
+            this.numeroCarrouselPeru *
+            80 +
+          this.citiesSelectedPeru.length *
+            this.numeroCreadoresPeru *
+            this.numeroShortVideosPeru *
+            100 +
+          this.citiesSelectedPeru.length *
+            this.numeroCreadoresPeru *
+            this.numeroLongVideosPeru *
+            150;
+
+        // Contenidos
+        this.valorCarrouselTotal +=
+          this.citiesSelectedPeru.length *
+          this.numeroCreadoresPeru *
+          this.numeroCarrouselPeru;
+        this.valorShortTotal +=
+          this.citiesSelectedPeru.length *
+          this.numeroCreadoresPeru *
+          this.numeroShortVideosPeru;
+        this.valorLongTotal +=
+          this.citiesSelectedPeru.length *
+          this.numeroCreadoresPeru *
+          this.numeroLongVideosPeru;
+        this.valorContenidosTotal +=
+          this.citiesSelectedPeru.length *
+          this.numeroCreadoresPeru *
+          (this.numeroCarrouselPeru +
+            this.numeroLongVideosPeru +
+            this.numeroShortVideosPeru);
+      }
+
+      // Change Values for Uruguay
+      if (this.verificarUruguay == true) {
+        // Valor Total
+
+        this.ValorTotal +=
+          this.citiesSelectedUruguay.length *
+            this.numeroCreadoresUruguay *
+            this.numeroCarrouselUruguay *
+            80 +
+          this.citiesSelectedUruguay.length *
+            this.numeroCreadoresUruguay *
+            this.numeroShortVideosUruguay *
+            50 +
+          this.citiesSelectedUruguay.length *
+            this.numeroCreadoresUruguay *
+            this.numeroLongVideosUruguay *
+            80;
+
+        // Contenidos
+        this.valorCarrouselTotal +=
+          this.citiesSelectedUruguay.length *
+          this.numeroCreadoresUruguay *
+          this.numeroCarrouselUruguay;
+        this.valorShortTotal +=
+          this.citiesSelectedUruguay.length *
+          this.numeroCreadoresUruguay *
+          this.numeroShortVideosUruguay;
+        this.valorLongTotal +=
+          this.citiesSelectedUruguay.length *
+          this.numeroCreadoresUruguay *
+          this.numeroLongVideosUruguay;
+        this.valorContenidosTotal +=
+          this.citiesSelectedUruguay.length *
+          this.numeroCreadoresUruguay *
+          (this.numeroCarrouselUruguay +
+            this.numeroLongVideosUruguay +
+            this.numeroShortVideosUruguay);
+      }
+
+      // Change Values for Venezuela
+      if (this.verificarVenezuela == true) {
+        // Valor Total
+
+        this.ValorTotal +=
+          this.citiesSelectedVenezuela.length *
+            this.numeroCreadoresVenezuela *
+            this.numeroCarrouselVenezuela *
+            10 +
+          this.citiesSelectedVenezuela.length *
+            this.numeroCreadoresVenezuela *
+            this.numeroShortVideosVenezuela *
+            20 +
+          this.citiesSelectedVenezuela.length *
+            this.numeroCreadoresVenezuela *
+            this.numeroLongVideosVenezuela *
+            30;
+
+        // Contenidos
+        this.valorCarrouselTotal +=
+          this.citiesSelectedVenezuela.length *
+          this.numeroCreadoresVenezuela *
+          this.numeroCarrouselVenezuela;
+        this.valorShortTotal +=
+          this.citiesSelectedVenezuela.length *
+          this.numeroCreadoresVenezuela *
+          this.numeroShortVideosVenezuela;
+        this.valorLongTotal +=
+          this.citiesSelectedVenezuela.length *
+          this.numeroCreadoresVenezuela *
+          this.numeroLongVideosVenezuela;
+        this.valorContenidosTotal +=
+          this.citiesSelectedVenezuela.length *
+          this.numeroCreadoresVenezuela *
+          (this.numeroCarrouselVenezuela +
+            this.numeroLongVideosVenezuela +
+            this.numeroShortVideosVenezuela);
+      }
+
+      // Change Values for CostaRica
+      if (this.verificarCostaRica == true) {
+        // Valor Total
+
+        this.ValorTotal +=
+          this.citiesSelectedCostaRica.length *
+            this.numeroCreadoresCostaRica *
+            this.numeroCarrouselCostaRica *
+            150 +
+          this.citiesSelectedCostaRica.length *
+            this.numeroCreadoresCostaRica *
+            this.numeroShortVideosCostaRica *
+            100 +
+          this.citiesSelectedCostaRica.length *
+            this.numeroCreadoresCostaRica *
+            this.numeroLongVideosCostaRica *
+            200;
+
+        // Contenidos
+        this.valorCarrouselTotal +=
+          this.citiesSelectedCostaRica.length *
+          this.numeroCreadoresCostaRica *
+          this.numeroCarrouselCostaRica;
+        this.valorShortTotal +=
+          this.citiesSelectedCostaRica.length *
+          this.numeroCreadoresCostaRica *
+          this.numeroShortVideosCostaRica;
+        this.valorLongTotal +=
+          this.citiesSelectedCostaRica.length *
+          this.numeroCreadoresCostaRica *
+          this.numeroLongVideosCostaRica;
+        this.valorContenidosTotal +=
+          this.citiesSelectedCostaRica.length *
+          this.numeroCreadoresCostaRica *
+          (this.numeroCarrouselCostaRica +
+            this.numeroLongVideosCostaRica +
+            this.numeroShortVideosCostaRica);
+      }
+
+      // Change Values for Cuba
+      if (this.verificarCuba == true) {
+        // Valor Total
+
+        this.ValorTotal +=
+          this.citiesSelectedCuba.length *
+            this.numeroCreadoresCuba *
+            this.numeroCarrouselCuba *
+            10 +
+          this.citiesSelectedCuba.length *
+            this.numeroCreadoresCuba *
+            this.numeroShortVideosCuba *
+            20 +
+          this.citiesSelectedCuba.length *
+            this.numeroCreadoresCuba *
+            this.numeroLongVideosCuba *
+            30;
+
+        // Contenidos
+        this.valorCarrouselTotal +=
+          this.citiesSelectedCuba.length *
+          this.numeroCreadoresCuba *
+          this.numeroCarrouselCuba;
+        this.valorShortTotal +=
+          this.citiesSelectedCuba.length *
+          this.numeroCreadoresCuba *
+          this.numeroShortVideosCuba;
+        this.valorLongTotal +=
+          this.citiesSelectedCuba.length *
+          this.numeroCreadoresCuba *
+          this.numeroLongVideosCuba;
+        this.valorContenidosTotal +=
+          this.citiesSelectedCuba.length *
+          this.numeroCreadoresCuba *
+          (this.numeroCarrouselCuba +
+            this.numeroLongVideosCuba +
+            this.numeroShortVideosCuba);
+      }
+
+      // Change Values for ElSalvador
+      if (this.verificarElSalvador == true) {
+        // Valor Total
+
+        this.ValorTotal +=
+          this.citiesSelectedElSalvador.length *
+            this.numeroCreadoresElSalvador *
+            this.numeroCarrouselElSalvador *
+            200 +
+          this.citiesSelectedElSalvador.length *
+            this.numeroCreadoresElSalvador *
+            this.numeroShortVideosElSalvador *
+            100 +
+          this.citiesSelectedElSalvador.length *
+            this.numeroCreadoresElSalvador *
+            this.numeroLongVideosElSalvador *
+            150;
+
+        // Contenidos
+        this.valorCarrouselTotal +=
+          this.citiesSelectedElSalvador.length *
+          this.numeroCreadoresElSalvador *
+          this.numeroCarrouselElSalvador;
+        this.valorShortTotal +=
+          this.citiesSelectedElSalvador.length *
+          this.numeroCreadoresElSalvador *
+          this.numeroShortVideosElSalvador;
+        this.valorLongTotal +=
+          this.citiesSelectedElSalvador.length *
+          this.numeroCreadoresElSalvador *
+          this.numeroLongVideosElSalvador;
+        this.valorContenidosTotal +=
+          this.citiesSelectedElSalvador.length *
+          this.numeroCreadoresElSalvador *
+          (this.numeroCarrouselElSalvador +
+            this.numeroLongVideosElSalvador +
+            this.numeroShortVideosElSalvador);
+      }
+
+      // Change Values for Guatemala
+      if (this.verificarGuatemala == true) {
+        // Valor Total
+
+        this.ValorTotal +=
+          this.citiesSelectedGuatemala.length *
+            this.numeroCreadoresGuatemala *
+            this.numeroCarrouselGuatemala *
+            50 +
+          this.citiesSelectedGuatemala.length *
+            this.numeroCreadoresGuatemala *
+            this.numeroShortVideosGuatemala *
+            100 +
+          this.citiesSelectedGuatemala.length *
+            this.numeroCreadoresGuatemala *
+            this.numeroLongVideosGuatemala *
+            70;
+
+        // Contenidos
+        this.valorCarrouselTotal +=
+          this.citiesSelectedGuatemala.length *
+          this.numeroCreadoresGuatemala *
+          this.numeroCarrouselGuatemala;
+        this.valorShortTotal +=
+          this.citiesSelectedGuatemala.length *
+          this.numeroCreadoresGuatemala *
+          this.numeroShortVideosGuatemala;
+        this.valorLongTotal +=
+          this.citiesSelectedGuatemala.length *
+          this.numeroCreadoresGuatemala *
+          this.numeroLongVideosGuatemala;
+        this.valorContenidosTotal +=
+          this.citiesSelectedGuatemala.length *
+          this.numeroCreadoresGuatemala *
+          (this.numeroCarrouselGuatemala +
+            this.numeroLongVideosGuatemala +
+            this.numeroShortVideosGuatemala);
+      }
+
+      // Change Values for Honduras
+      if (this.verificarHonduras == true) {
+        // Valor Total
+
+        this.ValorTotal +=
+          this.citiesSelectedHonduras.length *
+            this.numeroCreadoresHonduras *
+            this.numeroCarrouselHonduras *
+            100 +
+          this.citiesSelectedHonduras.length *
+            this.numeroCreadoresHonduras *
+            this.numeroShortVideosHonduras *
+            120 +
+          this.citiesSelectedHonduras.length *
+            this.numeroCreadoresHonduras *
+            this.numeroLongVideosHonduras *
+            170;
+
+        // Contenidos
+        this.valorCarrouselTotal +=
+          this.citiesSelectedHonduras.length *
+          this.numeroCreadoresHonduras *
+          this.numeroCarrouselHonduras;
+        this.valorShortTotal +=
+          this.citiesSelectedHonduras.length *
+          this.numeroCreadoresHonduras *
+          this.numeroShortVideosHonduras;
+        this.valorLongTotal +=
+          this.citiesSelectedHonduras.length *
+          this.numeroCreadoresHonduras *
+          this.numeroLongVideosHonduras;
+        this.valorContenidosTotal +=
+          this.citiesSelectedHonduras.length *
+          this.numeroCreadoresHonduras *
+          (this.numeroCarrouselHonduras +
+            this.numeroLongVideosHonduras +
+            this.numeroShortVideosHonduras);
+      }
+
+      // Change Values for Mexico
+      if (this.verificarMexico == true) {
+        // Valor Total
+
+        this.ValorTotal +=
+          this.citiesSelectedMexico.length *
+            this.numeroCreadoresMexico *
+            this.numeroCarrouselMexico *
+            80 +
+          this.citiesSelectedMexico.length *
+            this.numeroCreadoresMexico *
+            this.numeroShortVideosMexico *
+            100 +
+          this.citiesSelectedMexico.length *
+            this.numeroCreadoresMexico *
+            this.numeroLongVideosMexico *
+            80;
+
+        // Contenidos
+        this.valorCarrouselTotal +=
+          this.citiesSelectedMexico.length *
+          this.numeroCreadoresMexico *
+          this.numeroCarrouselMexico;
+        this.valorShortTotal +=
+          this.citiesSelectedMexico.length *
+          this.numeroCreadoresMexico *
+          this.numeroShortVideosMexico;
+        this.valorLongTotal +=
+          this.citiesSelectedMexico.length *
+          this.numeroCreadoresMexico *
+          this.numeroLongVideosMexico;
+        this.valorContenidosTotal +=
+          this.citiesSelectedMexico.length *
+          this.numeroCreadoresMexico *
+          (this.numeroCarrouselMexico +
+            this.numeroLongVideosMexico +
+            this.numeroShortVideosMexico);
+      }
+
+      // Change Values for Nicaragua
+      if (this.verificarNicaragua == true) {
+        // Valor Total
+
+        this.ValorTotal +=
+          this.citiesSelectedNicaragua.length *
+            this.numeroCreadoresNicaragua *
+            this.numeroCarrouselNicaragua *
+            50 +
+          this.citiesSelectedNicaragua.length *
+            this.numeroCreadoresNicaragua *
+            this.numeroShortVideosNicaragua *
+            30 +
+          this.citiesSelectedNicaragua.length *
+            this.numeroCreadoresNicaragua *
+            this.numeroLongVideosNicaragua *
+            60;
+
+        // Contenidos
+        this.valorCarrouselTotal +=
+          this.citiesSelectedNicaragua.length *
+          this.numeroCreadoresNicaragua *
+          this.numeroCarrouselNicaragua;
+        this.valorShortTotal +=
+          this.citiesSelectedNicaragua.length *
+          this.numeroCreadoresNicaragua *
+          this.numeroShortVideosNicaragua;
+        this.valorLongTotal +=
+          this.citiesSelectedNicaragua.length *
+          this.numeroCreadoresNicaragua *
+          this.numeroLongVideosNicaragua;
+        this.valorContenidosTotal +=
+          this.citiesSelectedNicaragua.length *
+          this.numeroCreadoresNicaragua *
+          (this.numeroCarrouselNicaragua +
+            this.numeroLongVideosNicaragua +
+            this.numeroShortVideosNicaragua);
+      }
+
+      // Change Values for Panama
+      if (this.verificarPanama == true) {
+        // Valor Total
+
+        this.ValorTotal +=
+          this.citiesSelectedPanama.length *
+            this.numeroCreadoresPanama *
+            this.numeroCarrouselPanama *
+            150 +
+          this.citiesSelectedPanama.length *
+            this.numeroCreadoresPanama *
+            this.numeroShortVideosPanama *
+            100 +
+          this.citiesSelectedPanama.length *
+            this.numeroCreadoresPanama *
+            this.numeroLongVideosPanama *
+            200;
+
+        // Contenidos
+        this.valorCarrouselTotal +=
+          this.citiesSelectedPanama.length *
+          this.numeroCreadoresPanama *
+          this.numeroCarrouselPanama;
+        this.valorShortTotal +=
+          this.citiesSelectedPanama.length *
+          this.numeroCreadoresPanama *
+          this.numeroShortVideosPanama;
+        this.valorLongTotal +=
+          this.citiesSelectedPanama.length *
+          this.numeroCreadoresPanama *
+          this.numeroLongVideosPanama;
+        this.valorContenidosTotal +=
+          this.citiesSelectedPanama.length *
+          this.numeroCreadoresPanama *
+          (this.numeroCarrouselPanama +
+            this.numeroLongVideosPanama +
+            this.numeroShortVideosPanama);
+      }
+
+      // Change Values for PuertoRico
+      if (this.verificarPuertoRico == true) {
+        // Valor Total
+
+        this.ValorTotal +=
+          this.citiesSelectedPuertoRico.length *
+            this.numeroCreadoresPuertoRico *
+            this.numeroCarrouselPuertoRico *
+            240 +
+          this.citiesSelectedPuertoRico.length *
+            this.numeroCreadoresPuertoRico *
+            this.numeroShortVideosPuertoRico *
+            295 +
+          this.citiesSelectedPuertoRico.length *
+            this.numeroCreadoresPuertoRico *
+            this.numeroLongVideosPuertoRico *
+            350;
+
+        // Contenidos
+        this.valorCarrouselTotal +=
+          this.citiesSelectedPuertoRico.length *
+          this.numeroCreadoresPuertoRico *
+          this.numeroCarrouselPuertoRico;
+        this.valorShortTotal +=
+          this.citiesSelectedPuertoRico.length *
+          this.numeroCreadoresPuertoRico *
+          this.numeroShortVideosPuertoRico;
+        this.valorLongTotal +=
+          this.citiesSelectedPuertoRico.length *
+          this.numeroCreadoresPuertoRico *
+          this.numeroLongVideosPuertoRico;
+        this.valorContenidosTotal +=
+          this.citiesSelectedPuertoRico.length *
+          this.numeroCreadoresPuertoRico *
+          (this.numeroCarrouselPuertoRico +
+            this.numeroLongVideosPuertoRico +
+            this.numeroShortVideosPuertoRico);
+      }
+
+      // Change Values for DominicanRepublic
+      if (this.verificarDominicanRepublic == true) {
+        // Valor Total
+
+        this.ValorTotal +=
+          this.citiesSelectedDominicanRepublic.length *
+            this.numeroCreadoresDominicanRepublic *
+            this.numeroCarrouselDominicanRepublic *
+            150 +
+          this.citiesSelectedDominicanRepublic.length *
+            this.numeroCreadoresDominicanRepublic *
+            this.numeroShortVideosDominicanRepublic *
+            200 +
+          this.citiesSelectedDominicanRepublic.length *
+            this.numeroCreadoresDominicanRepublic *
+            this.numeroLongVideosDominicanRepublic *
+            300;
+
+        // Contenidos
+        this.valorCarrouselTotal +=
+          this.citiesSelectedDominicanRepublic.length *
+          this.numeroCreadoresDominicanRepublic *
+          this.numeroCarrouselDominicanRepublic;
+        this.valorShortTotal +=
+          this.citiesSelectedDominicanRepublic.length *
+          this.numeroCreadoresDominicanRepublic *
+          this.numeroShortVideosDominicanRepublic;
+        this.valorLongTotal +=
+          this.citiesSelectedDominicanRepublic.length *
+          this.numeroCreadoresDominicanRepublic *
+          this.numeroLongVideosDominicanRepublic;
+        this.valorContenidosTotal +=
+          this.citiesSelectedDominicanRepublic.length *
+          this.numeroCreadoresDominicanRepublic *
+          (this.numeroCarrouselDominicanRepublic +
+            this.numeroLongVideosDominicanRepublic +
+            this.numeroShortVideosDominicanRepublic);
+      }
+
+      // Change Values for UnitedStates
+      if (this.verificarUnitedStates == true) {
+        // Valor Total
+
+        this.ValorTotal +=
+          this.citiesSelectedUnitedStates.length *
+            this.numeroCreadoresUnitedStates *
+            this.numeroCarrouselUnitedStates *
+            250 +
+          this.citiesSelectedUnitedStates.length *
+            this.numeroCreadoresUnitedStates *
+            this.numeroShortVideosUnitedStates *
+            300 +
+          this.citiesSelectedUnitedStates.length *
+            this.numeroCreadoresUnitedStates *
+            this.numeroLongVideosUnitedStates *
+            390;
+
+        // Contenidos
+        this.valorCarrouselTotal +=
+          this.citiesSelectedUnitedStates.length *
+          this.numeroCreadoresUnitedStates *
+          this.numeroCarrouselUnitedStates;
+        this.valorShortTotal +=
+          this.citiesSelectedUnitedStates.length *
+          this.numeroCreadoresUnitedStates *
+          this.numeroShortVideosUnitedStates;
+        this.valorLongTotal +=
+          this.citiesSelectedUnitedStates.length *
+          this.numeroCreadoresUnitedStates *
+          this.numeroLongVideosUnitedStates;
+        this.valorContenidosTotal +=
+          this.citiesSelectedUnitedStates.length *
+          this.numeroCreadoresUnitedStates *
+          (this.numeroCarrouselUnitedStates +
+            this.numeroLongVideosUnitedStates +
+            this.numeroShortVideosUnitedStates);
+      }
+
+      // Change Values for Canada
+      if (this.verificarCanada == true) {
+        // Valor Total
+
+        this.ValorTotal +=
+          this.citiesSelectedCanada.length *
+            this.numeroCreadoresCanada *
+            this.numeroCarrouselCanada *
+            213 +
+          this.citiesSelectedCanada.length *
+            this.numeroCreadoresCanada *
+            this.numeroShortVideosCanada *
+            263 +
+          this.citiesSelectedCanada.length *
+            this.numeroCreadoresCanada *
+            this.numeroLongVideosCanada *
+            238;
+
+        // Contenidos
+        this.valorCarrouselTotal +=
+          this.citiesSelectedCanada.length *
+          this.numeroCreadoresCanada *
+          this.numeroCarrouselCanada;
+        this.valorShortTotal +=
+          this.citiesSelectedCanada.length *
+          this.numeroCreadoresCanada *
+          this.numeroShortVideosCanada;
+        this.valorLongTotal +=
+          this.citiesSelectedCanada.length *
+          this.numeroCreadoresCanada *
+          this.numeroLongVideosCanada;
+        this.valorContenidosTotal +=
+          this.citiesSelectedCanada.length *
+          this.numeroCreadoresCanada *
+          (this.numeroCarrouselCanada +
+            this.numeroLongVideosCanada +
+            this.numeroShortVideosCanada);
+      }
+
+      this.valorPromedioContenido =
+        (this.ValorTotal + (0.35 * this.ValorTotal) / 0.65) /
+        this.valorContenidosTotal;
+    }, 100);
   }
 }

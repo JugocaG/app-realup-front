@@ -151,6 +151,174 @@ export class CitiesService {
       );
   }
 
+  seeCitiesCostaRica(): Observable<{ name: string; code: string }[]> {
+    return this.http
+      .get<string[]>(BASE_URL + 'api/v1/cities/see-cities/Costa Rica', {
+        headers: this.service.createAuthorizationHeader(),
+      })
+      .pipe(
+        map((cities) =>
+          cities.map((city, index) => ({
+            name: city,
+            code: city.replace(/\s/g, '').slice(0, 3).toUpperCase(),
+          }))
+        )
+      );
+  }
+  seeCitiesCuba(): Observable<{ name: string; code: string }[]> {
+    return this.http
+      .get<string[]>(BASE_URL + 'api/v1/cities/see-cities/Cuba', {
+        headers: this.service.createAuthorizationHeader(),
+      })
+      .pipe(
+        map((cities) =>
+          cities.map((city, index) => ({
+            name: city,
+            code: city.replace(/\s/g, '').slice(0, 3).toUpperCase(),
+          }))
+        )
+      );
+  }
+  seeCitiesElSalvador(): Observable<{ name: string; code: string }[]> {
+    return this.http
+      .get<string[]>(BASE_URL + 'api/v1/cities/see-cities/El Salvador', {
+        headers: this.service.createAuthorizationHeader(),
+      })
+      .pipe(
+        map((cities) =>
+          cities.map((city, index) => ({
+            name: city,
+            code: city.replace(/\s/g, '').slice(0, 3).toUpperCase(),
+          }))
+        )
+      );
+  }
+  seeCitiesGuatemala(): Observable<{ name: string; code: string }[]> {
+    return this.http
+      .get<string[]>(BASE_URL + 'api/v1/cities/see-cities/Guatemala', {
+        headers: this.service.createAuthorizationHeader(),
+      })
+      .pipe(
+        map((cities) =>
+          cities.map((city, index) => ({
+            name: city,
+            code: city.replace(/\s/g, '').slice(0, 3).toUpperCase(),
+          }))
+        )
+      );
+  }
+  seeCitiesHonduras(): Observable<{ name: string; code: string }[]> {
+    return this.http
+      .get<string[]>(BASE_URL + 'api/v1/cities/see-cities/Honduras', {
+        headers: this.service.createAuthorizationHeader(),
+      })
+      .pipe(
+        map((cities) =>
+          cities.map((city, index) => ({
+            name: city,
+            code: city.replace(/\s/g, '').slice(0, 3).toUpperCase(),
+          }))
+        )
+      );
+  }
+  seeCitiesMexico(): Observable<{ name: string; code: string }[]> {
+    return this.http
+      .get<string[]>(BASE_URL + 'api/v1/cities/see-cities/Mexico', {
+        headers: this.service.createAuthorizationHeader(),
+      })
+      .pipe(
+        map((cities) =>
+          cities.map((city, index) => ({
+            name: city,
+            code: city.replace(/\s/g, '').slice(0, 3).toUpperCase(),
+          }))
+        )
+      );
+  }
+  seeCitiesNicaragua(): Observable<{ name: string; code: string }[]> {
+    return this.http
+      .get<string[]>(BASE_URL + 'api/v1/cities/see-cities/Nicaragua', {
+        headers: this.service.createAuthorizationHeader(),
+      })
+      .pipe(
+        map((cities) =>
+          cities.map((city, index) => ({
+            name: city,
+            code: city.replace(/\s/g, '').slice(0, 3).toUpperCase(),
+          }))
+        )
+      );
+  }
+  seeCitiesPanama(): Observable<{ name: string; code: string }[]> {
+    return this.http
+      .get<string[]>(BASE_URL + 'api/v1/cities/see-cities/Panama', {
+        headers: this.service.createAuthorizationHeader(),
+      })
+      .pipe(
+        map((cities) =>
+          cities.map((city, index) => ({
+            name: city,
+            code: city.replace(/\s/g, '').slice(0, 3).toUpperCase(),
+          }))
+        )
+      );
+  }
+  seeCitiesPuertoRico(): Observable<{ name: string; code: string }[]> {
+    return this.http
+      .get<string[]>(BASE_URL + 'api/v1/cities/see-cities/Puerto Rico', {
+        headers: this.service.createAuthorizationHeader(),
+      })
+      .pipe(
+        map((cities) =>
+          cities.map((city, index) => ({
+            name: city,
+            code: city.replace(/\s/g, '').slice(0, 3).toUpperCase(),
+          }))
+        )
+      );
+  }
+  seeCitiesUnitedStates(): Observable<{ name: string; code: string }[]> {
+    return this.http
+      .get<string[]>(BASE_URL + 'api/v1/cities/see-cities/United States', {
+        headers: this.service.createAuthorizationHeader(),
+      })
+      .pipe(
+        map((cities) =>
+          cities.map((city, index) => ({
+            name: city,
+            code: city.replace(/\s/g, '').slice(0, 3).toUpperCase(),
+          }))
+        )
+      );
+  }
+  seeCitiesDominicanRepublic(): Observable<{ name: string; code: string }[]> {
+    return this.http
+      .get<string[]>(BASE_URL + 'api/v1/cities/see-cities/Dominican Republic', {
+        headers: this.service.createAuthorizationHeader(),
+      })
+      .pipe(
+        map((cities) =>
+          cities.map((city, index) => ({
+            name: city,
+            code: city.replace(/\s/g, '').slice(0, 3).toUpperCase(),
+          }))
+        )
+      );
+  }
+  seeCitiesCanada(): Observable<{ name: string; code: string }[]> {
+    return this.http
+      .get<string[]>(BASE_URL + 'api/v1/cities/see-cities/Canada', {
+        headers: this.service.createAuthorizationHeader(),
+      })
+      .pipe(
+        map((cities) =>
+          cities.map((city, index) => ({
+            name: city,
+            code: city.replace(/\s/g, '').slice(0, 3).toUpperCase(),
+          }))
+        )
+      );
+  }
   seeCitiesVenezuela(): Observable<{ name: string; code: string }[]> {
     return this.http
       .get<string[]>(BASE_URL + 'api/v1/cities/see-cities/Venezuela', {

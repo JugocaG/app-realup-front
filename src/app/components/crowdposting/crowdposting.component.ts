@@ -1,5 +1,11 @@
 import { Component, ViewChild, ElementRef } from '@angular/core';
-import { FormControl, FormGroup, NgModel, Validators } from '@angular/forms';
+import {
+  FormControl,
+  FormGroup,
+  NgModel,
+  Validators,
+  FormArray,
+} from '@angular/forms';
 import { ThemePalette } from '@angular/material/core';
 import { Router } from '@angular/router';
 import { AuthService } from 'src/app/service/auth.service';
@@ -63,6 +69,31 @@ export class CrowdpostingComponent {
   selectedCountry: string = '';
   citiesFinal: string[] = [''];
 
+  countries: string[] = [
+    'Argentina',
+    'Bolivia',
+    'Brasil',
+    'Canada',
+    'Chile',
+    'Colombia',
+    'Costa Rica',
+    'Cuba',
+    'Dominican Republic',
+    'Ecuador',
+    'El Salvador',
+    'Guatemala',
+    'Honduras',
+    'Mexico',
+    'Nicaragua',
+    'Panama',
+    'Paraguay',
+    'Peru',
+    'Puerto Rico',
+    'United States',
+    'Uruguay',
+    'Venezuela',
+  ];
+
   citiesListArgentina: { name: string; code: string }[] = [];
 
   citiesListColombia: { name: string; code: string }[] = [];
@@ -82,6 +113,30 @@ export class CrowdpostingComponent {
   citiesListUruguay: { name: string; code: string }[] = [];
 
   citiesListVenezuela: { name: string; code: string }[] = [];
+
+  citiesListCostaRica: { name: string; code: string }[] = [];
+
+  citiesListCuba: { name: string; code: string }[] = [];
+
+  citiesListElSalvador: { name: string; code: string }[] = [];
+
+  citiesListGuatemala: { name: string; code: string }[] = [];
+
+  citiesListHonduras: { name: string; code: string }[] = [];
+
+  citiesListMexico: { name: string; code: string }[] = [];
+
+  citiesListNicaragua: { name: string; code: string }[] = [];
+
+  citiesListPanama: { name: string; code: string }[] = [];
+
+  citiesListPuertoRico: { name: string; code: string }[] = [];
+
+  citiesListDominicanRepublic: { name: string; code: string }[] = [];
+
+  citiesListUnitedStates: { name: string; code: string }[] = [];
+
+  citiesListCanada: { name: string; code: string }[] = [];
 
   //Instagram
   salesListInstagramUno: SaleInstagramUno[] = [];
@@ -242,14 +297,9 @@ export class CrowdpostingComponent {
   cities = new FormControl('', Validators.required);
   price = new FormControl(null, Validators.required);
   campaign_objective = new FormControl('', Validators.required);
+  brief_campaign_objective = new FormControl('', Validators.required);
   countryFinal: string = 'Nada';
-  saveClientForm = new FormGroup({
-    name_client: this.name_client,
-    country: this.country,
-    cities: this.cities,
-    price: this.price,
-    campaign_objective: this.campaign_objective,
-  });
+  saveClientForm: FormGroup;
 
   constructor(
     private service: AuthService,
@@ -258,10 +308,19 @@ export class CrowdpostingComponent {
     private citiesService: CitiesService
   ) {
     (this.showInstagramPackage = false), (this.showTikTokPackage = false);
+    this.saveClientForm = new FormGroup({
+      name_client: this.name_client,
+      country: this.country,
+      cities: this.cities,
+      price: this.price,
+      campaign_objective: this.campaign_objective,
+      brief_campaign_objective: this.brief_campaign_objective,
+    });
   }
 
   ngOnInit() {
     this.service.verificarToken();
+    this.getCities();
   }
 
   saveClientCrowdposting() {
@@ -281,7 +340,6 @@ export class CrowdpostingComponent {
       .subscribe(() => {
         console.log();
         alert('¡La compra se envio con exito!');
-        this.router.navigateByUrl('/ugc');
       });
 
     console.log(this.salesListTikTokUno);
@@ -290,7 +348,6 @@ export class CrowdpostingComponent {
       .subscribe(() => {
         console.log();
         alert('¡La compra se envio con exito!');
-        this.router.navigateByUrl('/ugc');
       });
   }
 
@@ -314,9 +371,31 @@ export class CrowdpostingComponent {
   reachStoryNano: number = 0;
   reachReelNano: number = 0;
 
+  //Personalizados
+  ValorTotalPaqueteUnoNormal: number = 0;
+  ValorTotalPaqueteDosNormal: number = 0;
+  ValorTotalPaqueteTresNormal: number = 0;
+
+  ReachTotalPaqueteUnoNormal: number = 0;
+  ReachTotalPaqueteDosNormal: number = 0;
+  ReachTotalPaqueteTresNormal: number = 0;
+
   changeValor() {
     setTimeout(() => {
-      if (this.selectedCountry == 'Argentina') {
+      if (
+        this.selectedCountry == 'Argentina' ||
+        this.selectedCountry == 'Bolivia' ||
+        this.selectedCountry == 'Brasil' ||
+        this.selectedCountry == 'Chile' ||
+        this.selectedCountry == 'Paraguay' ||
+        this.selectedCountry == 'Peru' ||
+        this.selectedCountry == 'Uruguay' ||
+        this.selectedCountry == 'Venezuela' ||
+        this.selectedCountry == 'Guatemala' ||
+        this.selectedCountry == 'Honduras' ||
+        this.selectedCountry == 'Mexico' ||
+        this.selectedCountry == 'Nicaragua'
+      ) {
         this.valorStoryMicro = 30;
         this.valorReelMicro = 50;
         this.valorStoryNano = 20;
@@ -327,39 +406,7 @@ export class CrowdpostingComponent {
         this.reachStoryNano = 250;
         this.reachReelNano = 450;
       }
-      if (this.selectedCountry == 'Bolivia') {
-        this.valorStoryMicro = 30;
-        this.valorReelMicro = 50;
-        this.valorStoryNano = 20;
-        this.valorReelNano = 35;
 
-        this.reachStoryMicro = 400;
-        this.reachReelMicro = 650;
-        this.reachStoryNano = 250;
-        this.reachReelNano = 450;
-      }
-      if (this.selectedCountry == 'Brasil') {
-        this.valorStoryMicro = 30;
-        this.valorReelMicro = 50;
-        this.valorStoryNano = 20;
-        this.valorReelNano = 35;
-
-        this.reachStoryMicro = 400;
-        this.reachReelMicro = 650;
-        this.reachStoryNano = 250;
-        this.reachReelNano = 450;
-      }
-      if (this.selectedCountry == 'Chile') {
-        this.valorStoryMicro = 30;
-        this.valorReelMicro = 50;
-        this.valorStoryNano = 20;
-        this.valorReelNano = 35;
-
-        this.reachStoryMicro = 400;
-        this.reachReelMicro = 650;
-        this.reachStoryNano = 250;
-        this.reachReelNano = 450;
-      }
       if (this.selectedCountry == 'Colombia') {
         this.valorStoryMicro = 25;
         this.valorReelMicro = 38;
@@ -371,61 +418,74 @@ export class CrowdpostingComponent {
         this.reachStoryNano = 250;
         this.reachReelNano = 450;
       }
-      if (this.selectedCountry == 'Ecuador') {
-        this.valorStoryMicro = 30;
-        this.valorReelMicro = 50;
-        this.valorStoryNano = 20;
-        this.valorReelNano = 35;
+      if (
+        this.selectedCountry == 'Ecuador' ||
+        this.selectedCountry == 'Costa Rica' ||
+        this.selectedCountry == 'Cuba' ||
+        this.selectedCountry == 'El Salvador' ||
+        this.selectedCountry == 'Panama' ||
+        this.selectedCountry == 'Puerto Rico' ||
+        this.selectedCountry == 'Dominican Republic' ||
+        this.selectedCountry == 'Canada'
+      ) {
+        this.valorStoryMicro = 45;
+        this.valorReelMicro = 70;
+        this.valorStoryNano = 28;
+        this.valorReelNano = 48;
 
         this.reachStoryMicro = 400;
         this.reachReelMicro = 650;
         this.reachStoryNano = 250;
         this.reachReelNano = 450;
       }
-      if (this.selectedCountry == 'Paraguay') {
-        this.valorStoryMicro = 30;
-        this.valorReelMicro = 50;
-        this.valorStoryNano = 20;
-        this.valorReelNano = 35;
+
+      if (this.selectedCountry == 'United States') {
+        this.valorStoryMicro = 60;
+        this.valorReelMicro = 90;
+        this.valorStoryNano = 30;
+        this.valorReelNano = 50;
 
         this.reachStoryMicro = 400;
         this.reachReelMicro = 650;
         this.reachStoryNano = 250;
         this.reachReelNano = 450;
       }
-      if (this.selectedCountry == 'Peru') {
-        this.valorStoryMicro = 30;
-        this.valorReelMicro = 50;
-        this.valorStoryNano = 20;
-        this.valorReelNano = 35;
 
-        this.reachStoryMicro = 400;
-        this.reachReelMicro = 650;
-        this.reachStoryNano = 250;
-        this.reachReelNano = 450;
-      }
-      if (this.selectedCountry == 'Uruguay') {
-        this.valorStoryMicro = 30;
-        this.valorReelMicro = 50;
-        this.valorStoryNano = 20;
-        this.valorReelNano = 35;
+      //Preselectos
 
-        this.reachStoryMicro = 400;
-        this.reachReelMicro = 650;
-        this.reachStoryNano = 250;
-        this.reachReelNano = 450;
-      }
-      if (this.selectedCountry == 'Venezuela') {
-        this.valorStoryMicro = 30;
-        this.valorReelMicro = 50;
-        this.valorStoryNano = 20;
-        this.valorReelNano = 35;
+      this.ValorTotalPaqueteUnoNormal =
+        this.valorStoryMicro * (15 * 3) +
+        this.valorReelMicro * (15 * 1) +
+        this.valorStoryNano * (30 * 3) +
+        this.valorReelNano * (30 * 1);
 
-        this.reachStoryMicro = 400;
-        this.reachReelMicro = 650;
-        this.reachStoryNano = 250;
-        this.reachReelNano = 450;
-      }
+      this.ValorTotalPaqueteDosNormal =
+        this.valorReelMicro * (15 * 1) + this.valorReelNano * (30 * 1);
+
+      this.ValorTotalPaqueteTresNormal =
+        this.valorStoryMicro * (15 * 3) +
+        this.valorReelMicro * (15 * 1) +
+        this.valorStoryNano * (30 * 3) +
+        this.valorReelNano * (30 * 1);
+
+      //Reach
+
+      this.ReachTotalPaqueteUnoNormal =
+        this.reachStoryMicro * (15 * 3) +
+        this.reachReelMicro * (15 * 1) +
+        this.reachStoryNano * (30 * 3) +
+        this.reachReelNano * (30 * 1);
+
+      this.ReachTotalPaqueteDosNormal =
+        this.reachReelMicro * (15 * 1) + this.reachReelNano * (30 * 1);
+
+      this.ReachTotalPaqueteTresNormal =
+        this.reachStoryMicro * (15 * 3) +
+        this.reachReelMicro * (15 * 1) +
+        this.reachStoryNano * (30 * 3) +
+        this.reachReelNano * (30 * 1);
+
+      //Personalizados
 
       this.ValorTotalPaqueteUno =
         this.valorStoryMicro *
@@ -522,6 +582,7 @@ export class CrowdpostingComponent {
         this.newSaleInstagramUno.number_nano *
           (this.newSaleInstagramUno.number_reels_nano +
             this.newSaleInstagramUno.number_stories_nano);
+
       this.totalContentIgTwo =
         this.newSaleInstagramDos.number_micro *
           (this.newSaleInstagramDos.number_reels_micro +
@@ -529,19 +590,30 @@ export class CrowdpostingComponent {
         this.newSaleInstagramDos.number_nano *
           (this.newSaleInstagramDos.number_reels_nano +
             this.newSaleInstagramDos.number_stories_nano);
-      this.totalContentTiktTokOne =
+      this.totalContentTikTokOne =
         this.newSaleTikTokUno.number_micro *
           this.newSaleTikTokUno.number_tiktok_micro +
         this.newSaleTikTokUno.number_nano *
           this.newSaleTikTokUno.number_tiktok_nano;
-      this.totalContentTiktTokTwo =
+      this.totalContentTikTokTwo =
         this.newSaleTikTokDos.number_micro *
           this.newSaleTikTokDos.number_tiktok_micro +
         this.newSaleTikTokDos.number_nano *
           this.newSaleTikTokDos.number_tiktok_nano;
+
+      // Paquetes personalizados
+      this.totalContenidos =
+        this.numeroContentIgOne * 180 +
+        this.numeroContentTikTokOne * 45 +
+        this.numeroContentTikTokTwo * 180 +
+        this.totalContentIgOne * this.numeroContentIgPersonal +
+        this.totalContentTikTokOne * this.numeroContentTikTokPersonal;
     }, 100);
   }
 
+  ValorPromedioContenidos: number = 0;
+  totalContenidos: number = 0;
+  citiesSelected = [];
   // Mostrar paquetes
   showInstagramPackage: boolean;
   showTikTokPackage: boolean;
@@ -580,7 +652,7 @@ export class CrowdpostingComponent {
     this.changeValor();
     switch (variable) {
       case 'newSaleInstagramUno.number_micro':
-        this.newSaleInstagramUno.number_micro += 5;
+        this.newSaleInstagramUno.number_micro += 1;
         break;
 
       case 'newSaleInstagramUno.number_stories_micro':
@@ -592,7 +664,7 @@ export class CrowdpostingComponent {
         break;
 
       case 'newSaleInstagramUno.number_nano':
-        this.newSaleInstagramUno.number_nano += 5;
+        this.newSaleInstagramUno.number_nano += 1;
         break;
 
       case 'newSaleInstagramUno.number_stories_nano':
@@ -606,7 +678,7 @@ export class CrowdpostingComponent {
       // Paquete 2 Instagram
 
       case 'newSaleInstagramDos.number_micro':
-        this.newSaleInstagramDos.number_micro += 5;
+        this.newSaleInstagramDos.number_micro += 1;
         break;
 
       case 'newSaleInstagramDos.number_stories_micro':
@@ -618,7 +690,7 @@ export class CrowdpostingComponent {
         break;
 
       case 'newSaleInstagramDos.number_nano':
-        this.newSaleInstagramDos.number_nano += 5;
+        this.newSaleInstagramDos.number_nano += 1;
         break;
 
       case 'newSaleInstagramDos.number_stories_nano':
@@ -632,7 +704,7 @@ export class CrowdpostingComponent {
       // Paquete Uno TikTok
 
       case 'newSaleTikTokUno.number_micro':
-        this.newSaleTikTokUno.number_micro += 5;
+        this.newSaleTikTokUno.number_micro += 1;
         break;
 
       case 'newSaleTikTokUno.number_tiktok_micro':
@@ -640,7 +712,7 @@ export class CrowdpostingComponent {
         break;
 
       case 'newSaleTikTokUno.number_nano':
-        this.newSaleTikTokUno.number_nano += 5;
+        this.newSaleTikTokUno.number_nano += 1;
         break;
 
       case 'newSaleTikTokUno.number_tiktok_nano':
@@ -650,7 +722,7 @@ export class CrowdpostingComponent {
       // Paquete Dos TikTok
 
       case 'newSaleTikTokDos.number_micro':
-        this.newSaleTikTokDos.number_micro += 5;
+        this.newSaleTikTokDos.number_micro += 1;
         break;
 
       case 'newSaleTikTokDos.number_tiktok_micro':
@@ -658,7 +730,7 @@ export class CrowdpostingComponent {
         break;
 
       case 'newSaleTikTokDos.number_nano':
-        this.newSaleTikTokDos.number_nano += 5;
+        this.newSaleTikTokDos.number_nano += 1;
         break;
 
       case 'newSaleTikTokDos.number_tiktok_nano':
@@ -673,12 +745,20 @@ export class CrowdpostingComponent {
         this.numeroContentIgTwo += 1;
         break;
 
-      case 'numeroContentTiktTokOne':
-        this.numeroContentTiktTokOne += 1;
+      case 'numeroContentTikTokOne':
+        this.numeroContentTikTokOne += 1;
         break;
 
-      case 'numeroContentTiktTokTwo':
-        this.numeroContentTiktTokTwo += 1;
+      case 'numeroContentTikTokTwo':
+        this.numeroContentTikTokTwo += 1;
+        break;
+
+      case 'numeroContentIgPersonal':
+        this.numeroContentIgPersonal += 1;
+        break;
+
+      case 'numeroContentTikTokPersonal':
+        this.numeroContentTikTokPersonal += 1;
         break;
     }
   }
@@ -687,8 +767,8 @@ export class CrowdpostingComponent {
     this.changeValor();
     switch (variable) {
       case 'newSaleInstagramUno.number_micro':
-        if (this.newSaleInstagramUno.number_micro > 15) {
-          this.newSaleInstagramUno.number_micro -= 5;
+        if (this.newSaleInstagramUno.number_micro > 0) {
+          this.newSaleInstagramUno.number_micro -= 1;
         }
         break;
 
@@ -705,8 +785,8 @@ export class CrowdpostingComponent {
         break;
 
       case 'newSaleInstagramUno.number_nano':
-        if (this.newSaleInstagramUno.number_nano > 30) {
-          this.newSaleInstagramUno.number_nano -= 5;
+        if (this.newSaleInstagramUno.number_nano > 0) {
+          this.newSaleInstagramUno.number_nano -= 1;
         }
         break;
 
@@ -725,8 +805,8 @@ export class CrowdpostingComponent {
       // Paquete 2 Instagram
 
       case 'newSaleInstagramDos.number_micro':
-        if (this.newSaleInstagramDos.number_micro > 90) {
-          this.newSaleInstagramDos.number_micro -= 5;
+        if (this.newSaleInstagramDos.number_micro > 0) {
+          this.newSaleInstagramDos.number_micro -= 1;
         }
         break;
 
@@ -743,8 +823,8 @@ export class CrowdpostingComponent {
         break;
 
       case 'newSaleInstagramDos.number_nano':
-        if (this.newSaleInstagramDos.number_nano > 45) {
-          this.newSaleInstagramDos.number_nano -= 5;
+        if (this.newSaleInstagramDos.number_nano > 0) {
+          this.newSaleInstagramDos.number_nano -= 1;
         }
         break;
 
@@ -763,8 +843,8 @@ export class CrowdpostingComponent {
       // Paquete Uno TikTok
 
       case 'newSaleTikTokUno.number_micro':
-        if (this.newSaleTikTokUno.number_micro > 20) {
-          this.newSaleTikTokUno.number_micro -= 5;
+        if (this.newSaleTikTokUno.number_micro > 0) {
+          this.newSaleTikTokUno.number_micro -= 1;
         }
         break;
 
@@ -775,8 +855,8 @@ export class CrowdpostingComponent {
         break;
 
       case 'newSaleTikTokUno.number_nano':
-        if (this.newSaleTikTokUno.number_nano > 40) {
-          this.newSaleTikTokUno.number_nano -= 5;
+        if (this.newSaleTikTokUno.number_nano > 0) {
+          this.newSaleTikTokUno.number_nano -= 1;
         }
         break;
 
@@ -789,25 +869,25 @@ export class CrowdpostingComponent {
       // Paquete Dos TikTok
 
       case 'newSaleTikTokDos.number_micro':
-        if (this.newSaleTikTokDos.number_micro > 30) {
-          this.newSaleTikTokDos.number_micro -= 5;
+        if (this.newSaleTikTokDos.number_micro > 0) {
+          this.newSaleTikTokDos.number_micro -= 1;
         }
         break;
 
       case 'newSaleTikTokDos.number_tiktok_micro':
-        if (this.newSaleTikTokDos.number_tiktok_micro > 3) {
+        if (this.newSaleTikTokDos.number_tiktok_micro > 0) {
           this.newSaleTikTokDos.number_tiktok_micro -= 1;
         }
         break;
 
       case 'newSaleTikTokDos.number_nano':
-        if (this.newSaleTikTokDos.number_nano > 40) {
-          this.newSaleTikTokDos.number_nano -= 5;
+        if (this.newSaleTikTokDos.number_nano > 0) {
+          this.newSaleTikTokDos.number_nano -= 1;
         }
         break;
 
       case 'newSaleTikTokDos.number_tiktok_nano':
-        if (this.newSaleTikTokDos.number_tiktok_nano > 3) {
+        if (this.newSaleTikTokDos.number_tiktok_nano > 0) {
           this.newSaleTikTokDos.number_tiktok_nano -= 1;
         }
         break;
@@ -824,30 +904,43 @@ export class CrowdpostingComponent {
         }
         break;
 
-      case 'numeroContentTiktTokOne':
-        if (this.numeroContentTiktTokOne > 0) {
-          this.numeroContentTiktTokOne -= 1;
+      case 'numeroContentTikTokOne':
+        if (this.numeroContentTikTokOne > 0) {
+          this.numeroContentTikTokOne -= 1;
         }
         break;
 
-      case 'numeroContentTiktTokTwo':
-        if (this.numeroContentTiktTokTwo > 0) {
-          this.numeroContentTiktTokTwo -= 1;
+      case 'numeroContentTikTokTwo':
+        if (this.numeroContentTikTokTwo > 0) {
+          this.numeroContentTikTokTwo -= 1;
+        }
+        break;
+
+      case 'numeroContentIgPersonal':
+        if (this.numeroContentIgPersonal > 0) {
+          this.numeroContentIgPersonal -= 1;
+        }
+        break;
+
+      case 'numeroContentTikTokPersonal':
+        if (this.numeroContentTikTokPersonal > 0) {
+          this.numeroContentTikTokPersonal -= 1;
         }
         break;
     }
   }
 
   // Calculo totales
-
+  numeroContentIgPersonal: number = 0;
+  numeroContentTikTokPersonal: number = 0;
   totalContentIgOne: number = 0;
   totalContentIgTwo: number = 0;
-  totalContentTiktTokOne: number = 0;
-  totalContentTiktTokTwo: number = 0;
+  totalContentTikTokOne: number = 0;
+  totalContentTikTokTwo: number = 0;
   numeroContentIgOne: number = 0;
   numeroContentIgTwo: number = 0;
-  numeroContentTiktTokOne: number = 0;
-  numeroContentTiktTokTwo: number = 0;
+  numeroContentTikTokOne: number = 0;
+  numeroContentTikTokTwo: number = 0;
 
   // Mostrar ciudades
 
@@ -861,65 +954,125 @@ export class CrowdpostingComponent {
   verificarPeru: boolean = false;
   verificarUruguay: boolean = false;
   verificarVenezuela: boolean = false;
+  verificarCostaRica: boolean = false;
+  verificarCuba: boolean = false;
+  verificarElSalvador: boolean = false;
+  verificarGuatemala: boolean = false;
+  verificarHonduras: boolean = false;
+  verificarMexico: boolean = false;
+  verificarNicaragua: boolean = false;
+  verificarPanama: boolean = false;
+  verificarPuertoRico: boolean = false;
+  verificarDominicanRepublic: boolean = false;
+  verificarUnitedStates: boolean = false;
+  verificarCanada: boolean = false;
 
   showCities() {
+    this.verificarArgentina = false;
+    this.verificarBolivia = false;
+    this.verificarBrasil = false;
+    this.verificarChile = false;
+    this.verificarColombia = false;
+    this.verificarEcuador = false;
+    this.verificarParaguay = false;
+    this.verificarPeru = false;
+    this.verificarUruguay = false;
+    this.verificarVenezuela = false;
+    this.verificarCostaRica = false;
+    this.verificarCuba = false;
+    this.verificarElSalvador = false;
+    this.verificarGuatemala = false;
+    this.verificarHonduras = false;
+    this.verificarMexico = false;
+    this.verificarNicaragua = false;
+    this.verificarPanama = false;
+    this.verificarPuertoRico = false;
+    this.verificarDominicanRepublic = false;
+    this.verificarUnitedStates = false;
+    this.verificarCanada = false;
     if (this.selectedCountry.includes('Argentina')) {
       this.verificarArgentina = true;
-      console.log(this.selectedCountry);
     } else {
       this.verificarArgentina = false;
     }
     if (this.selectedCountry.includes('Bolivia')) {
       this.verificarBolivia = true;
-      console.log(this.selectedCountry);
     } else {
       this.verificarBolivia = false;
     }
     if (this.selectedCountry.includes('Brasil')) {
       this.verificarBrasil = true;
-      console.log(this.selectedCountry);
     } else {
       this.verificarBrasil = false;
     }
     if (this.selectedCountry.includes('Chile')) {
       this.verificarChile = true;
-      console.log(this.selectedCountry);
     } else {
       this.verificarChile = false;
     }
     if (this.selectedCountry.includes('Colombia')) {
       this.verificarColombia = true;
-      console.log(this.selectedCountry);
     } else {
       this.verificarColombia = false;
     }
     if (this.selectedCountry.includes('Ecuador')) {
       this.verificarEcuador = true;
-      console.log(this.selectedCountry);
     } else {
       this.verificarEcuador = false;
     }
     if (this.selectedCountry.includes('Paraguay')) {
       this.verificarParaguay = true;
-      console.log(this.selectedCountry);
     } else {
       this.verificarParaguay = false;
     }
     if (this.selectedCountry.includes('Peru')) {
       this.verificarPeru = true;
-      console.log(this.selectedCountry);
     } else {
       this.verificarPeru = false;
     }
     if (this.selectedCountry.includes('Uruguay')) {
       this.verificarUruguay = true;
-      console.log(this.selectedCountry);
     } else {
       this.verificarUruguay = false;
     }
     if (this.selectedCountry.includes('Venezuela')) {
       this.verificarVenezuela = true;
-      console.log(this.selectedCountry);
+    }
+    if (this.selectedCountry.includes('Costa Rica')) {
+      this.verificarCostaRica = true;
+    }
+    if (this.selectedCountry.includes('Cuba')) {
+      this.verificarCuba = true;
+    }
+    if (this.selectedCountry.includes('El Salvador')) {
+      this.verificarElSalvador = true;
+    }
+    if (this.selectedCountry.includes('Guatemala')) {
+      this.verificarGuatemala = true;
+    }
+    if (this.selectedCountry.includes('Honduras')) {
+      this.verificarHonduras = true;
+    }
+    if (this.selectedCountry.includes('Mexico')) {
+      this.verificarMexico = true;
+    }
+    if (this.selectedCountry.includes('Nicaragua')) {
+      this.verificarNicaragua = true;
+    }
+    if (this.selectedCountry.includes('Panama')) {
+      this.verificarPanama = true;
+    }
+    if (this.selectedCountry.includes('Puerto Rico')) {
+      this.verificarPuertoRico = true;
+    }
+    if (this.selectedCountry.includes('Dominican Republic')) {
+      this.verificarDominicanRepublic = true;
+    }
+    if (this.selectedCountry.includes('United States')) {
+      this.verificarUnitedStates = true;
+    }
+    if (this.selectedCountry.includes('Canada')) {
+      this.verificarCanada = true;
     }
   }
 
@@ -936,7 +1089,6 @@ export class CrowdpostingComponent {
     this.citiesService.seeCitiesBolivia().subscribe(
       (cities: { name: string; code: string }[]) => {
         this.citiesListBolivia = cities;
-        console.log(this.citiesListBrasil);
       },
       (error) => {
         console.error('Error al obtener las ciudades:', error);
@@ -1014,5 +1166,147 @@ export class CrowdpostingComponent {
         console.error('Error al obtener las ciudades:', error);
       }
     );
+
+    this.citiesService.seeCitiesCostaRica().subscribe(
+      (cities: { name: string; code: string }[]) => {
+        this.citiesListCostaRica = cities;
+      },
+      (error) => {
+        console.error('Error al obtener las ciudades:', error);
+      }
+    );
+
+    this.citiesService.seeCitiesCuba().subscribe(
+      (cities: { name: string; code: string }[]) => {
+        this.citiesListCuba = cities;
+      },
+      (error) => {
+        console.error('Error al obtener las ciudades:', error);
+      }
+    );
+
+    this.citiesService.seeCitiesElSalvador().subscribe(
+      (cities: { name: string; code: string }[]) => {
+        this.citiesListElSalvador = cities;
+      },
+      (error) => {
+        console.error('Error al obtener las ciudades:', error);
+      }
+    );
+
+    this.citiesService.seeCitiesGuatemala().subscribe(
+      (cities: { name: string; code: string }[]) => {
+        this.citiesListGuatemala = cities;
+      },
+      (error) => {
+        console.error('Error al obtener las ciudades:', error);
+      }
+    );
+
+    this.citiesService.seeCitiesHonduras().subscribe(
+      (cities: { name: string; code: string }[]) => {
+        this.citiesListHonduras = cities;
+      },
+      (error) => {
+        console.error('Error al obtener las ciudades:', error);
+      }
+    );
+
+    this.citiesService.seeCitiesMexico().subscribe(
+      (cities: { name: string; code: string }[]) => {
+        this.citiesListMexico = cities;
+      },
+      (error) => {
+        console.error('Error al obtener las ciudades:', error);
+      }
+    );
+
+    this.citiesService.seeCitiesNicaragua().subscribe(
+      (cities: { name: string; code: string }[]) => {
+        this.citiesListNicaragua = cities;
+      },
+      (error) => {
+        console.error('Error al obtener las ciudades:', error);
+      }
+    );
+
+    this.citiesService.seeCitiesPanama().subscribe(
+      (cities: { name: string; code: string }[]) => {
+        this.citiesListPanama = cities;
+      },
+      (error) => {
+        console.error('Error al obtener las ciudades:', error);
+      }
+    );
+
+    this.citiesService.seeCitiesPuertoRico().subscribe(
+      (cities: { name: string; code: string }[]) => {
+        this.citiesListPuertoRico = cities;
+      },
+      (error) => {
+        console.error('Error al obtener las ciudades:', error);
+      }
+    );
+
+    this.citiesService.seeCitiesDominicanRepublic().subscribe(
+      (cities: { name: string; code: string }[]) => {
+        this.citiesListDominicanRepublic = cities;
+      },
+      (error) => {
+        console.error('Error al obtener las ciudades:', error);
+      }
+    );
+
+    this.citiesService.seeCitiesUnitedStates().subscribe(
+      (cities: { name: string; code: string }[]) => {
+        this.citiesListUnitedStates = cities;
+      },
+      (error) => {
+        console.error('Error al obtener las ciudades:', error);
+      }
+    );
+
+    this.citiesService.seeCitiesCanada().subscribe(
+      (cities: { name: string; code: string }[]) => {
+        this.citiesListCanada = cities;
+      },
+      (error) => {
+        console.error('Error al obtener las ciudades:', error);
+      }
+    );
   }
+
+  // Check Platform
+
+  checkPlatform: boolean = false;
+
+  changePlatform() {
+    this.checkPlatform = !this.checkPlatform;
+  }
+
+  // Campaing Objetives
+
+  options = [
+    { id: 'brand-awarness', label: 'Brand Awarness', value: 0 },
+    { id: 'consideration', label: 'Consideracion', value: 1 },
+    { id: 'conversion', label: 'Conversion', value: 2 },
+    { id: 'retention', label: 'Retencion', value: 3 },
+  ];
+
+  onCheckboxChange(event: any) {
+    const formArray: FormArray = this.saveClientForm.get(
+      'campaign_objective'
+    ) as FormArray;
+
+    if (event.target.checked) {
+      formArray.push(new FormControl(Number(event.target.value)));
+    } else {
+      const index = formArray.controls.findIndex(
+        (x) => x.value === Number(event.target.value)
+      );
+      formArray.removeAt(index);
+    }
+  }
+
+  //
 }
