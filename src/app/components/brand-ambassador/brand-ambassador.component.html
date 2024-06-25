@@ -1,56 +1,54 @@
+<head>
+  <base href="/app-realup-front/" />
+</head>
 <nav class="navbar">
   <div class="logo">
-    <a href="/home">
+    <a href="home">
       <img src="assets/images/REAL UP.png" alt="Logo" />
     </a>
   </div>
   <ul class="nav-links">
-    <li><a href="/home">HOME</a></li>
-    <li><a href="/crowdposting">CROWDPOSTING</a></li>
-    <li><a href="/ugc">UGC</a></li>
-    <li><a href="/brand-ambassador">BRAND AMBASSADOR</a></li>
+    <li><a href="home">HOME</a></li>
+    <li><a href="crowdposting">CROWDPOSTING</a></li>
+    <li><a href="ugc">UGC</a></li>
+    <li><a href="brand-ambassador">BRAND AMBASSADOR</a></li>
   </ul>
 </nav>
 <div class="container">
   <div class="content">
     <div class="title">
-      <h1>Brand Ambassador</h1>
+      <h1>Elite Brand Ambassadors</h1>
     </div>
-    <mat-card style="margin: 20px">
-      <h2 style="padding: 0 20px">
-        The following quotation will be sent to our sales executives, who will
-        respond within one business day.
-      </h2>
-    </mat-card>
+
     <div class="content-form">
+      <p-card class="description" header="Top Influencer Campaigns">
+        <p class="m-0" style="margin: 0; padding: 0">
+          Position your brand with top influencers, celebrities, and artists
+          through tailored ambassador programs to amplify your message, drive
+          engagement, and achieve marketing goals.
+        </p>
+      </p-card>
       <form [formGroup]="saveClientForm" class="form-brand-ambassador">
         <div class="title-campaing">
           <h2>Campaign</h2>
         </div>
 
-        <mat-card class="card-campaign">
+        <mat-card class="card-campaign data-client">
           <div class="campaign-name">
-            <input
-              type="text"
-              id="cliente"
-              name="cliente"
-              placeholder="Your Name"
-            />
-            <input
-              type="text"
-              id="client"
-              name="client"
-              placeholder="Brand"
-              formControlName="client"
-            />
-            <input
-              type="text"
-              name="campaign_name"
-              id="campaign_name"
-              placeholder="Campaign name"
-              formControlName="campaign_name"
-            />
+            <p-floatLabel>
+              <input pInputText id="username" name="cliente" />
+              <label for="username">Your Name</label>
+            </p-floatLabel>
+            <p-floatLabel>
+              <input pInputText id="brand" name="brand" />
+              <label for="brand">Brand</label>
+            </p-floatLabel>
+            <p-floatLabel>
+              <input pInputText name="campaign_name" id="campaign_name" />
+              <label for="campaign_name">Campaign name</label>
+            </p-floatLabel>
           </div>
+
           <div class="campaign-objetive">
             <h2>Campaign objective</h2>
             <div class="radio-product-boxes">
@@ -65,21 +63,21 @@
               </div>
             </div>
           </div>
-          <div>
-            <mat-form-field class="brief-campaign-objective">
-              <mat-label
-                >Enter the purpose and objectives of your marketing campaign in
-                more detail</mat-label
-              >
-              <textarea
-                matInput
-                name="brief_campaign_objective"
-                id="brief-campaign-objective"
-                rows="3"
-                formControlName="brief_campaign_objective"
-              ></textarea>
-            </mat-form-field>
-          </div>
+          <p-floatLabel class="text-area-objetive">
+            <textarea
+              name="brief_campaign_objective"
+              id="brief-campaign-objective"
+              formControlName="brief_campaign_objective"
+              rows="3"
+              pInputTextarea
+              [autoResize]="true"
+            >
+            </textarea>
+            <label for="float-input"
+              >Enter the purpose and objectives of your marketing campaign in
+              more detail</label
+            >
+          </p-floatLabel>
         </mat-card>
         <div class="title-campaing">
           <h2>Audience</h2>
@@ -373,175 +371,112 @@
             </div>
           </div>
         </mat-card>
-        <mat-card class="card-campaign">
-          <div class="audience-interests">
-            <mat-form-field class="audience-interests-select">
-              <mat-label>Audience interests</mat-label>
-              <mat-select
-                name="audience_interests"
-                id="audience_interests"
-                formControlName="audience_interests"
-                multiple
-              >
-                <mat-option
-                  *ngFor="let interest of generalInterests"
-                  [value]="interest"
-                  >{{ interest }}</mat-option
-                >
-              </mat-select>
-            </mat-form-field>
-          </div>
-          <div>
-            <mat-form-field class="select-idiom select">
-              <mat-label>Idiom</mat-label>
-              <mat-select
-                name="audience_language"
-                id="audience_language"
-                formControlName="audience_language"
-              >
-                <mat-option value="Spanish">Spanish</mat-option>
-                <mat-option value="English">English</mat-option>
-                <mat-option value="Portuguese">Portuguese</mat-option>
-              </mat-select>
-            </mat-form-field>
-          </div>
-          <div>
-            <mat-form-field class="select-age select">
-              <mat-label>Ages</mat-label>
-              <mat-select
-                name="audience_ages"
-                id="audience_ages"
-                formControlName="audience_ages"
-                multiple
-              >
-                <mat-option value="13 - 19">13 - 19</mat-option>
-                <mat-option value="20 - 35">20 - 35</mat-option>
-                <mat-option value="36 - 55">36 - 55</mat-option>
-                <mat-option value="56 - 75">56 - 75</mat-option>
-                <mat-option value="75+">75+</mat-option>
-              </mat-select>
-            </mat-form-field>
-          </div>
-          <div>
-            <mat-form-field class="select-gender select">
-              <mat-label>Audience Gender</mat-label>
-              <mat-select
-                name="audience_genders"
-                id="audience_genders"
-                formControlName="audience_genders"
-              >
-                <mat-option value="Male">Male</mat-option>
-                <mat-option value="Female">Female</mat-option>
-                <mat-option value="No preference">No preference</mat-option>
-              </mat-select>
-            </mat-form-field>
-          </div>
+        <mat-card class="card-campaign data-audience">
+          <p-floatLabel>
+            <p-multiSelect
+              formControlName="audience_interests"
+              [options]="generalInterests"
+              optionLabel="name"
+              display="chip"
+              [showClear]="true"
+              [maxSelectedLabels]="10"
+            />
+            <label for="float-label">Select Cities</label>
+          </p-floatLabel>
+          <p-floatLabel>
+            <p-dropdown
+              formControlName="cities"
+              [options]="idioms"
+              optionLabel="name"
+              inputId="float-label-idiom"
+            />
+            <label for="float-label-idiom">Idiom</label>
+          </p-floatLabel>
+          <p-floatLabel>
+            <p-multiSelect [options]="ages" optionLabel="name" />
+            <label for="float-label">Ages</label>
+          </p-floatLabel>
+          <p-floatLabel>
+            <p-dropdown
+              formControlName="creator_gender"
+              [options]="gender"
+              optionLabel="name"
+              inputId="float-label-gender"
+            />
+            <label for="float-label-gender">Audience Gender</label>
+          </p-floatLabel>
         </mat-card>
         <div class="title-campaing">
           <h2>Content</h2>
         </div>
-        <mat-card class="card-campaign">
+        <mat-card class="card-campaign data-creator">
           <h2>Creators</h2>
-          <div>
-            <mat-form-field class="select-age select">
-              <mat-label>Type Contents</mat-label>
-              <mat-select
-                name="content_type"
-                id="content_type"
-                formControlName="content_type"
-                multiple
-              >
-                <mat-option value="Instagram Post">Instagram Post</mat-option>
-                <mat-option value="Instagram Story">Instagram Story</mat-option>
-                <mat-option value="Instagram Reel">Instagram Reel</mat-option>
-                <mat-option value="TikTok Video">TikTok Video</mat-option>
-                <mat-option value="TikTok Video">YouTube Video</mat-option>
-              </mat-select>
-            </mat-form-field>
-          </div>
+          <p-floatLabel>
+            <p-multiSelect [options]="socialMedia" optionLabel="name" />
+            <label for="float-label">Type Contents</label>
+          </p-floatLabel>
 
-          <div>
-            <mat-form-field class="select-age select">
-              <mat-label>Creator followers</mat-label>
-              <mat-select
-                multiple
-                name="minimum_followers"
-                id="minimum_followers"
-                formControlName="minimum_followers"
+          <p-floatLabel>
+            <p-multiSelect [options]="creatorFollowers" optionLabel="name" />
+            <label for="float-label">Creator Followers</label>
+          </p-floatLabel>
+
+          <p-floatLabel>
+            <p-dropdown
+              formControlName="cities"
+              [options]="creatorGender"
+              optionLabel="name"
+              inputId="float-label-gender-creator"
+            />
+            <label for="float-label-gender-creator">Creator Gender</label>
+          </p-floatLabel>
+          <p-floatLabel>
+            <textarea
+              name="brief_video_content"
+              id="brief-video-content"
+              formControlName="brief_video_content"
+              rows="3"
+              pInputTextarea
+              [autoResize]="true"
+            >
+            </textarea>
+            <label for="float-input"
+              >Give creators more detail about the product or service you would
+              like to promote.</label
+            >
+          </p-floatLabel>
+          <div class="creators">
+            <label>Number of creators</label>
+            <div class="button-creators-div">
+              <button
+                (click)="restCreators()"
+                type="button"
+                class="button-creators"
               >
-                <mat-option value="1k - 10k">1k - 10k</mat-option>
-                <mat-option value="10k - 100k">10k - 100k</mat-option>
-                <mat-option value="100k - 500k">100k - 500k</mat-option>
-                <mat-option value="500k - 1M">500k - 1M</mat-option>
-                <mat-option value="1M - 5M">1M - 5M</mat-option>
-                <mat-option value="+5M">+5M</mat-option>
-                <mat-option value="Macro + Celebrity"
-                  >Macro + Celebrity</mat-option
-                >
-              </mat-select>
-            </mat-form-field>
-          </div>
-          <div class="creator-options">
-            <mat-form-field class="select-gender select">
-              <mat-label>Creator Gender</mat-label>
-              <mat-select
-                name="creator_gender"
-                id="creator_gender"
-                formControlName="creator_gender"
+                -
+              </button>
+
+              <input
+                class="form-control"
+                [(ngModel)]="numeroCreadores"
+                type="number"
+                id="numberCreators"
+                name="numberCreators"
+                placeholder="Number of creators"
+                formControlName="number_creators"
+              />
+              <button
+                (click)="sumCreators()"
+                type="button"
+                class="button-creators"
               >
-                <mat-option value="Male">Male</mat-option>
-                <mat-option value="Female">Female</mat-option>
-                <mat-option value="No preference">No preference</mat-option>
-              </mat-select>
-            </mat-form-field>
-            <div>
-              <mat-form-field class="brief-video-content">
-                <mat-label
-                  >Give creators more detail about the product or service you
-                  would like to promote.</mat-label
-                >
-                <textarea
-                  matInput
-                  name="brief_video_content"
-                  id="brief-video-content"
-                  rows="3"
-                  formControlName="brief_video_content"
-                ></textarea>
-              </mat-form-field>
+                +
+              </button>
             </div>
-            <div class="creators">
-              <label>Number of creators</label>
-              <div class="button-creators-div">
-                <button
-                  (click)="restCreators()"
-                  type="button"
-                  class="button-creators"
-                >
-                  -
-                </button>
-
-                <input
-                  class="form-control"
-                  [(ngModel)]="numeroCreadores"
-                  type="number"
-                  id="numberCreators"
-                  name="numberCreators"
-                  placeholder="Number of creators"
-                  formControlName="number_creators"
-                />
-                <button
-                  (click)="sumCreators()"
-                  type="button"
-                  class="button-creators"
-                >
-                  +
-                </button>
-              </div>
-              <div class="button-number-contents">
-                <button mat-stroked-button (click)="putCreators(10)">10</button>
-                <button mat-stroked-button (click)="putCreators(20)">20</button>
-                <button mat-stroked-button (click)="putCreators(40)">40</button>
-              </div>
+            <div class="button-number-contents">
+              <button mat-stroked-button (click)="putCreators(10)">10</button>
+              <button mat-stroked-button (click)="putCreators(20)">20</button>
+              <button mat-stroked-button (click)="putCreators(40)">40</button>
             </div>
           </div>
 

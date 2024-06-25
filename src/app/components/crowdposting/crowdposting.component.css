@@ -101,36 +101,13 @@ button:hover {
   }
 }
 
-mat-card {
-  margin: 30px;
-}
-
 .campaign-name {
   display: flex;
   flex-direction: row;
   justify-content: space-around;
+  padding-top: 32px;
   input {
-    font-size: 18px;
-    background-color: #00eced;
-    font-family: "Poppins", sans-serif;
-    font-weight: 700;
-    font-style: normal;
-    color: #000000;
-    border: none;
-    border-radius: 20px;
-    margin-top: 20px;
-    width: 30%;
-    height: 48px;
-    text-indent: 10px;
-  }
-
-  input::placeholder {
-    font-family: "Poppins", sans-serif;
-    font-weight: 700;
-    font-style: normal;
-    font-size: 1.2vw;
-
-    align-items: center;
+    height: 32px;
   }
 }
 
@@ -227,7 +204,7 @@ mat-card {
 }
 
 .data {
-  font-size: 2vh;
+  font-size: 16px;
   display: flex;
   flex-direction: row;
   align-items: center;
@@ -366,8 +343,9 @@ mat-card {
   width: 80%;
 }
 
-.label-brief {
+#brief-campaign-objective {
   font-size: 1.2vw;
+  width: 100%;
 }
 
 .button-shop {
@@ -376,6 +354,7 @@ mat-card {
 
 .packages-recommended {
   text-align: center;
+  margin-bottom: 30px;
 }
 
 .packages-defined {
@@ -441,16 +420,16 @@ mat-card {
 }
 
 .cities-selected {
+  width: 100%;
   display: flex;
   flex-direction: row;
-  justify-content: space-around;
-  width: 100%;
-  flex-wrap: wrap;
+  justify-content: center;
 }
 
 .cities {
-  text-align: center;
-  width: 30%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 
   p {
     margin: 0;
@@ -458,7 +437,7 @@ mat-card {
 }
 
 ::ng-deep .cities-multiselect {
-  width: 100%;
+  width: 700px;
   margin-bottom: 20px;
 }
 
@@ -572,4 +551,59 @@ mat-card {
 
 .div-tax-accountant-tiktok {
   margin-top: 28%;
+}
+
+/* Nuevos input */
+
+.text-area-objetive {
+  padding-top: 40px;
+  width: 93%;
+}
+
+::ng-deep .country .p-dropdown {
+  width: 700px;
+  margin: 10px;
+}
+
+/* Boton final */
+
+.final-button {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Valores strong */
+
+.data-strong {
+  margin: 5px;
+  padding: 0 10px;
+  border-radius: 10px;
+  color: #000000;
+  background-color: #ffffff;
+}
+
+/* Descripcion del servicio */
+
+::ng-deep .description .p-card {
+  margin-bottom: 30px;
+}
+
+.content-form,
+.content-package {
+  padding: 30px;
+}
+
+.content-form {
+  padding-bottom: 0;
+}
+
+::ng-deep .description .p-card-content {
+  padding: 0;
+}
+
+::ng-deep .p-toast .p-toast-message.p-toast-message-success {
+  background: #b7d8b7;
+  color: #000000;
 }

@@ -13,13 +13,9 @@
   flex-direction: column;
 }
 
-.card-campaign {
-  margin: 30px;
-}
-
 .title {
   height: 48px;
-  width: 30%;
+  width: 40%;
   border-top-right-radius: 162px;
   border-bottom-right-radius: 162px;
   background-color: #d8007f;
@@ -34,33 +30,11 @@
   }
 }
 
-input[type="text"] {
-  background-color: #00eced;
-  font-family: "Poppins", sans-serif;
-  font-weight: 500;
-  font-style: normal;
-  font-size: 20px;
-  color: #000000;
-  border: none;
-  border-radius: 20px;
-  width: 30%;
-  height: 48px;
-  margin: 20px;
-  text-indent: 10px;
-}
-
-input[type="text"]::placeholder {
-  font-family: "Poppins", sans-serif;
-  font-weight: 700;
-  font-style: normal;
-  font-size: 25px;
-  align-items: center;
-}
-
 .campaign-name {
-  width: 80%;
+  width: 90%;
   display: flex;
   flex-direction: row;
+  justify-content: space-around;
 }
 
 .radio-product-boxes {
@@ -136,10 +110,12 @@ input[type="text"]::placeholder {
   display: flex;
   flex-direction: column;
   align-items: center;
+  width: 100%;
+  justify-content: center;
 }
 
 .radio-product-boxes {
-  width: 120%;
+  width: 60%;
   display: flex;
   flex-direction: row;
 }
@@ -343,4 +319,59 @@ input[type="number"]::-webkit-outer-spin-button {
 
 .calendar {
   margin: 30px;
+}
+
+.content-form {
+  padding: 30px;
+}
+
+/* Descripcion del servicio */
+
+::ng-deep .description .p-card-content {
+  padding: 0;
+}
+
+/* Nuevos input */
+
+::ng-deep .campaign-name p-floatlabel {
+  width: 30%;
+}
+::ng-deep .campaign-name p-floatlabel input {
+  width: 100%;
+}
+
+::ng-deep .p-inputtext {
+  width: 100%;
+}
+
+/* Nuevos select */
+
+::ng-deep p-multiselect {
+  width: 80%;
+}
+::ng-deep .data-audience .p-multiselect-label,
+::ng-deep .data-audience .p-multiselect,
+::ng-deep .data-creator .p-multiselect-label,
+::ng-deep .data-creator .p-multiselect {
+  width: 100%;
+}
+
+::ng-deep p-dropdown {
+  width: 80%;
+}
+
+::ng-deep .p-dropdown,
+::ng-deep .p-dropdown-label {
+  width: 100%;
+}
+
+::ng-deep .data-audience p-floatlabel,
+::ng-deep .data-creator p-floatlabel {
+  width: 80%;
+  margin: 15px 0;
+}
+
+.text-area-objetive {
+  width: 80%;
+  margin: 40px 0;
 }

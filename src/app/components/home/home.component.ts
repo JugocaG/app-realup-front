@@ -139,15 +139,15 @@ export class HomeComponent {
   ngOnInit(): void {}
 
   linkUCG() {
-    this.router.navigateByUrl('/ugc');
+    window.open('/app-realup-front/ugc', '_blank');
   }
 
   linkCrowdposting() {
-    this.router.navigateByUrl('/crowdposting');
+    window.open('/app-realup-front/crowdposting', '_blank');
   }
 
   linkBrand() {
-    this.router.navigateByUrl('/brand-ambassador');
+    window.open('/app-realup-front/brand-ambassador', '_blank');
   }
 
   isOpenCrowdposting = true;
@@ -183,4 +183,6 @@ export class HomeComponent {
     this.isOpenBrand = true;
     this.isOpenCrowdposting = false;
   }
+
+  // Nuevo diseño
 }

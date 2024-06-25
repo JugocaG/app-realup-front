@@ -4,23 +4,24 @@
 .container {
   width: 100%;
   height: 100vh;
-  background-image: url("../../../assets/images/curvas-home.png");
+  /* background-image: url("../../../assets/images/curvas-home.png");
   background-position: bottom;
   background-size: contain;
-  background-repeat: no-repeat;
+  background-repeat: no-repeat; */
   display: flex;
   flex-direction: row;
 }
-.logo-video {
+/* .logo-video {
   width: 60%;
   display: flex;
   flex-direction: column;
-}
+} */
 .logo-realup {
   height: 71px;
   width: 259.42px;
   margin: 20px;
 }
+/*  
 .videos {
   display: flex;
   flex-direction: row;
@@ -129,11 +130,73 @@ img {
 
 button:hover {
   cursor: pointer;
-  /* transform: translateX(100px); */
   filter: drop-shadow(1px 1px 10px rgba(210, 9, 128, 0.5));
   transition: 1s;
 }
 
 button {
   transition: 1s;
+} */
+
+/* New design */
+
+.cards {
+  width: 100vw;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  p-card {
+    border-radius: 20px;
+    width: 30%;
+    height: 80%;
+    transition: transform 1s ease, filter 1s;
+  }
+}
+
+::ng-deep .p-card {
+  border-radius: 30px;
+}
+
+::ng-deep .p-card {
+  height: 80vh;
+}
+
+::ng-deep .p-card-header img {
+  border-radius: 30px;
+  margin: 10px;
+  width: 90%;
+}
+
+::ng-deep .p-card-header,
+::ng-deep .p-card-footer {
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+::ng-deep .p-card-content {
+  padding: 0;
+  font-size: 14px;
+}
+
+::ng-deep .p-card-content ul {
+  margin-top: 0;
+}
+
+.cards p-card:hover {
+  filter: drop-shadow(1px 1px 10px rgba(210, 9, 128, 0.5));
+  transform: scale(1.05);
+}
+
+/* Logo mas titulo inicial */
+
+.logo {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.logo h1 {
+  margin-right: 30px;
 }

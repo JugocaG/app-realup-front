@@ -11,6 +11,7 @@ import { Router } from '@angular/router';
 import { AuthService } from 'src/app/service/auth.service';
 import { CitiesService } from 'src/app/service/cities.service';
 import { CrowdpostingService } from 'src/app/service/crowdposting.service';
+import { MessageService } from 'primeng/api';
 
 interface SaleInstagramUno {
   country: string;
@@ -60,38 +61,42 @@ interface SaleTikTokDos {
   cpv: number;
 }
 
+interface Country {
+  name: string;
+}
+
 @Component({
   selector: 'app-crowdposting',
   templateUrl: './crowdposting.component.html',
   styleUrls: ['./crowdposting.component.css'],
 })
 export class CrowdpostingComponent {
-  selectedCountry: string = '';
+  selectedCountry: Country = { name: '' };
   citiesFinal: string[] = [''];
 
-  countries: string[] = [
-    'Argentina',
-    'Bolivia',
-    'Brasil',
-    'Canada',
-    'Chile',
-    'Colombia',
-    'Costa Rica',
-    'Cuba',
-    'Dominican Republic',
-    'Ecuador',
-    'El Salvador',
-    'Guatemala',
-    'Honduras',
-    'Mexico',
-    'Nicaragua',
-    'Panama',
-    'Paraguay',
-    'Peru',
-    'Puerto Rico',
-    'United States',
-    'Uruguay',
-    'Venezuela',
+  countries: Country[] = [
+    { name: 'Argentina' },
+    { name: 'Bolivia' },
+    { name: 'Brasil' },
+    { name: 'Canada' },
+    { name: 'Chile' },
+    { name: 'Colombia' },
+    { name: 'Costa Rica' },
+    { name: 'Cuba' },
+    { name: 'Dominican Republic' },
+    { name: 'Ecuador' },
+    { name: 'El Salvador' },
+    { name: 'Guatemala' },
+    { name: 'Honduras' },
+    { name: 'Mexico' },
+    { name: 'Nicaragua' },
+    { name: 'Panama' },
+    { name: 'Paraguay' },
+    { name: 'Peru' },
+    { name: 'Puerto Rico' },
+    { name: 'United States' },
+    { name: 'Uruguay' },
+    { name: 'Venezuela' },
   ];
 
   citiesListArgentina: { name: string; code: string }[] = [];
@@ -305,7 +310,8 @@ export class CrowdpostingComponent {
     private service: AuthService,
     private crowdpostingService: CrowdpostingService,
     private router: Router,
-    private citiesService: CitiesService
+    private citiesService: CitiesService,
+    private messageService: MessageService
   ) {
     (this.showInstagramPackage = false), (this.showTikTokPackage = false);
     this.saveClientForm = new FormGroup({
@@ -381,74 +387,75 @@ export class CrowdpostingComponent {
   ReachTotalPaqueteTresNormal: number = 0;
 
   changeValor() {
+    console.log(this.selectedCountry);
     setTimeout(() => {
       if (
-        this.selectedCountry == 'Argentina' ||
-        this.selectedCountry == 'Bolivia' ||
-        this.selectedCountry == 'Brasil' ||
-        this.selectedCountry == 'Chile' ||
-        this.selectedCountry == 'Paraguay' ||
-        this.selectedCountry == 'Peru' ||
-        this.selectedCountry == 'Uruguay' ||
-        this.selectedCountry == 'Venezuela' ||
-        this.selectedCountry == 'Guatemala' ||
-        this.selectedCountry == 'Honduras' ||
-        this.selectedCountry == 'Mexico' ||
-        this.selectedCountry == 'Nicaragua'
+        this.selectedCountry.name == 'Argentina' ||
+        this.selectedCountry.name == 'Bolivia' ||
+        this.selectedCountry.name == 'Brasil' ||
+        this.selectedCountry.name == 'Chile' ||
+        this.selectedCountry.name == 'Paraguay' ||
+        this.selectedCountry.name == 'Peru' ||
+        this.selectedCountry.name == 'Uruguay' ||
+        this.selectedCountry.name == 'Venezuela' ||
+        this.selectedCountry.name == 'Guatemala' ||
+        this.selectedCountry.name == 'Honduras' ||
+        this.selectedCountry.name == 'Mexico' ||
+        this.selectedCountry.name == 'Nicaragua'
       ) {
-        this.valorStoryMicro = 30;
-        this.valorReelMicro = 50;
-        this.valorStoryNano = 20;
-        this.valorReelNano = 35;
+        this.valorStoryMicro = 75;
+        this.valorReelMicro = 130;
+        this.valorStoryNano = 51;
+        this.valorReelNano = 90;
 
-        this.reachStoryMicro = 400;
-        this.reachReelMicro = 650;
-        this.reachStoryNano = 250;
-        this.reachReelNano = 450;
+        this.reachStoryMicro = 1700;
+        this.reachReelMicro = 2800;
+        this.reachStoryNano = 1000;
+        this.reachReelNano = 1900;
       }
 
-      if (this.selectedCountry == 'Colombia') {
-        this.valorStoryMicro = 25;
-        this.valorReelMicro = 38;
-        this.valorStoryNano = 15;
-        this.valorReelNano = 28;
+      if (this.selectedCountry.name == 'Colombia') {
+        this.valorStoryMicro = 60;
+        this.valorReelMicro = 95;
+        this.valorStoryNano = 35;
+        this.valorReelNano = 70;
 
-        this.reachStoryMicro = 400;
-        this.reachReelMicro = 650;
-        this.reachStoryNano = 250;
-        this.reachReelNano = 450;
+        this.reachStoryMicro = 1700;
+        this.reachReelMicro = 2800;
+        this.reachStoryNano = 1000;
+        this.reachReelNano = 1900;
       }
       if (
-        this.selectedCountry == 'Ecuador' ||
-        this.selectedCountry == 'Costa Rica' ||
-        this.selectedCountry == 'Cuba' ||
-        this.selectedCountry == 'El Salvador' ||
-        this.selectedCountry == 'Panama' ||
-        this.selectedCountry == 'Puerto Rico' ||
-        this.selectedCountry == 'Dominican Republic' ||
-        this.selectedCountry == 'Canada'
+        this.selectedCountry.name == 'Ecuador' ||
+        this.selectedCountry.name == 'Costa Rica' ||
+        this.selectedCountry.name == 'Cuba' ||
+        this.selectedCountry.name == 'El Salvador' ||
+        this.selectedCountry.name == 'Panama' ||
+        this.selectedCountry.name == 'Puerto Rico' ||
+        this.selectedCountry.name == 'Dominican Republic' ||
+        this.selectedCountry.name == 'Canada'
       ) {
-        this.valorStoryMicro = 45;
-        this.valorReelMicro = 70;
-        this.valorStoryNano = 28;
-        this.valorReelNano = 48;
+        this.valorStoryMicro = 110;
+        this.valorReelMicro = 170;
+        this.valorStoryNano = 70;
+        this.valorReelNano = 120;
 
-        this.reachStoryMicro = 400;
-        this.reachReelMicro = 650;
-        this.reachStoryNano = 250;
-        this.reachReelNano = 450;
+        this.reachStoryMicro = 1700;
+        this.reachReelMicro = 2800;
+        this.reachStoryNano = 1000;
+        this.reachReelNano = 1900;
       }
 
-      if (this.selectedCountry == 'United States') {
-        this.valorStoryMicro = 60;
-        this.valorReelMicro = 90;
-        this.valorStoryNano = 30;
-        this.valorReelNano = 50;
+      if (this.selectedCountry.name == 'United States') {
+        this.valorStoryMicro = 140;
+        this.valorReelMicro = 210;
+        this.valorStoryNano = 70;
+        this.valorReelNano = 120;
 
-        this.reachStoryMicro = 400;
-        this.reachReelMicro = 650;
-        this.reachStoryNano = 250;
-        this.reachReelNano = 450;
+        this.reachStoryMicro = 1700;
+        this.reachReelMicro = 2800;
+        this.reachStoryNano = 1000;
+        this.reachReelNano = 1900;
       }
 
       //Preselectos
@@ -990,88 +997,88 @@ export class CrowdpostingComponent {
     this.verificarDominicanRepublic = false;
     this.verificarUnitedStates = false;
     this.verificarCanada = false;
-    if (this.selectedCountry.includes('Argentina')) {
+    if (this.selectedCountry.name === 'Argentina') {
       this.verificarArgentina = true;
     } else {
       this.verificarArgentina = false;
     }
-    if (this.selectedCountry.includes('Bolivia')) {
+    if (this.selectedCountry.name === 'Bolivia') {
       this.verificarBolivia = true;
     } else {
       this.verificarBolivia = false;
     }
-    if (this.selectedCountry.includes('Brasil')) {
+    if (this.selectedCountry.name === 'Brasil') {
       this.verificarBrasil = true;
     } else {
       this.verificarBrasil = false;
     }
-    if (this.selectedCountry.includes('Chile')) {
+    if (this.selectedCountry.name === 'Chile') {
       this.verificarChile = true;
     } else {
       this.verificarChile = false;
     }
-    if (this.selectedCountry.includes('Colombia')) {
+    if (this.selectedCountry.name === 'Colombia') {
       this.verificarColombia = true;
     } else {
       this.verificarColombia = false;
     }
-    if (this.selectedCountry.includes('Ecuador')) {
+    if (this.selectedCountry.name === 'Ecuador') {
       this.verificarEcuador = true;
     } else {
       this.verificarEcuador = false;
     }
-    if (this.selectedCountry.includes('Paraguay')) {
+    if (this.selectedCountry.name === 'Paraguay') {
       this.verificarParaguay = true;
     } else {
       this.verificarParaguay = false;
     }
-    if (this.selectedCountry.includes('Peru')) {
+    if (this.selectedCountry.name === 'Peru') {
       this.verificarPeru = true;
     } else {
       this.verificarPeru = false;
     }
-    if (this.selectedCountry.includes('Uruguay')) {
+    if (this.selectedCountry.name === 'Uruguay') {
       this.verificarUruguay = true;
     } else {
       this.verificarUruguay = false;
     }
-    if (this.selectedCountry.includes('Venezuela')) {
+    if (this.selectedCountry.name === 'Venezuela') {
       this.verificarVenezuela = true;
     }
-    if (this.selectedCountry.includes('Costa Rica')) {
+    if (this.selectedCountry.name === 'Costa Rica') {
       this.verificarCostaRica = true;
     }
-    if (this.selectedCountry.includes('Cuba')) {
+    if (this.selectedCountry.name === 'Cuba') {
       this.verificarCuba = true;
     }
-    if (this.selectedCountry.includes('El Salvador')) {
+    if (this.selectedCountry.name === 'El Salvador') {
       this.verificarElSalvador = true;
     }
-    if (this.selectedCountry.includes('Guatemala')) {
+    if (this.selectedCountry.name === 'Guatemala') {
       this.verificarGuatemala = true;
     }
-    if (this.selectedCountry.includes('Honduras')) {
+    if (this.selectedCountry.name === 'Honduras') {
       this.verificarHonduras = true;
     }
-    if (this.selectedCountry.includes('Mexico')) {
+    if (this.selectedCountry.name === 'Mexico') {
       this.verificarMexico = true;
     }
-    if (this.selectedCountry.includes('Nicaragua')) {
+    if (this.selectedCountry.name === 'Nicaragua') {
       this.verificarNicaragua = true;
     }
-    if (this.selectedCountry.includes('Panama')) {
+    if (this.selectedCountry.name === 'Panama') {
       this.verificarPanama = true;
     }
-    if (this.selectedCountry.includes('Puerto Rico')) {
+    if (this.selectedCountry.name === 'Puerto Rico') {
       this.verificarPuertoRico = true;
     }
-    if (this.selectedCountry.includes('Dominican Republic')) {
+    if (this.selectedCountry.name === 'Dominican Republic') {
       this.verificarDominicanRepublic = true;
     }
-    if (this.selectedCountry.includes('United States')) {
+    if (this.selectedCountry.name === 'United States') {
       this.verificarUnitedStates = true;
     }
-    if (this.selectedCountry.includes('Canada')) {
+    if (this.selectedCountry.name === 'Canada') {
       this.verificarCanada = true;
     }
   }
@@ -1308,5 +1315,17 @@ export class CrowdpostingComponent {
     }
   }
 
-  //
+  // Nuevos Input
+  username: string = '';
+
+  // Nuevo boton
+  show() {
+    this.messageService.add({
+      severity: 'success',
+      summary: 'Quote sent',
+      detail: 'Our sales team will respond within one business day.',
+      key: 'br',
+      life: 3000,
+    });
+  }
 }

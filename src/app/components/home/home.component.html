@@ -13,8 +13,9 @@
           src="assets/images/REAL UP.png"
           alt="Logo RealUp"
         />
+        <h1>Start your campaign!</h1>
       </div>
-      <div class="videos-muestra">
+      <!-- <div class="videos-muestra">
         <img
           [@brand]="isOpenBrand ? 'open' : 'close'"
           id="imagen"
@@ -86,6 +87,104 @@
             Brand Ambassador
           </button>
         </div>
+      </div>
+    </div> -->
+
+      <!-- New Design -->
+      <div class="cards">
+        <p-card
+          header="Crowdposting"
+          subheader="
+          Boost Your Brand with Crowdposting
+          "
+        >
+          <ng-template pTemplate="header">
+            <img alt="Card" src="assets/images/crowdposting-home.png" />
+          </ng-template>
+          <p>
+            Harness the power of thousands of voices promoting your product
+            simultaneously. Imagine over 5,000 nano and micro-influencers
+            talking about your brand, creating coordinated social media
+            campaigns that generate a ripple effect of engagement and awareness.
+          </p>
+          <p><strong>Benefits:</strong></p>
+          <ul>
+            <li>Wide Reach: Engage many loyal followers.</li>
+            <li>Cost-Effective: Maximize your budget.</li>
+            <li>Tailored Campaigns: Fit your brand audience.</li>
+          </ul>
+
+          <ng-template pTemplate="footer">
+            <div class="flex gap-3 mt-1">
+              <p-button
+                (click)="linkCrowdposting()"
+                label="Get Quote"
+                class="w-full"
+                styleClass="w-full"
+              />
+            </div>
+          </ng-template>
+        </p-card>
+        <!-- 2 -->
+        <p-card header="UGC" subheader="Elevate Your Brand with UGC          ">
+          <ng-template pTemplate="header">
+            <img alt="Card" src="assets/images/ugc-home.png" />
+          </ng-template>
+          <p>
+            Humanize your brand and elevate your social media presence and
+            reviews with user-generated content (UGC) created by passionate
+            customers and top content creators. This authentic approach boosts
+            trust and engagement, enhancing your brand’s reputation.
+          </p>
+          <p><strong>Benefits:</strong></p>
+          <ul>
+            <li>Authenticity: Show true customer stories.</li>
+            <li>Increased Engagement: Build loyal follower base.</li>
+            <li>Brand Loyalty: Strengthen ties with your audience.</li>
+          </ul>
+          <ng-template pTemplate="footer">
+            <div class="flex gap-3 mt-1">
+              <p-button
+                (click)="linkUCG()"
+                label="Get Quote"
+                class="w-full"
+                styleClass="w-full"
+              />
+            </div>
+          </ng-template>
+        </p-card>
+        <!-- 3 -->
+        <p-card
+          header="Brand Ambassador"
+          subheader="Position Your Brand with Elite Ambassadors
+          "
+        >
+          <ng-template pTemplate="header">
+            <img alt="Card" src="assets/images/brand-home.png" />
+          </ng-template>
+          <p>
+            Through our brand ambassador programs, align your brand with top
+            influencers, celebrities, and artists. Our tailored approach will
+            amplify your message, drive engagement, and build a loyal following
+            by leveraging the influence and reach of these prominent figures.
+          </p>
+          <p><strong>Benefits:</strong></p>
+          <ul>
+            <li>Exclusive Access: Link with top influencers.</li>
+            <li>Brand Positioning: Lift your brand with ambassadors.</li>
+            <li>Aligned Values: Partner with those who align.</li>
+          </ul>
+          <ng-template pTemplate="footer">
+            <div class="flex gap-3 mt-1">
+              <p-button
+                (click)="linkBrand()"
+                label="Get Quote"
+                class="w-full"
+                styleClass="w-full"
+              />
+            </div>
+          </ng-template>
+        </p-card>
       </div>
     </div>
   </div>

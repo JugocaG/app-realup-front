@@ -1,0 +1,349 @@
+<head>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Heebo:wght@100..900&display=swap"
+    rel="stylesheet"
+  />
+  <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"
+  />
+</head>
+<nav class="navbar">
+  <div class="img-nav">
+    <a href=""><img src="assets/images/main/logo-nav.png" alt="" /></a>
+  </div>
+  <ul>
+    <li><a #linkElement href="">HOME</a></li>
+    <li><a href="">INSIGHTS</a></li>
+    <li><a href="">SERVICES</a></li>
+    <li><a href="">OUR PRESENCE</a></li>
+    <li><a href="">CUSTOMER SUCCES STORIES</a></li>
+    <li><a href="">OUR WORK</a></li>
+    <li><a href="">CONNECT</a></li>
+    <li><a href="">OUR NEWS</a></li>
+    <li><a href="">LOGIN</a></li>
+  </ul>
+</nav>
+
+<!-- BODY -->
+<div class="container-main">
+  <video style="margin-top: 100px" width="100%" [muted]="true" autoplay loop>
+    <source src="assets/images/main/banner-main.mp4" type="video/mp4" />
+    Tu navegador no admite la etiqueta de video.
+  </video>
+  <div class="make-unique">
+    <h2 class="tittle-make">What Makes Us Unique?</h2>
+    <div class="make-card">
+      <p-card class="card">
+        <p>
+          Customized Winning Formula:
+          <span class="text-bold"> CONSULTING + DATA + TECHNOLOGY </span>
+        </p>
+      </p-card>
+      <p-card class="card">
+        <p>
+          Pioneering Influencer Marketing Strategies and Continuous Innovation.
+        </p>
+      </p-card>
+      <p-card class="card">
+        <p>Unlimited Connectivity with any Content Creator Across Americas.</p>
+      </p-card>
+    </div>
+  </div>
+  <div class="help-brands">
+    <p class="help-brands-text-bold">
+      We help brands harness the power of influencer marketing to drive
+      meaningful results.
+    </p>
+    <p class="help-brands-text">
+      Our team of experienced strategists, creatives, and data analysts work
+      together to craft customized campaigns that resonate with your target
+      audience and achieve your business objectives.
+    </p>
+  </div>
+  <div class="insights">
+    <h2>Insights</h2>
+    <div class="insights-boxes">
+      <div class="insights-box">
+        <h4>Proven influencer marketing expertise.</h4>
+        <img
+          class="img-insights"
+          src="assets/images/main/insights_1.png"
+          alt=""
+        />
+        <div class="invisible"></div>
+        <p>
+          With over 1,000 clients and 3,000 campaigns successfully executed, our
+          experienced team has a proven track record of delivering effective
+          influencer marketing strategies that drive real results.
+        </p>
+      </div>
+      <div class="insights-box">
+        <h4>Americas-wide impactful campaigns.</h4>
+        <img
+          class="img-insights"
+          src="assets/images/main/insights_2.png"
+          alt=""
+        />
+        <div class="invisible"></div>
+
+        <p>
+          Our reach extends across the Americas, delivering impactful campaigns
+          from North to South and everywhere in between.
+        </p>
+      </div>
+      <div class="insights-box">
+        <h4>7+ years influencer marketing expertise.</h4>
+        <img
+          class="img-insights"
+          src="assets/images/main/insights_3.png"
+          alt=""
+        />
+        <div class="invisible"></div>
+
+        <p>
+          We bring a wealth of knowledge and expertise. Our team has over 7
+          years of experience in influencer marketing.
+        </p>
+      </div>
+      <div class="insights-box">
+        <h4>Unlimited Influencer network, +5M Creators.</h4>
+        <img
+          class="img-insights"
+          src="assets/images/main/insights_4.png"
+          alt=""
+        />
+        <div class="invisible"></div>
+
+        <p>
+          Our extensive influencer network, spanning across the Americas,
+          consists of over 5 million creators. With the ability to activate more
+          than 5,000 influencers simultaneously, we have the resources to
+          execute large-scale campaigns that reach and engage audiences at scale
+        </p>
+      </div>
+    </div>
+  </div>
+  <div class="video-services"></div>
+  <video [muted]="true" autoplay loop>
+    <source src="assets/images/main/services_REALUP.mp4" type="video/mp4" />
+  </video>
+  <div class="services">
+    <!-- <h1
+      class="animate__animated"
+      [ngClass]="animationState"
+      [ngStyle]="{ '--animate-duration': animationDuration }"
+      (animationend)="onAnimationEnd($event)"
+    >
+      Services
+    </h1> -->
+
+    <p-accordion [multiple]="true">
+      <p-accordionTab class="rose" header="Crowd-posting">
+        <img
+          style="width: 500px"
+          src="assets/images/main/service_crowdposting.png"
+          alt="Crowd-posting image"
+        />
+        <ul>
+          <li>
+            Multiple influencers promoting a product or service simultaneously
+            on their social media accounts. In crowd-posting, the brand works
+            with a group of influencers (It could be +5.000 creators at the same
+            time) to create a coordinated social media campaign, with each
+            influencer posting about the same product or service at the same
+            time or within a specific timeframe.
+          </li>
+          <li>
+            <strong>
+              Harness the power of the crowd with crowd-posting and create a
+              ripple effect of engagement, take advantage of the multiplication
+              of nano and micro-influencers!.
+            </strong>
+          </li>
+        </ul>
+      </p-accordionTab>
+      <p-accordionTab class="white" header="IGC & UGC">
+        <img src="assets/images/main/service_ugc_igc.png" alt="ugc-igc-image" />
+        <ul>
+          <li>
+            IGC (or influencer-generated content) is content created by
+            influencers on behalf of a brand. This content can be used for brand
+            awareness, promotion, and other marketing initiatives.
+          </li>
+          <li>
+            UGC (or user-generated content) is content created by fans or
+            customers of a brand. This content can be used to build brand
+            loyalty, increase engagement, and promote authenticity in brand
+            messaging.
+          </li>
+          <li>
+            As a service provider, we offer to help you leverage the power of
+            IGC and UGC to drive your brand’s marketing efforts!
+          </li>
+        </ul>
+      </p-accordionTab>
+      <p-accordionTab
+        class="blue"
+        header="Paid Influencers activations, Brand Ambassadors & Gifting"
+      >
+        <img
+          src="assets/images/main/services_paid_influencers.png"
+          alt="services-paid-media"
+        />
+        <ul>
+          <li>
+            At RealUp Media, we offer paid influencer activations and brand
+            ambassador programs to help you amplify your message, drive
+            engagement, and build a loyal following.
+          </li>
+          <li>
+            Work with our team to access a network of top-tier social media
+            personalities and brand ambassadors who share your values and can
+            help you achieve your marketing goals.
+          </li>
+        </ul>
+      </p-accordionTab>
+      <p-accordionTab class="rose" header="RealUp’s Creators Studio">
+        <img
+          src="../../../assets/images/main/services_creator_studio.png"
+          alt="creator-studio"
+        />
+        <ul>
+          <li>
+            Our in-house creative team is dedicated to producing high-quality,
+            immersive experiences and groundbreaking content that brings your
+            brand’s story to life in both real and virtual worlds.
+          </li>
+          <li>
+            Content for:
+            <ol id="ordered-list">
+              <li>Paid Media.</li>
+              <li>Your own social media.</li>
+              <li>Social commerce + Live Shopping.</li>
+              <li>Photoshoot.</li>
+              <li>Shortcuts.</li>
+            </ol>
+          </li>
+          <li>
+            With our cutting-edge technology and expertise in production, we can
+            help you create engaging and compelling content that resonates with
+            your audience and drives your brand’s message home.
+          </li>
+        </ul>
+      </p-accordionTab>
+      <p-accordionTab class="white" header="RealUp’s Platform">
+        <img
+          src="assets/images/main/services_platform.png"
+          alt="realup-platform"
+        />
+        <ul>
+          <li>
+            We believe that data is the key to unlocking powerful stories that
+            resonate with your audience. That’s why we have a tech platform that
+            harnesses the power of AI and ML-generated insights and advanced
+            analytics to help you tap into your digital ecosystem and unlock the
+            full potential of your brand.
+          </li>
+          <li>
+            By leveraging data-driven insights, we can help you make smarter,
+            more informed decisions about your marketing strategy, and create
+            content that truly connects with your audience. You can stay ahead
+            of the competition and drive real results that impact your bottom
+            line.
+          </li>
+        </ul>
+      </p-accordionTab>
+      <p-accordionTab class="blue" header="Peak Performance Advisors">
+        <img
+          src="assets/images/main/services_peak_performance.png"
+          alt="peak-performance"
+        />
+        <ul>
+          <li>
+            We understand that innovation and speed are critical components of
+            success for any brand or business. That’s why we offer a bespoke
+            co-creation service that brings together an all-star team of
+            collaborators to help you innovate quickly and effectively.
+          </li>
+          <li>
+            Through an immersive workshop experience, we work closely with you
+            to understand your unique needs and challenges and develop tailored
+            solutions that drive results.
+          </li>
+          <li>
+            Whether you’re looking to develop a new product or service based on
+            an influencer marketing strategy, our co-creation service can help
+            you achieve your goals and stay ahead of the competition. With our
+            expert guidance and cutting-edge approach, you can take your brand
+            or business to the next level and achieve peak performance.
+          </li>
+        </ul>
+      </p-accordionTab>
+    </p-accordion>
+  </div>
+  <div class="our-presence">
+    <div class="img-text">
+      <h1>Our Presence</h1>
+      <img src="assets/images/main/mapa.png" alt="map" />
+    </div>
+    <div class="number-text">
+      <p>
+        With our expertise in influencer marketing, we work to connect brands
+        with their audiences across more than 20 countries spanning the Americas
+        and Spain.
+      </p>
+      <p id="increasing-number">+ {{ currentNumber }}</p>
+    </div>
+  </div>
+  <div>
+    <h1>Customer Succes Stories</h1>
+    <div class="card">
+      <p-carousel
+        [numVisible]="3"
+        [numScroll]="3"
+        [circular]="true"
+        autoplayInterval="3000"
+      >
+        <ng-template let-product pTemplate="item">
+          <div class="border-1 surface-border border-round m-2 p-3">
+            <div class="mb-3">
+              <div class="relative mx-auto">
+                <img
+                  src="https://primefaces.org/cdn/primeng/images/demo/product/{{
+                    product.image
+                  }}"
+                  [alt]="product.name"
+                  class="w-full border-round"
+                />
+                <p-tag
+                  class="absolute"
+                  [ngStyle]="{ 'left.px': 5, 'top.px': 5 }"
+                />
+              </div>
+            </div>
+            <div class="mb-3 font-medium">
+              {{ product.name }}
+            </div>
+            <div class="flex justify-content-between align-items-center">
+              <div class="mt-0 font-semibold text-xl">
+                {{ "$" + product.price }}
+              </div>
+              <span>
+                <p-button
+                  icon="pi pi-heart"
+                  severity="secondary"
+                  [outlined]="true"
+                />
+                <p-button icon="pi pi-shopping-cart" styleClass="ml-2" />
+              </span>
+            </div>
+          </div>
+        </ng-template>
+      </p-carousel>
+    </div>
+  </div>
+  <div style="height: 700px"></div>
+</div>

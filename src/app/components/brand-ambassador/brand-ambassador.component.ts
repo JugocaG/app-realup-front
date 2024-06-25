@@ -6,6 +6,33 @@ import { AuthService } from 'src/app/service/auth.service';
 import { BrandAmbassadorService } from 'src/app/service/brand-ambassador.service';
 import { CitiesService } from 'src/app/service/cities.service';
 
+interface GeneralInterests {
+  name: string;
+}
+
+interface Idiom {
+  name: string;
+}
+
+interface Ages {
+  name: string;
+}
+
+interface Gender {
+  name: string;
+}
+
+interface SocialMedia {
+  name: string;
+}
+
+interface CreatorFollowers {
+  name: string;
+}
+
+interface CreatorGender {
+  name: string;
+}
 @Component({
   selector: 'app-brand-ambassador',
   templateUrl: './brand-ambassador.component.html',
@@ -85,25 +112,70 @@ export class BrandAmbassadorComponent {
   citiesListUnitedStates: { name: string; code: string }[] = [];
 
   citiesListCanada: { name: string; code: string }[] = [];
-  generalInterests: string[] = [
-    'Lifestyle',
-    'Comedia',
-    'Mamás',
-    'Bienestar',
-    'Nutrición',
-    'Fitness',
-    'Beauty',
-    'Foodies',
-    'Familiar',
-    'Viajeros',
-    'Deportes',
-    'Movies',
-    'Recomendaciones / Planes',
-    'Pets',
-    'Tecnología',
-    'Gamers',
-    'Fashion Beauty',
-    'Artistas/musica',
+
+  generalInterests: GeneralInterests[] = [
+    { name: 'Lifestyle' },
+    { name: 'Comedy' },
+    { name: 'Moms' },
+    { name: 'Wellness' },
+    { name: 'Nutrition' },
+    { name: 'Fitness' },
+    { name: 'Beauty' },
+    { name: 'Foodies' },
+    { name: 'Family' },
+    { name: 'Travelers' },
+    { name: 'Sports' },
+    { name: 'Movies' },
+    { name: 'Recommendations / Plans' },
+    { name: 'Pets' },
+    { name: 'Technology' },
+    { name: 'Gamers' },
+    { name: 'Fashion Beauty' },
+    { name: 'Artists/Music' },
+  ];
+
+  idioms: Idiom[] = [
+    { name: 'Spanish' },
+    { name: 'English' },
+    { name: 'Portuguese' },
+  ];
+
+  ages: Ages[] = [
+    { name: '13 - 19' },
+    { name: '20 - 35' },
+    { name: '36 - 55' },
+    { name: '56 - 75' },
+    { name: '75+' },
+  ];
+
+  gender: Gender[] = [
+    { name: 'Male' },
+    { name: 'Female' },
+    { name: 'No preference' },
+  ];
+
+  socialMedia: SocialMedia[] = [
+    { name: 'Instagram Post' },
+    { name: 'Instagram Story' },
+    { name: 'Instagram Reel' },
+    { name: 'TikTok Video' },
+    { name: 'YouTube Video' },
+  ];
+
+  creatorFollowers: CreatorFollowers[] = [
+    { name: '1k - 10k' },
+    { name: '10k - 100k' },
+    { name: '100k - 500k' },
+    { name: '500k - 1M' },
+    { name: '1M - 5M' },
+    { name: '+5M' },
+    { name: 'Macro + Celebrity' },
+  ];
+
+  creatorGender: CreatorGender[] = [
+    { name: 'Male' },
+    { name: 'Female' },
+    { name: 'No preference' },
   ];
 
   client = new FormControl('', Validators.required);

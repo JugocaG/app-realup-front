@@ -22,7 +22,7 @@
   width: 100%;
 }
 .title {
-  width: 50vh;
+  width: 40vw;
   border-top-right-radius: 162px;
   border-bottom-right-radius: 162px;
   background-color: #d8007f;
@@ -101,23 +101,14 @@
 }
 
 .introduction-ugc {
+  margin-top: 30px;
   width: 100%;
   display: flex;
   flex-direction: row;
   justify-content: space-around;
   input {
     font-size: 18px;
-
-    background-color: #00eced;
-    font-family: "Poppins", sans-serif;
-    font-weight: 500;
-    font-style: normal;
-    color: #000000;
-    border: none;
-    border-radius: 20px;
-    width: 30%;
     height: 48px;
-    margin: 20px;
     text-indent: 10px;
   }
 
@@ -160,17 +151,10 @@
 }
 
 #product-name {
+  padding-top: 40px;
   input {
-    background-color: #00eced;
-    font-family: "Poppins", sans-serif;
-    font-weight: 700;
-    font-style: normal;
-    font-size: 25px;
-    color: #000000;
-    border: none;
-    border-radius: 20px;
-    height: 48px;
-    margin: 20px;
+    font-size: 22px;
+    padding: 10px;
     text-indent: 10px;
   }
 }
@@ -269,6 +253,9 @@
     border-radius: 20px;
     margin: 20px;
   }
+  h2 {
+    font-size: 20px;
+  }
 }
 .campaing {
   width: 100%;
@@ -299,6 +286,11 @@
   display: flex;
   flex-direction: column;
   align-items: center;
+}
+
+::ng-deep .location .country-multiselect {
+  margin-bottom: 30px;
+  width: 700px;
 }
 
 .form-content {
@@ -576,4 +568,31 @@
 .nav-links a:hover {
   background-color: #d20981; /* Fondo rosa para el hover */
   color: white; /* Color de texto blanco para el hover */
+}
+
+/* Nuevo text area */
+.text-area-objetive {
+  padding-top: 40px;
+  width: 93%;
+  margin-bottom: 30px;
+}
+
+#brief-campaign-objective {
+  font-size: 1.2vw;
+  width: 100%;
+}
+
+.data-strong {
+  margin: 5px;
+  padding: 0 10px;
+  border-radius: 10px;
+  color: #000000;
+  background-color: #ffffff;
+}
+
+.description {
+  margin-bottom: 20px;
+}
+::ng-deep .description .p-card-content {
+  padding: 0;
 }

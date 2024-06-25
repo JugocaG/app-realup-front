@@ -7,19 +7,21 @@ import { SignupComponent } from './components/signup/signup.component';
 import { BrandAmbassadorComponent } from './components/brand-ambassador/brand-ambassador.component';
 import { HomeComponent } from './components/home/home.component';
 import { PruebasComponent } from './components/pruebas/pruebas.component';
+import { MainComponent } from './components/main/main.component';
 
 const routes: Routes = [
-  {path: 'login', component:LoginComponent},
-  {path: 'signup', component: SignupComponent},
-  {path: 'crowdposting', component:CrowdpostingComponent},
-  {path: 'ugc', component: UgcComponent},
-  {path: 'brand-ambassador', component: BrandAmbassadorComponent},
-  {path: 'home', component: HomeComponent},
-  {path: 'pruebas', component: PruebasComponent}
+  { path: 'login', component: LoginComponent },
+  { path: 'signup', component: SignupComponent },
+  { path: 'crowdposting', component: CrowdpostingComponent },
+  { path: 'ugc', component: UgcComponent },
+  { path: 'brand-ambassador', component: BrandAmbassadorComponent },
+  { path: 'home', component: HomeComponent },
+  { path: 'pruebas', component: PruebasComponent },
+  { path: 'hello', component: MainComponent },
 ];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
-  exports: [RouterModule]
+  exports: [RouterModule],
 })
-export class AppRoutingModule { }
+export class AppRoutingModule {}

@@ -59,12 +59,12 @@ export class AuthService {
             // Manejar el error aquí
             console.error('Error en la solicitud:', error);
             localStorage.removeItem('JWT');
-            window.location.href = '/';
+            window.location.href = '/app-realup-front/login';
           }
         );
     } else {
       console.error('Token no presente en localStorage');
-      window.location.href = '/login';
+      window.location.href = '/app-realup-front/login';
       // Puedes tomar medidas adicionales, como redirigir a la página de inicio de sesión, si el token no está presente.
     }
   }

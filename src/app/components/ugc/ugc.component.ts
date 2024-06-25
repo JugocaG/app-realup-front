@@ -10,38 +10,56 @@ import { Router } from '@angular/router';
 import { AuthService } from 'src/app/service/auth.service';
 import { UgcService } from 'src/app/service/ugc.service';
 import { CitiesService } from 'src/app/service/cities.service';
-import { debounceTime } from 'rxjs/operators';
+import { PdfMakeWrapper, Txt } from 'pdfmake-wrapper';
+import pdfFonts from 'pdfmake/build/vfs_fonts';
 
+interface Country {
+  name: string;
+}
+
+PdfMakeWrapper.setFonts(pdfFonts, {
+  custom: {
+    normal: 'Poppins-Regular.ttf',
+    bold: 'Poppins-Regular.ttf',
+    italics: 'Poppins-Regular.ttf',
+    bolditalics: 'Poppins-Regular.ttf',
+  },
+});
+
+PdfMakeWrapper.useFont('custom');
 @Component({
   selector: 'app-ugc',
   templateUrl: './ugc.component.html',
   styleUrls: ['./ugc.component.css'],
 })
 export class UgcComponent implements OnInit {
-  countries: string[] = [
-    'Argentina',
-    'Bolivia',
-    'Brasil',
-    'Canada',
-    'Chile',
-    'Colombia',
-    'Costa Rica',
-    'Cuba',
-    'Dominican Republic',
-    'Ecuador',
-    'El Salvador',
-    'Guatemala',
-    'Honduras',
-    'Mexico',
-    'Nicaragua',
-    'Panama',
-    'Paraguay',
-    'Peru',
-    'Puerto Rico',
-    'United States',
-    'Uruguay',
-    'Venezuela',
+  selectedCountry: Country[] = [];
+
+  countries: Country[] = [
+    { name: 'Argentina' },
+    { name: 'Bolivia' },
+    { name: 'Brasil' },
+    { name: 'Canada' },
+    { name: 'Chile' },
+    { name: 'Colombia' },
+    { name: 'Costa Rica' },
+    { name: 'Cuba' },
+    { name: 'Dominican Republic' },
+    { name: 'Ecuador' },
+    { name: 'El Salvador' },
+    { name: 'Guatemala' },
+    { name: 'Honduras' },
+    { name: 'Mexico' },
+    { name: 'Nicaragua' },
+    { name: 'Panama' },
+    { name: 'Paraguay' },
+    { name: 'Peru' },
+    { name: 'Puerto Rico' },
+    { name: 'United States' },
+    { name: 'Uruguay' },
+    { name: 'Venezuela' },
   ];
+
   citiesFinal: { name: string; code: string }[] = [];
 
   citiesListArgentina: { name: string; code: string }[] = [];
@@ -120,7 +138,6 @@ export class UgcComponent implements OnInit {
 
   //
   summary: number = 0;
-  selectedCountry: string = '';
   videoCount: number = 0;
   selectedVideoType: string = '';
 
@@ -539,7 +556,7 @@ export class UgcComponent implements OnInit {
 
   saveSaleUGC() {
     // Argentina
-    if (this.selectedCountry.includes('Argentina')) {
+    if (this.selectedCountry.some((country) => country.name === 'Argentina')) {
       // Obtener los nombres de las ciudades y ajustarlos
       const citiesData: { name: string }[] =
         this.formGroupCitiesArgentina.value.cities;
@@ -558,7 +575,7 @@ export class UgcComponent implements OnInit {
       });
     }
 
-    if (this.selectedCountry.includes('Bolivia')) {
+    if (this.selectedCountry.some((country) => country.name === 'Bolivia')) {
       // Obtener los nombres de las ciudades y ajustarlos
       const citiesData: { name: string }[] =
         this.formGroupCitiesBolivia.value.cities;
@@ -576,7 +593,17 @@ export class UgcComponent implements OnInit {
         this.router.navigateByUrl('/home');
       });
     }
+    const pdf = new PdfMakeWrapper();
+
+    // Añadir texto con fuente personalizada
+    pdf.add(new Txt(`Nombre: ${this.productName}`).font('custom').end);
+    pdf.add(new Txt(`Email: ${this.brand}`).end);
+
+    pdf.create().download('formulario.pdf');
   }
+
+  productName: string = '';
+  brand: string = '';
   // Sum buttons types of contents
   // -------------------------------------- General -------------------------------------------------
 
@@ -1660,112 +1687,123 @@ export class UgcComponent implements OnInit {
 
   // Mostrar ciudades
   showCities() {
-    if (this.selectedCountry.includes('Argentina')) {
+    console.log(this.selectedCountry);
+    if (this.selectedCountry.some((country) => country.name === 'Argentina')) {
       this.verificarArgentina = true;
     } else {
       this.verificarArgentina = false;
     }
-    if (this.selectedCountry.includes('Bolivia')) {
+    if (this.selectedCountry.some((country) => country.name === 'Bolivia')) {
       this.verificarBolivia = true;
     } else {
       this.verificarBolivia = false;
     }
-    if (this.selectedCountry.includes('Brasil')) {
+    if (this.selectedCountry.some((country) => country.name === 'Brasil')) {
       this.verificarBrasil = true;
     } else {
       this.verificarBrasil = false;
     }
-    if (this.selectedCountry.includes('Chile')) {
+    if (this.selectedCountry.some((country) => country.name === 'Chile')) {
       this.verificarChile = true;
     } else {
       this.verificarChile = false;
     }
-    if (this.selectedCountry.includes('Colombia')) {
+    if (this.selectedCountry.some((country) => country.name === 'Colombia')) {
       this.verificarColombia = true;
     } else {
       this.verificarColombia = false;
     }
-    if (this.selectedCountry.includes('Ecuador')) {
+    if (this.selectedCountry.some((country) => country.name === 'Ecuador')) {
       this.verificarEcuador = true;
     } else {
       this.verificarEcuador = false;
     }
-    if (this.selectedCountry.includes('Paraguay')) {
+    if (this.selectedCountry.some((country) => country.name === 'Paraguay')) {
       this.verificarParaguay = true;
     } else {
       this.verificarParaguay = false;
     }
-    if (this.selectedCountry.includes('Peru')) {
+    if (this.selectedCountry.some((country) => country.name === 'Peru')) {
       this.verificarPeru = true;
     } else {
       this.verificarPeru = false;
     }
-    if (this.selectedCountry.includes('Uruguay')) {
+    if (this.selectedCountry.some((country) => country.name === 'Uruguay')) {
       this.verificarUruguay = true;
     } else {
       this.verificarUruguay = false;
     }
-    if (this.selectedCountry.includes('Venezuela')) {
+    if (this.selectedCountry.some((country) => country.name === 'Venezuela')) {
       this.verificarVenezuela = true;
     } else {
       this.verificarVenezuela = false;
     }
-    if (this.selectedCountry.includes('Costa Rica')) {
+    if (this.selectedCountry.some((country) => country.name === 'Costa Rica')) {
       this.verificarCostaRica = true;
     } else {
       this.verificarCostaRica = false;
     }
-    if (this.selectedCountry.includes('Cuba')) {
+    if (this.selectedCountry.some((country) => country.name === 'Cuba')) {
       this.verificarCuba = true;
     } else {
       this.verificarCuba = false;
     }
-    if (this.selectedCountry.includes('El Salvador')) {
+    if (
+      this.selectedCountry.some((country) => country.name === 'El Salvador')
+    ) {
       this.verificarElSalvador = true;
     } else {
       this.verificarElSalvador = false;
     }
-    if (this.selectedCountry.includes('Guatemala')) {
+    if (this.selectedCountry.some((country) => country.name === 'Guatemala')) {
       this.verificarGuatemala = true;
     } else {
       this.verificarGuatemala = false;
     }
-    if (this.selectedCountry.includes('Honduras')) {
+    if (this.selectedCountry.some((country) => country.name === 'Honduras')) {
       this.verificarHonduras = true;
     } else {
       this.verificarHonduras = false;
     }
-    if (this.selectedCountry.includes('Mexico')) {
+    if (this.selectedCountry.some((country) => country.name === 'Mexico')) {
       this.verificarMexico = true;
     } else {
       this.verificarMexico = false;
     }
-    if (this.selectedCountry.includes('Nicaragua')) {
+    if (this.selectedCountry.some((country) => country.name === 'Nicaragua')) {
       this.verificarNicaragua = true;
     } else {
       this.verificarNicaragua = false;
     }
-    if (this.selectedCountry.includes('Panama')) {
+    if (this.selectedCountry.some((country) => country.name === 'Panama')) {
       this.verificarPanama = true;
     } else {
       this.verificarPanama = false;
     }
-    if (this.selectedCountry.includes('Puerto Rico')) {
+    if (
+      this.selectedCountry.some((country) => country.name === 'Puerto Rico')
+    ) {
       this.verificarPuertoRico = true;
     } else {
       this.verificarPuertoRico = false;
     }
-    if (this.selectedCountry.includes('Dominican Republic')) {
+    if (
+      this.selectedCountry.some(
+        (country) => country.name === 'Dominican Republic'
+      )
+    ) {
       this.verificarDominicanRepublic = true;
     } else {
       this.verificarDominicanRepublic = false;
     }
-    if (this.selectedCountry.includes('United States')) {
+    if (
+      this.selectedCountry.some((country) => country.name === 'United States')
+    ) {
       this.verificarUnitedStates = true;
     } else {
       this.verificarUnitedStates = false;
     }
-    if (this.selectedCountry.includes('Canada')) {
+    if (this.selectedCountry.some((country) => country.name === 'Canada')) {
       this.verificarCanada = true;
     } else {
       this.verificarCanada = false;
@@ -3004,5 +3042,20 @@ export class UgcComponent implements OnInit {
         (this.ValorTotal + (0.35 * this.ValorTotal) / 0.65) /
         this.valorContenidosTotal;
     }, 100);
+  }
+
+  // Metodo listado de Paises
+
+  getCountryList(): string {
+    const countryCount = this.selectedCountry.length;
+    if (countryCount < 3) {
+      return this.selectedCountry.map((country) => country.name).join(', ');
+    } else {
+      const displayedCountries = this.selectedCountry
+        .slice(0, 2)
+        .map((country) => country.name)
+        .join(', ');
+      return `${displayedCountries} + ${countryCount - 2}`;
+    }
   }
 }

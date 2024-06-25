@@ -34,6 +34,15 @@ import { MultiSelectModule } from 'primeng/multiselect';
 import { ConfirmDialogModule } from 'primeng/confirmdialog';
 import { CalendarModule } from 'primeng/calendar';
 import { ToastModule } from 'primeng/toast';
+import { MainComponent } from './components/main/main.component';
+import { AccordionModule } from 'primeng/accordion';
+import { CarouselModule } from 'primeng/carousel';
+import { InputTextModule } from 'primeng/inputtext';
+import { FloatLabelModule } from 'primeng/floatlabel';
+import { InputTextareaModule } from 'primeng/inputtextarea';
+import { DropdownModule } from 'primeng/dropdown';
+import { MessageService } from 'primeng/api';
+import { RippleModule } from 'primeng/ripple';
 
 @NgModule({
   declarations: [
@@ -44,6 +53,7 @@ import { ToastModule } from 'primeng/toast';
     SignupComponent,
     HomeComponent,
     BrandAmbassadorComponent,
+    MainComponent,
   ],
   imports: [
     BrowserModule,
@@ -75,8 +85,15 @@ import { ToastModule } from 'primeng/toast';
     ConfirmDialogModule,
     ToastModule,
     CalendarModule,
+    AccordionModule,
+    CarouselModule,
+    InputTextModule,
+    FloatLabelModule,
+    InputTextareaModule,
+    DropdownModule,
+    RippleModule,
   ],
-  providers: [provideAnimationsAsync()],
+  providers: [provideAnimationsAsync(), MessageService],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

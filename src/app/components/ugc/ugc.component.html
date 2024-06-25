@@ -4,32 +4,37 @@
   href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap"
   rel="stylesheet"
 />
+<head>
+  <base href="/app-realup-front/" />
+</head>
 <nav class="navbar">
   <div class="logo">
-    <a href="/home">
+    <a href="home">
       <img src="assets/images/REAL UP.png" alt="Logo" />
     </a>
   </div>
   <ul class="nav-links">
-    <li><a href="/home">HOME</a></li>
-    <li><a href="/crowdposting">CROWDPOSTING</a></li>
-    <li><a href="/ugc">UGC</a></li>
-    <li><a href="/brand-ambassador">BRAND AMBASSADOR</a></li>
+    <li><a href="home">HOME</a></li>
+    <li><a href="crowdposting">CROWDPOSTING</a></li>
+    <li><a href="ugc">UGC</a></li>
+    <li><a href="brand-ambassador">BRAND AMBASSADOR</a></li>
   </ul>
 </nav>
 <div class="container">
   <div class="content">
     <div class="content-sale">
       <div class="title">
-        <h1>UGC</h1>
+        <h1>User-Generated Content (UGC)</h1>
       </div>
-      <mat-card style="margin: 20px">
-        <h2 style="padding: 0 20px">
-          The following quotation will be sent to our sales executives, who will
-          respond within one business day.
-        </h2>
-      </mat-card>
+
       <div class="form-content">
+        <p-card class="description" header="Genuine Fan Engagement">
+          <p class="m-0" style="margin: 0; padding: 0">
+            Utilize authentic content created by your fans and customers to
+            boost engagement, build brand loyalty, and enhance the authenticity
+            of your brand messaging.
+          </p>
+        </p-card>
         <form class="form-ugc" [formGroup]="combinedForm">
           <div formGroupName="saveUGCForm">
             <div>
@@ -39,13 +44,16 @@
               <mat-card class="card-product">
                 <div class="product-form">
                   <div id="product-name">
-                    <input
-                      type="text"
-                      name="name_product"
-                      id="name_product"
-                      placeholder="Product name"
-                      formControlName="name_product"
-                    />
+                    <p-floatLabel>
+                      <input
+                        pInputText
+                        id="name_product"
+                        name="name_product"
+                        formControlName="name_product"
+                        [(ngModel)]="productName"
+                      />
+                      <label for="name_product">Product name</label>
+                    </p-floatLabel>
                   </div>
                   <div class="type-product">
                     <h2>Type of product</h2>
@@ -107,19 +115,22 @@
                   </div>
                 </div>
                 <div class="brief-product">
-                  <mat-form-field class="brief-campaign-objective">
-                    <mat-label
-                      >Enter the purpose and objectives of your marketing
-                      campaign in more detail</mat-label
-                    >
+                  <p-floatLabel class="text-area-objetive">
                     <textarea
-                      matInput
-                      name="brief"
-                      id="brief"
+                      name="brief_campaign_objective"
+                      id="brief-campaign-objective"
+                      formControlName="brief_campaign_objective"
                       rows="3"
-                      formControlName="brief"
-                    ></textarea>
-                  </mat-form-field>
+                      pInputTextarea
+                      [autoResize]="true"
+                    >
+                    </textarea>
+                    <label for="float-input"
+                      >Enter the purpose and objectives of your marketing
+                      campaign in more detail</label
+                    >
+                  </p-floatLabel>
+                  <!--  -->
                 </div>
               </mat-card>
             </div>
@@ -130,26 +141,28 @@
             <div>
               <mat-card class="card-campaign-objetive">
                 <div class="introduction-ugc">
-                  <input
-                    type="text"
-                    id="cliente"
-                    name="cliente"
-                    placeholder="Your Name"
-                  />
-                  <input
-                    type="text"
-                    id="client"
-                    name="client"
-                    placeholder="Brand"
-                    formControlName="name_client"
-                  />
-                  <input
-                    type="text"
-                    id="campaign_name"
-                    name="campaign_name"
-                    placeholder="Campaign name"
-                    formControlName="campaign_name"
-                  />
+                  <p-floatLabel>
+                    <input pInputText id="username" name="cliente" />
+                    <label for="username">Your Name</label>
+                  </p-floatLabel>
+                  <p-floatLabel>
+                    <input
+                      pInputText
+                      id="brand"
+                      name="brand"
+                      formControlName="name_client"
+                    />
+                    <label for="brand">Brand</label>
+                  </p-floatLabel>
+                  <p-floatLabel>
+                    <input
+                      pInputText
+                      name="campaign_name"
+                      id="campaign_name"
+                      formControlName="name_client"
+                    />
+                    <label for="campaign_name">Campaign name</label>
+                  </p-floatLabel>
                 </div>
                 <h2>Campaign objective</h2>
                 <div class="radio-product-boxes">
@@ -165,19 +178,21 @@
                   </div>
                 </div>
                 <div class="brief-product">
-                  <mat-form-field class="brief-campaign-objective">
-                    <mat-label
-                      >Enter the purpose and objectives of your marketing
-                      campaign in more detail</mat-label
-                    >
+                  <p-floatLabel class="text-area-objetive">
                     <textarea
-                      matInput
                       name="brief_campaign_objective"
                       id="brief-campaign-objective"
-                      rows="3"
                       formControlName="brief_campaign_objective"
-                    ></textarea>
-                  </mat-form-field>
+                      rows="3"
+                      pInputTextarea
+                      [autoResize]="true"
+                    >
+                    </textarea>
+                    <label for="float-input"
+                      >Enter the purpose and objectives of your marketing
+                      campaign in more detail</label
+                    >
+                  </p-floatLabel>
                 </div>
               </mat-card>
             </div>
@@ -186,30 +201,21 @@
               <div class="location">
                 <h2>Location</h2>
                 <p class="text-packages">
-                  In which countries would you like to launch your campaigns?
+                  Select the country and cities where you want your content to
+                  be viewed
                 </p>
-                <div class="country">
-                  <mat-form-field class="select-country">
-                    <mat-label>Countries</mat-label>
-                    <mat-select
-                      multiple
-                      (selectionChange)="showCities()"
-                      disableRipple
-                      [(ngModel)]="selectedCountry"
-                      id="country"
-                      name="country"
-                      formControlName="country"
-                      (selectionChange)="changeValues()"
-                    >
-                      <mat-option
-                        *ngFor="let country of countries"
-                        [value]="country"
-                      >
-                        {{ country }}
-                      </mat-option>
-                    </mat-select>
-                  </mat-form-field>
-                </div>
+                <p-multiSelect
+                  [(ngModel)]="selectedCountry"
+                  styleClass="country-multiselect"
+                  (ngModelChange)="showCities()"
+                  (ngModelChange)="changeValues()"
+                  id="country"
+                  name="country"
+                  [options]="countries"
+                  formControlName="country"
+                  optionLabel="name"
+                  placeholder="Select a Country"
+                />
               </div>
             </mat-card>
           </div>
@@ -585,8 +591,8 @@
               <mat-card class="card-creators">
                 <div class="cities recommendations-cities">
                   <p>
-                    Elige las ciudades en las que quieres que se vean tus
-                    contenidos.
+                    Select the cities where you want your content to be viewedse
+                    vean tus contenidos.
                   </p>
 
                   <p-multiSelect
@@ -4195,7 +4201,7 @@
       <h2>Shopping Cart</h2>
       <div class="data">
         <label for="country">Country</label>
-        <p>{{ selectedCountry }}</p>
+        <p>{{ getCountryList() }}</p>
       </div>
       <div class="data">
         <label for="videoCount">Total Cities</label>
@@ -4203,19 +4209,7 @@
           {{ ValorCiudadesTotal }}
         </p>
       </div>
-      <div class="data">
-        <label for="videoCount">Creators</label>
-        <p>
-          {{ ValorNumeroCreadores }}
-        </p>
-      </div>
 
-      <div class="data">
-        <label for="videoCount">Total Contents</label>
-        <p>
-          {{ valorContenidosTotal }}
-        </p>
-      </div>
       <div class="data">
         <label for="numberCarrousel">Carrousel Contents</label>
         <p>{{ valorCarrouselTotal }}</p>
@@ -4232,8 +4226,20 @@
         <label for="videoType">Average per content</label>
         <p>{{ valorPromedioContenido | number : "1.0-1" }} USD</p>
       </div>
+      <div class="data data-strong">
+        <label for="videoCount">Creators</label>
+        <p>
+          {{ ValorNumeroCreadores }}
+        </p>
+      </div>
 
-      <div class="data">
+      <div class="data data-strong">
+        <label for="videoCount">Total Contents</label>
+        <p>
+          {{ valorContenidosTotal }}
+        </p>
+      </div>
+      <div class="data data-strong">
         <p id="total">TOTAL VALUE:</p>
         <p>
           {{
