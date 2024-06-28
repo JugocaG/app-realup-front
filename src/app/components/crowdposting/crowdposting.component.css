@@ -607,3 +607,7 @@ button:hover {
   background: #b7d8b7;
   color: #000000;
 }
+
+::ng-deep .radio-product-boxes {
+  justify-content: center;
+}

@@ -43,6 +43,7 @@ import { InputTextareaModule } from 'primeng/inputtextarea';
 import { DropdownModule } from 'primeng/dropdown';
 import { MessageService } from 'primeng/api';
 import { RippleModule } from 'primeng/ripple';
+import { SelectButtonModule } from 'primeng/selectbutton';
 
 @NgModule({
   declarations: [
@@ -92,6 +93,7 @@ import { RippleModule } from 'primeng/ripple';
     InputTextareaModule,
     DropdownModule,
     RippleModule,
+    SelectButtonModule,
   ],
   providers: [provideAnimationsAsync(), MessageService],
   bootstrap: [AppComponent],

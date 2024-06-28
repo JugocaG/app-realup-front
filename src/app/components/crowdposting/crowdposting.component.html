@@ -33,11 +33,18 @@
           <form [formGroup]="saveClientForm">
             <div class="campaign-name">
               <p-floatLabel>
-                <input pInputText id="username" name="cliente" />
+                <input
+                  formControlName="name_client"
+                  [(ngModel)]="whyUs"
+                  pInputText
+                  id="username"
+                  name="username"
+                />
                 <label for="username">Your Name</label>
               </p-floatLabel>
               <p-floatLabel>
                 <input
+                  [(ngModel)]="brand"
                   pInputText
                   id="brand"
                   name="brand"
@@ -57,20 +64,19 @@
             </div>
             <div class="campaign-objetive">
               <h2>Campaign objective</h2>
-              <div class="radio-product-boxes">
-                <div class="radio-product-box" *ngFor="let option of options">
-                  <input
-                    class="radio-product"
-                    type="checkbox"
-                    [value]="option.value"
-                    [id]="option.id"
-                    (change)="onCheckboxChange($event)"
-                  />
-                  <label [for]="option.id">{{ option.label }}</label>
-                </div>
+              <div class="card flex justify-content-center">
+                <p-selectButton
+                  [options]="options"
+                  formControlName="option_strategy"
+                  [(ngModel)]="optionStrategy"
+                  [multiple]="true"
+                  optionLabel="label"
+                  optionValue="value"
+                />
               </div>
               <p-floatLabel class="text-area-objetive">
                 <textarea
+                  [(ngModel)]="strategy"
                   name="brief_campaign_objective"
                   id="brief-campaign-objective"
                   formControlName="brief_campaign_objective"
@@ -109,8 +115,9 @@
                 <!--  -->
                 <div class="cities" *ngIf="verificarArgentina">
                   <p-multiSelect
-                    formControlName="cities"
-                    [(ngModel)]="citiesSelected"
+                    (onChange)="updateCitites()"
+                    formControlName="citiesArgentina"
+                    [(ngModel)]="citiesSelectedArgentina"
                     [options]="citiesListArgentina"
                     optionLabel="name"
                     styleClass="cities-multiselect"
@@ -122,8 +129,9 @@
                 <!--  -->
                 <div class="cities" *ngIf="verificarBolivia">
                   <p-multiSelect
+                    (onChange)="updateCitites()"
                     formControlName="cities"
-                    [(ngModel)]="citiesSelected"
+                    [(ngModel)]="citiesSelectedBolivia"
                     [options]="citiesListBolivia"
                     optionLabel="name"
                     styleClass="cities-multiselect"
@@ -135,8 +143,9 @@
                 <!--  -->
                 <div class="cities" *ngIf="verificarBrasil">
                   <p-multiSelect
+                    (onChange)="updateCitites()"
                     formControlName="cities"
-                    [(ngModel)]="citiesSelected"
+                    [(ngModel)]="citiesSelectedBrasil"
                     [options]="citiesListBrasil"
                     optionLabel="name"
                     styleClass="cities-multiselect"
@@ -148,8 +157,9 @@
                 <!--  -->
                 <div class="cities" *ngIf="verificarChile">
                   <p-multiSelect
+                    (onChange)="updateCitites()"
                     formControlName="cities"
-                    [(ngModel)]="citiesSelected"
+                    [(ngModel)]="citiesSelectedChile"
                     [options]="citiesListChile"
                     optionLabel="name"
                     styleClass="cities-multiselect"
@@ -161,8 +171,9 @@
                 <!--  -->
                 <div class="cities" *ngIf="verificarColombia">
                   <p-multiSelect
+                    (onChange)="updateCitites()"
                     formControlName="cities"
-                    [(ngModel)]="citiesSelected"
+                    [(ngModel)]="citiesSelectedColombia"
                     [options]="citiesListColombia"
                     optionLabel="name"
                     styleClass="cities-multiselect"
@@ -174,8 +185,9 @@
                 <!--  -->
                 <div class="cities" *ngIf="verificarEcuador">
                   <p-multiSelect
+                    (onChange)="updateCitites()"
                     formControlName="cities"
-                    [(ngModel)]="citiesSelected"
+                    [(ngModel)]="citiesSelectedEcuador"
                     [options]="citiesListEcuador"
                     optionLabel="name"
                     styleClass="cities-multiselect"
@@ -187,8 +199,9 @@
                 <!--  -->
                 <div class="cities" *ngIf="verificarParaguay">
                   <p-multiSelect
+                    (onChange)="updateCitites()"
                     formControlName="cities"
-                    [(ngModel)]="citiesSelected"
+                    [(ngModel)]="citiesSelectedParaguay"
                     [options]="citiesListParaguay"
                     optionLabel="name"
                     styleClass="cities-multiselect"
@@ -200,8 +213,9 @@
                 <!--  -->
                 <div class="cities" *ngIf="verificarPeru">
                   <p-multiSelect
+                    (onChange)="updateCitites()"
                     formControlName="cities"
-                    [(ngModel)]="citiesSelected"
+                    [(ngModel)]="citiesSelectedPeru"
                     [options]="citiesListPeru"
                     optionLabel="name"
                     styleClass="cities-multiselect"
@@ -213,8 +227,9 @@
                 <!--  -->
                 <div class="cities" *ngIf="verificarUruguay">
                   <p-multiSelect
+                    (onChange)="updateCitites()"
                     formControlName="cities"
-                    [(ngModel)]="citiesSelected"
+                    [(ngModel)]="citiesSelectedUruguay"
                     [options]="citiesListUruguay"
                     optionLabel="name"
                     styleClass="cities-multiselect"
@@ -226,8 +241,9 @@
                 <!--  -->
                 <div class="cities" *ngIf="verificarVenezuela">
                   <p-multiSelect
+                    (onChange)="updateCitites()"
                     formControlName="cities"
-                    [(ngModel)]="citiesSelected"
+                    [(ngModel)]="citiesSelectedVenezuela"
                     [options]="citiesListVenezuela"
                     optionLabel="name"
                     styleClass="cities-multiselect"
@@ -239,8 +255,9 @@
 
                 <div class="cities" *ngIf="verificarCostaRica">
                   <p-multiSelect
+                    (onChange)="updateCitites()"
                     formControlName="cities"
-                    [(ngModel)]="citiesSelected"
+                    [(ngModel)]="citiesSelectedCostaRica"
                     [options]="citiesListCostaRica"
                     optionLabel="name"
                     styleClass="cities-multiselect"
@@ -252,8 +269,9 @@
 
                 <div class="cities" *ngIf="verificarCuba">
                   <p-multiSelect
+                    (onChange)="updateCitites()"
                     formControlName="cities"
-                    [(ngModel)]="citiesSelected"
+                    [(ngModel)]="citiesSelectedCuba"
                     [options]="citiesListCuba"
                     optionLabel="name"
                     styleClass="cities-multiselect"
@@ -265,8 +283,9 @@
 
                 <div class="cities" *ngIf="verificarElSalvador">
                   <p-multiSelect
+                    (onChange)="updateCitites()"
                     formControlName="cities"
-                    [(ngModel)]="citiesSelected"
+                    [(ngModel)]="citiesSelectedElSalvador"
                     [options]="citiesListElSalvador"
                     optionLabel="name"
                     styleClass="cities-multiselect"
@@ -278,8 +297,9 @@
 
                 <div class="cities" *ngIf="verificarGuatemala">
                   <p-multiSelect
+                    (onChange)="updateCitites()"
                     formControlName="cities"
-                    [(ngModel)]="citiesSelected"
+                    [(ngModel)]="citiesSelectedGuatemala"
                     [options]="citiesListGuatemala"
                     optionLabel="name"
                     styleClass="cities-multiselect"
@@ -291,8 +311,9 @@
 
                 <div class="cities" *ngIf="verificarHonduras">
                   <p-multiSelect
+                    (onChange)="updateCitites()"
                     formControlName="cities"
-                    [(ngModel)]="citiesSelected"
+                    [(ngModel)]="citiesSelectedHonduras"
                     [options]="citiesListHonduras"
                     optionLabel="name"
                     styleClass="cities-multiselect"
@@ -304,8 +325,9 @@
 
                 <div class="cities" *ngIf="verificarMexico">
                   <p-multiSelect
+                    (onChange)="updateCitites()"
                     formControlName="cities"
-                    [(ngModel)]="citiesSelected"
+                    [(ngModel)]="citiesSelectedMexico"
                     [options]="citiesListMexico"
                     optionLabel="name"
                     styleClass="cities-multiselect"
@@ -317,8 +339,9 @@
 
                 <div class="cities" *ngIf="verificarNicaragua">
                   <p-multiSelect
+                    (onChange)="updateCitites()"
                     formControlName="cities"
-                    [(ngModel)]="citiesSelected"
+                    [(ngModel)]="citiesSelectedNicaragua"
                     [options]="citiesListNicaragua"
                     optionLabel="name"
                     styleClass="cities-multiselect"
@@ -330,8 +353,9 @@
 
                 <div class="cities" *ngIf="verificarPanama">
                   <p-multiSelect
+                    (onChange)="updateCitites()"
                     formControlName="cities"
-                    [(ngModel)]="citiesSelected"
+                    [(ngModel)]="citiesSelectedPanama"
                     [options]="citiesListPanama"
                     optionLabel="name"
                     styleClass="cities-multiselect"
@@ -343,8 +367,9 @@
 
                 <div class="cities" *ngIf="verificarPuertoRico">
                   <p-multiSelect
+                    (onChange)="updateCitites()"
                     formControlName="cities"
-                    [(ngModel)]="citiesSelected"
+                    [(ngModel)]="citiesSelectedPuertoRico"
                     [options]="citiesListPuertoRico"
                     optionLabel="name"
                     styleClass="cities-multiselect"
@@ -356,8 +381,9 @@
 
                 <div class="cities" *ngIf="verificarDominicanRepublic">
                   <p-multiSelect
+                    (onChange)="updateCitites()"
                     formControlName="cities"
-                    [(ngModel)]="citiesSelected"
+                    [(ngModel)]="citiesSelectedDominicanRepublic"
                     [options]="citiesListDominicanRepublic"
                     optionLabel="name"
                     styleClass="cities-multiselect"
@@ -369,8 +395,9 @@
 
                 <div class="cities" *ngIf="verificarUnitedStates">
                   <p-multiSelect
+                    (onChange)="updateCitites()"
                     formControlName="cities"
-                    [(ngModel)]="citiesSelected"
+                    [(ngModel)]="citiesSelectedUnitedStates"
                     [options]="citiesListUnitedStates"
                     optionLabel="name"
                     styleClass="cities-multiselect"
@@ -382,8 +409,9 @@
 
                 <div class="cities" *ngIf="verificarCanada">
                   <p-multiSelect
+                    (onChange)="updateCitites()"
                     formControlName="cities"
-                    [(ngModel)]="citiesSelected"
+                    [(ngModel)]="citiesSelectedCanada"
                     [options]="citiesListCanada"
                     optionLabel="name"
                     styleClass="cities-multiselect"
@@ -1020,7 +1048,7 @@
                     src="assets/icons/tiktok.svg"
                     alt="Icono TikTok"
                   />
-                  <h3 style="margin-top: 0">Paquete TikTok</h3>
+                  <h3 style="margin-top: 0">TikTok</h3>
 
                   <div class="div-title-micro">
                     <h4 class="title-micro">Micro Influencer Profile</h4>
@@ -1341,55 +1369,3 @@
     </div>
   </div>
 </div>
-
-<!-- <link
-  href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap"
-  rel="stylesheet"
-/>
-<p
-  style="
-    font-weight: bold;
-    font-size: 45px;
-    color: #46ebec;
-    text-align: center;
-    line-height: 1.2;
-  "
->
-  <strong>Can you imagine</strong>
-</p>
-<p
-  style="
-    font-size: 19px;
-    font-weight: 400;
-    color: #ffffff;
-    text-align: center;
-    line-height: 1.2;
-  "
->
-  having a campaign with almost 5,000 influencers
-  <span style="color: #f8129b"><strong>simultaneously</strong></span> in
-  <strong>Latam</strong> and <strong>US Hispanic</strong>
-  Market?
-</p>
-
-Segundo texto
-
-<link
-  href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap"
-  rel="stylesheet"
-/>
-
-<p
-  style="
-    font-weight: bold;
-    font-size: 41px;
-    color: #f8129b;
-    line-height: 1.2;
-    margin-bottom: 0px;
-  "
->
-  That's exactly,
-</p>
-<p style="font-weight: 400; font-size: 23px; color: #000000; margin-top: 0px">
-  What we have done in one <strong>CAMPAIGN!</strong>
-</p> -->
